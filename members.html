@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Members — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/tables.css"/>
+<link rel="stylesheet" href="css/forms.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="js/print.js"></script>
+<script src="js/app.js"></script>
+<style>
+  .tenant-section-header{background:linear-gradient(90deg,#fff3e0,transparent);border-left:3px solid #ff8f00;padding:10px 14px;margin:16px 0 12px;border-radius:0 8px 8px 0;display:flex;align-items:center;gap:8px;}
+  .tenant-section-header .ts-label{font-size:13px;font-weight:700;color:#e65100;}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
+  <nav>
+    <span class="nav-section-label">Main</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
+    <a href="members.html"     class="nav-link active"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Finance</span>
+    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
+    <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
+    <span class="nav-section-label">Community</span>
+    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events</a>
+    <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
+    <span class="nav-section-label">Reports</span>
+    <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
+    <span class="nav-section-label">Resident</span>
+    <a href="resident.html"    class="nav-link"><span class="nav-icon">🏠</span> Resident Portal</a>
+  </nav>
+  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v2.0</div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <div><div class="topbar-title">👥 Members</div><div class="topbar-sub">Flat owners, tenants &amp; directory</div></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-outline btn-sm" id="btn-export-members">📥 Export Excel</button>
+      <button class="btn btn-accent" id="btn-add-member">➕ Add Member</button>
+    </div>
+  </header>
+  <main class="page-content">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🏠 Member Directory <span class="record-count" id="member-count">0</span></div></div>
+      <div class="toolbar">
+        <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search flat, name, contact…"/></div>
+        <select id="filter-wing"   class="filter-select"><option value="">All Wings</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+        <select id="filter-status" class="filter-select"><option value="">All Status</option><option>Active</option><option>Inactive</option><option>Vacated</option></select>
+        <select id="filter-type"   class="filter-select"><option value="">All Types</option><option>Owner</option><option>Tenant</option></select>
+      </div>
+      <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>Flat No</th><th>Wing</th><th class="col-dept">Owner / Resident</th>
+          <th>Contact</th><th>Maint/Mo</th><th class="col-slot">Parking</th><th>Status</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody></table>
+      </div>
+      <div class="pagin-wrap"><div class="pagin-info" id="pagin-info"></div><div class="pagin-controls" id="pagination"></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal with Tenant Section -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal" style="max-width:700px;">
+    <div class="modal-header"><div class="modal-title" id="modal-title">Add Member</div><button class="modal-close" id="modal-close">✕</button></div>
+    <div class="modal-body">
+      <form id="member-form" novalidate>
+        <!-- Owner Info -->
+        <div style="font-size:12px;font-weight:700;color:#1a237e;letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;">👤 Owner / Primary Resident</div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Flat / House Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. A-101 or 12"/></div>
+          <div class="form-group"><label class="form-label">Wing / Block <span class="req">*</span></label><select id="wing" class="form-control"><option value="">Select</option><option>A</option><option>B</option><option>C</option><option>D</option><option>Main</option></select></div>
+          <div class="form-group"><label class="form-label">Owner Full Name <span class="req">*</span></label><input id="ownerName" class="form-control" placeholder="Full name"/></div>
+          <div class="form-group"><label class="form-label">Contact Number <span class="req">*</span></label><input id="contactNumber" class="form-control" placeholder="10-digit mobile"/></div>
+          <div class="form-group"><label class="form-label">Email</label><input id="email" class="form-control" type="email" placeholder="email@example.com"/></div>
+          <div class="form-group"><label class="form-label">Parking Slot</label><input id="parkingSlot" class="form-control" placeholder="P-01"/></div>
+          <div class="form-group"><label class="form-label">Move-in Date</label><input id="moveInDate" class="form-control" type="date"/></div>
+          <div class="form-group"><label class="form-label">Member Type</label><select id="memberType" class="form-control"><option>Owner</option><option>Tenant</option></select></div>
+          <div class="form-group"><label class="form-label">Status</label><select id="status" class="form-control"><option>Active</option><option>Inactive</option><option>Vacated</option></select></div>
+          <div class="form-group">
+            <label class="form-label">Maintenance Amount</label>
+            <div class="input-pfx-wrap"><span class="input-pfx">₹</span><input id="maintenanceAmount" class="form-control" type="number" min="0" placeholder="600"/></div>
+            <div style="font-size:11px;color:#888;margin-top:4px;">Default: ₹600/month</div>
+          </div>
+        </div>
+        <!-- Is Rented? -->
+        <div style="display:flex;align-items:center;gap:10px;margin:14px 0 10px;padding:10px 14px;background:#f7f9fc;border-radius:8px;border:1px solid #e0e0e0;">
+          <input type="checkbox" id="hasTenant" style="width:16px;height:16px;cursor:pointer;accent-color:#e65100;"/>
+          <label for="hasTenant" style="font-size:13.5px;font-weight:600;cursor:pointer;color:#e65100;">🔑 This house is currently rented / on lease (add tenant details)</label>
+        </div>
+        <!-- Tenant Section (hidden by default) -->
+        <div id="tenant-section" style="display:none;">
+          <div class="tenant-section-header"><span>🔑</span><span class="ts-label">Tenant / Renter Information</span></div>
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">Tenant Full Name <span class="req">*</span></label><input id="tenantName" class="form-control" placeholder="Tenant's full name"/></div>
+            <div class="form-group"><label class="form-label">Tenant Contact <span class="req">*</span></label><input id="tenantContact" class="form-control" placeholder="Tenant's mobile"/></div>
+            <div class="form-group"><label class="form-label">Tenant Email</label><input id="tenantEmail" class="form-control" type="email" placeholder="tenant@email.com"/></div>
+            <div class="form-group"><label class="form-label">Aadhar / ID Proof No.</label><input id="tenantAadhar" class="form-control" placeholder="Aadhar / Voter ID / PAN"/></div>
+            <div class="form-group"><label class="form-label">Rent Start Date</label><input id="tenantRentStart" class="form-control" type="date"/></div>
+            <div class="form-group"><label class="form-label">Rent End Date (Agreement)</label><input id="tenantRentEnd" class="form-control" type="date"/></div>
+            <div class="form-group full"><label class="form-label">Monthly Rent (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input id="tenantRent" class="form-control" type="number" min="0" placeholder="Rent amount paid to owner"/></div></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" id="btn-cancel">Cancel</button><button class="btn btn-primary" id="btn-save-member">💾 Save Member</button></div>
+  </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>

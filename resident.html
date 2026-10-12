@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Resident Portal — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/tables.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="js/print.js"></script>
+<script src="js/app.js"></script>
+<style>
+  .res-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+  .res-search-card{
+    background:rgba(15,12,48,0.75);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:24px;
+    padding:40px 44px;
+    max-width:480px;width:90%;
+    box-shadow:0 24px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.1);
+    text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .res-search-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+  }
+  .res-search-card h1{font-size:22px;font-weight:800;color:white;margin-bottom:6px;}
+  .res-search-card p{color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px;}
+  .res-flat-input{
+    width:100%;padding:14px 18px;font-size:18px;
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:12px;text-align:center;
+    letter-spacing:3px;text-transform:uppercase;
+    font-weight:700;color:white;
+    margin-bottom:14px;box-sizing:border-box;
+    transition:.2s;outline:none;font-family:inherit;
+  }
+  .res-flat-input::placeholder{color:rgba(255,255,255,0.25);letter-spacing:2px;font-weight:400;}
+  .res-flat-input:focus{
+    border-color:rgba(129,140,248,0.6);
+    box-shadow:0 0 0 3px rgba(79,70,229,0.2),0 0 20px rgba(79,70,229,0.15);
+    background:rgba(255,255,255,0.1);
+  }
+  .res-search-btn{
+    width:100%;padding:14px;
+    background:linear-gradient(135deg,#4f46e5,#3730a3);
+    color:white;border:none;border-radius:12px;
+    font-size:16px;font-weight:700;cursor:pointer;
+    transition:.2s;font-family:inherit;
+    box-shadow:0 4px 20px rgba(79,70,229,0.45),inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .res-search-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(79,70,229,0.6);}
+  .res-search-hint{font-size:12px;color:rgba(255,255,255,0.3);margin-top:14px;}
+  .res-loading{display:none;justify-content:center;align-items:center;gap:12px;padding:20px;color:rgba(165,180,252,0.8);font-size:16px;}
+  /* Resident Dashboard */
+  .res-profile-bar{
+    background:linear-gradient(135deg,rgba(15,10,50,0.85),rgba(30,20,80,0.75));
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    color:white;padding:20px 28px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  .res-profile-info h2{font-size:20px;font-weight:800;margin-bottom:4px;}
+  .res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 28px;background:transparent;}
+  .res-stat{
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;padding:16px;text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.08);
+    transition:all .2s;
+  }
+  .res-stat:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px);}
+  .res-stat-label{font-size:10px;font-weight:700;color:rgba(165,180,252,0.7);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+  .res-stat-value{font-size:18px;font-weight:800;color:white;}
+  .res-stat-sub{font-size:11px;margin-top:4px;font-weight:600;}
+  /* Tabs */
+  .res-tabs{
+    display:flex;gap:0;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    padding:0 28px;
+    background:rgba(255,255,255,0.03);
+  }
+  .res-tab-btn{
+    padding:12px 22px;border:none;background:none;
+    font-size:14px;font-weight:600;color:rgba(255,255,255,0.45);
+    cursor:pointer;border-bottom:3px solid transparent;
+    margin-bottom:-1px;transition:.2s;font-family:inherit;
+  }
+  .res-tab-btn.active{color:white;border-bottom-color:#4f46e5;}
+  .res-tab-btn:hover:not(.active){color:rgba(255,255,255,0.75);}
+  .res-tab-content{padding:20px 28px 28px;display:none;}
+  .res-tab-content:first-of-type{display:block;}
+</style>
+</head>
+<body style="background:radial-gradient(ellipse 80% 60% at 20% 0%,rgba(79,70,229,0.5) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 100%,rgba(139,92,246,0.35) 0%,transparent 55%),linear-gradient(160deg,#0a0820 0%,#0f0d2e 40%,#0d1a3a 100%);background-attachment:fixed;min-height:100vh;">
+
+<!-- Search Section -->
+<div id="resident-search">
+  <div class="res-hero">
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;">
+      <div style="color:white;text-align:center;margin-bottom:8px;">
+        <div style="font-size:40px;margin-bottom:8px;">🏘</div>
+        <div style="font-size:26px;font-weight:900;letter-spacing:1px;">SHIVAM DUPLEX</div>
+        <div style="opacity:.7;font-size:14px;">Society Resident Portal</div>
+      </div>
+      <div class="res-search-card">
+        <h1>Welcome, Resident! 👋</h1>
+        <p>Enter your house number to view your account, bills, and payment history.</p>
+        <form id="res-search-form">
+          <input type="text" id="res-flat-input" class="res-flat-input" placeholder="e.g. A-101" autocomplete="off" required/>
+          <button type="submit" class="res-search-btn">🏠 View My Account</button>
+        </form>
+        <div class="res-search-hint">This portal is for residents of SHIVAM DUPLEX Society only.</div>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;">
+          <a href="index.html" style="font-size:12px;color:#1a237e;text-decoration:none;">← Committee Login (Admin)</a>
+        </div>
+      </div>
+      <div class="res-loading" id="res-loading">
+        <div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:white;width:28px;height:28px;"></div>
+        <span style="color:white;">Loading your account…</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resident Dashboard (hidden until search) -->
+<div id="resident-dash" style="display:none;min-height:100vh;background:#f7f9fc;">
+  <!-- Profile bar -->
+  <div class="res-profile-bar">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+        <div style="background:rgba(255,255,255,0.2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px;">🏠</div>
+        <div>
+          <div class="res-profile-info"><h2 id="res-name">—</h2></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:3px;">
+            <span style="background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:12px;font-size:12px;" id="res-flat">—</span>
+            <span style="background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:12px;font-size:12px;" id="res-type">—</span>
+            <span style="background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:12px;font-size:12px;" id="res-contact">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button id="btn-res-print-all" class="btn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);">🖨 Print Pending Bills</button>
+      <button id="btn-back-search" class="btn" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);">🔍 Change Flat</button>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="res-stats">
+    <div class="res-stat">
+      <div class="res-stat-label">PENDING BILLS</div>
+      <div class="res-stat-value" id="res-stat-pending" style="color:#e65100;">0</div>
+      <div class="res-stat-sub" style="color:#e65100;" id="res-stat-pending-amt">—</div>
+    </div>
+    <div class="res-stat">
+      <div class="res-stat-label" id="res-stat-balance-label">ADVANCE CREDIT</div>
+      <div class="res-stat-value" id="res-stat-balance" style="color:#1b5e20;">—</div>
+    </div>
+    <div class="res-stat">
+      <div class="res-stat-label">TOTAL PAID</div>
+      <div class="res-stat-value" id="res-stat-paid" style="color:#1565c0;">—</div>
+    </div>
+    <div class="res-stat">
+      <div class="res-stat-label">MONTHLY MAINTENANCE</div>
+      <div class="res-stat-value" id="res-stat-monthly" style="color:#6a1b9a;">—</div>
+    </div>
+    <div class="res-stat" style="grid-column:span 2;background:linear-gradient(135deg,#e8eaf6,#e3f2fd);">
+      <div class="res-stat-label">SOCIETY FEE STRUCTURE</div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:6px;flex-wrap:wrap;">
+        <div style="text-align:center;"><div style="font-size:16px;font-weight:800;color:#1a237e;">₹600</div><div style="font-size:10px;color:#888;">per month</div></div>
+        <div style="color:#ddd;font-size:20px;align-self:center;">|</div>
+        <div style="text-align:center;"><div style="font-size:16px;font-weight:800;color:#1a237e;">₹3,600</div><div style="font-size:10px;color:#888;">6 months</div></div>
+        <div style="color:#ddd;font-size:20px;align-self:center;">|</div>
+        <div style="text-align:center;"><div style="font-size:16px;font-weight:800;color:#1a237e;">₹7,200</div><div style="font-size:10px;color:#888;">full year</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tenant Info Card (shown only if house is rented) -->
+  <div id="tenant-info-card" style="display:none;margin:0 20px 14px;background:rgba(249,115,22,0.1);backdrop-filter:blur(10px);border:1px solid rgba(249,115,22,0.3);border-radius:14px;padding:16px 20px;box-shadow:0 0 20px rgba(249,115,22,0.1);">
+    <div style="font-size:13px;font-weight:700;color:#fb923c;margin-bottom:8px;">🔑 Current Tenant / Renter</div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:13px;">
+      <span style="color:rgba(255,255,255,0.45);">Name:</span><span id="res-tenant-name" style="font-weight:600;color:white;">—</span>
+      <span style="color:rgba(255,255,255,0.45);">Contact:</span><span id="res-tenant-contact" style="color:rgba(255,255,255,0.8);">—</span>
+      <span style="color:rgba(255,255,255,0.45);">Rental Period:</span><span id="res-tenant-rent" style="color:rgba(255,255,255,0.8);">—</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="res-tabs">
+    <button class="res-tab-btn active" data-tab="bills">🧾 My Bills</button>
+    <button class="res-tab-btn" data-tab="payments">💳 Payments</button>
+    <button class="res-tab-btn" data-tab="notices">📢 Notices</button>
+  </div>
+
+  <!-- Tab: Bills -->
+  <div class="res-tab-content" id="tab-bills">
+    <div class="card">
+      <div class="card-header"><div class="card-title">🧾 Maintenance Bills</div></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Bill No</th><th>Period</th><th>Total Amount</th><th>Due Date</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="res-bills-tbody"></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Payments -->
+  <div class="res-tab-content" id="tab-payments" style="display:none;">
+    <div class="card">
+      <div class="card-header"><div class="card-title">💳 Payment History</div></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Payment ID</th><th>Date</th><th>Amount</th><th>Mode</th><th>Type</th><th>Reference</th></tr></thead>
+        <tbody id="res-payments-tbody"></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Notices -->
+  <div class="res-tab-content" id="tab-notices" style="display:none;">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📢 Society Notices</div></div>
+      <div style="padding:16px;" id="res-notices-list"></div>
+    </div>
+  </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>

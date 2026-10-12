@@ -1,0 +1,32 @@
+# SHIVAM DUPLEX Society Management — .gitignore
+
+# Node / npm (not used but just in case)
+node_modules/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+.idea/
+
+# Build / cache
+dist/
+.cache/
+*.log
+
+# Environment / secrets — DO NOT COMMIT THESE
+.env
+.env.local
+.env.*.local
+
+# Python server
+__pycache__/
+
+# Vercel
+.vercel/

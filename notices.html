@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Notice Board — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/forms.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
+  <nav>
+    <span class="nav-section-label">Main</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
+    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Finance</span>
+    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
+    <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
+    <span class="nav-section-label">Community</span>
+    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events</a>
+    <a href="notices.html"     class="nav-link active"><span class="nav-icon">📢</span> Notice Board</a>
+    <span class="nav-section-label">Reports</span>
+    <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
+  </nav>
+  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v1.0</div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <div><div class="topbar-title">📢 Notice Board</div><div class="topbar-sub">Society announcements &amp; circulars</div></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-accent" id="btn-add">📌 Post Notice</button>
+    </div>
+  </header>
+  <main class="page-content">
+    <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+      <select id="filter-cat" class="filter-select"><option value="">All Categories</option><option>Maintenance</option><option>General</option><option>Emergency</option><option>Event</option><option>Rule/Policy</option></select>
+      <select id="filter-priority" class="filter-select"><option value="">All Priority</option><option>Urgent</option><option>Important</option><option>General</option></select>
+    </div>
+    <div id="empty-state" class="empty-state" style="display:none;padding:60px;"><div class="empty-icon">📢</div><h3>No notices</h3><p>Post your first notice.</p></div>
+    <div id="notices-list"></div>
+  </main>
+</div>
+<!-- Add/Edit Modal -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal" style="max-width:600px;">
+    <div class="modal-header"><div class="modal-title" id="modal-title">Post Notice</div><button class="modal-close" id="modal-close">✕</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full"><label class="form-label">Title <span class="req">*</span></label><input id="title" class="form-control" placeholder="Notice title"/></div>
+        <div class="form-group"><label class="form-label">Category</label><select id="category" class="form-control"><option>General</option><option>Maintenance</option><option>Emergency</option><option>Event</option><option>Rule/Policy</option></select></div>
+        <div class="form-group"><label class="form-label">Priority</label><select id="priority" class="form-control"><option>General</option><option>Important</option><option>Urgent</option></select></div>
+        <div class="form-group"><label class="form-label">Posted By</label><input id="postedBy" class="form-control" placeholder="Secretary / Chairman"/></div>
+        <div class="form-group"><label class="form-label">Expiry Date</label><input type="date" id="expiryDate" class="form-control"/></div>
+        <div class="form-group"><label class="form-label">Pin to Top</label><select id="pinned" class="form-control"><option value="false">No</option><option value="true">Yes</option></select></div>
+        <div class="form-group"><label class="form-label">Status</label><select id="noticeStatus" class="form-control"><option>Active</option><option>Inactive</option></select></div>
+        <div class="form-group full"><label class="form-label">Notice Body <span class="req">*</span></label><textarea id="body" class="form-control" rows="5" placeholder="Full notice text…"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" id="btn-cancel">Cancel</button><button class="btn btn-primary" id="btn-save">📌 Post Notice</button></div>
+  </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>

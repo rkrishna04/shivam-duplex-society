@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Reports — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="js/app.js"></script>
+<style>
+  .report-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+  .report-card{background:white;border-radius:12px;padding:20px;box-shadow:0 1px 6px rgba(0,0,0,0.08);border:1px solid #e0e0e0;display:flex;flex-direction:column;gap:12px;}
+  .report-card-icon{font-size:26px;}
+  .report-card-title{font-size:15px;font-weight:700;color:#1a237e;}
+  .report-card-desc{font-size:12.5px;color:#888;line-height:1.5;}
+  .report-card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto;}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
+  <nav>
+    <span class="nav-section-label">Main</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
+    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Finance</span>
+    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
+    <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
+    <span class="nav-section-label">Community</span>
+    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events</a>
+    <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
+    <span class="nav-section-label">Reports</span>
+    <a href="reports.html"     class="nav-link active"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
+    <span class="nav-section-label">Resident</span>
+    <a href="resident.html"    class="nav-link"><span class="nav-icon">🏠</span> Resident Portal</a>
+  </nav>
+  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v2.0</div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <div><div class="topbar-title">📥 Reports &amp; Exports</div><div class="topbar-sub">Download Excel reports for all modules</div></div>
+    </div>
+  </header>
+  <main class="page-content">
+    <div class="report-cards">
+
+      <!-- R1: Collection Report -->
+      <div class="report-card">
+        <div class="report-card-icon">💰</div>
+        <div class="report-card-title">Monthly Collection Report</div>
+        <div class="report-card-desc">All maintenance payments received. Filter by month to get specific period collection.</div>
+        <div class="report-card-actions">
+          <input type="month" id="r1-month" class="filter-select" style="max-width:160px;"/>
+          <button class="btn btn-primary btn-sm" id="r1-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R2: Defaulter List -->
+      <div class="report-card">
+        <div class="report-card-icon">⚠️</div>
+        <div class="report-card-title">Defaulter List</div>
+        <div class="report-card-desc">Members with pending or overdue bills. Filter by period to get specific month defaulters.</div>
+        <div class="report-card-actions">
+          <select id="r2-period" class="filter-select" style="max-width:160px;"><option value="">All Periods</option></select>
+          <button class="btn btn-danger btn-sm" id="r2-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R3: Expense Report -->
+      <div class="report-card">
+        <div class="report-card-icon">💸</div>
+        <div class="report-card-title">Expense Report</div>
+        <div class="report-card-desc">Society expenditure log. Filter by month for monthly expense statement.</div>
+        <div class="report-card-actions">
+          <input type="month" id="r3-month" class="filter-select" style="max-width:160px;"/>
+          <button class="btn btn-accent btn-sm" id="r3-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R4: Member Directory -->
+      <div class="report-card">
+        <div class="report-card-icon">👥</div>
+        <div class="report-card-title">Member Directory</div>
+        <div class="report-card-desc">Complete list of all residents with owner and tenant details, contacts, parking slots.</div>
+        <div class="report-card-actions">
+          <button class="btn btn-primary btn-sm" id="r4-btn">📥 Download All Members</button>
+        </div>
+      </div>
+
+      <!-- R5: Payment Register -->
+      <div class="report-card">
+        <div class="report-card-icon">💳</div>
+        <div class="report-card-title">Payment Register</div>
+        <div class="report-card-desc">All payments including regular and advance payments (₹600/mo, ₹3600/6mo, ₹7200/year).</div>
+        <div class="report-card-actions">
+          <input type="month" id="r5-month" class="filter-select" style="max-width:160px;"/>
+          <button class="btn btn-success btn-sm" id="r5-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R6: Fund Ledger -->
+      <div class="report-card">
+        <div class="report-card-icon">🏦</div>
+        <div class="report-card-title">Fund Ledger</div>
+        <div class="report-card-desc">Society fund transactions — credits and debits with running balance.</div>
+        <div class="report-card-actions">
+          <input type="month" id="r6-month" class="filter-select" style="max-width:160px;"/>
+          <button class="btn btn-primary btn-sm" id="r6-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R7: Event Register -->
+      <div class="report-card">
+        <div class="report-card-icon">🎉</div>
+        <div class="report-card-title">Event Register</div>
+        <div class="report-card-desc">All society events with budget, actual expenses, and contributions data.</div>
+        <div class="report-card-actions">
+          <button class="btn btn-accent btn-sm" id="r7-btn">📥 Download All Events</button>
+        </div>
+      </div>
+
+      <!-- R8: Bills Report -->
+      <div class="report-card">
+        <div class="report-card-icon">🧾</div>
+        <div class="report-card-title">Maintenance Bills Report</div>
+        <div class="report-card-desc">All maintenance bills generated. Filter by period to export specific month's bills.</div>
+        <div class="report-card-actions">
+          <select id="r8-period" class="filter-select" style="max-width:160px;"><option value="">All Periods</option></select>
+          <button class="btn btn-primary btn-sm" id="r8-btn">📥 Download</button>
+        </div>
+      </div>
+
+      <!-- R9: Advance Balance Report -->
+      <div class="report-card" style="border-color:#7c4dff;background:linear-gradient(135deg,#f3e5f5,white);">
+        <div class="report-card-icon">💎</div>
+        <div class="report-card-title" style="color:#6a1b9a;">Advance Balance Report</div>
+        <div class="report-card-desc">Shows each member's total billed, total paid, and net balance (advance credit or outstanding). Essential for tracking who has paid in advance.</div>
+        <div class="report-card-actions">
+          <button class="btn btn-sm" style="background:#6a1b9a;color:white;" id="r9-btn">📥 Download Balance Sheet</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>

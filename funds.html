@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Fund Management — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/tables.css"/>
+<link rel="stylesheet" href="css/forms.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
+  <nav>
+    <span class="nav-section-label">Main</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
+    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Finance</span>
+    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
+    <a href="funds.html"       class="nav-link active"><span class="nav-icon">🏦</span> Fund Management</a>
+    <span class="nav-section-label">Community</span>
+    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events</a>
+    <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
+    <span class="nav-section-label">Reports</span>
+    <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
+  </nav>
+  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v1.0</div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <div><div class="topbar-title">🏦 Fund Management</div><div class="topbar-sub">Society fund ledger &amp; balance sheet</div></div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-outline btn-sm" id="btn-export">📥 Export Ledger</button>
+      <button class="btn btn-accent" id="btn-add">➕ Add Transaction</button>
+    </div>
+  </header>
+  <section class="stats-grid">
+    <div class="stat-card"><div class="stat-icon si-green">💰</div><div><div class="stat-label">Total Credits</div><div class="stat-value" id="s-credits" style="font-size:17px;">—</div></div></div>
+    <div class="stat-card"><div class="stat-icon si-red">💸</div><div><div class="stat-label">Total Debits</div><div class="stat-value" id="s-debits" style="font-size:17px;">—</div></div></div>
+    <div class="stat-card"><div class="stat-icon si-teal">🏦</div><div><div class="stat-label">Net Balance</div><div class="stat-value" id="s-balance" style="font-size:17px;">—</div><div class="stat-sub positive" id="s-bal-label">Surplus</div></div></div>
+    <div class="stat-card"><div class="stat-icon si-blue">🔢</div><div><div class="stat-label">Transactions</div><div class="stat-value" id="s-total">—</div></div></div>
+  </section>
+  <main class="page-content">
+    <div class="card">
+      <div class="card-header"><div class="card-title">📒 Fund Ledger <span class="record-count" id="fund-count">0</span></div></div>
+      <div class="toolbar">
+        <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search description, fund type…"/></div>
+        <select id="filter-fund" class="filter-select"><option value="">All Funds</option><option>Maintenance Fund</option><option>Sinking Fund</option><option>Event Fund</option><option>Emergency Fund</option><option>Admin Fund</option></select>
+        <select id="filter-type" class="filter-select"><option value="">All</option><option>Credit</option><option>Debit</option></select>
+        <input type="month" id="filter-month" class="filter-select"/>
+      </div>
+      <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+      <div class="table-wrap">
+        <table><thead><tr>
+          <th>Date</th><th>Fund Type</th><th>Type</th><th>Description</th>
+          <th>Amount</th><th class="col-dept">Reference</th><th>Balance</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody></table>
+      </div>
+      <div class="pagin-wrap"><div class="pagin-info" id="pagin-info"></div><div class="pagin-controls" id="pagination"></div></div>
+    </div>
+  </main>
+</div>
+<!-- Add Modal -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal" style="max-width:580px;">
+    <div class="modal-header"><div class="modal-title">Add Fund Transaction</div><button class="modal-close" id="modal-close">✕</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Date <span class="req">*</span></label><input type="date" id="date" class="form-control"/></div>
+        <div class="form-group"><label class="form-label">Fund Type <span class="req">*</span></label>
+          <select id="fundType" class="form-control"><option value="">Select fund</option><option>Maintenance Fund</option><option>Sinking Fund</option><option>Event Fund</option><option>Emergency Fund</option><option>Admin Fund</option></select></div>
+        <div class="form-group"><label class="form-label">Transaction Type <span class="req">*</span></label>
+          <select id="transactionType" class="form-control"><option value="">Select</option><option>Credit</option><option>Debit</option></select></div>
+        <div class="form-group"><label class="form-label">Amount (₹) <span class="req">*</span></label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="amount" class="form-control" min="1" placeholder="0"/></div></div>
+        <div class="form-group full"><label class="form-label">Description <span class="req">*</span></label><input id="description" class="form-control" placeholder="e.g. September maintenance collection"/></div>
+        <div class="form-group full"><label class="form-label">Reference</label><input id="reference" class="form-control" placeholder="Bill ref / transaction id"/></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" id="btn-cancel">Cancel</button><button class="btn btn-primary" id="btn-save">💾 Save Transaction</button></div>
+  </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>
