@@ -69,6 +69,33 @@
     content: ''; flex: 1; height: 1px;
     background: linear-gradient(90deg, rgba(129,140,248,0.3), transparent);
   }
+
+  /* --- FIX FOR MOBILE BLUR START --- */
+  @media (max-width: 768px) {
+    #sidebar-overlay {
+      display: none !important;
+    }
+    #sidebar-overlay.active,
+    #sidebar-overlay.show {
+      display: block !important;
+    }
+    
+    .hero-welcome, 
+    .quick-action-btn {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    
+    .hero-welcome {
+      background: linear-gradient(135deg, rgba(79,70,229,0.85) 0%, rgba(139,92,246,0.75) 100%);
+    }
+    
+    .quick-action-btn {
+      background: rgba(255,255,255,0.15);
+    }
+  }
+  /* --- FIX FOR MOBILE BLUR END --- */
+
 </style>
 </head>
 <body>
