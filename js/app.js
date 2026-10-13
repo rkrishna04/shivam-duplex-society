@@ -148,8 +148,9 @@ function initSidebar(){
 
 // ─── Page name ────────────────────────────────────────────
 const PAGE_NAME=(()=>{
-  const p=window.location.pathname.split("/").pop().replace(".html","");
-  return p||"index";
+  const clean = window.location.pathname.replace(/\/+$/, "");
+  const seg = clean.split("/").pop() || "index";
+  return seg.replace(/\.html$/i, "").toLowerCase() || "index";
 })();
 
 // ─── Pagination ───────────────────────────────────────────

@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "headers": [
     {
       "source": "/sw.js",
@@ -23,5 +22,17 @@
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/members", "destination": "/members.html" },
+    { "source": "/maintenance", "destination": "/maintenance.html" },
+    { "source": "/payments", "destination": "/payments.html" },
+    { "source": "/expenses", "destination": "/expenses.html" },
+    { "source": "/funds", "destination": "/funds.html" },
+    { "source": "/events", "destination": "/events.html" },
+    { "source": "/notices", "destination": "/notices.html" },
+    { "source": "/reports", "destination": "/reports.html" },
+    { "source": "/resident", "destination": "/resident.html" }
   ]
 }

@@ -1,62 +1,70 @@
 /* ============================================================
    js/pwa.js — SHIVAM DUPLEX Society
-   Lord Shiva (મહાદેવ) Cosmic Loader & PWA App Installation Engine
+   3D Celestial Holographic Shiva Loader & Direct PWA App Engine
    ============================================================ */
+
+// 1. Capture install prompt immediately at top level
+window.__deferredPrompt = window.__deferredPrompt || null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.__deferredPrompt = e;
+  console.log('[PWA] beforeinstallprompt captured!');
+  const bar = document.getElementById('pwa-install-bar');
+  if (bar && !window.navigator.standalone && !sessionStorage.getItem('pwa_dismissed')) {
+    bar.classList.add('show');
+  }
+});
 
 (function () {
   'use strict';
 
-  // 1. Lord Shiva Trishul & Damru SVG String
+  // 2. Lord Shiva Trishul & Damru SVG Generator
   function getShivaTrishulSVG(size = 80) {
     return `
       <svg class="shiva-trishul-svg" viewBox="0 0 100 110" width="${size}" height="${size * 1.1}" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="shivaGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#fef08a" />
-            <stop offset="50%" stop-color="#f59e0b" />
+            <stop offset="45%" stop-color="#f59e0b" />
             <stop offset="100%" stop-color="#d97706" />
           </linearGradient>
-          <linearGradient id="shivaAuraGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#818cf8" stop-opacity="0.9" />
-            <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.2" />
-          </linearGradient>
+          <radialGradient id="trinetraGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fef08a" />
+            <stop offset="60%" stop-color="#ef4444" />
+            <stop offset="100%" stop-color="#7f1d1d" />
+          </radialGradient>
         </defs>
 
-        <!-- Crescent Moon (Ardha Chandra) on Trishul side -->
-        <path class="shiva-crescent-moon" d="M 58 14 A 12 12 0 0 1 68 28 A 12 12 0 0 0 60 16 Z" fill="#e0e7ff" opacity="0.95" />
+        <!-- Crescent Moon (Ardha Chandra) -->
+        <path class="shiva-crescent-moon" d="M 58 14 A 12 12 0 0 1 68 28 A 12 12 0 0 0 60 16 Z" fill="#e0e7ff" />
 
-        <!-- Trishul Center Spear (Middle Prong) -->
-        <path d="M 50 10 L 46 25 L 48.5 25 L 48.5 78 L 51.5 78 L 51.5 25 L 54 25 Z" fill="url(#shivaGold)" />
+        <!-- Trishul Center Spear -->
+        <path d="M 50 10 L 46 25 L 48.5 25 L 48.5 78 L 51.5 78 L 51.5 25 L 54 25 Z" fill="url(#goldGrad)" />
         <polygon points="50,6 45,20 55,20" fill="#fef08a" />
 
         <!-- Left Curved Prong -->
-        <path d="M 48.5 42 C 34 42 26 36 26 24 C 26 21 27 18 29 18 C 30 18 31 22 34 26 C 38 31 43 35 48.5 36 Z" fill="url(#shivaGold)" />
+        <path d="M 48.5 42 C 34 42 26 36 26 24 C 26 21 27 18 29 18 C 30 18 31 22 34 26 C 38 31 43 35 48.5 36 Z" fill="url(#goldGrad)" />
         <polygon points="27,15 24,22 30,22" fill="#fef08a" />
 
         <!-- Right Curved Prong -->
-        <path d="M 51.5 42 C 66 42 74 36 74 24 C 74 21 73 18 71 18 C 70 18 69 22 66 26 C 62 31 57 35 51.5 36 Z" fill="url(#shivaGold)" />
+        <path d="M 51.5 42 C 66 42 74 36 74 24 C 74 21 73 18 71 18 C 70 18 69 22 66 26 C 62 31 57 35 51.5 36 Z" fill="url(#goldGrad)" />
         <polygon points="73,15 70,22 76,22" fill="#fef08a" />
 
-        <!-- Tripundra (3 Holy Ash Lines) on Center Prong -->
+        <!-- Tripundra (3 Holy Ash Lines) -->
         <line x1="43" y1="28" x2="57" y2="28" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
         <line x1="44" y1="31" x2="56" y2="31" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
         <line x1="45" y1="34" x2="55" y2="34" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
 
-        <!-- Third Eye / Tilak (Trinetra) in Center -->
-        <circle class="shiva-third-eye" cx="50" cy="31" r="1.8" fill="#ef4444" />
+        <!-- Third Eye / Trinetra -->
+        <circle class="shiva-third-eye" cx="50" cy="31" r="2.2" fill="url(#trinetraGlow)" />
 
-        <!-- Damru (Sacred Drum) Tied in Center -->
+        <!-- Damru (Sacred Cosmic Drum) -->
         <g class="shiva-damru-node">
-          <!-- Top Triangle -->
-          <polygon points="38,46 62,46 50,54" fill="#ef4444" stroke="#b91c1c" stroke-width="0.8" />
-          <!-- Bottom Triangle -->
-          <polygon points="38,62 62,62 50,54" fill="#ef4444" stroke="#b91c1c" stroke-width="0.8" />
-          <!-- Damru Rim rings -->
+          <polygon points="38,46 62,46 50,54" fill="#ef4444" stroke="#991b1b" stroke-width="0.8" />
+          <polygon points="38,62 62,62 50,54" fill="#ef4444" stroke="#991b1b" stroke-width="0.8" />
           <ellipse cx="50" cy="46" rx="12" ry="2" fill="#f59e0b" />
           <ellipse cx="50" cy="62" rx="12" ry="2" fill="#f59e0b" />
-          <!-- Center Waist Cord -->
           <line x1="47" y1="54" x2="53" y2="54" stroke="#fde047" stroke-width="2.5" stroke-linecap="round" />
-          <!-- Vibrating String & Bead -->
           <circle cx="34" cy="53" r="2" fill="#fbbf24" />
           <line x1="50" y1="54" x2="35" y2="53" stroke="#fef08a" stroke-width="1" />
           <circle cx="66" cy="55" r="2" fill="#fbbf24" />
@@ -66,89 +74,105 @@
     `;
   }
 
-  // 2. Lord Shiva Fullscreen Page Loader
-  function injectShivaPageLoader() {
+  // 3. Cheerful rotating Gujarati captions for loader
+  const captions = [
+    '✨ શિવમ સોસાયટી પોર્ટલ લોડ થઈ રહ્યું છે...',
+    '🔱 હર હર મહાદેવ · તમારો દિવસ શુભ રહે!',
+    '🏡 સ્માર્ટ & સુરક્ષિત સોસાયટી મેનેજમેન્ટ'
+  ];
+  let captionIdx = 0;
+
+  // 4. Inject 3D Holographic Shiva Loader
+  function inject3DShivaLoader() {
     if (document.getElementById('shiva-page-loader')) return;
 
     const loader = document.createElement('div');
     loader.id = 'shiva-page-loader';
     loader.className = 'shiva-page-loader';
     loader.innerHTML = `
-      <div class="shiva-loader-container">
-        <div class="shiva-aura-ring"></div>
-        <div class="shiva-aura-ring"></div>
-        <div class="shiva-aura-ring"></div>
-        ${getShivaTrishulSVG(90)}
+      <div class="shiva-cosmic-bg"></div>
+
+      <!-- 3D Gyroscope Chamber -->
+      <div class="shiva-hologram-chamber">
+        <div class="shiva-gyro-ring shiva-gyro-1"></div>
+        <div class="shiva-gyro-ring shiva-gyro-2"></div>
+        <div class="shiva-gyro-ring shiva-gyro-3"></div>
+        <div class="shiva-energy-core"></div>
+        ${getShivaTrishulSVG(92)}
       </div>
-      <div class="shiva-loader-text">
-        <div class="shiva-mantra">॥ ॐ नमः शिवाय ॥</div>
-        <div class="shiva-subtext">
-          <span>SHIVAM DUPLEX</span>
-          <span class="shiva-dots"></span>
+
+      <!-- Mantra Badge & Progress -->
+      <div class="shiva-caption-wrap">
+        <div class="shiva-mantra-pill">
+          <span style="font-size:18px;">🔱</span>
+          <span class="shiva-mantra-pill-text">॥ ॐ नमः शिवाय ॥</span>
+          <span style="font-size:18px;">🔱</span>
+        </div>
+
+        <div class="shiva-prog-track">
+          <div class="shiva-prog-bar"></div>
+        </div>
+
+        <div class="shiva-loading-label" id="shiva-loading-caption">
+          ${captions[0]}
         </div>
       </div>
     `;
 
     document.body.appendChild(loader);
 
-    // Fade out loader smoothly once page assets ready
-    const hideLoader = () => {
+    // Rotate captions
+    const captionTimer = setInterval(() => {
+      captionIdx = (captionIdx + 1) % captions.length;
+      const el = document.getElementById('shiva-loading-caption');
+      if (el) el.textContent = captions[captionIdx];
+    }, 900);
+
+    // Smooth dismissal when page ready
+    const dismiss = () => {
+      clearInterval(captionTimer);
       setTimeout(() => {
         loader.classList.add('fade-out');
         setTimeout(() => {
           if (loader.parentNode) loader.parentNode.removeChild(loader);
         }, 550);
-      }, 400);
+      }, 500);
     };
 
     if (document.readyState === 'complete') {
-      hideLoader();
+      dismiss();
     } else {
-      window.addEventListener('load', hideLoader);
-      setTimeout(hideLoader, 2500); // Safety fallback timeout
+      window.addEventListener('load', dismiss);
+      setTimeout(dismiss, 2800); // Fail-safe timeout
     }
   }
 
-  // 3. Upgrade all inline Spinners to Mini Shiva Trishul
-  function upgradeInlineSpinners() {
-    document.querySelectorAll('.spinner-wrap').forEach((wrap) => {
-      if (wrap.dataset.shivaUpgraded) return;
-      wrap.dataset.shivaUpgraded = '1';
-      wrap.innerHTML = `
-        <div class="shiva-inline-loader">
-          ${getShivaTrishulSVG(52)}
-          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#fde047;">ॐ नमः शिवाय</div>
-          <div style="font-size:11px;color:rgba(165,180,252,0.8);">Loading data...</div>
-        </div>
-      `;
-    });
-  }
+  // 5. In-App Browser Detector (WhatsApp / Instagram fix)
+  function checkInAppBrowser() {
+    const isWhatsApp = /WhatsApp|FBAN|FBAV|Instagram|Line|Twitter|MicroMessenger/i.test(navigator.userAgent);
+    if (!isWhatsApp) return;
 
-  // 4. Upgrade Sidebar Brand Icon with Shiva Trishul
-  function upgradeBrandIcon() {
-    const brandIcons = document.querySelectorAll('.sidebar-brand .brand-icon');
-    brandIcons.forEach((icon) => {
-      if (icon.dataset.shivaBrand) return;
-      icon.dataset.shivaBrand = '1';
-      icon.innerHTML = getShivaTrishulSVG(38);
-    });
-  }
+    if (document.getElementById('whatsapp-open-banner')) return;
 
-  // ============================================================
-  // PWA APP INSTALLATION SYSTEM (FIXED & GUARANTEED)
-  // ============================================================
+    const banner = document.createElement('div');
+    banner.id = 'whatsapp-open-banner';
+    banner.className = 'whatsapp-open-banner show';
+    banner.innerHTML = `
+      <div>⚠️ <strong>એપ ડાઉનલોડ કરવા માટે:</strong> Chrome અથવા Safari માં ખોલો.</div>
+      <button type="button" class="whatsapp-open-btn" id="btn-open-chrome">🌐 Chrome માં ખોલો</button>
+    `;
 
-  // 5. Register Service Worker
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker
-        .register('sw.js')
-        .then((reg) => {
-          console.log('[PWA] Service Worker registered with scope:', reg.scope);
-        })
-        .catch((err) => {
-          console.warn('[PWA] Service Worker registration:', err);
-        });
+    document.body.insertBefore(banner, document.body.firstChild);
+
+    document.getElementById('btn-open-chrome')?.addEventListener('click', () => {
+      const currentUrl = window.location.href;
+      // Android Chrome intent
+      if (/Android/i.test(navigator.userAgent)) {
+        window.location.href = `intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end`;
+      } else {
+        navigator.clipboard?.writeText(currentUrl);
+        alert('લિંક કોપી થઈ ગઈ છે! કૃપા કરીને Safari બ્રાઉઝર ખોલીને પેસ્ટ કરો.');
+      }
     });
   }
 
@@ -165,26 +189,6 @@
 
   const isAndroid = /Android/i.test(navigator.userAgent);
 
-  // Capture deferredPrompt early on window
-  let deferredPrompt = window.__pwaDeferredPrompt || null;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    window.__pwaDeferredPrompt = e;
-    console.log('[PWA] beforeinstallprompt captured successfully!');
-    showInstallBanner();
-  });
-
-  window.addEventListener('appinstalled', () => {
-    console.log('[PWA] App successfully installed!');
-    deferredPrompt = null;
-    window.__pwaDeferredPrompt = null;
-    hideInstallBanner();
-    if (typeof showToast === 'function') {
-      showToast('🔱 SHIVAM App સફળતાપૂર્વક Install થઈ ગઈ છે!', 'success');
-    }
-  });
-
   // 7. Inject Shiva PWA Install Modal
   function injectInstallModal() {
     if (document.getElementById('shiva-install-modal')) return;
@@ -197,31 +201,25 @@
         <div class="shiva-card-top-glow"></div>
         <div class="shiva-card-body">
           <div class="shiva-app-badge">
-            <img src="icons/icon-192.png" alt="SHIVAM Icon" onerror="this.src='icons/icon-96.png'"/>
+            <img src="icons/icon-192.png" alt="SHIVAM App Icon" onerror="this.src='icons/icon-96.png'"/>
             <div class="shiva-app-badge-title">
               <h4>SHIVAM DUPLEX App</h4>
-              <p>⭐⭐⭐⭐⭐ Official Society Portal</p>
+              <p>⭐⭐⭐⭐⭐ Direct Mobile Portal</p>
             </div>
           </div>
 
-          <h3 class="shiva-install-title">📲 મોબાઇલ પર એપ Install કરો</h3>
+          <h3 class="shiva-install-title">📲 એપ સીધી ડાઉનલોડ કરો</h3>
           <p class="shiva-install-desc" id="shiva-install-desc-text">
-            સોસાયટીના મેન્ટેનન્સ બિલ, પાવતી, પેમેન્ટ અને રેસિડેન્ટ પોર્ટલ સીધા મોબાઇલમાંથી વાપરો.
+            તમારા ફોન પર શિવમ સોસાયટી એપ ઇન્સ્ટોલ કરવા નીચે આપેલા બટન પર ક્લિક કરો.
           </p>
 
-          <!-- Step instructions box (changes based on OS) -->
-          <div class="shiva-steps-box" id="shiva-install-steps">
+          <div id="shiva-modal-action-box" style="margin-bottom:16px;">
             <!-- Injected dynamically -->
           </div>
 
-          <div class="shiva-install-actions">
-            <button type="button" class="shiva-btn-primary-install" id="shiva-modal-primary-btn">
-              ⚡ Install Now / ડાઉનલોડ કરો
-            </button>
-            <button type="button" class="shiva-btn-close-modal" id="shiva-modal-close-btn">
-              બંધ કરો (Close)
-            </button>
-          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="shiva-modal-close-btn" style="color:rgba(255,255,255,0.6);margin-top:6px;">
+            બંધ કરો (Close)
+          </button>
         </div>
       </div>
     `;
@@ -229,101 +227,99 @@
     document.body.appendChild(modal);
 
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeInstallModal();
+      if (e.target === modal) modal.classList.add('hidden');
     });
-    document.getElementById('shiva-modal-close-btn')?.addEventListener('click', closeInstallModal);
+    document.getElementById('shiva-modal-close-btn')?.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
   }
 
-  function openInstallModal() {
-    const modal = document.getElementById('shiva-install-modal');
-    if (!modal) return;
-
-    const stepsBox = document.getElementById('shiva-install-steps');
-    const primaryBtn = document.getElementById('shiva-modal-primary-btn');
-
-    if (isIOS) {
-      // iPhone / iPad instructions
-      stepsBox.innerHTML = `
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">1</div>
-          <div>Safari બ્રાઉઝરમાં નીચે <strong>Share બટન</strong> (<span style="font-size:16px;">⎋</span>) દબાવો.</div>
-        </div>
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">2</div>
-          <div>નીચે સ્ક્રોલ કરીને <strong>"Add to Home Screen"</strong> (<span style="font-size:16px;">⊞</span>) પસંદ કરો.</div>
-        </div>
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">3</div>
-          <div>ઉપર જમણી બાજુ <strong>"Add"</strong> બટન દબાવો. એપ સ્ક્રીન પર આવી જશે!</div>
-        </div>
-      `;
-      primaryBtn.innerHTML = '👌 સમજાઈ ગયું (Got it)';
-      primaryBtn.onclick = closeInstallModal;
-    } else if (deferredPrompt) {
-      // Android / Chrome with native install prompt ready
-      stepsBox.innerHTML = `
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">✓</div>
-          <div>તમારા ડિવાઇસ માટે <strong>Direct Install</strong> તૈયાર છે. નીચેના બટન પર ક્લિક કરો.</div>
-        </div>
-      `;
-      primaryBtn.innerHTML = '⬇️ Direct Install App';
-      primaryBtn.onclick = () => {
-        closeInstallModal();
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('[PWA] User accepted install prompt');
-            hideInstallBanner();
-          }
-          deferredPrompt = null;
-        });
-      };
-    } else if (isAndroid) {
-      // Android browser when beforeinstallprompt has not triggered yet
-      stepsBox.innerHTML = `
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">1</div>
-          <div>Chrome બ્રાઉઝરમાં ઉપર જમણી બાજુ <strong>3 ટપકાં (⋮)</strong> મેનૂ દબાવો.</div>
-        </div>
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">2</div>
-          <div><strong>"Install app"</strong> અથવા <strong>"Add to Home screen"</strong> (📲) પસંદ કરો.</div>
-        </div>
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">3</div>
-          <div><strong>"Install"</strong> પર ક્લિક કરો — એપ ડાઉનલોડ થઈ જશે!</div>
-        </div>
-      `;
-      primaryBtn.innerHTML = '🔄 તપાસો / રીફ્રેશ કરો';
-      primaryBtn.onclick = () => {
-        window.location.reload();
-      };
-    } else {
-      // Desktop PC / Mac
-      stepsBox.innerHTML = `
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">1</div>
-          <div>બ્રાઉઝરના એડ્રેસ બારમાં ઉપર જમણી બાજુ <strong>Install આઇકોન (⊕)</strong> દબાવો.</div>
-        </div>
-        <div class="shiva-step-item">
-          <div class="shiva-step-icon">2</div>
-          <div><strong>"Install"</strong> કન્ફર્મ કરો — એપ ડેસ્કટોપ પર આવી જશે!</div>
-        </div>
-      `;
-      primaryBtn.innerHTML = '👌 સમજાઈ ગયું (Close)';
-      primaryBtn.onclick = closeInstallModal;
+  // 8. Trigger Install — Direct & Guaranteed
+  function triggerInstall() {
+    if (isStandalone) {
+      if (typeof showToast === 'function') {
+        showToast('🔱 SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!', 'info');
+      } else {
+        alert('SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!');
+      }
+      return;
     }
 
-    modal.classList.remove('hidden');
-  }
+    // A. Native Android prompt ready? Trigger immediately!
+    if (window.__deferredPrompt) {
+      window.__deferredPrompt.prompt();
+      window.__deferredPrompt.userChoice.then((res) => {
+        if (res.outcome === 'accepted') {
+          console.log('[PWA] User installed!');
+          hideInstallBanner();
+        }
+        window.__deferredPrompt = null;
+      });
+      return;
+    }
 
-  function closeInstallModal() {
+    // B. iPhone / iPad: Show floating arrow pointing down to Safari share button
+    if (isIOS) {
+      showIOSFloatingPointer();
+      return;
+    }
+
+    // C. Android without prompt yet: Show 1-Click Guided Sheet
     const modal = document.getElementById('shiva-install-modal');
-    if (modal) modal.classList.add('hidden');
+    const actionBox = document.getElementById('shiva-modal-action-box');
+    if (modal && actionBox) {
+      actionBox.innerHTML = `
+        <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:left;border:1px solid rgba(255,255,255,0.1);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13.5px;color:#fde047;font-weight:700;">
+            <span style="font-size:18px;">💡</span>
+            <span>Android પર સીધી ઇન્સ્ટોલ કરવા:</span>
+          </div>
+          <div style="font-size:13px;line-height:1.7;color:#e2e8f0;">
+            1. Chrome માં ઉપર જમણી બાજુ <strong>3 ટપકાં (⋮)</strong> દબાવો.<br/>
+            2. <strong>"Install app"</strong> અથવા <strong>"Add to Home screen"</strong> (📲) પસંદ કરો.<br/>
+            3. <strong>"Install"</strong> દબાવો — એપ તમારા ફોનમાં આવી જશે!
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" id="btn-retry-pwa" style="width:100%;margin-top:14px;padding:12px;font-size:15px;justify-content:center;">
+          ⚡ ફરીથી પ્રયાસ કરો (Try Again)
+        </button>
+      `;
+
+      document.getElementById('btn-retry-pwa')?.addEventListener('click', () => {
+        if (window.__deferredPrompt) {
+          modal.classList.add('hidden');
+          window.__deferredPrompt.prompt();
+        } else {
+          window.location.reload();
+        }
+      });
+
+      modal.classList.remove('hidden');
+    }
   }
 
-  // 8. Inject Top Shiva Install Banner
+  // 9. Floating iOS Pointer for Safari
+  function showIOSFloatingPointer() {
+    let pointer = document.getElementById('ios-floating-pointer');
+    if (!pointer) {
+      pointer = document.createElement('div');
+      pointer.id = 'ios-floating-pointer';
+      pointer.className = 'ios-floating-pointer';
+      pointer.innerHTML = `
+        <div style="font-size:13.5px;font-weight:700;margin-bottom:4px;">📲 iPhone પર Install કરો</div>
+        <div style="font-size:12px;opacity:0.85;">નીચે <strong>Share (⎋)</strong> દબાવીને <strong>'Add to Home Screen'</strong> પસંદ કરો.</div>
+        <span class="pointer-arrow">⬇️</span>
+        <button type="button" style="background:none;border:none;color:#fde047;font-size:11px;cursor:pointer;margin-top:4px;" id="close-ios-pointer">સમજાઈ ગયું (Close)</button>
+      `;
+      document.body.appendChild(pointer);
+      document.getElementById('close-ios-pointer')?.addEventListener('click', () => {
+        pointer.classList.add('hidden');
+      });
+    }
+    pointer.classList.remove('hidden');
+  }
+
+  // 10. Top Floating Install Bar
   function injectInstallBanner() {
     if (document.getElementById('pwa-install-bar')) return;
 
@@ -352,18 +348,11 @@
 
     document.getElementById('pwa-bar-install-btn')?.addEventListener('click', triggerInstall);
     document.getElementById('pwa-bar-dismiss-btn')?.addEventListener('click', () => {
-      hideInstallBanner();
-      sessionStorage.setItem('pwa_banner_dismissed', '1');
+      bar.classList.remove('show');
+      sessionStorage.setItem('pwa_dismissed', '1');
     });
 
-    if (!isStandalone && !sessionStorage.getItem('pwa_banner_dismissed')) {
-      bar.classList.add('show');
-    }
-  }
-
-  function showInstallBanner() {
-    const bar = document.getElementById('pwa-install-bar');
-    if (bar && !isStandalone && !sessionStorage.getItem('pwa_banner_dismissed')) {
+    if (!isStandalone && !sessionStorage.getItem('pwa_dismissed')) {
       bar.classList.add('show');
     }
   }
@@ -373,12 +362,12 @@
     if (bar) bar.classList.remove('show');
   }
 
-  // 9. Inject Mobile Bottom Navigation
+  // 11. Mobile Bottom Navigation
   function injectBottomNav() {
     if (document.querySelector('.mobile-bottom-nav')) return;
 
-    const currentPath =
-      window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+    const seg = window.location.pathname.replace(/\/+$/, '').split('/').pop() || 'index';
+    const currentPath = seg.replace(/\.html$/i, '').toLowerCase() || 'index';
 
     const nav = document.createElement('nav');
     nav.className = 'mobile-bottom-nav';
@@ -410,66 +399,71 @@
     document.body.appendChild(nav);
   }
 
-  // 10. Central Trigger Install Method
-  function triggerInstall() {
-    if (isStandalone) {
-      if (typeof showToast === 'function') {
-        showToast('🔱 SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!', 'info');
-      } else {
-        alert('SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!');
-      }
-      return;
-    }
-
-    if (deferredPrompt) {
-      // Direct native prompt if available
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('[PWA] User accepted install prompt');
-          hideInstallBanner();
-        }
-        deferredPrompt = null;
-      });
-    } else {
-      // Show smart OS-specific guided dialog
-      openInstallModal();
-    }
+  // 12. Upgrade inline Spinners
+  function upgradeInlineSpinners() {
+    document.querySelectorAll('.spinner-wrap').forEach((wrap) => {
+      if (wrap.dataset.shivaUpgraded) return;
+      wrap.dataset.shivaUpgraded = '1';
+      wrap.innerHTML = `
+        <div class="shiva-inline-loader">
+          ${getShivaTrishulSVG(52)}
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#fde047;">॥ ॐ नमः शिवाय ॥</div>
+          <div style="font-size:11px;color:rgba(165,180,252,0.85);">માહિતી લોડ થઈ રહી છે...</div>
+        </div>
+      `;
+    });
   }
 
-  function bindInstallButtons() {
+  // 13. Upgrade Brand Icon
+  function upgradeBrandIcon() {
+    document.querySelectorAll('.sidebar-brand .brand-icon').forEach((icon) => {
+      if (icon.dataset.shivaBrand) return;
+      icon.dataset.shivaBrand = '1';
+      icon.innerHTML = getShivaTrishulSVG(36);
+    });
+  }
+
+  // 14. Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('sw.js')
+        .then((reg) => {
+          console.log('[PWA] SW registered v4:', reg.scope);
+        })
+        .catch((err) => console.warn('[PWA] SW reg:', err));
+    });
+  }
+
+  // 15. DOM Ready Bootstrap
+  document.addEventListener('DOMContentLoaded', () => {
+    inject3DShivaLoader();
+    checkInAppBrowser();
+    upgradeBrandIcon();
+    upgradeInlineSpinners();
+
+    if (!isStandalone) {
+      injectInstallBanner();
+      injectInstallModal();
+    } else {
+      document.body.classList.add('is-pwa-standalone');
+    }
+
+    injectBottomNav();
+
+    // Bind all install buttons across the page
     document.querySelectorAll('.btn-install-app').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         triggerInstall();
       });
     });
-  }
-
-  // 11. Lifecycle Boots
-  document.addEventListener('DOMContentLoaded', () => {
-    injectShivaPageLoader();
-    upgradeBrandIcon();
-    upgradeInlineSpinners();
-
-    if (isStandalone) {
-      document.body.classList.add('is-pwa-standalone');
-      return;
-    }
-
-    injectInstallBanner();
-    injectInstallModal();
-    injectBottomNav();
-    bindInstallButtons();
   });
 
-  // Watch for any dynamically rendered spinner-wraps
-  const observer = new MutationObserver(() => {
-    upgradeInlineSpinners();
-  });
+  // Watch for dynamic DOM insertions
+  const observer = new MutationObserver(() => upgradeInlineSpinners());
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // Expose helpers globally
   window.triggerAppInstall = triggerInstall;
   window.getShivaTrishulSVG = getShivaTrishulSVG;
 })();

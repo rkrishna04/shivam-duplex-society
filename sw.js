@@ -1,53 +1,51 @@
 /* ============================================================
-   sw.js — SHIVAM DUPLEX Society · Service Worker (v3)
-   Caches all pages and Lord Shiva assets for offline use
+   sw.js — SHIVAM DUPLEX Society · Service Worker (v4)
+   Fixed: Network-First navigation (prevents page unlinking)
+   Supports offline caching & seamless PWA installation
    ============================================================ */
 
-const CACHE_NAME = 'shivam-duplex-v3';
-const OFFLINE_URL = 'index.html';
+const CACHE_NAME = 'shivam-duplex-v4';
 
 const STATIC_ASSETS = [
-  './',
-  './index.html',
-  './members.html',
-  './maintenance.html',
-  './payments.html',
-  './expenses.html',
-  './funds.html',
-  './events.html',
-  './notices.html',
-  './reports.html',
-  './resident.html',
-  './css/style.css',
-  './css/tables.css',
-  './css/forms.css',
-  './css/shiva-theme.css',
-  './js/app.js',
-  './js/pwa.js',
-  './js/print.js',
-  './js/firebase-config.js',
-  './js/excel-export.js',
-  './js/utils.js',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  'index.html',
+  'members.html',
+  'maintenance.html',
+  'payments.html',
+  'expenses.html',
+  'funds.html',
+  'events.html',
+  'notices.html',
+  'reports.html',
+  'resident.html',
+  'css/style.css',
+  'css/tables.css',
+  'css/forms.css',
+  'css/shiva-theme.css',
+  'js/app.js',
+  'js/pwa.js',
+  'js/print.js',
+  'js/firebase-config.js',
+  'manifest.json',
+  'icons/icon-192.png',
+  'icons/icon-512.png'
 ];
 
-/* ── Install: cache all static files ── */
+/* ── Install: Pre-cache core files ── */
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW v3] Caching static assets');
+      console.log('[SW v4] Caching core assets');
       return Promise.allSettled(
         STATIC_ASSETS.map((url) =>
-          cache.add(url).catch((e) => console.warn('[SW v3] Cache fail:', url, e))
+          cache.add(url).catch((err) => console.warn('[SW v4] Pre-cache skip:', url, err))
         )
       );
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
-/* ── Activate: clear old caches ── */
+/* ── Activate: Purge ALL previous caches ── */
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) =>
@@ -55,7 +53,7 @@ self.addEventListener('activate', (event) => {
         cacheNames
           .filter((name) => name !== CACHE_NAME)
           .map((name) => {
-            console.log('[SW v3] Deleting old cache:', name);
+            console.log('[SW v4] Purging old cache:', name);
             return caches.delete(name);
           })
       )
@@ -63,14 +61,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-/* ── Fetch: Network-first for Firestore, Cache-first for local static ── */
+/* ── Fetch ── */
 self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
+  const req = event.request;
+  const url = new URL(req.url);
 
   // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
+  if (req.method !== 'GET') return;
 
-  // Skip Firebase/external API calls — always go to network
+  // Skip external APIs (Firebase, Google, CDNs)
   if (
     url.hostname.includes('firestore.googleapis.com') ||
     url.hostname.includes('firebase.googleapis.com') ||
@@ -83,31 +82,52 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // 1. Navigation requests (User clicking links between pages):
+  // ALWAYS Network-First! Never hijack navigation to index.html!
+  if (req.mode === 'navigate') {
+    event.respondWith(
+      fetch(req)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
+          }
+          return networkResponse;
+        })
+        .catch(async () => {
+          // If completely offline, try to find this page in cache
+          const cached = await caches.match(req);
+          if (cached) return cached;
+          const fallback = await caches.match(url.pathname.replace(/^\//, ''));
+          if (fallback) return fallback;
+          return caches.match('index.html');
+        })
+    );
+    return;
+  }
+
+  // 2. Static Assets (CSS, JS, Images, Icons):
+  // Cache-First with Network Revalidation
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
+    caches.match(req).then((cachedResponse) => {
       if (cachedResponse) {
-        // Return cache, but revalidate in background
-        fetch(event.request)
+        // Revalidate in background
+        fetch(req)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse.clone()));
+              caches.open(CACHE_NAME).then((cache) => cache.put(req, networkResponse.clone()));
             }
           })
           .catch(() => {});
         return cachedResponse;
       }
 
-      // Not in cache — fetch from network
-      return fetch(event.request)
-        .then((response) => {
-          if (!response || response.status !== 200) return response;
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
-          return response;
-        })
-        .catch(() => {
-          return caches.match(OFFLINE_URL);
-        });
+      return fetch(req).then((networkResponse) => {
+        if (!networkResponse || networkResponse.status !== 200) return networkResponse;
+        const clone = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
+        return networkResponse;
+      });
     })
   );
 });
