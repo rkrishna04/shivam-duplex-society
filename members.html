@@ -32,9 +32,10 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
   <nav>
-    <span class="nav-section-label">Main</span>
-    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
-    <a href="members.html"     class="nav-link active"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Portal</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">🌐</span> Society Homepage</a>
+    <a href="dashboard.html"   class="nav-link"><span class="nav-icon">📊</span> Admin Dashboard</a>
+    <a href="members.html"     class="nav-link active"><span class="nav-icon">👥</span> Members Directory</a>
     <span class="nav-section-label">Finance</span>
     <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
     <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
@@ -102,6 +103,15 @@
           <div class="form-group"><label class="form-label">Contact Number <span class="req">*</span></label><input id="contactNumber" class="form-control" placeholder="10-digit mobile"/></div>
           <div class="form-group"><label class="form-label">Email</label><input id="email" class="form-control" type="email" placeholder="email@example.com"/></div>
           <div class="form-group"><label class="form-label">Parking Slot</label><input id="parkingSlot" class="form-control" placeholder="P-01"/></div>
+          <div class="form-group"><label class="form-label">🚗 Car (Name &amp; Reg No)</label><input id="carNumber" class="form-control" placeholder="e.g. Swift - GJ06AB1234"/></div>
+          <div class="form-group"><label class="form-label">🛵 Two-Wheeler (Bike No)</label><input id="bikeNumber" class="form-control" placeholder="e.g. Activa - GJ06CD5678"/></div>
+          <div class="form-group">
+            <label class="form-label">Assigned Committee Incharge</label>
+            <select id="assignedCommittee" class="form-control">
+              <option value="Cluster 1 - Rajeshbhai Patel (1-20)">Cluster 1 (1–20) — Rajeshbhai Patel</option>
+              <option value="Cluster 2 - Sureshbhai Shah (21-40)">Cluster 2 (21–40) — Sureshbhai Shah</option>
+            </select>
+          </div>
           <div class="form-group"><label class="form-label">Move-in Date</label><input id="moveInDate" class="form-control" type="date"/></div>
           <div class="form-group"><label class="form-label">Member Type</label><select id="memberType" class="form-control"><option>Owner</option><option>Tenant</option></select></div>
           <div class="form-group"><label class="form-label">Status</label><select id="status" class="form-control"><option>Active</option><option>Inactive</option><option>Vacated</option></select></div>
@@ -118,15 +128,19 @@
         </div>
         <!-- Tenant Section (hidden by default) -->
         <div id="tenant-section" style="display:none;">
-          <div class="tenant-section-header"><span>🔑</span><span class="ts-label">Tenant / Renter Information</span></div>
+          <div class="tenant-section-header"><span>🔑</span><span class="ts-label">Tenant / Renter Information (KYC)</span></div>
           <div class="form-grid">
             <div class="form-group"><label class="form-label">Tenant Full Name <span class="req">*</span></label><input id="tenantName" class="form-control" placeholder="Tenant's full name"/></div>
             <div class="form-group"><label class="form-label">Tenant Contact <span class="req">*</span></label><input id="tenantContact" class="form-control" placeholder="Tenant's mobile"/></div>
             <div class="form-group"><label class="form-label">Tenant Email</label><input id="tenantEmail" class="form-control" type="email" placeholder="tenant@email.com"/></div>
             <div class="form-group"><label class="form-label">Aadhar / ID Proof No.</label><input id="tenantAadhar" class="form-control" placeholder="Aadhar / Voter ID / PAN"/></div>
+            <div class="form-group"><label class="form-label">PAN Card No.</label><input id="tenantPan" class="form-control" placeholder="PAN Card Number"/></div>
+            <div class="form-group"><label class="form-label">Occupation / Job</label><input id="tenantJob" class="form-control" placeholder="e.g. Software Engineer, Business"/></div>
+            <div class="form-group"><label class="form-label">Family Members Count</label><input id="tenantFamilyCount" class="form-control" type="number" min="1" placeholder="e.g. 4"/></div>
             <div class="form-group"><label class="form-label">Rent Start Date</label><input id="tenantRentStart" class="form-control" type="date"/></div>
             <div class="form-group"><label class="form-label">Rent End Date (Agreement)</label><input id="tenantRentEnd" class="form-control" type="date"/></div>
-            <div class="form-group full"><label class="form-label">Monthly Rent (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input id="tenantRent" class="form-control" type="number" min="0" placeholder="Rent amount paid to owner"/></div></div>
+            <div class="form-group"><label class="form-label">Monthly Rent (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input id="tenantRent" class="form-control" type="number" min="0" placeholder="Rent amount"/></div></div>
+            <div class="form-group"><label class="form-label">Tenant Login PIN</label><input id="tenantPin" class="form-control" placeholder="e.g. 1234"/></div>
           </div>
         </div>
       </form>

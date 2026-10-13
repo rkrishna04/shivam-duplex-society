@@ -4,10 +4,11 @@
    Supports offline caching & seamless PWA installation
    ============================================================ */
 
-const CACHE_NAME = 'shivam-duplex-v4';
+const CACHE_NAME = 'shivam-duplex-v5';
 
 const STATIC_ASSETS = [
   'index.html',
+  'dashboard.html',
   'members.html',
   'maintenance.html',
   'payments.html',
@@ -18,6 +19,7 @@ const STATIC_ASSETS = [
   'reports.html',
   'resident.html',
   'css/style.css',
+  'css/homepage.css',
   'css/tables.css',
   'css/forms.css',
   'css/shiva-theme.css',

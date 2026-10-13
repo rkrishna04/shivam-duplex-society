@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<meta name="theme-color" content="#4f46e5"/>
+<meta name="theme-color" content="#2D3A47"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -12,8 +12,9 @@
 <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96"  href="icons/icon-96.png"/>
-<title>Events — SHIVAM DUPLEX</title>
+<title>Events &amp; Festival Ledgers — SHIVAM DUPLEX</title>
 <link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/tables.css"/>
 <link rel="stylesheet" href="css/forms.css"/>
 <link rel="stylesheet" href="css/shiva-theme.css"/>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -21,71 +22,378 @@
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/app.js"></script>
+<style>
+  .evt-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; overflow-x: auto; }
+  .evt-tab-btn {
+    padding: 10px 20px; border-radius: var(--radius-pill);
+    background: rgba(169, 183, 198, 0.1); border: 1px solid rgba(169, 183, 198, 0.25);
+    color: var(--misty-sky); font-weight: 700; font-size: 13px; cursor: pointer;
+    transition: all 0.2s ease; white-space: nowrap;
+  }
+  .evt-tab-btn.active {
+    background: linear-gradient(135deg, rgba(226, 149, 120, 0.4) 0%, rgba(45, 58, 71, 0.8) 100%);
+    border-color: rgba(247, 200, 211, 0.5); color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .evt-tab-panel { display: none; }
+  .evt-tab-panel.active { display: block; }
+</style>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-brand"><div class="brand-icon">🏘</div><div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div></div>
+  <div class="sidebar-brand">
+    <div class="brand-icon">🏘</div>
+    <div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div>
+  </div>
   <nav>
-    <span class="nav-section-label">Main</span>
-    <a href="index.html"       class="nav-link"><span class="nav-icon">📊</span> Dashboard</a>
-    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members</a>
+    <span class="nav-section-label">Portal</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">🌐</span> Society Homepage</a>
+    <a href="dashboard.html"   class="nav-link"><span class="nav-icon">📊</span> Admin Dashboard</a>
+    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members Directory</a>
     <span class="nav-section-label">Finance</span>
     <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
-    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
-    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments Ledger</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Society Expenses</a>
     <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
     <span class="nav-section-label">Community</span>
-    <a href="events.html"      class="nav-link active"><span class="nav-icon">🎉</span> Events</a>
+    <a href="events.html"      class="nav-link active"><span class="nav-icon">🎉</span> Events &amp; Festivals</a>
     <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
-    <span class="nav-section-label">Reports</span>
+    <span class="nav-section-label">Reports &amp; Resident</span>
     <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
-    <span class="nav-section-label">Resident</span>
     <a href="resident.html"    class="nav-link"><span class="nav-icon">🏠</span> Resident Portal</a>
     <span class="nav-section-label">Mobile App</span>
     <a href="#" class="nav-link btn-install-app" style="color:#a5b4fc;"><span class="nav-icon">📲</span> Install App</a>
   </nav>
-  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v2.0</div>
+  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v3.0</div>
 </aside>
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
 <div class="main-content">
   <header class="topbar">
     <div class="topbar-left">
       <button class="menu-toggle" id="menu-toggle">☰</button>
-      <div><div class="topbar-title">🎉 Events</div><div class="topbar-sub">Society events &amp; celebrations</div></div>
+      <div>
+        <div class="topbar-title">🎉 Events &amp; Festival Hub</div>
+        <div class="topbar-sub">Ganesh Utsav Ledger, Door-to-Door Collections &amp; Program Schedule</div>
+      </div>
     </div>
     <div class="topbar-actions">
-      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:#a5b4fc;border-color:rgba(129,140,248,0.4);">📲 Install App</button>
+      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);">📲 Install App</button>
       <button class="btn btn-outline btn-sm" id="btn-export">📥 Export Excel</button>
       <button class="btn btn-accent" id="btn-add">➕ Add Event</button>
     </div>
   </header>
+
   <main class="page-content">
-    <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
-    <div id="empty-state" class="empty-state" style="display:none;padding:60px;"><div class="empty-icon">🎉</div><h3>No events yet</h3><p>Add your first event.</p></div>
-    <div id="events-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;"></div>
-  </main>
-</div>
-<!-- Add/Edit Modal -->
-<div class="modal-overlay hidden" id="modal">
-  <div class="modal" style="max-width:620px;">
-    <div class="modal-header"><div class="modal-title" id="modal-title">Add Event</div><button class="modal-close" id="modal-close">✕</button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-group full"><label class="form-label">Event Name <span class="req">*</span></label><input id="eventName" class="form-control" placeholder="e.g. Diwali Celebration"/></div>
-        <div class="form-group"><label class="form-label">Start Date <span class="req">*</span></label><input type="date" id="startDate" class="form-control"/></div>
-        <div class="form-group"><label class="form-label">End Date</label><input type="date" id="endDate" class="form-control"/></div>
-        <div class="form-group"><label class="form-label">Venue</label><input id="venue" class="form-control" placeholder="Society garden / hall"/></div>
-        <div class="form-group"><label class="form-label">Organized By</label><input id="organizedBy" class="form-control" placeholder="Committee member / team"/></div>
-        <div class="form-group"><label class="form-label">Estimated Budget (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="estimatedBudget" class="form-control" min="0" placeholder="0"/></div></div>
-        <div class="form-group"><label class="form-label">Actual Expenses (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="actualExpenses" class="form-control" min="0" placeholder="0"/></div></div>
-        <div class="form-group"><label class="form-label">Contributions (₹)</label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="contributions" class="form-control" min="0" placeholder="0"/></div></div>
-        <div class="form-group"><label class="form-label">Status</label><select id="eventStatus" class="form-control"><option>Planned</option><option>Ongoing</option><option>Completed</option></select></div>
-        <div class="form-group full"><label class="form-label">Description / Notes</label><textarea id="description" class="form-control" rows="3" placeholder="Event details…"></textarea></div>
+    <!-- Events Tab Switcher -->
+    <div class="evt-tabs">
+      <button class="evt-tab-btn active" data-tab="tab-overview">🎉 All Society Events</button>
+      <button class="evt-tab-btn" data-tab="tab-contributions">📋 Door-to-Door Contribution List</button>
+      <button class="evt-tab-btn" data-tab="tab-schedule">📅 Day-Wise Program Designer</button>
+      <button class="evt-tab-btn" data-tab="tab-expenses">💸 Itemized Expense Ledger</button>
+    </div>
+
+    <!-- Panel 1: Event Overview Cards -->
+    <div class="evt-tab-panel active" id="tab-overview">
+      <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
+      <div id="empty-state" class="empty-state" style="display:none;padding:60px;">
+        <div class="empty-icon">🎉</div>
+        <h3>No events yet</h3>
+        <p>Click "Add Event" above to create an event (e.g. Ganesh Utsav 2026, Diwali Snehmilan).</p>
+      </div>
+      <div id="events-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;"></div>
+    </div>
+
+    <!-- Panel 2: Door-to-Door Contribution List -->
+    <div class="evt-tab-panel" id="tab-contributions">
+      <div class="card">
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div class="card-title">📋 Door-to-Door Contribution Register (Ghar-Ghar Collection)</div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <span style="font-size:13px;color:var(--misty-sky);">Total Collected: <strong id="contrib-total-badge" style="color:var(--sage-leaf);">₹0</strong></span>
+            <button class="btn btn-accent btn-sm" id="btn-add-contrib">➕ Record House Contribution</button>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="search" id="contrib-search" class="search-input" placeholder="Search duplex number, resident name…"/>
+          </div>
+          <select id="contrib-filter-status" class="filter-select">
+            <option value="">All Status</option>
+            <option>Received</option>
+            <option>Pending</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Duplex No</th><th>Resident Name</th><th>Amount (₹)</th>
+                <th>Mode</th><th>Date</th><th>Status</th><th>Receipt / Notes</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contrib-tbody">
+              <tr><td colspan="8" style="text-align:center;padding:24px;color:var(--misty-sky);">Loading contribution records…</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="modal-footer"><button class="btn btn-ghost" id="btn-cancel">Cancel</button><button class="btn btn-accent" id="btn-save">💾 Save Event</button></div>
+
+    <!-- Panel 3: Day-Wise Program Schedule Designer -->
+    <div class="evt-tab-panel" id="tab-schedule">
+      <div class="card">
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div class="card-title">📅 Day-Wise Celebration Schedule (Kaya Divashe Su Rakhvanu Che)</div>
+          <button class="btn btn-accent btn-sm" id="btn-add-schedule-day">➕ Add Program / Day</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Day / Date</th><th>Time</th><th>Program / Pooja Title</th>
+                <th>Venue / Location</th><th>Incharge Duplex / Member</th><th>Prasad / Details</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-tbody">
+              <tr><td colspan="7" style="text-align:center;padding:24px;color:var(--misty-sky);">Loading schedule…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Itemized Expense Ledger -->
+    <div class="evt-tab-panel" id="tab-expenses">
+      <div class="card">
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div class="card-title">💸 Itemized Event Expense Ledger (Pooja, Mandap, Katha, Prasad)</div>
+          <div style="display:flex;gap:14px;align-items:center;">
+            <span style="font-size:13px;color:var(--misty-sky);">Total Spent: <strong id="evt-exp-total-badge" style="color:var(--rosewood);">₹0</strong></span>
+            <button class="btn btn-accent btn-sm" id="btn-add-evt-exp">➕ Add Expense Item</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Item / Service</th><th>Category</th>
+                <th>Vendor / Person</th><th>Amount (₹)</th><th>Paid By</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="evt-expenses-tbody">
+              <tr><td colspan="7" style="text-align:center;padding:24px;color:var(--misty-sky);">Loading event expenses…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal: Event Overview -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal" style="max-width:620px;">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Add Event</div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">Event Name <span class="req">*</span></label>
+          <input id="eventName" class="form-control" placeholder="e.g. Ganesh Mahotsav 2026"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Start Date <span class="req">*</span></label>
+          <input type="date" id="startDate" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">End Date</label>
+          <input type="date" id="endDate" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Venue</label>
+          <input id="venue" class="form-control" placeholder="Society Garden / Clubhouse"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organized By</label>
+          <input id="organizedBy" class="form-control" placeholder="Youth Team / Committee"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estimated Budget (₹)</label>
+          <div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="estimatedBudget" class="form-control" min="0" placeholder="50000"/></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Actual Expenses (₹)</label>
+          <div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="actualExpenses" class="form-control" min="0" placeholder="36000"/></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contributions (₹)</label>
+          <div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="contributions" class="form-control" min="0" placeholder="48500"/></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select id="eventStatus" class="form-control"><option>Planned</option><option>Ongoing</option><option>Completed</option></select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Description / Notes</label>
+          <textarea id="description" class="form-control" rows="3" placeholder="Celebration details…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btn-cancel">Cancel</button>
+      <button class="btn btn-accent" id="btn-save">💾 Save Event</button>
+    </div>
   </div>
 </div>
+
+<!-- Modal: Contribution Entry -->
+<div class="modal-overlay hidden" id="contrib-modal">
+  <div class="modal" style="max-width:500px;">
+    <div class="modal-header">
+      <div class="modal-title" id="contrib-modal-title">Record House Contribution</div>
+      <button class="modal-close" id="contrib-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="contrib-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Duplex / Flat No. <span class="req">*</span></label>
+            <input type="text" id="c-flat" class="form-control" placeholder="e.g. 12" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Resident Name <span class="req">*</span></label>
+            <input type="text" id="c-name" class="form-control" placeholder="Resident name" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contribution Amount (₹) <span class="req">*</span></label>
+            <input type="number" id="c-amount" class="form-control" placeholder="1000" min="0" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Payment Mode</label>
+            <select id="c-mode" class="form-control"><option>Cash</option><option>UPI / GPay</option><option>Bank Transfer</option></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" id="c-date" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="c-status" class="form-control"><option>Received</option><option>Pending</option></select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Remarks / Receipt Note</label>
+            <input type="text" id="c-remarks" class="form-control" placeholder="e.g. Received by Rajeshbhai"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btn-cancel-contrib">Cancel</button>
+      <button class="btn btn-accent" id="btn-save-contrib">💾 Save Contribution</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Schedule Day Entry -->
+<div class="modal-overlay hidden" id="schedule-modal">
+  <div class="modal" style="max-width:540px;">
+    <div class="modal-header">
+      <div class="modal-title" id="schedule-modal-title">Add Day Program</div>
+      <button class="modal-close" id="schedule-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="schedule-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Day Label / Date <span class="req">*</span></label>
+            <input type="text" id="s-day" class="form-control" placeholder="e.g. Day 1 (07 Sep)" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Program Time <span class="req">*</span></label>
+            <input type="text" id="s-time" class="form-control" placeholder="e.g. 09:00 AM" required/>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Program / Activity Title <span class="req">*</span></label>
+            <input type="text" id="s-title" class="form-control" placeholder="e.g. Ganesh Sthapana &amp; Maha Aarti" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Venue</label>
+            <input type="text" id="s-venue" class="form-control" placeholder="Central Garden"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Incharge / Coordinator</label>
+            <input type="text" id="s-incharge" class="form-control" placeholder="e.g. Duplex 01–05 Family"/>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Prasad / Special Notes</label>
+            <input type="text" id="s-prasad" class="form-control" placeholder="Modak Prasad sponsored by..."/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btn-cancel-schedule">Cancel</button>
+      <button class="btn btn-accent" id="btn-save-schedule">💾 Save Program</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Event Expense Item Entry -->
+<div class="modal-overlay hidden" id="evt-exp-modal">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header">
+      <div class="modal-title" id="evt-exp-modal-title">Add Event Expense Item</div>
+      <button class="modal-close" id="evt-exp-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="evt-exp-form">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label">Item / Service Description <span class="req">*</span></label>
+            <input type="text" id="ee-item" class="form-control" placeholder="e.g. Satyanarayan Katha Pandit Dakshina, Mandap Decor" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="ee-cat" class="form-control">
+              <option>Pooja &amp; Pandit Ji</option>
+              <option>Mandap &amp; Lighting</option>
+              <option>Mahaprasad &amp; Food</option>
+              <option>Sound System &amp; DJ</option>
+              <option>Visarjan &amp; Dhol</option>
+              <option>Flowers &amp; Garlands</option>
+              <option>Miscellaneous</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Amount (₹) <span class="req">*</span></label>
+            <input type="number" id="ee-amount" class="form-control" placeholder="5000" min="0" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" id="ee-date" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vendor / Contact Person</label>
+            <input type="text" id="ee-vendor" class="form-control" placeholder="e.g. Radhe Decorators"/>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Paid By</label>
+            <input type="text" id="ee-paidby" class="form-control" placeholder="Committee Fund / Rajeshbhai"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="btn-cancel-ee">Cancel</button>
+      <button class="btn btn-accent" id="btn-save-ee">💾 Save Expense</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast-container" id="toast-container"></div>
 </body>
 </html>

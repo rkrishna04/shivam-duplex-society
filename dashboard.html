@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#2D3A47"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Shivam Society"/>
+<meta name="description" content="SHIVAM DUPLEX Society Admin Command Center & Management Dashboard"/>
+<meta name="application-name" content="Shivam Society"/>
+<!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json"/>
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144.png"/>
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="96x96"  href="icons/icon-96.png"/>
+<title>Admin Command Center — SHIVAM DUPLEX</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/tables.css"/>
+<link rel="stylesheet" href="css/shiva-theme.css"/>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/app.js"></script>
+<style>
+  /* Admin Command Center Specific Styles */
+  .hero-welcome {
+    background: linear-gradient(135deg, rgba(169,183,198,0.16) 0%, rgba(45,58,71,0.6) 55%, rgba(21,29,36,0.92) 100%);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1px solid rgba(169, 183, 198, 0.32);
+    border-radius: var(--radius-xl);
+    padding: 24px 30px;
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    box-shadow: var(--shadow-lg), var(--specular-top);
+    position: relative; overflow: hidden;
+  }
+  .hero-welcome::before {
+    content: '🏘';
+    position: absolute; right: 28px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 88px; opacity: 0.08;
+    pointer-events: none;
+  }
+  .hero-welcome::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.45) 50%, transparent 95%);
+    pointer-events: none;
+  }
+  .hero-title {
+    font-size: 24px; font-weight: 800; color: #ffffff;
+    letter-spacing: -0.3px;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+  }
+  .hero-sub {
+    font-size: 13.5px; color: var(--misty-sky); margin-top: 5px; font-weight: 500;
+  }
+
+  .quick-action-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 11px 22px; border-radius: var(--radius-pill);
+    background: rgba(169, 183, 198, 0.12);
+    backdrop-filter: var(--blur-sm);
+    -webkit-backdrop-filter: var(--blur-sm);
+    border: 1px solid rgba(169, 183, 198, 0.28);
+    color: #ffffff; font-size: 13.5px; font-weight: 700;
+    transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none; cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3);
+    position: relative; overflow: hidden;
+  }
+  .quick-action-btn:hover {
+    background: linear-gradient(135deg, rgba(169, 183, 198, 0.32) 0%, rgba(45, 58, 71, 0.7) 100%);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+  .quick-action-btn.orange:hover {
+    background: linear-gradient(135deg, rgba(226, 149, 120, 0.4) 0%, rgba(133, 68, 43, 0.6) 100%);
+    border-color: rgba(247, 200, 211, 0.6);
+    box-shadow: 0 10px 25px rgba(226, 149, 120, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+  .quick-action-btn.green:hover {
+    background: linear-gradient(135deg, rgba(168, 181, 138, 0.4) 0%, rgba(76, 92, 53, 0.6) 100%);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 25px rgba(168, 181, 138, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+
+  .section-title {
+    font-size: 13.5px; font-weight: 800; color: var(--misty-sky);
+    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1.5px;
+    background: linear-gradient(90deg, rgba(169,183,198,0.35), transparent);
+  }
+
+  /* Committee 20-House Assignment Banner */
+  .comm-split-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .comm-split-box {
+    background: var(--liquid-glass-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: var(--shadow-sm), var(--specular-top);
+  }
+  .comm-split-box h4 {
+    font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 4px;
+  }
+  .comm-split-box p {
+    font-size: 12px; color: var(--misty-sky); margin: 0;
+  }
+  .comm-pill {
+    padding: 4px 12px; border-radius: var(--radius-pill);
+    font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
+    background: rgba(168, 181, 138, 0.2); color: var(--sage-leaf);
+    border: 1px solid rgba(168, 181, 138, 0.4);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    #sidebar-overlay {
+      display: none !important;
+    }
+    #sidebar-overlay.active,
+    #sidebar-overlay.show {
+      display: block !important;
+    }
+    .hero-welcome, .quick-action-btn {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .hero-welcome {
+      background: linear-gradient(145deg, rgba(45, 58, 71, 0.98) 0%, rgba(21, 29, 36, 0.99) 100%) !important;
+      border: 1px solid rgba(169, 183, 198, 0.28) !important;
+      padding: 18px 20px !important;
+    }
+    .quick-action-btn {
+      background: rgba(169,183,198,0.14) !important;
+      border: 1px solid rgba(169,183,198,0.25) !important;
+    }
+  }
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">🏘</div>
+    <div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Committee Admin Deck</p></div>
+  </div>
+  <nav>
+    <span class="nav-section-label">Portal</span>
+    <a href="index.html"       class="nav-link"><span class="nav-icon">🌐</span> Society Homepage</a>
+    <a href="dashboard.html"   class="nav-link active"><span class="nav-icon">📊</span> Admin Dashboard</a>
+    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members Directory</a>
+    <span class="nav-section-label">Finance</span>
+    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
+    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments Ledger</a>
+    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Society Expenses</a>
+    <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
+    <span class="nav-section-label">Community</span>
+    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events &amp; Festivals</a>
+    <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
+    <span class="nav-section-label">Reports &amp; Resident</span>
+    <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
+    <a href="resident.html"    class="nav-link"><span class="nav-icon">🏠</span> Resident Portal</a>
+    <span class="nav-section-label">Mobile App</span>
+    <a href="#" class="nav-link btn-install-app" style="color:#a5b4fc;"><span class="nav-icon">📲</span> Install App</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--misty-sky);">
+      <span style="font-size:16px;">🔱</span>
+      <div><strong>SHIVAM DUPLEX</strong><br><span style="font-size:10px;opacity:.7;">40 Duplex Residences</span></div>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">☰</button>
+      <div>
+        <div class="topbar-title">📊 Committee Dashboard</div>
+        <div class="topbar-sub" id="dash-date">Loading date…</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a href="index.html" class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(169,183,198,0.4);"><span style="margin-right:4px;">🌐</span> Homepage</a>
+      <a href="resident.html" class="btn btn-outline btn-sm" style="color:var(--blush-petal);border-color:rgba(247,200,211,0.4);"><span style="margin-right:4px;">🏠</span> Resident View</a>
+      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);">📲 Install App</button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- Hero Welcome Banner -->
+    <div class="hero-welcome">
+      <div>
+        <div class="hero-title">SHIVAM DUPLEX RESIDENTS ASSOCIATION 🔱</div>
+        <div class="hero-sub">40 Duplex Residences · ₹600/month Maintenance · Committee 20-House Mentorship</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="maintenance.html" class="quick-action-btn">
+          <span>⚡</span> Bulk Generate Bills
+        </a>
+        <a href="payments.html" class="quick-action-btn green">
+          <span>💳</span> Record Payment
+        </a>
+        <a href="events.html" class="quick-action-btn orange">
+          <span>🎉</span> Festival Ledger
+        </a>
+      </div>
+    </div>
+
+    <!-- Committee 20-House Assignment Status -->
+    <div class="comm-split-card">
+      <div class="comm-split-box">
+        <div>
+          <h4>🏛 Committee Cluster 1 (House 1 – 20)</h4>
+          <p>Assigned Guardian: <strong>Rajeshbhai Patel</strong> (📞 98250 12341)</p>
+          <div style="font-size:11px;color:rgba(169,183,198,0.8);margin-top:4px;">Direct complaint &amp; maintenance oversight</div>
+        </div>
+        <span class="comm-pill">20 HOUSES</span>
+      </div>
+      <div class="comm-split-box">
+        <div>
+          <h4>🏛 Committee Cluster 2 (House 21 – 40)</h4>
+          <p>Assigned Guardian: <strong>Sureshbhai Shah</strong> (📞 98250 12342)</p>
+          <div style="font-size:11px;color:rgba(169,183,198,0.8);margin-top:4px;">Direct complaint &amp; maintenance oversight</div>
+        </div>
+        <span class="comm-pill">20 HOUSES</span>
+      </div>
+    </div>
+
+    <!-- Society Key Metrics -->
+    <div class="section-title">Society Overview &amp; Financial Health</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">TOTAL MEMBERS</div><div class="stat-icon-wrap">👥</div></div>
+        <div class="stat-value" id="stat-members">—</div>
+        <div class="stat-sub">Registered duplex residences</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">PENDING BILLS</div><div class="stat-icon-wrap">⚠️</div></div>
+        <div class="stat-value" id="stat-pending" style="color:var(--rosewood);">—</div>
+        <div class="stat-sub" id="stat-pending-amt">Outstanding maintenance</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">THIS MONTH COLLECTION</div><div class="stat-icon-wrap">💳</div></div>
+        <div class="stat-value" id="stat-collection" style="color:var(--sage-leaf);">—</div>
+        <div class="stat-sub">Received payments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">THIS MONTH EXPENSES</div><div class="stat-icon-wrap">💸</div></div>
+        <div class="stat-value" id="stat-expenses" style="color:var(--accent);">—</div>
+        <div class="stat-sub">Society expenditures</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">SOCIETY FUND BALANCE</div><div class="stat-icon-wrap">🏦</div></div>
+        <div class="stat-value" id="stat-balance" style="color:var(--misty-sky);">—</div>
+        <div class="stat-sub">Net reserve balance</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">TOTAL ADVANCE RECEIVED</div><div class="stat-icon-wrap">💰</div></div>
+        <div class="stat-value" id="stat-advance" style="color:var(--blush-petal);">—</div>
+        <div class="stat-sub">Advance maintenance credits</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">UPCOMING EVENTS</div><div class="stat-icon-wrap">🎉</div></div>
+        <div class="stat-value" id="stat-events">—</div>
+        <div class="stat-sub">Planned community events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><div class="stat-label">TOTAL BILLS ISSUED</div><div class="stat-icon-wrap">🧾</div></div>
+        <div class="stat-value" id="stat-bills">—</div>
+        <div class="stat-sub">Generated maintenance bills</div>
+      </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="charts-grid" style="margin-top:24px;">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">📈 Monthly Collections (Last 6 Months)</div><div class="chart-sub">Maintenance &amp; advance payments collected</div></div>
+        </div>
+        <div class="chart-container"><canvas id="chart-collections"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div><div class="chart-title">🍩 Expenses by Category</div><div class="chart-sub">Where society maintenance funds are utilized</div></div>
+        </div>
+        <div class="chart-container"><canvas id="chart-expenses"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Recent Pending Bills -->
+    <div style="margin-top:28px;">
+      <div class="section-title">Pending Maintenance Bills (Need Follow-up)</div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bill No</th><th>Member Name</th><th>Flat / Duplex</th>
+                <th>Period</th><th>Amount</th><th>Due Date</th>
+              </tr>
+            </thead>
+            <tbody id="recent-bills">
+              <tr><td colspan="6" style="text-align:center;padding:24px;color:var(--misty-sky);">Loading bills…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+</body>
+</html>

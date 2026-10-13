@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<meta name="theme-color" content="#4f46e5"/>
+<meta name="theme-color" content="#2D3A47"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Shivam Society"/>
-<meta name="description" content="SHIVAM DUPLEX Society Management System"/>
+<meta name="description" content="SHIVAM DUPLEX Residents Association — Digital Society Governance, Maintenance Billing, Festival Ledgers, Vehicle Directory & Committee Oversight"/>
 <meta name="application-name" content="Shivam Society"/>
 <!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json"/>
@@ -18,232 +18,688 @@
 <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="96x96"  href="icons/icon-96.png"/>
-<title>Dashboard — SHIVAM DUPLEX</title>
+<title>SHIVAM DUPLEX — Smart Society Management &amp; Resident Portal</title>
 <link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/homepage.css"/>
 <link rel="stylesheet" href="css/shiva-theme.css"/>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/app.js"></script>
-<style>
-  /* Dashboard specific Eye-Friendly Liquid Glass */
-  .hero-welcome {
-    background: linear-gradient(135deg, rgba(169,183,198,0.16) 0%, rgba(45,58,71,0.6) 55%, rgba(21,29,36,0.92) 100%);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: 1px solid rgba(169, 183, 198, 0.32);
-    border-radius: var(--radius-xl);
-    padding: 24px 30px;
-    margin-bottom: 24px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 16px;
-    box-shadow: var(--shadow-lg), var(--specular-top);
-    position: relative; overflow: hidden;
-  }
-  .hero-welcome::before {
-    content: '🏘';
-    position: absolute; right: 28px; top: 50%;
-    transform: translateY(-50%);
-    font-size: 88px; opacity: 0.08;
-    pointer-events: none;
-  }
-  .hero-welcome::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
-    background: linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.45) 50%, transparent 95%);
-    pointer-events: none;
-  }
-  .hero-title {
-    font-size: 24px; font-weight: 800; color: #ffffff;
-    letter-spacing: -0.3px;
-    text-shadow: 0 2px 14px rgba(0,0,0,0.4);
-  }
-  .hero-sub {
-    font-size: 13.5px; color: var(--misty-sky); margin-top: 5px; font-weight: 500;
-  }
-
-  /* Image 2: Jelly Pill Quick Actions */
-  .quick-action-btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    padding: 11px 22px; border-radius: var(--radius-pill);
-    background: rgba(169, 183, 198, 0.12);
-    backdrop-filter: var(--blur-sm);
-    -webkit-backdrop-filter: var(--blur-sm);
-    border: 1px solid rgba(169, 183, 198, 0.28);
-    color: #ffffff; font-size: 13.5px; font-weight: 700;
-    transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
-    text-decoration: none; cursor: pointer;
-    font-family: inherit;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3);
-    position: relative; overflow: hidden;
-  }
-  .quick-action-btn:hover {
-    background: linear-gradient(135deg, rgba(169, 183, 198, 0.32) 0%, rgba(45, 58, 71, 0.7) 100%);
-    border-color: rgba(255, 255, 255, 0.5);
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
-  }
-  .quick-action-btn.orange:hover {
-    background: linear-gradient(135deg, rgba(226, 149, 120, 0.4) 0%, rgba(133, 68, 43, 0.6) 100%);
-    border-color: rgba(247, 200, 211, 0.6);
-    box-shadow: 0 10px 25px rgba(226, 149, 120, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
-  }
-  .quick-action-btn.green:hover {
-    background: linear-gradient(135deg, rgba(168, 181, 138, 0.4) 0%, rgba(76, 92, 53, 0.6) 100%);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 10px 25px rgba(168, 181, 138, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
-  }
-
-  .section-title {
-    font-size: 13.5px; font-weight: 800; color: var(--misty-sky);
-    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-title::after {
-    content: ''; flex: 1; height: 1.5px;
-    background: linear-gradient(90deg, rgba(169,183,198,0.35), transparent);
-  }
-
-  /* --- MOBILE OPTIMIZATION --- */
-  @media (max-width: 768px) {
-    #sidebar-overlay {
-      display: none !important;
-    }
-    #sidebar-overlay.active,
-    #sidebar-overlay.show {
-      display: block !important;
-    }
-    
-    .hero-welcome, 
-    .quick-action-btn {
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    
-    .hero-welcome {
-      background: linear-gradient(145deg, rgba(45, 58, 71, 0.98) 0%, rgba(21, 29, 36, 0.99) 100%) !important;
-      border: 1px solid rgba(169, 183, 198, 0.28) !important;
-      padding: 18px 20px !important;
-    }
-    
-    .quick-action-btn {
-      background: rgba(169,183,198,0.14) !important;
-      border: 1px solid rgba(169,183,198,0.25) !important;
-    }
-  }
-</style>
 </head>
-<body>
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-brand">
-    <div class="brand-icon">🏘</div>
-    <div class="brand-text"><h1>SHIVAM DUPLEX</h1><p>Society Management</p></div>
-  </div>
-  <nav>
-    <span class="nav-section-label">Main</span>
-    <a href="index.html"       class="nav-link active"><span class="nav-icon">📊</span> Dashboard</a>
-    <a href="members.html"     class="nav-link"><span class="nav-icon">👥</span> Members</a>
-    <span class="nav-section-label">Finance</span>
-    <a href="maintenance.html" class="nav-link"><span class="nav-icon">🧾</span> Maintenance Bills</a>
-    <a href="payments.html"    class="nav-link"><span class="nav-icon">💳</span> Payments</a>
-    <a href="expenses.html"    class="nav-link"><span class="nav-icon">💸</span> Expenses</a>
-    <a href="funds.html"       class="nav-link"><span class="nav-icon">🏦</span> Fund Management</a>
-    <span class="nav-section-label">Community</span>
-    <a href="events.html"      class="nav-link"><span class="nav-icon">🎉</span> Events</a>
-    <a href="notices.html"     class="nav-link"><span class="nav-icon">📢</span> Notice Board</a>
-    <span class="nav-section-label">Reports</span>
-    <a href="reports.html"     class="nav-link"><span class="nav-icon">📥</span> Reports &amp; Exports</a>
-    <span class="nav-section-label">Resident Access</span>
-    <a href="resident.html"    class="nav-link"><span class="nav-icon">🏠</span> Resident Portal</a>
-    <span class="nav-section-label">Mobile App</span>
-    <a href="#" class="nav-link btn-install-app" style="color:#a5b4fc;"><span class="nav-icon">📲</span> Install App</a>
+<body class="landing-body">
+
+<!-- Modern SaaS Glass Navbar -->
+<div class="landing-nav-wrap">
+  <nav class="landing-nav">
+    <a href="index.html" class="brand-link">
+      <div class="brand-badge">🔱</div>
+      <div class="brand-info">
+        <h2>SHIVAM DUPLEX</h2>
+        <p>Residents Association</p>
+      </div>
+    </a>
+
+    <ul class="nav-links-desktop">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#vehicle-search">Vehicle Lookup</a></li>
+      <li><a href="#festivals">Ganesh Utsav</a></li>
+      <li><a href="#committee">Committee 20-House</a></li>
+      <li><a href="#bank-qr">Pay Maintenance</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-actions-desktop">
+      <a href="resident.html" class="nav-btn-resident">
+        <span>🏠</span> Resident Portal
+      </a>
+      <button type="button" class="nav-btn-admin" id="btn-open-admin-modal">
+        <span>🔐</span> Committee Login
+      </button>
+      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);border-radius:var(--radius-pill);padding:8px 14px;font-size:12px;">
+        📲 App
+      </button>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
   </nav>
-  <div class="sidebar-footer"><strong>SHIVAM DUPLEX</strong> v2.0</div>
-</aside>
-<div class="sidebar-overlay" id="sidebar-overlay"></div>
-<div class="main-content">
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="menu-toggle" id="menu-toggle">☰</button>
-      <div><div class="topbar-title">📊 Dashboard</div><div class="topbar-sub" id="dash-date"></div></div>
-    </div>
-    <div class="topbar-actions">
-      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:#a5b4fc;border-color:rgba(129,140,248,0.4);">📲 Install App</button>
-      <a href="resident.html" class="btn btn-accent btn-sm">🏠 Resident Portal</a>
-    </div>
-  </header>
-
-  <main class="page-content" style="padding-top:24px;">
-
-    <!-- Hero Welcome -->
-    <div class="hero-welcome">
-      <div>
-        <div class="hero-title">Welcome, SHIVAM DUPLEX Committee 👋</div>
-        <div class="hero-sub" id="dash-date-sub">Managing your society with ease</div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1;">
-        <a href="maintenance.html" class="btn btn-primary btn-sm">🧾 Generate Bills</a>
-        <a href="payments.html"    class="btn btn-success btn-sm">💳 Record Payment</a>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="section-title">📊 Society Overview</div>
-    <section class="stats-grid" style="padding:0 0 24px;">
-      <div class="stat-card"><div class="stat-icon si-blue">👥</div><div><div class="stat-label">Total Members</div><div class="stat-value" id="stat-members">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-orange">⚠</div><div><div class="stat-label">Pending Bills</div><div class="stat-value" id="stat-pending">—</div><div class="stat-sub negative" id="stat-pending-amt"></div></div></div>
-      <div class="stat-card"><div class="stat-icon si-green">💰</div><div><div class="stat-label">This Month Collected</div><div class="stat-value" id="stat-collection" style="font-size:17px;">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-red">💸</div><div><div class="stat-label">This Month Expenses</div><div class="stat-value" id="stat-expenses" style="font-size:17px;">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-teal">🏦</div><div><div class="stat-label">Society Balance</div><div class="stat-value" id="stat-balance" style="font-size:17px;">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-purple">🎉</div><div><div class="stat-label">Upcoming Events</div><div class="stat-value" id="stat-events">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-purple">💎</div><div><div class="stat-label">Advance Collected</div><div class="stat-value" id="stat-advance" style="font-size:17px;">—</div></div></div>
-      <div class="stat-card"><div class="stat-icon si-blue">🧾</div><div><div class="stat-label">Total Bills Generated</div><div class="stat-value" id="stat-bills">—</div></div></div>
-    </section>
-
-    <!-- Quick Actions -->
-    <div class="section-title">⚡ Quick Actions</div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;">
-      <a href="members.html"     class="quick-action-btn">➕ Add Member</a>
-      <a href="maintenance.html" class="quick-action-btn orange">🧾 Maintenance Bills</a>
-      <a href="payments.html"    class="quick-action-btn green">💳 Record Payment</a>
-      <a href="expenses.html"    class="quick-action-btn">💸 Log Expense</a>
-      <a href="events.html"      class="quick-action-btn">🎉 New Event</a>
-      <a href="notices.html"     class="quick-action-btn">📢 Post Notice</a>
-      <a href="reports.html"     class="quick-action-btn">📥 Reports</a>
-      <a href="resident.html"    class="quick-action-btn orange">🏠 Resident Portal</a>
-    </div>
-
-    <!-- Charts -->
-    <div class="section-title">📈 Analytics</div>
-    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-bottom:24px;">
-      <div class="card">
-        <div class="card-header"><div class="card-title">📈 Monthly Collection (6 months)</div></div>
-        <div style="padding:16px;"><canvas id="chart-collection" height="200"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-header"><div class="card-title">🥧 Bill Status</div></div>
-        <div style="padding:16px;"><canvas id="chart-status" height="200"></canvas></div>
-      </div>
-    </div>
-
-    <!-- Recent Pending Bills -->
-    <div class="section-title">🔔 Recent Pending Bills</div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Pending &amp; Overdue Bills</div>
-        <a href="maintenance.html" class="btn btn-ghost btn-sm">View All →</a>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Bill No</th><th>Member</th><th>Flat</th><th>Period</th><th>Amount Due</th><th>Due Date</th></tr></thead>
-          <tbody id="recent-bills"></tbody>
-        </table>
-      </div>
-    </div>
-  </main>
 </div>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-drawer" id="mobile-drawer">
+  <ul class="mobile-nav-links">
+    <li><a href="resident.html" style="color:var(--sage-leaf);font-size:18px;">🏠 Resident Portal</a></li>
+    <li><a href="#vehicle-search" class="m-link">🚗 Search Vehicle Plate</a></li>
+    <li><a href="#features" class="m-link">✨ Society Features</a></li>
+    <li><a href="#festivals" class="m-link">🎉 Ganesh Utsav Ledger</a></li>
+    <li><a href="#committee" class="m-link">🏛 20-House Committee</a></li>
+    <li><a href="#bank-qr" class="m-link">💳 Society UPI &amp; Bank</a></li>
+    <li><a href="dashboard.html" style="color:#ffffff;">📊 Committee Admin Deck</a></li>
+    <li><a href="#" class="btn-install-app" style="color:var(--blush-petal);">📲 Install Mobile App</a></li>
+  </ul>
+</div>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="landing-container">
+      <div class="hero-pill-badge">
+        <span class="hero-pulse-dot"></span>
+        <span>40 Luxury Duplex Residences · Smart Society OS</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        Elevating Community Living with <br/>
+        <span class="gradient-text">Transparent Society Governance</span>
+        <span class="shiva-trishul">🔱</span>
+      </h1>
+
+      <p class="hero-description">
+        The all-in-one digital platform for SHIVAM DUPLEX Residents Association. Automated maintenance tracking, multi-slip A4 bills, transparent Ganesh Utsav ledgers, instant vehicle owner lookup, and 20-house committee governance.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="resident.html" class="hero-btn-primary">
+          <span>🏠</span> Open Resident Portal
+        </a>
+        <a href="dashboard.html" class="hero-btn-secondary">
+          <span>📊</span> Committee Admin Deck
+        </a>
+        <button type="button" class="hero-btn-secondary btn-install-app">
+          <span>📲</span> Install App (Android &amp; iOS)
+        </button>
+      </div>
+
+      <!-- Instant Vehicle Parking Emergency Search Bar -->
+      <div class="vehicle-hero-card" id="vehicle-search">
+        <div class="vhc-title-row">
+          <div class="vhc-title">
+            <span>🚗</span>
+            <span>Emergency Vehicle &amp; Parking Search</span>
+          </div>
+          <span style="font-size:11px;font-weight:700;color:var(--sage-leaf);background:rgba(168,181,138,0.2);padding:3px 10px;border-radius:var(--radius-pill);">LIVE DATABASE</span>
+        </div>
+        <div class="vhc-sub">
+          Someone blocked your duplex entrance or parked outside? Enter registration number or car/bike name to contact the owner instantly:
+        </div>
+        <form id="hero-vehicle-form">
+          <div class="vhc-search-bar">
+            <span style="font-size:18px;margin-right:10px;color:var(--misty-sky);">🔍</span>
+            <input type="text" id="hero-vehicle-input" class="vhc-input" placeholder="e.g. GJ06, 1234, Swift, Activa…" autocomplete="off" required/>
+            <button type="submit" class="vhc-search-btn">Search Owner</button>
+          </div>
+        </form>
+        <div class="vhc-result-box" id="hero-vehicle-result"></div>
+      </div>
+
+      <!-- Live Society Statistics Strip -->
+      <div class="stats-strip">
+        <div class="stat-box-modern">
+          <div class="stat-box-icon">🏡</div>
+          <div class="stat-box-num" id="home-stat-duplexes">40</div>
+          <div class="stat-box-label">Duplex Homes</div>
+          <div class="stat-box-desc">Fully registered units</div>
+        </div>
+        <div class="stat-box-modern">
+          <div class="stat-box-icon">💰</div>
+          <div class="stat-box-num">₹600</div>
+          <div class="stat-box-label">Monthly Maintenance</div>
+          <div class="stat-box-desc">₹3,600 (6-Mo) / ₹7,200 (Year)</div>
+        </div>
+        <div class="stat-box-modern">
+          <div class="stat-box-icon">🏛</div>
+          <div class="stat-box-num">20 : 1</div>
+          <div class="stat-box-label">Committee Ratio</div>
+          <div class="stat-box-desc">Dedicated member per 20 houses</div>
+        </div>
+        <div class="stat-box-modern">
+          <div class="stat-box-icon">🧾</div>
+          <div class="stat-box-num">100%</div>
+          <div class="stat-box-label">Digital Transparency</div>
+          <div class="stat-box-desc">A4 Multi-Bill &amp; Festival Ledgers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="landing-section" id="features">
+    <div class="landing-container">
+      <div class="section-header-center">
+        <span class="section-tag">BUILT FOR SHIVAM DUPLEX</span>
+        <h2 class="section-title-large">Everything You Need for Effortless Community Governance</h2>
+        <p class="section-subtitle">
+          Designed specifically around the bylaws, fee structures, and festival customs of Shivam Duplex Society.
+        </p>
+      </div>
+
+      <div class="features-grid-modern">
+        <!-- Feature 1 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">🧾</div>
+            <h3 class="fcs-title">₹600/Mo Fee &amp; Advance Calculator</h3>
+            <p class="fcs-text">
+              Automated billing tailored for ₹600/month, ₹3,600 half-yearly, and ₹7,200 annual advance payments. Automatic credit rollover ensures advance-paying residents never face erroneous overdue notices.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">AUTOMATED LEDGER</span>
+            <a href="maintenance.html" class="fcs-link-pill" title="View Billing">→</a>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">🖨</div>
+            <h3 class="fcs-title">Smart Multi-Bill A4 Printing</h3>
+            <p class="fcs-text">
+              Cut paper waste by up to 75%. Print 1, 2, 3, or 4 horizontal slips per single A4 sheet with professional dashed scissors cut marks, rupee amounts in words, and dual signature slots.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">1 / 2 / 3 / 4 PER SHEET</span>
+            <a href="maintenance.html" class="fcs-link-pill" title="View Print Engine">→</a>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">🎉</div>
+            <h3 class="fcs-title">Ganesh Utsav &amp; Festival Accounting</h3>
+            <p class="fcs-text">
+              Door-to-door contribution lists showing who gave how much, day-wise schedule designer (Katha, Aarti, Mahaprasad, Visarjan), and itemized expense ledger with real-time remaining balance.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">GHAR-GHAR LIST &amp; EXPENSES</span>
+            <a href="events.html" class="fcs-link-pill" title="View Events">→</a>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">🏛</div>
+            <h3 class="fcs-title">20-House Committee Mentorship</h3>
+            <p class="fcs-text">
+              Each committee member is assigned exactly 20 houses. When a resident has a complaint, water issue, or maintenance request, it directly connects to their designated committee guardian.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">STRUCTURED GOVERNANCE</span>
+            <a href="#committee" class="fcs-link-pill" title="View Committee">→</a>
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">🔑</div>
+            <h3 class="fcs-title">Owner-Managed Tenant KYC</h3>
+            <p class="fcs-text">
+              Duplex owners register their tenants directly with Aadhaar, PAN card, occupation, family member counts, and lease dates. Generates a separate Tenant Login account without burdening the committee.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">RESIDENT SELF-SERVICE</span>
+            <a href="resident.html" class="fcs-link-pill" title="View Portal">→</a>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card-spatial">
+          <div>
+            <div class="fcs-top-icon">💳</div>
+            <h3 class="fcs-title">Society UPI QR Code &amp; Bank Hub</h3>
+            <p class="fcs-text">
+              Scan the official Shivam Duplex QR code or transfer to the society bank account. Residents submit UTR numbers for instant receipt generation and audited reconciliation.
+            </p>
+          </div>
+          <div class="fcs-footer">
+            <span class="fcs-badge">ZERO-COMMISSION PAYMENTS</span>
+            <a href="#bank-qr" class="fcs-link-pill" title="View Bank Details">→</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ganesh Utsav & Festival Spotlight -->
+  <section class="landing-section" id="festivals">
+    <div class="landing-container">
+      <div class="festival-spotlight-card">
+        <div class="fest-header-row">
+          <div class="fest-title">
+            <h3><span>🌺</span> Shri Ganesh Mahotsav &amp; Festival Hub</h3>
+            <p>Real-Time Door-to-Door Contribution Tracking, 10-Day Program Schedule &amp; Expense Ledger</p>
+          </div>
+          <a href="events.html" class="nav-btn-resident" style="background:rgba(247,200,211,0.25);border-color:rgba(247,200,211,0.5);color:#fff;">
+            <span>📋</span> Open Full Festival Ledger
+          </a>
+        </div>
+
+        <div class="fest-grid-layout">
+          <!-- Subbox 1: Schedule -->
+          <div class="fest-subbox">
+            <div class="fest-subbox-title">
+              <span>📅</span> Day-Wise Program Schedule
+            </div>
+            <div class="fest-schedule-item">
+              <span class="fest-day-badge">DAY 1</span>
+              <div>
+                <div class="fest-activity-text">Ganesh Sthapana &amp; Maha Aarti</div>
+                <div class="fest-activity-time">09:00 AM · Society Central Garden · Pandit Ji Dakshina</div>
+              </div>
+            </div>
+            <div class="fest-schedule-item">
+              <span class="fest-day-badge">DAY 2</span>
+              <div>
+                <div class="fest-activity-text">Shri Satyanarayan Bhagwan Katha</div>
+                <div class="fest-activity-time">06:30 PM · Society Clubhouse Hall · Prasad Vitran</div>
+              </div>
+            </div>
+            <div class="fest-schedule-item">
+              <span class="fest-day-badge">DAY 3 - 9</span>
+              <div>
+                <div class="fest-activity-text">Daily Evening Aarti &amp; Kids Cultural Night</div>
+                <div class="fest-activity-time">07:30 PM · Daily Evening Pooja by Assigned Duplexes</div>
+              </div>
+            </div>
+            <div class="fest-schedule-item">
+              <span class="fest-day-badge">DAY 10</span>
+              <div>
+                <div class="fest-activity-text">Mahaprasad &amp; Grand Visarjan Shobhayatra</div>
+                <div class="fest-activity-time">12:30 PM Mahaprasad · 04:30 PM Dhol Tasha Visarjan</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subbox 2: Expense & Contribution Transparency -->
+          <div class="fest-subbox">
+            <div class="fest-subbox-title">
+              <span>⚖️</span> Financial Transparency Snapshot
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+              <div style="background:rgba(168,181,138,0.15);border-radius:10px;padding:12px;text-align:center;">
+                <div style="font-size:11px;color:var(--sage-leaf);font-weight:700;">TOTAL RECEIVED</div>
+                <div style="font-size:20px;font-weight:900;color:#ffffff;margin-top:2px;">₹48,500</div>
+                <div style="font-size:10.5px;color:var(--misty-sky);">Door-to-Door contributions</div>
+              </div>
+              <div style="background:rgba(226,149,120,0.15);border-radius:10px;padding:12px;text-align:center;">
+                <div style="font-size:11px;color:var(--blush-petal);font-weight:700;">TOTAL EXPENSES</div>
+                <div style="font-size:20px;font-weight:900;color:#ffffff;margin-top:2px;">₹36,200</div>
+                <div style="font-size:10.5px;color:var(--misty-sky);">Mandap, Katha, Prasad, Sound</div>
+              </div>
+            </div>
+            <div style="background:rgba(169,183,198,0.1);border-radius:10px;padding:14px;border:1px solid rgba(169,183,198,0.2);">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;">
+                <span style="color:var(--misty-sky);">Remaining Balance in Festival Fund:</span>
+                <span style="color:var(--sage-leaf);font-size:16px;font-weight:900;">₹12,300</span>
+              </div>
+              <div style="font-size:11px;color:rgba(169,183,198,0.7);margin-top:6px;">
+                Surplus funds safely reserved in Society Account for Diwali &amp; New Year lights.
+              </div>
+            </div>
+            <div style="margin-top:14px;text-align:right;">
+              <a href="events.html" style="font-size:12px;color:var(--blush-petal);text-decoration:none;font-weight:700;">View Itemized Expense Breakdown →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Bill A4 Printing Visual Showcase -->
+  <section class="landing-section">
+    <div class="landing-container">
+      <div class="print-showcase-box">
+        <div>
+          <span class="section-tag" style="background:rgba(169,183,198,0.18);color:#fff;border-color:rgba(169,183,198,0.4);">ZERO PAPER WASTE</span>
+          <h2 style="font-size:28px;font-weight:900;color:#fff;margin:12px 0 14px;">Smart Multi-Bill Printing Engine</h2>
+          <p style="font-size:14px;color:var(--misty-sky);line-height:1.65;margin-bottom:20px;">
+            Printing individual receipts on separate sheets wastes three-quarters of every A4 ream. Our custom print engine divides each A4 page into 1, 2, 3, or 4 horizontal slips with built-in cut marks. Perfect for printing monthly society batches in seconds.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="maintenance.html" class="hero-btn-primary" style="padding:11px 22px;font-size:13.5px;">
+              <span>🖨</span> Open Print Preview in Maintenance
+            </a>
+          </div>
+        </div>
+
+        <div class="print-diagram-visual">
+          <div style="font-size:11px;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:1px;color:#1a237e;">
+            📄 A4 SHEET LAYOUT (4 BILLS PER PAGE)
+          </div>
+          <div class="print-slip-box">
+            <strong>BILL #1: DUPLEX 101</strong> — ₹600 · Rajesh Patel (Paid ✓)
+          </div>
+          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
+          <div class="print-slip-box">
+            <strong>BILL #2: DUPLEX 102</strong> — ₹600 · Suresh Shah (Paid ✓)
+          </div>
+          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
+          <div class="print-slip-box">
+            <strong>BILL #3: DUPLEX 103</strong> — ₹600 · Amit Desai (Paid ✓)
+          </div>
+          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
+          <div class="print-slip-box">
+            <strong>BILL #4: DUPLEX 104</strong> — ₹600 · Manoj Joshi (Paid ✓)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Committee 20-House Allocation -->
+  <section class="landing-section" id="committee">
+    <div class="landing-container">
+      <div class="section-header-center">
+        <span class="section-tag">PERSONALIZED GOVERNANCE</span>
+        <h2 class="section-title-large">Dedicated Committee Assigned to Every 20 Houses</h2>
+        <p class="section-subtitle">
+          Never wonder who to call for water supply, streetlights, gate security, or neighbor disputes.
+        </p>
+      </div>
+
+      <div class="committee-showcase-grid">
+        <!-- Committee Cluster 1 -->
+        <div class="comm-card">
+          <div class="comm-card-top">
+            <div class="comm-avatar">👤</div>
+            <div class="comm-details">
+              <h4>Rajeshbhai Patel</h4>
+              <p>Committee Incharge · Cluster 1 (Duplex 1 – 20)</p>
+            </div>
+          </div>
+          <ul class="comm-features-list">
+            <li><span>📞</span> Phone: <strong>+91 98250 12341</strong></li>
+            <li><span>📍</span> Residence: <strong>Duplex No. 04, Shivam Duplex</strong></li>
+            <li><span>🛡</span> Responsibilities: Maintenance Dues, Water Supply &amp; Repairs</li>
+            <li><span>💬</span> Direct WhatsApp: Available 8:00 AM – 9:00 PM</li>
+          </ul>
+          <div style="display:flex;gap:10px;">
+            <a href="tel:9825012341" class="quick-action-btn" style="padding:8px 16px;font-size:12px;">📞 Call Incharge</a>
+            <a href="https://wa.me/919825012341?text=Hello%20Rajeshbhai,%20I%20am%20from%20Shivam%20Duplex%20House%20" target="_blank" class="quick-action-btn green" style="padding:8px 16px;font-size:12px;">💬 WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Committee Cluster 2 -->
+        <div class="comm-card">
+          <div class="comm-card-top">
+            <div class="comm-avatar" style="background:linear-gradient(135deg, rgba(226,149,120,0.4) 0%, rgba(45,58,71,0.9) 100%);">👤</div>
+            <div class="comm-details">
+              <h4>Sureshbhai Shah</h4>
+              <p>Committee Incharge · Cluster 2 (Duplex 21 – 40)</p>
+            </div>
+          </div>
+          <ul class="comm-features-list">
+            <li><span>📞</span> Phone: <strong>+91 98250 12342</strong></li>
+            <li><span>📍</span> Residence: <strong>Duplex No. 24, Shivam Duplex</strong></li>
+            <li><span>🛡</span> Responsibilities: Gate Security, Streetlights &amp; Cleanliness</li>
+            <li><span>💬</span> Direct WhatsApp: Available 8:00 AM – 9:00 PM</li>
+          </ul>
+          <div style="display:flex;gap:10px;">
+            <a href="tel:9825012342" class="quick-action-btn" style="padding:8px 16px;font-size:12px;">📞 Call Incharge</a>
+            <a href="https://wa.me/919825012342?text=Hello%20Sureshbhai,%20I%20am%20from%20Shivam%20Duplex%20House%20" target="_blank" class="quick-action-btn green" style="padding:8px 16px;font-size:12px;">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bank & UPI QR Code Section -->
+  <section class="landing-section" id="bank-qr">
+    <div class="landing-container">
+      <div class="bank-qr-card">
+        <div class="bank-qr-code-box">
+          <!-- Live SVG QR Code representation -->
+          <svg class="bank-qr-img" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="white"/>
+            <!-- Position markers -->
+            <rect x="5" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
+            <rect x="9" y="9" width="18" height="18" fill="white" rx="1"/>
+            <rect x="13" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
+
+            <rect x="69" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
+            <rect x="73" y="9" width="18" height="18" fill="white" rx="1"/>
+            <rect x="77" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
+
+            <rect x="5" y="69" width="26" height="26" fill="#1a237e" rx="3"/>
+            <rect x="9" y="73" width="18" height="18" fill="white" rx="1"/>
+            <rect x="13" y="77" width="10" height="10" fill="#1a237e" rx="1"/>
+
+            <!-- Pattern dots -->
+            <rect x="36" y="8" width="6" height="6" fill="#1a237e"/>
+            <rect x="46" y="14" width="6" height="6" fill="#1a237e"/>
+            <rect x="56" y="8" width="6" height="6" fill="#1a237e"/>
+            <rect x="38" y="24" width="8" height="6" fill="#1a237e"/>
+            <rect x="52" y="22" width="6" height="8" fill="#1a237e"/>
+
+            <rect x="8" y="38" width="6" height="6" fill="#1a237e"/>
+            <rect x="20" y="44" width="6" height="6" fill="#1a237e"/>
+            <rect x="10" y="54" width="8" height="6" fill="#1a237e"/>
+
+            <rect x="36" y="36" width="28" height="28" fill="#e8eaf6" rx="4"/>
+            <text x="50" y="54" font-size="14" font-weight="900" text-anchor="middle" fill="#1a237e">🔱</text>
+
+            <rect x="70" y="38" width="6" height="6" fill="#1a237e"/>
+            <rect x="82" y="44" width="6" height="6" fill="#1a237e"/>
+            <rect x="74" y="54" width="8" height="6" fill="#1a237e"/>
+
+            <rect x="38" y="70" width="6" height="8" fill="#1a237e"/>
+            <rect x="48" y="78" width="8" height="6" fill="#1a237e"/>
+            <rect x="62" y="72" width="6" height="6" fill="#1a237e"/>
+            <rect x="74" y="80" width="8" height="6" fill="#1a237e"/>
+            <rect x="86" y="72" width="6" height="8" fill="#1a237e"/>
+          </svg>
+          <div class="bank-qr-caption">SCAN TO PAY VIA ANY UPI APP</div>
+        </div>
+
+        <div>
+          <span class="section-tag" style="background:rgba(168,181,138,0.25);color:var(--sage-leaf);">OFFICIAL SOCIETY ACCOUNT</span>
+          <h3 style="font-size:24px;font-weight:900;color:#ffffff;margin:10px 0 18px;">
+            Bank Account &amp; UPI Transfer Details
+          </h3>
+
+          <div class="bank-details-grid">
+            <div>
+              <div class="bank-field-label">Account Name</div>
+              <div class="bank-field-val">
+                <span>SHIVAM DUPLEX RESIDENTS ASSOCIATION</span>
+              </div>
+            </div>
+            <div>
+              <div class="bank-field-label">Bank &amp; Branch</div>
+              <div class="bank-field-val">State Bank of India (Gotri Branch)</div>
+            </div>
+            <div>
+              <div class="bank-field-label">Account Number</div>
+              <div class="bank-field-val">
+                <span id="bank-acc-num">38492019485</span>
+                <button type="button" class="copy-pill-btn" onclick="copyText('38492019485')">Copy</button>
+              </div>
+            </div>
+            <div>
+              <div class="bank-field-label">IFSC Code</div>
+              <div class="bank-field-val">
+                <span id="bank-ifsc">SBIN0010948</span>
+                <button type="button" class="copy-pill-btn" onclick="copyText('SBIN0010948')">Copy</button>
+              </div>
+            </div>
+            <div>
+              <div class="bank-field-label">Society UPI ID / VPA</div>
+              <div class="bank-field-val">
+                <span id="bank-upi">shivamduplex@sbi</span>
+                <button type="button" class="copy-pill-btn" onclick="copyText('shivamduplex@sbi')">Copy</button>
+              </div>
+            </div>
+            <div>
+              <div class="bank-field-label">Standard Dues</div>
+              <div class="bank-field-val">₹600 / Mo · ₹3,600 (6 Mo) · ₹7,200 (1 Yr)</div>
+            </div>
+          </div>
+
+          <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="resident.html" class="nav-btn-resident">
+              <span>💳</span> Pay &amp; Submit UTR in Resident Portal
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="landing-section" id="faq">
+    <div class="landing-container">
+      <div class="section-header-center">
+        <span class="section-tag">HELP &amp; RULES</span>
+        <h2 class="section-title-large">Frequently Asked Questions</h2>
+        <p class="section-subtitle">
+          Common queries regarding maintenance, tenant records, parking, and festival collections.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>How much is the maintenance fee, and what are the payment options?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            The standard maintenance fee is <strong>₹600 per month</strong> for every duplex residence. Residents can also pay <strong>₹3,600 for 6 months</strong> or <strong>₹7,200 for the full year in advance</strong>. When paying in advance, our automated billing engine registers advance credit so you never receive pending bill alerts.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Who registers the tenant details if a house is rented?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            The <strong>Home Owner</strong> adds and updates their tenant's KYC directly from their Resident Portal. The owner enters the tenant's full name, mobile number, Aadhaar/PAN details, occupation, and family member count. A separate tenant account is generated so tenants can view society notices and emergency vehicle searches.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Someone parked in front of my duplex. How do I find the owner?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            Use the <strong>Emergency Vehicle Search</strong> on this homepage or in the Resident Portal. Enter the last 4 digits of the license plate or the car/bike name (e.g. "GJ06", "1234", "Swift"). The system immediately provides the owner's duplex number, name, and phone number with 1-click calling.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How is the committee structured for 40 duplexes?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            To ensure swift resolution of issues, committee members are assigned <strong>20 houses each</strong>. Houses 1 through 20 are stewarded by <strong>Rajeshbhai Patel</strong>, and Houses 21 through 40 are stewarded by <strong>Sureshbhai Shah</strong>. Any resident can reach out directly via call or WhatsApp.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How does the Ganesh Utsav / Festival ledger work?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            The festival ledger tracks door-to-door contributions across all 40 houses, maintains a day-wise program calendar (Sthapana, Satyanarayan Katha, Mahaprasad, Visarjan), and itemizes all festival expenses with 100% public transparency.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Modern SaaS Footer -->
+<footer class="landing-footer">
+  <div class="landing-container">
+    <div class="footer-top-grid">
+      <div class="footer-brand">
+        <h3><span>🔱</span> SHIVAM DUPLEX</h3>
+        <p>
+          A premier gated community of 40 luxury duplex residences dedicated to harmonious living, transparency, and cultural celebrations.
+        </p>
+        <div style="font-size:12px;color:var(--sage-leaf);margin-top:10px;font-weight:700;">
+          ॥ ॐ नमः शिवाय ॥
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Portals</h4>
+        <ul class="footer-links">
+          <li><a href="resident.html">Resident Portal</a></li>
+          <li><a href="dashboard.html">Committee Admin Deck</a></li>
+          <li><a href="members.html">Members Directory</a></li>
+          <li><a href="maintenance.html">Maintenance Bills</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul class="footer-links">
+          <li><a href="events.html">Ganesh Utsav Ledger</a></li>
+          <li><a href="notices.html">Notice Board</a></li>
+          <li><a href="reports.html">Reports &amp; Exports</a></li>
+          <li><a href="#" class="btn-install-app">Install Mobile App</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Emergency Contacts</h4>
+        <div style="font-size:13px;color:var(--misty-sky);line-height:1.7;">
+          <div>🏛 <strong>Cluster 1 (1–20):</strong> +91 98250 12341</div>
+          <div>🏛 <strong>Cluster 2 (21–40):</strong> +91 98250 12342</div>
+          <div style="margin-top:8px;">📍 <strong>Address:</strong> Shivam Duplex Society, Gotri, Vadodara, Gujarat 390021</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>© 2026 SHIVAM DUPLEX RESIDENTS ASSOCIATION. All rights reserved.</div>
+      <div style="display:flex;gap:18px;">
+        <a href="resident.html" style="color:var(--misty-sky);text-decoration:none;">Resident Login</a>
+        <a href="dashboard.html" style="color:var(--misty-sky);text-decoration:none;">Admin Deck</a>
+        <a href="#" class="btn-install-app" style="color:var(--blush-petal);text-decoration:none;">PWA App</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Committee Admin Login Modal -->
+<div class="admin-modal-overlay" id="admin-login-modal">
+  <div class="admin-modal-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+      <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;">
+        <span>🔐</span> Committee Admin Login
+      </div>
+      <button type="button" id="btn-close-admin-modal" style="background:none;border:none;color:var(--misty-sky);font-size:20px;cursor:pointer;">✕</button>
+    </div>
+    <p style="font-size:13px;color:var(--misty-sky);margin-bottom:20px;">
+      Access the committee command deck for bill generation, accounting, and member management.
+    </p>
+    <form id="admin-login-form">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:12px;font-weight:700;color:var(--misty-sky);margin-bottom:6px;text-transform:uppercase;">Admin PIN / Password</label>
+        <input type="password" id="admin-pass-input" style="width:100%;padding:12px 16px;background:rgba(21,29,36,0.9);border:1.5px solid rgba(169,183,198,0.35);border-radius:var(--radius-pill);color:#fff;font-size:16px;outline:none;box-sizing:border-box;" placeholder="Enter committee PIN (demo: 1234)" required/>
+      </div>
+      <button type="submit" class="hero-btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:14px;">
+        🚀 Enter Admin Deck
+      </button>
+      <div style="font-size:11.5px;color:var(--misty-sky);text-align:center;margin-top:14px;">
+        Committee members: default access code is pre-configured.
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="toast-container" id="toast-container"></div>
 </body>
 </html>

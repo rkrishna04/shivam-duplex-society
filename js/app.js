@@ -16,14 +16,25 @@ const FIREBASE_CONFIG = {
 };
 
 const C = {
-  MEMBERS:    "sd_members",
-  MAINT_BILLS:"sd_maintenance_bills",
-  PAYMENTS:   "sd_payments",
-  EXPENSES:   "sd_expenses",
-  EVENTS:     "sd_events",
-  FUNDS:      "sd_funds",
-  NOTICES:    "sd_notices",
-  META:       "sd_meta",
+  MEMBERS:      "sd_members",
+  MAINT_BILLS:  "sd_maintenance_bills",
+  PAYMENTS:     "sd_payments",
+  EXPENSES:     "sd_expenses",
+  EVENTS:       "sd_events",
+  FUNDS:        "sd_funds",
+  NOTICES:      "sd_notices",
+  META:         "sd_meta",
+  CONTRIBS:     "sd_contributions",
+  SCHEDULES:    "sd_schedules",
+  EVT_EXPENSES: "sd_event_expenses",
+};
+
+window.copyText = function(txt) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => showToast("Copied: " + txt, "success"));
+  } else {
+    showToast("Copied: " + txt, "info");
+  }
 };
 
 // Society fee constants
@@ -293,7 +304,7 @@ async function initMembersPage() {
     const w=document.getElementById("filter-wing")?.value||"";
     const st=document.getElementById("filter-status")?.value||"";
     const ty=document.getElementById("filter-type")?.value||"";
-    filtered=all.filter(m=>(!q||(m.flatNumber||"").toLowerCase().includes(q)||(m.ownerName||"").toLowerCase().includes(q)||(m.tenantName||"").toLowerCase().includes(q)||(m.contactNumber||"").includes(q))&&(!w||m.wing===w)&&(!st||m.status===st)&&(!ty||m.memberType===ty));
+    filtered=all.filter(m=>(!q||(m.flatNumber||"").toLowerCase().includes(q)||(m.ownerName||"").toLowerCase().includes(q)||(m.tenantName||"").toLowerCase().includes(q)||(m.contactNumber||"").includes(q)||(m.carNumber||"").toLowerCase().includes(q)||(m.bikeNumber||"").toLowerCase().includes(q))&&(!w||m.wing===w)&&(!st||m.status===st)&&(!ty||m.memberType===ty));
     document.getElementById("member-count").textContent=filtered.length;
     page=1;render(1);
   }
@@ -306,11 +317,14 @@ async function initMembersPage() {
       <td><span class="badge badge-info">${esc(m.wing)}</span></td>
       <td class="col-dept"><strong>${esc(m.ownerName)}</strong>${m.tenantName?`<br><span style="font-size:11px;color:var(--text-muted);">🔑 Tenant: ${esc(m.tenantName)}</span>`:""}</td>
       <td>${esc(m.contactNumber)}</td>
-      <td class="td-muted" style="font-size:12px;">${m.tenantContact?esc(m.tenantContact):"—"}</td>
-      <td class="col-slot td-muted">${esc(m.parkingSlot||"—")}</td>
-      <td>${esc(m.memberType||"Owner")}</td>
+      <td class="td-muted" style="font-size:11px;">${formatCurrency(m.maintenanceAmount||MONTHLY_FEE)}/mo</td>
+      <td class="col-slot td-muted" style="font-size:11.5px;">
+        ${m.parkingSlot?`<div>🅿️ ${esc(m.parkingSlot)}</div>`:""}
+        ${m.carNumber?`<div style="color:var(--sage-leaf);">🚗 ${esc(m.carNumber)}</div>`:""}
+        ${m.bikeNumber?`<div style="color:var(--misty-sky);">🛵 ${esc(m.bikeNumber)}</div>`:""}
+        ${!m.parkingSlot&&!m.carNumber&&!m.bikeNumber?"—":""}
+      </td>
       <td>${statusBadge(m.status||"Active")}</td>
-      <td class="td-muted" style="font-size:11px;">${formatCurrency(m.maintenanceAmount||MONTHLY_FEE)}<br><span style="color:var(--text-muted);">per month</span></td>
       <td><div class="row-actions">
         <button class="action-btn" onclick="membEdit('${m.id}')" title="Edit">✏️</button>
         <button class="action-btn" onclick="membDel('${m.id}','${esc(m.flatNumber)}')" title="Delete">🗑</button>
@@ -322,7 +336,7 @@ async function initMembersPage() {
   window.membEdit=(id)=>{
     const m=all.find(x=>x.id===id);if(!m)return;
     editId=id;document.getElementById("modal-title").textContent="Edit Member";
-    const fields=["flatNumber","wing","ownerName","contactNumber","email","parkingSlot","moveInDate","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantEmail","tenantAadhar","tenantRentStart","tenantRentEnd"];
+    const fields=["flatNumber","wing","ownerName","contactNumber","email","parkingSlot","carNumber","bikeNumber","assignedCommittee","moveInDate","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantEmail","tenantAadhar","tenantPan","tenantJob","tenantFamilyCount","tenantRentStart","tenantRentEnd","tenantPin"];
     fields.forEach(k=>{const el=document.getElementById(k);if(el)el.value=m[k]||"";});
     const tenantRentEl=document.getElementById("tenantRent");if(tenantRentEl)tenantRentEl.value=m.tenantRent||"";
     const hasTenantCb=document.getElementById("hasTenant");
@@ -370,19 +384,26 @@ async function initMembersPage() {
       contactNumber:document.getElementById("contactNumber").value.trim(),
       email:document.getElementById("email")?.value.trim()||"",
       parkingSlot:document.getElementById("parkingSlot")?.value.trim()||"",
+      carNumber:document.getElementById("carNumber")?.value.trim()||"",
+      bikeNumber:document.getElementById("bikeNumber")?.value.trim()||"",
+      assignedCommittee:document.getElementById("assignedCommittee")?.value||"",
       moveInDate:document.getElementById("moveInDate")?.value||"",
       memberType:document.getElementById("memberType")?.value||"Owner",
       status:document.getElementById("status")?.value||"Active",
       maintenanceAmount:parseFloat(document.getElementById("maintenanceAmount")?.value)||MONTHLY_FEE,
       // Tenant info
+      hasTenant:document.getElementById("hasTenant")?.checked||false,
       tenantName:document.getElementById("tenantName")?.value.trim()||"",
       tenantContact:document.getElementById("tenantContact")?.value.trim()||"",
       tenantEmail:document.getElementById("tenantEmail")?.value.trim()||"",
       tenantAadhar:document.getElementById("tenantAadhar")?.value.trim()||"",
+      tenantPan:document.getElementById("tenantPan")?.value.trim()||"",
+      tenantJob:document.getElementById("tenantJob")?.value.trim()||"",
+      tenantFamilyCount:parseInt(document.getElementById("tenantFamilyCount")?.value)||0,
       tenantRentStart:document.getElementById("tenantRentStart")?.value||"",
       tenantRentEnd:document.getElementById("tenantRentEnd")?.value||"",
       tenantRent:parseFloat(document.getElementById("tenantRent")?.value)||0,
-      hasTenant:!!(document.getElementById("hasTenant")?.checked||document.getElementById("tenantName")?.value.trim()),
+      tenantPin:document.getElementById("tenantPin")?.value.trim()||""
     };
     try{
       if(editId){await updateDoc2(C.MEMBERS,editId,data);showToast("Updated!","success");}
@@ -826,42 +847,110 @@ async function initFundsPage() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  PAGE: EVENTS
+//  PAGE: EVENTS & FESTIVAL HUB (Ganesh Utsav Ledger)
 // ═══════════════════════════════════════════════════════════
 async function initEventsPage() {
   initSidebar();
-  let all=[],editId=null;
+  let allEvents=[], allContribs=[], allSchedules=[], allEvtExpenses=[];
+  let editEvtId=null, editContribId=null, editSchedId=null, editEeId=null;
 
-  async function load(){
+  // Tab switching
+  document.querySelectorAll('.evt-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.evt-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.evt-tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.tab);
+      if(target) target.classList.add('active');
+    });
+  });
+
+  async function loadAll(){
     const loader=document.getElementById("loader");if(loader)loader.style.display="flex";
-    try{all=await getAll(C.EVENTS);all.sort((a,b)=>(b.startDate||"").localeCompare(a.startDate||""));render();}
-    catch(e){showToast("Load failed: "+e.message,"error");}
-    finally{const loader=document.getElementById("loader");if(loader)loader.style.display="none";}
+    try {
+      [allEvents, allContribs, allSchedules, allEvtExpenses] = await Promise.all([
+        getAll(C.EVENTS), getAll(C.CONTRIBS), getAll(C.SCHEDULES), getAll(C.EVT_EXPENSES)
+      ]);
+
+      // Seed Ganesh Utsav data if empty
+      if(!allEvents.length) {
+        const defaultEvt = {
+          eventName: "Shri Ganesh Mahotsav 2026",
+          startDate: todayISO(),
+          endDate: new Date(Date.now() + 10*86400000).toISOString().slice(0,10),
+          venue: "Society Central Garden & Clubhouse",
+          organizedBy: "Shivam Duplex Youth & Committee",
+          estimatedBudget: 50000,
+          actualExpenses: 36200,
+          contributions: 48500,
+          status: "Ongoing",
+          description: "10-day Grand Ganesh Mahotsav celebration with daily evening Aarti, Satyanarayan Katha, Mahaprasad, and grand Visarjan procession."
+        };
+        const newId = await addDoc2(C.EVENTS, defaultEvt);
+        allEvents = [{ id: newId, ...defaultEvt }];
+      }
+
+      if(!allSchedules.length) {
+        const seedSchedules = [
+          { day: "Day 1 (07 Sep)", time: "09:00 AM", title: "Ganesh Sthapana & Maha Aarti", venue: "Central Garden", incharge: "Duplex 01–05 Family", prasad: "Modak & Fruits" },
+          { day: "Day 2 (08 Sep)", time: "06:30 PM", title: "Shri Satyanarayan Bhagwan Katha", venue: "Clubhouse Hall", incharge: "Duplex 06–10 Family", prasad: "Sheera Prasad" },
+          { day: "Day 3 (09 Sep)", time: "07:30 PM", title: "Kids Cultural Night & Drawing Contest", venue: "Society Stage", incharge: "Youth Committee", prasad: "Chocolates & Laddu" },
+          { day: "Day 10 (16 Sep)", time: "12:30 PM", title: "Community Mahaprasad & Dhol Visarjan", venue: "Entire Society", incharge: "All Committee Members", prasad: "Full Mahaprasad Lunch" }
+        ];
+        for(const s of seedSchedules) {
+          const sid = await addDoc2(C.SCHEDULES, s);
+          allSchedules.push({ id: sid, ...s });
+        }
+      }
+
+      if(!allEvtExpenses.length) {
+        const seedExpenses = [
+          { item: "Mandap, Sound System & Stage Lighting", category: "Mandap & Lighting", amount: 15000, date: todayISO(), vendor: "Shreeji Decorators", paidBy: "Committee Fund" },
+          { item: "Satyanarayan Katha Pooja Samagri & Pandit Ji Dakshina", category: "Pooja & Pandit Ji", amount: 4500, date: todayISO(), vendor: "Pandit Rambhai Joshi", paidBy: "Rajeshbhai Patel" },
+          { item: "Mahaprasad Grains, Oil, Pure Ghee & Vegetables", category: "Mahaprasad & Food", amount: 12500, date: todayISO(), vendor: "Gayatri Provisions", paidBy: "Committee Fund" },
+          { item: "Visarjan Dhol Tasha Troupe & Gulal", category: "Visarjan & Dhol", amount: 4200, date: todayISO(), vendor: "Shiv Dhol Group", paidBy: "Sureshbhai Shah" }
+        ];
+        for(const ee of seedExpenses) {
+          const eid = await addDoc2(C.EVT_EXPENSES, ee);
+          allEvtExpenses.push({ id: eid, ...ee });
+        }
+      }
+
+      renderEvents();
+      renderContribs();
+      renderSchedules();
+      renderEvtExpenses();
+    } catch(e) {
+      showToast("Load failed: "+e.message, "error");
+    } finally {
+      if(loader) loader.style.display="none";
+    }
   }
 
-  function render(){
-    const grid=document.getElementById("events-grid"),empty=document.getElementById("empty-state");
-    if(!all.length){if(grid)grid.innerHTML="";if(empty)empty.style.display="block";return;}
-    if(empty)empty.style.display="none";
-    grid.innerHTML=all.map(e=>{
-      const bgt=parseFloat(e.estimatedBudget)||0,act=parseFloat(e.actualExpenses)||0,con=parseFloat(e.contributions)||0;
-      const over=act>bgt,pct=bgt>0?Math.min(Math.round(act/bgt*100),100):0;
+  // 1. Events List Render
+  function renderEvents() {
+    const grid = document.getElementById("events-grid"), empty = document.getElementById("empty-state");
+    if(!allEvents.length){ if(grid)grid.innerHTML=""; if(empty)empty.style.display="block"; return; }
+    if(empty) empty.style.display="none";
+    grid.innerHTML = allEvents.map(e => {
+      const bgt = parseFloat(e.estimatedBudget)||0, act = parseFloat(e.actualExpenses)||0, con = parseFloat(e.contributions)||0;
+      const over = act > bgt, pct = bgt > 0 ? Math.min(Math.round(act/bgt*100),100) : 0;
       return `<div class="card" style="overflow:visible;">
         <div style="padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-          <div><div style="font-size:15px;font-weight:700;color:var(--primary);">${esc(e.eventName)}</div>
-          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">📅 ${esc(e.startDate)}${e.endDate&&e.endDate!==e.startDate?" → "+esc(e.endDate):""}</div></div>
+          <div><div style="font-size:16px;font-weight:800;color:#fff;">${esc(e.eventName)}</div>
+          <div style="font-size:12px;color:var(--misty-sky);margin-top:2px;">📅 ${esc(e.startDate)}${e.endDate&&e.endDate!==e.startDate?" → "+esc(e.endDate):""}</div></div>
           ${statusBadge(e.status||"Planned")}
         </div>
-        <div style="padding:14px 18px;">
-          ${e.venue?`<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:6px;">📍 ${esc(e.venue)}</div>`:""}
-          ${e.organizedBy?`<div style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">👤 ${esc(e.organizedBy)}</div>`:""}
+        <div style="padding:16px 18px;">
+          ${e.venue?`<div style="font-size:12.5px;color:var(--misty-sky);margin-bottom:6px;">📍 ${esc(e.venue)}</div>`:""}
+          ${e.organizedBy?`<div style="font-size:12.5px;color:var(--misty-sky);margin-bottom:12px;">👤 ${esc(e.organizedBy)}</div>`:""}
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-            <div style="text-align:center;background:#f7f9fc;border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--text-muted);font-weight:600;">BUDGET</div><div style="font-size:14px;font-weight:700;color:var(--primary);">${formatCurrency(bgt)}</div></div>
-            <div style="text-align:center;background:${over?"#ffebee":"#e8f5e9"};border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--text-muted);font-weight:600;">ACTUAL</div><div style="font-size:14px;font-weight:700;color:${over?"var(--danger)":"var(--success)"};">${formatCurrency(act)}</div></div>
-            <div style="text-align:center;background:#e8eaf6;border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--text-muted);font-weight:600;">CONTRIB</div><div style="font-size:14px;font-weight:700;color:var(--info);">${formatCurrency(con)}</div></div>
+            <div style="text-align:center;background:rgba(169,183,198,0.1);border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--misty-sky);font-weight:700;">BUDGET</div><div style="font-size:14px;font-weight:800;color:#fff;">${formatCurrency(bgt)}</div></div>
+            <div style="text-align:center;background:${over?"rgba(239,68,68,0.15)":"rgba(16,185,129,0.15)"};border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--misty-sky);font-weight:700;">ACTUAL</div><div style="font-size:14px;font-weight:800;color:${over?"var(--danger)":"var(--success)"};">${formatCurrency(act)}</div></div>
+            <div style="text-align:center;background:rgba(168,181,138,0.15);border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--misty-sky);font-weight:700;">CONTRIB</div><div style="font-size:14px;font-weight:800;color:var(--sage-leaf);">${formatCurrency(con)}</div></div>
           </div>
-          ${bgt>0?`<div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:4px;"><span>Budget used</span><span>${pct}%</span></div><div style="background:#e0e0e0;border-radius:20px;height:6px;"><div style="width:${pct}%;background:${over?"var(--danger)":"var(--success)"};height:100%;border-radius:20px;"></div></div></div>`:""}
-          ${e.description?`<div style="font-size:12px;color:var(--text-muted);background:#f7f9fc;border-radius:6px;padding:8px;margin-top:10px;white-space:pre-line;">${esc(e.description)}</div>`:""}
+          ${bgt>0?`<div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--misty-sky);margin-bottom:4px;"><span>Budget used</span><span>${pct}%</span></div><div style="background:rgba(169,183,198,0.2);border-radius:20px;height:6px;"><div style="width:${pct}%;background:${over?"var(--danger)":"var(--success)"};height:100%;border-radius:20px;"></div></div></div>`:""}
+          ${e.description?`<div style="font-size:12px;color:var(--misty-sky);background:rgba(0,0,0,0.2);border-radius:8px;padding:10px;margin-top:12px;line-height:1.5;">${esc(e.description)}</div>`:""}
         </div>
         <div style="padding:10px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;">
           <button class="btn btn-outline btn-sm" onclick="evtEdit('${e.id}')">✏️ Edit</button>
@@ -871,23 +960,281 @@ async function initEventsPage() {
     }).join("");
   }
 
-  window.evtEdit=(id)=>{const e=all.find(x=>x.id===id);if(!e)return;editId=id;document.getElementById("modal-title").textContent="Edit Event";["eventName","startDate","endDate","venue","organizedBy","description"].forEach(k=>{const el=document.getElementById(k);if(el)el.value=e[k]||"";});["estimatedBudget","actualExpenses","contributions"].forEach(k=>{const el=document.getElementById(k);if(el)el.value=e[k]||"";});document.getElementById("eventStatus").value=e.status||"Planned";document.getElementById("modal").classList.remove("hidden");};
-  window.evtDel=async(id)=>{if(!confirm("Delete event?"))return;try{await deleteDoc2(C.EVENTS,id);showToast("Deleted","success");await load();}catch(e){showToast("Error: "+e.message,"error");}};
+  // 2. Door-to-Door Contribution List Render
+  function renderContribs() {
+    const q = document.getElementById("contrib-search")?.value.toLowerCase()||"";
+    const st = document.getElementById("contrib-filter-status")?.value||"";
+    const filtered = allContribs.filter(c => (!q || (c.flat||"").toLowerCase().includes(q) || (c.name||"").toLowerCase().includes(q)) && (!st || c.status===st));
+    const total = filtered.filter(c=>c.status==="Received").reduce((s,c)=>s+(parseFloat(c.amount)||0),0);
+    const tb = document.getElementById("contrib-tbody");
+    const badge = document.getElementById("contrib-total-badge");
+    if(badge) badge.textContent = formatCurrency(total);
+    if(!tb) return;
+    if(!filtered.length) {
+      tb.innerHTML = `<tr><td colspan="8"><div class="empty-state" style="padding:24px;"><div class="empty-icon">📋</div><h3>No contribution records</h3></div></td></tr>`;
+      return;
+    }
+    tb.innerHTML = filtered.map(c => `<tr>
+      <td class="td-mono"><strong>House ${esc(c.flat)}</strong></td>
+      <td>${esc(c.name)}</td>
+      <td class="td-amount" style="color:var(--sage-leaf);font-weight:800;">₹${(parseFloat(c.amount)||0).toFixed(2)}</td>
+      <td><span class="badge badge-info">${esc(c.mode||"Cash")}</span></td>
+      <td class="td-muted">${esc(c.date||"—")}</td>
+      <td>${statusBadge(c.status||"Received")}</td>
+      <td class="td-muted">${esc(c.remarks||"—")}</td>
+      <td><div class="row-actions">
+        <button class="action-btn" onclick="contribEdit('${c.id}')" title="Edit">✏️</button>
+        <button class="action-btn" onclick="contribDel('${c.id}')" title="Delete">🗑</button>
+      </div></td>
+    </tr>`).join("");
+  }
 
-  document.getElementById("btn-add")?.addEventListener("click",()=>{editId=null;document.getElementById("modal-title").textContent="Add Event";document.getElementById("modal")?.querySelectorAll("input,select,textarea").forEach(el=>{el.value="";});document.getElementById("modal").classList.remove("hidden");});
-  document.getElementById("modal-close")?.addEventListener("click",()=>{document.getElementById("modal").classList.add("hidden");editId=null;});
-  document.getElementById("btn-cancel")?.addEventListener("click",()=>{document.getElementById("modal").classList.add("hidden");editId=null;});
-  document.getElementById("btn-save")?.addEventListener("click",async()=>{
-    const data={eventName:document.getElementById("eventName").value.trim(),startDate:document.getElementById("startDate").value,endDate:document.getElementById("endDate")?.value||"",venue:document.getElementById("venue")?.value.trim()||"",organizedBy:document.getElementById("organizedBy")?.value.trim()||"",estimatedBudget:parseFloat(document.getElementById("estimatedBudget")?.value)||0,actualExpenses:parseFloat(document.getElementById("actualExpenses")?.value)||0,contributions:parseFloat(document.getElementById("contributions")?.value)||0,status:document.getElementById("eventStatus").value,description:document.getElementById("description")?.value.trim()||""};
-    if(!data.eventName||!data.startDate){showToast("Fill event name and start date","error");return;}
-    try{
-      if(editId){await updateDoc2(C.EVENTS,editId,data);showToast("Updated!","success");}
-      else{await addDoc2(C.EVENTS,data);showToast("Event added!","success");}
-      document.getElementById("modal").classList.add("hidden");editId=null;await load();
-    }catch(e){showToast("Save failed: "+e.message,"error");}
+  // 3. Day-Wise Program Schedule Render
+  function renderSchedules() {
+    const tb = document.getElementById("schedule-tbody");
+    if(!tb) return;
+    if(!allSchedules.length) {
+      tb.innerHTML = `<tr><td colspan="7"><div class="empty-state" style="padding:24px;"><div class="empty-icon">📅</div><h3>No program schedule added</h3></div></td></tr>`;
+      return;
+    }
+    tb.innerHTML = allSchedules.map(s => `<tr>
+      <td><span class="badge badge-warning">${esc(s.day)}</span></td>
+      <td class="td-mono">${esc(s.time)}</td>
+      <td><strong style="color:#fff;">${esc(s.title)}</strong></td>
+      <td class="td-muted">${esc(s.venue||"—")}</td>
+      <td>${esc(s.incharge||"—")}</td>
+      <td class="td-muted">${esc(s.prasad||"—")}</td>
+      <td><div class="row-actions">
+        <button class="action-btn" onclick="scheduleEdit('${s.id}')" title="Edit">✏️</button>
+        <button class="action-btn" onclick="scheduleDel('${s.id}')" title="Delete">🗑</button>
+      </div></td>
+    </tr>`).join("");
+  }
+
+  // 4. Itemized Event Expenses Render
+  function renderEvtExpenses() {
+    const tb = document.getElementById("evt-expenses-tbody");
+    const badge = document.getElementById("evt-exp-total-badge");
+    const total = allEvtExpenses.reduce((s,e)=>s+(parseFloat(e.amount)||0),0);
+    if(badge) badge.textContent = formatCurrency(total);
+    if(!tb) return;
+    if(!allEvtExpenses.length) {
+      tb.innerHTML = `<tr><td colspan="7"><div class="empty-state" style="padding:24px;"><div class="empty-icon">💸</div><h3>No event expenses recorded</h3></div></td></tr>`;
+      return;
+    }
+    tb.innerHTML = allEvtExpenses.map(e => `<tr>
+      <td class="td-muted">${esc(e.date||"—")}</td>
+      <td><strong>${esc(e.item)}</strong></td>
+      <td><span class="badge badge-info">${esc(e.category||"General")}</span></td>
+      <td class="td-muted">${esc(e.vendor||"—")}</td>
+      <td class="td-amount" style="color:var(--rosewood);font-weight:800;">₹${(parseFloat(e.amount)||0).toFixed(2)}</td>
+      <td class="td-muted">${esc(e.paidBy||"Committee")}</td>
+      <td><div class="row-actions">
+        <button class="action-btn" onclick="eeEdit('${e.id}')" title="Edit">✏️</button>
+        <button class="action-btn" onclick="eeDel('${e.id}')" title="Delete">🗑</button>
+      </div></td>
+    </tr>`).join("");
+  }
+
+  // --- Handlers: Event Edit/Del ---
+  window.evtEdit = (id) => {
+    const e = allEvents.find(x => x.id === id); if(!e) return;
+    editEvtId = id;
+    document.getElementById("modal-title").textContent = "Edit Event";
+    ["eventName","startDate","endDate","venue","organizedBy","description"].forEach(k => {
+      const el = document.getElementById(k); if(el) el.value = e[k] || "";
+    });
+    ["estimatedBudget","actualExpenses","contributions"].forEach(k => {
+      const el = document.getElementById(k); if(el) el.value = e[k] || "";
+    });
+    document.getElementById("eventStatus").value = e.status || "Planned";
+    document.getElementById("modal").classList.remove("hidden");
+  };
+  window.evtDel = async (id) => {
+    if(!confirm("Delete event?")) return;
+    try { await deleteDoc2(C.EVENTS, id); showToast("Deleted", "success"); await loadAll(); }
+    catch(e) { showToast("Error: "+e.message, "error"); }
+  };
+
+  // --- Handlers: Contribution Edit/Del ---
+  window.contribEdit = (id) => {
+    const c = allContribs.find(x => x.id === id); if(!c) return;
+    editContribId = id;
+    document.getElementById("contrib-modal-title").textContent = "Edit Contribution";
+    document.getElementById("c-flat").value = c.flat || "";
+    document.getElementById("c-name").value = c.name || "";
+    document.getElementById("c-amount").value = c.amount || "";
+    document.getElementById("c-mode").value = c.mode || "Cash";
+    document.getElementById("c-date").value = c.date || "";
+    document.getElementById("c-status").value = c.status || "Received";
+    document.getElementById("c-remarks").value = c.remarks || "";
+    document.getElementById("contrib-modal").classList.remove("hidden");
+  };
+  window.contribDel = async (id) => {
+    if(!confirm("Delete contribution record?")) return;
+    try { await deleteDoc2(C.CONTRIBS, id); showToast("Deleted", "success"); await loadAll(); }
+    catch(e) { showToast("Error: "+e.message, "error"); }
+  };
+
+  // --- Handlers: Schedule Edit/Del ---
+  window.scheduleEdit = (id) => {
+    const s = allSchedules.find(x => x.id === id); if(!s) return;
+    editSchedId = id;
+    document.getElementById("schedule-modal-title").textContent = "Edit Program Day";
+    document.getElementById("s-day").value = s.day || "";
+    document.getElementById("s-time").value = s.time || "";
+    document.getElementById("s-title").value = s.title || "";
+    document.getElementById("s-venue").value = s.venue || "";
+    document.getElementById("s-incharge").value = s.incharge || "";
+    document.getElementById("s-prasad").value = s.prasad || "";
+    document.getElementById("schedule-modal").classList.remove("hidden");
+  };
+  window.scheduleDel = async (id) => {
+    if(!confirm("Delete program item?")) return;
+    try { await deleteDoc2(C.SCHEDULES, id); showToast("Deleted", "success"); await loadAll(); }
+    catch(e) { showToast("Error: "+e.message, "error"); }
+  };
+
+  // --- Handlers: Event Expense Edit/Del ---
+  window.eeEdit = (id) => {
+    const e = allEvtExpenses.find(x => x.id === id); if(!e) return;
+    editEeId = id;
+    document.getElementById("evt-exp-modal-title").textContent = "Edit Expense Item";
+    document.getElementById("ee-item").value = e.item || "";
+    document.getElementById("ee-cat").value = e.category || "Pooja & Pandit Ji";
+    document.getElementById("ee-amount").value = e.amount || "";
+    document.getElementById("ee-date").value = e.date || "";
+    document.getElementById("ee-vendor").value = e.vendor || "";
+    document.getElementById("ee-paidby").value = e.paidBy || "";
+    document.getElementById("evt-exp-modal").classList.remove("hidden");
+  };
+  window.eeDel = async (id) => {
+    if(!confirm("Delete expense item?")) return;
+    try { await deleteDoc2(C.EVT_EXPENSES, id); showToast("Deleted", "success"); await loadAll(); }
+    catch(e) { showToast("Error: "+e.message, "error"); }
+  };
+
+  // Save Event
+  document.getElementById("btn-add")?.addEventListener("click", () => {
+    editEvtId=null; document.getElementById("modal-title").textContent="Add Event";
+    document.getElementById("modal")?.querySelectorAll("input,select,textarea").forEach(el=>{el.value="";});
+    document.getElementById("modal").classList.remove("hidden");
   });
-  document.getElementById("btn-export")?.addEventListener("click",()=>{exportExcel(all,"Event Register",["Event","Start","End","Venue","Organized By","Budget","Actual","Contributions","Status"],["eventName","startDate","endDate","venue","organizedBy","estimatedBudget","actualExpenses","contributions","status"],[28,13,13,20,20,14,16,14,12]);showToast("Exported!","success");});
-  await load();
+  document.getElementById("modal-close")?.addEventListener("click", () => document.getElementById("modal").classList.add("hidden"));
+  document.getElementById("btn-cancel")?.addEventListener("click", () => document.getElementById("modal").classList.add("hidden"));
+  document.getElementById("btn-save")?.addEventListener("click", async () => {
+    const data = {
+      eventName: document.getElementById("eventName").value.trim(),
+      startDate: document.getElementById("startDate").value,
+      endDate: document.getElementById("endDate")?.value||"",
+      venue: document.getElementById("venue")?.value.trim()||"",
+      organizedBy: document.getElementById("organizedBy")?.value.trim()||"",
+      estimatedBudget: parseFloat(document.getElementById("estimatedBudget")?.value)||0,
+      actualExpenses: parseFloat(document.getElementById("actualExpenses")?.value)||0,
+      contributions: parseFloat(document.getElementById("contributions")?.value)||0,
+      status: document.getElementById("eventStatus").value,
+      description: document.getElementById("description")?.value.trim()||""
+    };
+    if(!data.eventName||!data.startDate){ showToast("Fill event name and start date","error"); return; }
+    try {
+      if(editEvtId) { await updateDoc2(C.EVENTS, editEvtId, data); showToast("Updated!","success"); }
+      else { await addDoc2(C.EVENTS, data); showToast("Event added!","success"); }
+      document.getElementById("modal").classList.add("hidden"); editEvtId=null; await loadAll();
+    } catch(e) { showToast("Save failed: "+e.message,"error"); }
+  });
+
+  // Save Contribution
+  document.getElementById("btn-add-contrib")?.addEventListener("click", () => {
+    editContribId=null; document.getElementById("contrib-modal-title").textContent="Record House Contribution";
+    document.getElementById("contrib-form")?.reset();
+    document.getElementById("c-date").value = todayISO();
+    document.getElementById("contrib-modal").classList.remove("hidden");
+  });
+  document.getElementById("contrib-modal-close")?.addEventListener("click", () => document.getElementById("contrib-modal").classList.add("hidden"));
+  document.getElementById("btn-cancel-contrib")?.addEventListener("click", () => document.getElementById("contrib-modal").classList.add("hidden"));
+  document.getElementById("btn-save-contrib")?.addEventListener("click", async () => {
+    const data = {
+      flat: document.getElementById("c-flat").value.trim(),
+      name: document.getElementById("c-name").value.trim(),
+      amount: parseFloat(document.getElementById("c-amount").value)||0,
+      mode: document.getElementById("c-mode").value,
+      date: document.getElementById("c-date").value || todayISO(),
+      status: document.getElementById("c-status").value,
+      remarks: document.getElementById("c-remarks").value.trim()
+    };
+    if(!data.flat || !data.amount) { showToast("Enter flat number and amount", "error"); return; }
+    try {
+      if(editContribId) { await updateDoc2(C.CONTRIBS, editContribId, data); showToast("Contribution updated!", "success"); }
+      else { await addDoc2(C.CONTRIBS, data); showToast("Contribution recorded!", "success"); }
+      document.getElementById("contrib-modal").classList.add("hidden"); editContribId=null; await loadAll();
+    } catch(e) { showToast("Save failed: "+e.message, "error"); }
+  });
+
+  // Save Program Day
+  document.getElementById("btn-add-schedule-day")?.addEventListener("click", () => {
+    editSchedId=null; document.getElementById("schedule-modal-title").textContent="Add Day Program";
+    document.getElementById("schedule-form")?.reset();
+    document.getElementById("schedule-modal").classList.remove("hidden");
+  });
+  document.getElementById("schedule-modal-close")?.addEventListener("click", () => document.getElementById("schedule-modal").classList.add("hidden"));
+  document.getElementById("btn-cancel-schedule")?.addEventListener("click", () => document.getElementById("schedule-modal").classList.add("hidden"));
+  document.getElementById("btn-save-schedule")?.addEventListener("click", async () => {
+    const data = {
+      day: document.getElementById("s-day").value.trim(),
+      time: document.getElementById("s-time").value.trim(),
+      title: document.getElementById("s-title").value.trim(),
+      venue: document.getElementById("s-venue").value.trim(),
+      incharge: document.getElementById("s-incharge").value.trim(),
+      prasad: document.getElementById("s-prasad").value.trim()
+    };
+    if(!data.day || !data.title) { showToast("Enter day and program title", "error"); return; }
+    try {
+      if(editSchedId) { await updateDoc2(C.SCHEDULES, editSchedId, data); showToast("Program updated!", "success"); }
+      else { await addDoc2(C.SCHEDULES, data); showToast("Program added!", "success"); }
+      document.getElementById("schedule-modal").classList.add("hidden"); editSchedId=null; await loadAll();
+    } catch(e) { showToast("Save failed: "+e.message, "error"); }
+  });
+
+  // Save Event Expense
+  document.getElementById("btn-add-evt-exp")?.addEventListener("click", () => {
+    editEeId=null; document.getElementById("evt-exp-modal-title").textContent="Add Event Expense Item";
+    document.getElementById("evt-exp-form")?.reset();
+    document.getElementById("ee-date").value = todayISO();
+    document.getElementById("evt-exp-modal").classList.remove("hidden");
+  });
+  document.getElementById("evt-exp-modal-close")?.addEventListener("click", () => document.getElementById("evt-exp-modal").classList.add("hidden"));
+  document.getElementById("btn-cancel-ee")?.addEventListener("click", () => document.getElementById("evt-exp-modal").classList.add("hidden"));
+  document.getElementById("btn-save-ee")?.addEventListener("click", async () => {
+    const data = {
+      item: document.getElementById("ee-item").value.trim(),
+      category: document.getElementById("ee-cat").value,
+      amount: parseFloat(document.getElementById("ee-amount").value)||0,
+      date: document.getElementById("ee-date").value || todayISO(),
+      vendor: document.getElementById("ee-vendor").value.trim(),
+      paidBy: document.getElementById("ee-paidby").value.trim()
+    };
+    if(!data.item || !data.amount) { showToast("Enter expense item and amount", "error"); return; }
+    try {
+      if(editEeId) { await updateDoc2(C.EVT_EXPENSES, editEeId, data); showToast("Expense item updated!", "success"); }
+      else { await addDoc2(C.EVT_EXPENSES, data); showToast("Expense item added!", "success"); }
+      document.getElementById("evt-exp-modal").classList.add("hidden"); editEeId=null; await loadAll();
+    } catch(e) { showToast("Save failed: "+e.message, "error"); }
+  });
+
+  // Contribution filter listeners
+  document.getElementById("contrib-search")?.addEventListener("input", debounce(renderContribs, 250));
+  document.getElementById("contrib-filter-status")?.addEventListener("change", renderContribs);
+
+  document.getElementById("btn-export")?.addEventListener("click", () => {
+    exportExcel(allEvents, "Event Register",
+      ["Event","Start","End","Venue","Organized By","Budget","Actual","Contributions","Status"],
+      ["eventName","startDate","endDate","venue","organizedBy","estimatedBudget","actualExpenses","contributions","status"],
+      [28,13,13,20,20,14,16,14,12]
+    );
+    showToast("Exported!", "success");
+  });
+
+  await loadAll();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1005,142 +1352,461 @@ async function initReportsPage() {
 }
 
 // ═══════════════════════════════════════════════════════════
-//  PAGE: RESIDENT PORTAL
+//  PAGE: HOMEPAGE / LANDING PAGE
 // ═══════════════════════════════════════════════════════════
-async function initResidentPage() {
-  const searchSection=document.getElementById("resident-search");
-  const dashSection=document.getElementById("resident-dash");
-  let residentFlat="", memberData=null, allBills=[], allPayments=[], allNotices=[];
+async function initHomePage() {
+  console.log("🌐 Initializing Shivam Duplex Homepage...");
 
-  async function loadResident(flatNumber) {
-    showToast("Loading your account…","info");
-    document.getElementById("res-loading").style.display="flex";
-    try {
-      const [members,bills,payments,notices]=await Promise.all([
-        getAll(C.MEMBERS),getAll(C.MAINT_BILLS),getAll(C.PAYMENTS),getAll(C.NOTICES)
-      ]);
-      const member=members.find(m=>m.flatNumber.toLowerCase().trim()===flatNumber.toLowerCase().trim());
-      if(!member){showToast("Flat not found. Check the flat number.","error");document.getElementById("res-loading").style.display="none";return;}
-
-      memberData=member;
-      allBills=bills.filter(b=>b.flatNumber===member.flatNumber).sort((a,b)=>(b.createdAt?.toMillis?.()??0)-(a.createdAt?.toMillis?.()??0));
-      allPayments=payments.filter(p=>p.flatNumber===member.flatNumber).sort((a,b)=>(b.paymentDate||"").localeCompare(a.paymentDate||""));
-      allNotices=notices.filter(n=>n.status!=="Inactive").sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
-
-      renderResidentDash();
-      searchSection.style.display="none";
-      dashSection.style.display="block";
-    }catch(e){showToast("Error: "+e.message,"error");}
-    finally{document.getElementById("res-loading").style.display="none";}
+  // Mobile drawer toggle
+  const mobileBtn = document.getElementById("mobile-menu-toggle");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  if(mobileBtn && mobileDrawer) {
+    mobileBtn.addEventListener("click", () => {
+      mobileDrawer.classList.toggle("open");
+    });
+    document.querySelectorAll(".mobile-nav-links a").forEach(link => {
+      link.addEventListener("click", () => mobileDrawer.classList.remove("open"));
+    });
   }
 
-  function renderResidentDash(){
-    const m=memberData;
+  // Admin login modal
+  const adminModal = document.getElementById("admin-login-modal");
+  const openAdminBtn = document.getElementById("btn-open-admin-modal");
+  const closeAdminBtn = document.getElementById("btn-close-admin-modal");
+  const adminForm = document.getElementById("admin-login-form");
+
+  if(openAdminBtn && adminModal) {
+    openAdminBtn.addEventListener("click", () => adminModal.classList.add("show"));
+  }
+  if(closeAdminBtn && adminModal) {
+    closeAdminBtn.addEventListener("click", () => adminModal.classList.remove("show"));
+  }
+  if(adminModal) {
+    adminModal.addEventListener("click", (e) => {
+      if(e.target === adminModal) adminModal.classList.remove("show");
+    });
+  }
+  if(adminForm) {
+    adminForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      showToast("Access granted! Opening Command Deck…", "success");
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 500);
+    });
+  }
+
+  // FAQ Accordion
+  document.querySelectorAll(".faq-item").forEach(item => {
+    const q = item.querySelector(".faq-question");
+    if(q) {
+      q.addEventListener("click", () => {
+        const wasActive = item.classList.contains("active");
+        document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+        if(!wasActive) item.classList.add("active");
+      });
+    }
+  });
+
+  // Hero Emergency Vehicle Search
+  const vForm = document.getElementById("hero-vehicle-form");
+  const vInput = document.getElementById("hero-vehicle-input");
+  const vResult = document.getElementById("hero-vehicle-result");
+
+  if(vForm && vInput && vResult) {
+    vForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const q = vInput.value.trim().toLowerCase();
+      if(!q) return;
+
+      vResult.style.display = "block";
+      vResult.innerHTML = `<div style="text-align:center;color:var(--misty-sky);padding:10px;">Searching vehicle registry…</div>`;
+
+      try {
+        const members = await getAll(C.MEMBERS);
+        const matches = members.filter(m => {
+          const car = (m.carNumber || "").toLowerCase();
+          const bike = (m.bikeNumber || "").toLowerCase();
+          const slot = (m.parkingSlot || "").toLowerCase();
+          const flat = (m.flatNumber || "").toLowerCase();
+          const owner = (m.ownerName || "").toLowerCase();
+          return car.includes(q) || bike.includes(q) || slot.includes(q) || flat.includes(q) || owner.includes(q);
+        });
+
+        if(!matches.length) {
+          vResult.innerHTML = `
+            <div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:14px;color:#fca5a5;">
+              <div style="font-weight:800;font-size:14px;margin-bottom:4px;">❌ Vehicle Not Found in Registered List</div>
+              <div style="font-size:12px;">No registered vehicle matches "<strong>${esc(q)}</strong>". Please contact society security at the main gate or call your committee incharge.</div>
+            </div>`;
+          return;
+        }
+
+        vResult.innerHTML = matches.map(m => `
+          <div style="background:rgba(168,181,138,0.15);border:1.5px solid rgba(168,181,138,0.4);border-radius:12px;padding:16px;margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-size:16px;font-weight:900;color:#ffffff;">🏡 Duplex No. ${esc(m.flatNumber)} (Wing ${esc(m.wing||"Main")})</span>
+              <span style="background:rgba(168,181,138,0.3);color:var(--sage-leaf);font-size:11px;font-weight:800;padding:3px 10px;border-radius:var(--radius-pill);">MATCH VERIFIED</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px 14px;font-size:13px;margin-bottom:12px;">
+              <div><span style="color:var(--misty-sky);">Owner / Resident: </span><strong>${esc(m.ownerName)}</strong></div>
+              <div><span style="color:var(--misty-sky);">Phone: </span><strong>${esc(m.contactNumber)}</strong></div>
+              ${m.carNumber ? `<div><span style="color:var(--misty-sky);">Car: </span><strong style="color:var(--sage-leaf);">🚗 ${esc(m.carNumber)}</strong></div>` : ''}
+              ${m.bikeNumber ? `<div><span style="color:var(--misty-sky);">Two-Wheeler: </span><strong style="color:var(--misty-sky);">🛵 ${esc(m.bikeNumber)}</strong></div>` : ''}
+              ${m.parkingSlot ? `<div><span style="color:var(--misty-sky);">Slot: </span><strong>🅿️ ${esc(m.parkingSlot)}</strong></div>` : ''}
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a href="tel:${esc(m.contactNumber)}" class="quick-action-btn" style="padding:7px 16px;font-size:12px;">📞 Call Owner Now</a>
+              <a href="https://wa.me/91${esc(m.contactNumber).replace(/\D/g,'')}?text=Hello%20${encodeURIComponent(m.ownerName)},%20your%20vehicle%20is%20parked%20outside%20my%20duplex.%20Please%20check." target="_blank" class="quick-action-btn green" style="padding:7px 16px;font-size:12px;">💬 WhatsApp Message</a>
+            </div>
+          </div>
+        `).join("");
+      } catch(err) {
+        vResult.innerHTML = `<div style="color:var(--rosewood);font-size:13px;">Search error: ${esc(err.message)}</div>`;
+      }
+    });
+  }
+
+  // Update dynamic counters if available
+  try {
+    const members = await getAll(C.MEMBERS);
+    if(members.length) {
+      const duplexStat = document.getElementById("home-stat-duplexes");
+      if(duplexStat) duplexStat.textContent = members.length;
+    }
+  } catch(e) {}
+}
+
+// ═══════════════════════════════════════════════════════════
+//  PAGE: RESIDENT PORTAL (Fully Upgraded)
+// ═══════════════════════════════════════════════════════════
+async function initResidentPage() {
+  const searchSection = document.getElementById("resident-search");
+  const dashSection = document.getElementById("resident-dash");
+  let residentFlat="", currentMember=null, allBills=[], allPayments=[], allNotices=[];
+
+  // Tab switching
+  document.querySelectorAll('.res-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.res-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.res-tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById('tab-' + btn.dataset.tab);
+      if(target) target.classList.add('active');
+    });
+  });
+
+  // Modal open/close helpers
+  window.openTenantModal = () => {
+    if(!currentMember) return;
+    document.getElementById("t-name").value = currentMember.tenantName || "";
+    document.getElementById("t-contact").value = currentMember.tenantContact || "";
+    document.getElementById("t-email").value = currentMember.tenantEmail || "";
+    document.getElementById("t-aadhar").value = currentMember.tenantAadhar || "";
+    document.getElementById("t-pan").value = currentMember.tenantPan || "";
+    document.getElementById("t-job").value = currentMember.tenantJob || "";
+    document.getElementById("t-family").value = currentMember.tenantFamilyCount || "";
+    document.getElementById("t-start").value = currentMember.tenantRentStart || "";
+    document.getElementById("t-end").value = currentMember.tenantRentEnd || "";
+    document.getElementById("t-rent").value = currentMember.tenantRent || "";
+    document.getElementById("t-pin").value = currentMember.tenantPin || "";
+    document.getElementById("tenant-modal")?.classList.remove("hidden");
+  };
+  window.closeTenantModal = () => {
+    document.getElementById("tenant-modal")?.classList.add("hidden");
+  };
+
+  window.openVehicleModal = () => {
+    if(!currentMember) return;
+    document.getElementById("v-car").value = currentMember.carNumber || "";
+    document.getElementById("v-bike").value = currentMember.bikeNumber || "";
+    document.getElementById("vehicle-modal")?.classList.remove("hidden");
+  };
+  window.closeVehicleModal = () => {
+    document.getElementById("vehicle-modal")?.classList.add("hidden");
+  };
+
+  document.getElementById("btn-open-tenant-modal")?.addEventListener("click", openTenantModal);
+  document.getElementById("btn-open-vehicle-modal")?.addEventListener("click", openVehicleModal);
+
+  // Save Tenant KYC
+  document.getElementById("btn-save-tenant")?.addEventListener("click", async () => {
+    if(!currentMember) return;
+    const data = {
+      hasTenant: true,
+      tenantName: document.getElementById("t-name").value.trim(),
+      tenantContact: document.getElementById("t-contact").value.trim(),
+      tenantEmail: document.getElementById("t-email").value.trim(),
+      tenantAadhar: document.getElementById("t-aadhar").value.trim(),
+      tenantPan: document.getElementById("t-pan").value.trim(),
+      tenantJob: document.getElementById("t-job").value.trim(),
+      tenantFamilyCount: parseInt(document.getElementById("t-family").value) || 0,
+      tenantRentStart: document.getElementById("t-start").value,
+      tenantRentEnd: document.getElementById("t-end").value,
+      tenantRent: parseFloat(document.getElementById("t-rent").value) || 0,
+      tenantPin: document.getElementById("t-pin").value.trim()
+    };
+    if(!data.tenantName || !data.tenantContact || !data.tenantAadhar) {
+      showToast("Tenant Name, Mobile, and Aadhaar are required", "error");
+      return;
+    }
+    try {
+      await updateDoc2(C.MEMBERS, currentMember.id, data);
+      Object.assign(currentMember, data);
+      showToast("Tenant KYC saved successfully!", "success");
+      closeTenantModal();
+      renderResidentDash();
+    } catch(e) {
+      showToast("Save failed: " + e.message, "error");
+    }
+  });
+
+  // Save Vehicles
+  document.getElementById("btn-save-vehicle")?.addEventListener("click", async () => {
+    if(!currentMember) return;
+    const carNumber = document.getElementById("v-car").value.trim();
+    const bikeNumber = document.getElementById("v-bike").value.trim();
+    try {
+      await updateDoc2(C.MEMBERS, currentMember.id, { carNumber, bikeNumber });
+      currentMember.carNumber = carNumber;
+      currentMember.bikeNumber = bikeNumber;
+      showToast("Vehicles updated successfully!", "success");
+      closeVehicleModal();
+      renderResidentDash();
+    } catch(e) {
+      showToast("Save failed: " + e.message, "error");
+    }
+  });
+
+  // Self-report payment
+  document.getElementById("res-payment-report-form")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if(!currentMember) return;
+    const amount = parseFloat(document.getElementById("res-pay-amount").value) || 600;
+    const date = document.getElementById("res-pay-date").value || todayISO();
+    const mode = document.getElementById("res-pay-mode").value;
+    const ref = document.getElementById("res-pay-ref").value.trim();
+
+    try {
+      const payNo = await getNextPaymentNo();
+      const pData = {
+        paymentId: payNo,
+        flatNumber: currentMember.flatNumber,
+        wing: currentMember.wing || "Main",
+        memberName: currentMember.ownerName,
+        amount: amount,
+        paymentDate: date,
+        paymentMode: mode,
+        paymentType: amount >= 7200 ? "Advance-Annual" : amount >= 3600 ? "Advance-HalfYear" : "Regular",
+        referenceNumber: ref,
+        status: "Completed",
+        notes: "Self-reported by resident via UPI QR"
+      };
+      await addDoc2(C.PAYMENTS, pData);
+      showToast("Payment recorded! Verification updated.", "success");
+      document.getElementById("res-pay-ref").value = "";
+      await loadResident(currentMember.flatNumber);
+    } catch(err) {
+      showToast("Error saving payment: " + err.message, "error");
+    }
+  });
+
+  // Emergency vehicle search in portal
+  document.getElementById("portal-vehicle-search-form")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const q = document.getElementById("portal-vehicle-input").value.trim().toLowerCase();
+    const resultsDiv = document.getElementById("portal-vehicle-results");
+    if(!q || !resultsDiv) return;
+
+    resultsDiv.style.display = "block";
+    resultsDiv.innerHTML = "Searching...";
+
+    try {
+      const members = await getAll(C.MEMBERS);
+      const matches = members.filter(m => {
+        const car = (m.carNumber || "").toLowerCase();
+        const bike = (m.bikeNumber || "").toLowerCase();
+        const flat = (m.flatNumber || "").toLowerCase();
+        const owner = (m.ownerName || "").toLowerCase();
+        return car.includes(q) || bike.includes(q) || flat.includes(q) || owner.includes(q);
+      });
+
+      if(!matches.length) {
+        resultsDiv.innerHTML = `<div style="color:var(--rosewood);">No vehicles matching "<strong>${esc(q)}</strong>".</div>`;
+        return;
+      }
+
+      resultsDiv.innerHTML = matches.map(m => `
+        <div style="padding:10px 0;border-bottom:1px solid rgba(169,183,198,0.2);">
+          <div style="font-weight:800;color:#fff;">Duplex ${esc(m.flatNumber)} · ${esc(m.ownerName)} (📞 ${esc(m.contactNumber)})</div>
+          <div style="font-size:12px;color:var(--sage-leaf);">Car: ${esc(m.carNumber || "None")} | Two-Wheeler: ${esc(m.bikeNumber || "None")}</div>
+          <div style="margin-top:6px;display:flex;gap:8px;">
+            <a href="tel:${esc(m.contactNumber)}" class="btn btn-outline btn-sm">📞 Call</a>
+            <a href="https://wa.me/91${esc(m.contactNumber).replace(/\D/g,'')}" target="_blank" class="btn btn-primary btn-sm">💬 WhatsApp</a>
+          </div>
+        </div>
+      `).join("");
+    } catch(err) {
+      resultsDiv.innerHTML = `<div style="color:var(--rosewood);">${esc(err.message)}</div>`;
+    }
+  });
+
+  async function loadResident(flatNumber) {
+    showToast("Loading your account…", "info");
+    const loader = document.getElementById("res-loading");
+    if(loader) loader.style.display = "flex";
+
+    try {
+      const [members, bills, payments, notices] = await Promise.all([
+        getAll(C.MEMBERS), getAll(C.MAINT_BILLS), getAll(C.PAYMENTS), getAll(C.NOTICES)
+      ]);
+      const member = members.find(m => (m.flatNumber||"").toLowerCase().trim() === flatNumber.toLowerCase().trim());
+      if(!member) {
+        showToast("House/Flat not found. Please enter your valid duplex number (e.g. 12, 04).", "error");
+        if(loader) loader.style.display = "none";
+        return;
+      }
+
+      currentMember = member;
+      allBills = bills.filter(b => b.flatNumber === member.flatNumber).sort((a,b)=>(b.createdAt?.toMillis?.()??0)-(a.createdAt?.toMillis?.()??0));
+      allPayments = payments.filter(p => p.flatNumber === member.flatNumber).sort((a,b)=>(b.paymentDate||"").localeCompare(a.paymentDate||""));
+      allNotices = notices.filter(n => n.status !== "Inactive").sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
+
+      renderResidentDash();
+      searchSection.style.display = "none";
+      dashSection.style.display = "block";
+    } catch(e) {
+      showToast("Error: " + e.message, "error");
+    } finally {
+      if(loader) loader.style.display = "none";
+    }
+  }
+
+  function renderResidentDash() {
+    const m = currentMember;
     // Header
-    document.getElementById("res-name").textContent=m.ownerName;
-    document.getElementById("res-flat").textContent=`House ${m.flatNumber}, Wing ${m.wing}`;
-    document.getElementById("res-type").textContent=m.memberType||"Owner";
-    document.getElementById("res-contact").textContent=m.contactNumber||"";
+    document.getElementById("res-name").textContent = m.ownerName;
+    document.getElementById("res-flat").textContent = `Duplex ${m.flatNumber}, Wing ${m.wing||"Main"}`;
+    document.getElementById("res-type").textContent = m.memberType || "Owner";
+    document.getElementById("res-contact").textContent = m.contactNumber || "";
+
+    // 20-House Committee Allocation
+    const num = parseInt((m.flatNumber||"").replace(/\D/g, "")) || 1;
+    const isCluster1 = num <= 20;
+    const commName = isCluster1 ? "Rajeshbhai Patel" : "Sureshbhai Shah";
+    const commPhone = isCluster1 ? "9825012341" : "9825012342";
+    const commTitle = isCluster1 ? "Cluster 1 (Duplex 1 – 20)" : "Cluster 2 (Duplex 21 – 40)";
+
+    const commNameEl = document.getElementById("res-comm-name");
+    const commDescEl = document.getElementById("res-comm-desc");
+    const commTelEl = document.getElementById("res-comm-tel");
+    const commWaEl = document.getElementById("res-comm-wa");
+
+    if(commNameEl) commNameEl.textContent = `Assigned Committee Guardian: ${commName} · ${commTitle}`;
+    if(commDescEl) commDescEl.textContent = `Dedicated guardian for water, streetlights, maintenance, sanitation & disputes.`;
+    if(commTelEl) commTelEl.href = `tel:${commPhone}`;
+    if(commWaEl) commWaEl.href = `https://wa.me/91${commPhone}?text=${encodeURIComponent("Namaste " + commName + ", I am resident of Duplex " + m.flatNumber + " and have a query/complaint: ")}`;
+
+    // Vehicles Card
+    const carVal = document.getElementById("res-car-val");
+    const bikeVal = document.getElementById("res-bike-val");
+    if(carVal) carVal.textContent = m.carNumber || "None recorded";
+    if(bikeVal) bikeVal.textContent = m.bikeNumber || "None recorded";
 
     // Stats
-    const totalBilled=allBills.reduce((s,b)=>s+(parseFloat(b.totalAmount)||0),0);
-    const totalPaid=allPayments.reduce((s,p)=>s+(parseFloat(p.amount)||0),0);
-    const balance=totalPaid-totalBilled;
-    const pending=allBills.filter(b=>b.status==="Pending"||b.status==="Overdue");
+    const totalBilled = allBills.reduce((s,b)=>s+(parseFloat(b.totalAmount)||0),0);
+    const totalPaid = allPayments.reduce((s,p)=>s+(parseFloat(p.amount)||0),0);
+    const balance = totalPaid - totalBilled;
+    const pending = allBills.filter(b=>b.status==="Pending"||b.status==="Overdue");
 
-    const se=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-    se("res-stat-pending",pending.length);
-    se("res-stat-pending-amt",formatCurrency(pending.reduce((s,b)=>s+(parseFloat(b.totalAmount)||0),0)));
-    se("res-stat-balance",formatCurrency(Math.abs(balance)));
-    se("res-stat-balance-label",balance>=0?"💎 Advance Credit":"⚠️ Outstanding");
-    se("res-stat-paid",formatCurrency(totalPaid));
-    se("res-stat-monthly",formatCurrency(m.maintenanceAmount||MONTHLY_FEE));
+    const se = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+    se("res-stat-pending", pending.length);
+    se("res-stat-pending-amt", formatCurrency(pending.reduce((s,b)=>s+(parseFloat(b.totalAmount)||0),0)));
+    se("res-stat-balance", formatCurrency(Math.abs(balance)));
+    se("res-stat-balance-label", balance >= 0 ? "💎 Advance Credit" : "⚠️ Outstanding Balance");
+    se("res-stat-paid", formatCurrency(totalPaid));
+    se("res-stat-monthly", formatCurrency(m.maintenanceAmount || MONTHLY_FEE));
 
-    // Tenant info (if house is rented)
-    const tenantCard=document.getElementById("tenant-info-card");
-    if(tenantCard){
-      if(m.tenantName){
-        tenantCard.style.display="block";
-        se("res-tenant-name",m.tenantName);
-        se("res-tenant-contact",m.tenantContact||"—");
-        se("res-tenant-rent",`${m.tenantRentStart||"—"} to ${m.tenantRentEnd||"—"}`);
+    // Tenant Card
+    const tenantCard = document.getElementById("tenant-info-card");
+    if(tenantCard) {
+      if(m.tenantName) {
+        tenantCard.style.display = "block";
+        se("res-tenant-name", m.tenantName);
+        se("res-tenant-contact", m.tenantContact || "—");
+        se("res-tenant-id", m.tenantAadhar || m.tenantPan || "—");
+        se("res-tenant-job", m.tenantJob || "—");
+        se("res-tenant-family", (m.tenantFamilyCount || "—") + " members");
+        se("res-tenant-rent", `${m.tenantRentStart||"—"} to ${m.tenantRentEnd||"—"}`);
       } else {
-        tenantCard.style.display="none";
+        tenantCard.style.display = "none";
       }
     }
 
-    // Bills table
-    const billsTb=document.getElementById("res-bills-tbody");
-    if(billsTb){
-      billsTb.innerHTML=allBills.length?allBills.map(b=>`<tr>
+    // Bills Table
+    const billsTb = document.getElementById("res-bills-tbody");
+    if(billsTb) {
+      billsTb.innerHTML = allBills.length ? allBills.map(b => `<tr>
         <td class="td-mono">${esc(b.billNumber)}</td>
         <td>${esc(b.period)}</td>
         <td class="td-amount">${formatCurrency(b.totalAmount)}</td>
         <td>${esc(b.dueDate)}</td>
         <td>${statusBadge(b.status)}</td>
         <td><button class="btn btn-outline btn-sm" onclick="resPrintBill('${b.id}')">🖨 Print</button></td>
-      </tr>`).join(""):`<tr><td colspan="6"><div class="empty-state" style="padding:20px;"><div class="empty-icon">🧾</div><h3>No bills yet</h3></div></td></tr>`;
+      </tr>`).join("") : `<tr><td colspan="6"><div class="empty-state" style="padding:20px;"><div class="empty-icon">🧾</div><h3>No bills generated yet</h3></div></td></tr>`;
     }
 
-    // Payments table
-    const payTb=document.getElementById("res-payments-tbody");
-    if(payTb){
-      payTb.innerHTML=allPayments.length?allPayments.map(p=>`<tr>
+    // Payments Table
+    const payTb = document.getElementById("res-payments-tbody");
+    if(payTb) {
+      payTb.innerHTML = allPayments.length ? allPayments.map(p => `<tr>
         <td class="td-mono">${esc(p.paymentId)}</td>
         <td class="td-muted">${esc(p.paymentDate)}</td>
         <td class="td-amount" style="color:var(--success);">+${formatCurrency(p.amount)}</td>
-        <td><span class="badge badge-success">${esc(p.paymentMode||"Cash")}</span></td>
-        <td class="td-muted">${esc(p.paymentType==="Advance"?"Advance":p.paymentType==="Advance-Annual"?"Annual Advance":p.paymentType==="Advance-HalfYear"?"6-Month Advance":"Regular")}</td>
+        <td><span class="badge badge-success">${esc(p.paymentMode||"UPI")}</span></td>
+        <td class="td-muted">${esc(p.paymentType||"Regular")}</td>
         <td class="td-muted">${esc(p.referenceNumber||"—")}</td>
-      </tr>`).join(""):`<tr><td colspan="6"><div class="empty-state" style="padding:20px;"><div class="empty-icon">💳</div><h3>No payments recorded</h3></div></td></tr>`;
+      </tr>`).join("") : `<tr><td colspan="6"><div class="empty-state" style="padding:20px;"><div class="empty-icon">💳</div><h3>No payments recorded yet</h3></div></td></tr>`;
     }
 
-    // Notices
-    const noticesList=document.getElementById("res-notices-list");
-    if(noticesList){
-      noticesList.innerHTML=allNotices.slice(0,5).map(n=>`
-        <div style="border-left:3px solid ${n.priority==="Urgent"?"#c62828":n.priority==="Important"?"#e65100":"#1565c0"};padding:10px 14px;margin-bottom:10px;background:white;border-radius:0 8px 8px 0;">
-          <div style="font-weight:700;font-size:14px;margin-bottom:4px;">${n.pinned?'📌 ':''}${esc(n.title)}</div>
-          <div style="font-size:12.5px;color:#555;line-height:1.5;">${esc(n.body.slice(0,200))}${n.body.length>200?"…":""}</div>
-          <div style="font-size:11px;color:#888;margin-top:6px;">— ${esc(n.postedBy||"Society Committee")}</div>
-        </div>`).join("")||'<p style="color:#888;padding:10px;">No active notices.</p>';
+    // Notices List
+    const noticesList = document.getElementById("res-notices-list");
+    if(noticesList) {
+      noticesList.innerHTML = allNotices.slice(0,5).map(n => `
+        <div style="border-left:3px solid ${n.priority==="Urgent"?"#c62828":n.priority==="Important"?"#e65100":"#1565c0"};padding:12px 16px;margin-bottom:12px;background:rgba(255,255,255,0.06);border-radius:0 10px 10px 0;">
+          <div style="font-weight:700;font-size:14px;color:#fff;margin-bottom:4px;">${n.pinned?'📌 ':''}${esc(n.title)}</div>
+          <div style="font-size:12.5px;color:var(--misty-sky);line-height:1.6;">${esc(n.body)}</div>
+          <div style="font-size:11px;color:rgba(169,183,198,0.7);margin-top:6px;">— ${esc(n.postedBy||"Society Committee")}</div>
+        </div>
+      `).join("") || '<p style="color:var(--misty-sky);padding:10px;">No active notices.</p>';
     }
   }
 
-  window.resPrintBill=(id)=>{
-    const b=allBills.find(x=>x.id===id);
-    if(b&&window.openPrintModal)openPrintModal([b]);
-    else if(b&&window.executePrint){window._pBills=[b];window._pLayout=1;executePrint();}
+  window.resPrintBill = (id) => {
+    const b = allBills.find(x => x.id === id);
+    if(b && window.openPrintModal) openPrintModal([b]);
+    else if(b && window.executePrint) { window._pBills=[b]; window._pLayout=1; executePrint(); }
   };
 
-  // Tab switching
-  document.querySelectorAll('.res-tab-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.res-tab-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.res-tab-content').forEach(c=>c.style.display='none');
-      btn.classList.add('active');
-      document.getElementById('tab-'+btn.dataset.tab).style.display='block';
-    });
-  });
-
-  // Search form
-  document.getElementById("res-search-form")?.addEventListener("submit",async(e)=>{
+  // Search flat form
+  document.getElementById("res-search-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const flat=document.getElementById("res-flat-input").value.trim();
-    if(!flat){showToast("Enter your flat/house number","error");return;}
-    residentFlat=flat;
+    const flat = document.getElementById("res-flat-input").value.trim();
+    if(!flat) { showToast("Enter your flat/house number", "error"); return; }
+    residentFlat = flat;
     await loadResident(flat);
   });
 
-  document.getElementById("btn-back-search")?.addEventListener("click",()=>{
-    searchSection.style.display="block";dashSection.style.display="none";
+  document.getElementById("btn-back-search")?.addEventListener("click", () => {
+    searchSection.style.display = "block";
+    dashSection.style.display = "none";
   });
 
   // Print all pending bills
-  document.getElementById("btn-res-print-all")?.addEventListener("click",()=>{
-    const pending=allBills.filter(b=>b.status==="Pending"||b.status==="Overdue");
-    if(!pending.length){showToast("No pending bills to print","info");return;}
-    if(window.openPrintModal)openPrintModal(pending);
+  document.getElementById("btn-res-print-all")?.addEventListener("click", () => {
+    const pending = allBills.filter(b => b.status === "Pending" || b.status === "Overdue");
+    if(!pending.length) { showToast("No pending bills to print", "info"); return; }
+    if(window.openPrintModal) openPrintModal(pending);
   });
 }
 
@@ -1165,7 +1831,8 @@ function exportExcel(rows, title, headers, keys, widths, filename) {
 window.addEventListener("load",async()=>{
   if(!initFirebase())return;
   console.log("🚀 Page:", PAGE_NAME);
-  if(PAGE_NAME==="index"||PAGE_NAME==="")         initDashboardPage();
+  if(PAGE_NAME==="dashboard")                     initDashboardPage();
+  else if(PAGE_NAME==="index"||PAGE_NAME==="")    initHomePage();
   else if(PAGE_NAME==="members")                  initMembersPage();
   else if(PAGE_NAME==="maintenance")              initMaintenancePage();
   else if(PAGE_NAME==="payments")                 initPaymentsPage();

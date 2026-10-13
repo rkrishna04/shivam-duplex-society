@@ -33,6 +33,7 @@
   ],
   "rewrites": [
     { "source": "/index", "destination": "/index.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
     { "source": "/members", "destination": "/members.html" },
     { "source": "/maintenance", "destination": "/maintenance.html" },
     { "source": "/payments", "destination": "/payments.html" },
