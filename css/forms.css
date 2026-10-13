@@ -20,21 +20,19 @@
 
 /* ── Form Control — Glass input ─────────────────────────── */
 .form-control {
-  padding: 10px 14px;
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.14);
+  padding: 11px 14px;
+  background: rgba(18, 14, 52, 0.9);
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: var(--radius);
-  font-size: 14px; color: white;
+  font-size: 14px; color: #ffffff;
   outline: none; font-family: inherit; width: 100%;
   transition: all .2s ease;
 }
-.form-control::placeholder { color: rgba(255,255,255,0.3); }
+.form-control::placeholder { color: rgba(255,255,255,0.45); }
 .form-control:focus {
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(129,140,248,0.6);
-  box-shadow: 0 0 0 3px rgba(79,70,229,0.2), 0 0 15px rgba(79,70,229,0.12);
+  background: rgba(24, 18, 66, 0.98);
+  border-color: rgba(129,140,248,0.7);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.25);
 }
 .form-control.is-invalid {
   border-color: rgba(239,68,68,0.6);

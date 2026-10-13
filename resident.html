@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#4f46e5"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Shivam Society"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="96x96"  href="icons/icon-96.png"/>
 <title>Resident Portal — SHIVAM DUPLEX</title>
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/tables.css"/>
@@ -10,6 +20,7 @@
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="js/print.js"></script>
 <script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
 <style>
   .res-hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
   .res-search-card{
@@ -117,9 +128,10 @@
           <input type="text" id="res-flat-input" class="res-flat-input" placeholder="e.g. A-101" autocomplete="off" required/>
           <button type="submit" class="res-search-btn">🏠 View My Account</button>
         </form>
+        <button type="button" class="btn btn-outline btn-sm btn-install-app" style="width:100%;margin-top:12px;color:#a5b4fc;border-color:rgba(129,140,248,0.4);justify-content:center;padding:10px;">📲 Install Society App on Phone</button>
         <div class="res-search-hint">This portal is for residents of SHIVAM DUPLEX Society only.</div>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #f0f0f0;">
-          <a href="index.html" style="font-size:12px;color:#1a237e;text-decoration:none;">← Committee Login (Admin)</a>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);">
+          <a href="index.html" style="font-size:12px;color:#a5b4fc;text-decoration:none;">← Committee Login (Admin)</a>
         </div>
       </div>
       <div class="res-loading" id="res-loading">
@@ -131,7 +143,7 @@
 </div>
 
 <!-- Resident Dashboard (hidden until search) -->
-<div id="resident-dash" style="display:none;min-height:100vh;background:#f7f9fc;">
+<div id="resident-dash" style="display:none;min-height:100vh;background:#0c0a2a;color:#f8fafc;">
   <!-- Profile bar -->
   <div class="res-profile-bar">
     <div>
@@ -147,9 +159,10 @@
         </div>
       </div>
     </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <button id="btn-res-print-all" class="btn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);">🖨 Print Pending Bills</button>
-      <button id="btn-back-search" class="btn" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);">🔍 Change Flat</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button type="button" class="btn btn-install-app" style="background:rgba(79,70,229,0.35);color:white;border:1px solid rgba(129,140,248,0.5);">📲 Install App</button>
+      <button id="btn-res-print-all" class="btn" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);">🖨 Print Pending Bills</button>
+      <button id="btn-back-search" class="btn" style="background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.25);">🔍 Change Flat</button>
     </div>
   </div>
 

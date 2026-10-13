@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0820;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1050;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.55" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded rect -->
+  <rect width="192" height="192" rx="42" ry="42" fill="url(#bg)"/>
+  
+  <!-- Glow circle -->
+  <ellipse cx="96" cy="80.64" rx="76.80000000000001" ry="72.96000000000001" fill="url(#glow)"/>
+  
+  <!-- Building/House shape -->
+  <!-- Main building body -->
+  <rect x="38.400000000000006" y="72.96000000000001" width="115.19999999999999" height="72.96000000000001" rx="5.76" fill="#4f46e5" opacity="0.9"/>
+  
+  <!-- Roof triangle -->
+  <polygon points="96,34.56 28.799999999999997,76.80000000000001 163.2,76.80000000000001" fill="url(#accent)" opacity="0.95"/>
+  
+  <!-- Door -->
+  <rect x="80.64" y="107.52000000000001" width="30.72" height="38.400000000000006" rx="3.84" fill="#0a0820" opacity="0.8"/>
+  
+  <!-- Windows -->
+  <rect x="46.08" y="84.48" width="26.880000000000003" height="23.04" rx="3.84" fill="rgba(165,180,252,0.6)"/>
+  <rect x="119.03999999999999" y="84.48" width="26.880000000000003" height="23.04" rx="3.84" fill="rgba(165,180,252,0.6)"/>
+  
+  <!-- Chimney -->
+  <rect x="119.03999999999999" y="42.24" width="13.440000000000001" height="30.72" rx="1.92" fill="url(#accent)" opacity="0.8"/>
+  
+  <!-- "SD" text label -->
+  <text x="96" y="168.96" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="23" fill="rgba(165,180,252,0.85)" letter-spacing="0.96">SHIVAM</text>
+</svg>

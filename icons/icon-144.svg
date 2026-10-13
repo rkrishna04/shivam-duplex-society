@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0820;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1050;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.55" />
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded rect -->
+  <rect width="144" height="144" rx="32" ry="32" fill="url(#bg)"/>
+  
+  <!-- Glow circle -->
+  <ellipse cx="72" cy="60.48" rx="57.6" ry="54.72" fill="url(#glow)"/>
+  
+  <!-- Building/House shape -->
+  <!-- Main building body -->
+  <rect x="28.8" y="54.72" width="86.39999999999999" height="54.72" rx="4.32" fill="#4f46e5" opacity="0.9"/>
+  
+  <!-- Roof triangle -->
+  <polygon points="72,25.919999999999998 21.599999999999998,57.6 122.39999999999999,57.6" fill="url(#accent)" opacity="0.95"/>
+  
+  <!-- Door -->
+  <rect x="60.48" y="80.64000000000001" width="23.04" height="28.8" rx="2.88" fill="#0a0820" opacity="0.8"/>
+  
+  <!-- Windows -->
+  <rect x="34.56" y="63.36" width="20.160000000000004" height="17.28" rx="2.88" fill="rgba(165,180,252,0.6)"/>
+  <rect x="89.28" y="63.36" width="20.160000000000004" height="17.28" rx="2.88" fill="rgba(165,180,252,0.6)"/>
+  
+  <!-- Chimney -->
+  <rect x="89.28" y="31.68" width="10.080000000000002" height="23.04" rx="1.44" fill="url(#accent)" opacity="0.8"/>
+  
+  <!-- "SD" text label -->
+  <text x="72" y="126.72" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="17" fill="rgba(165,180,252,0.85)" letter-spacing="0.72">SHIVAM</text>
+</svg>
