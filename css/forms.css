@@ -1,7 +1,7 @@
 /* ============================================================
-   forms.css — SHIVAM DUPLEX · Liquid Glass Forms & Inputs
-   Molten crystal wells, fluid glows, frosted receipt cards
-   & responsive controls.
+   forms.css — SHIVAM DUPLEX · Eye-Friendly Liquid Glass Forms
+   Palette: Midnight Lagoon, Misty Sky, Sage Leaf, Blush Petal.
+   Pill inputs, frosted receipt cards, soft caustics & responsive forms.
    ============================================================ */
 
 /* ── Form Layout ─────────────────────────────────────────── */
@@ -28,16 +28,16 @@
   gap: 4px;
 }
 .req {
-  color: #f87171;
+  color: var(--rosewood);
   font-weight: 900;
 }
 
-/* ── Form Control — Molten Glass Input Wells ─────────────── */
+/* ── Form Control — Image 2: Molten Pill Input Wells ─────── */
 .form-control {
-  padding: 12px 16px;
-  background: rgba(14, 11, 44, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.20);
-  border-radius: var(--radius);
+  padding: 12px 20px;
+  background: rgba(28, 38, 48, 0.85);
+  border: 1px solid rgba(169, 183, 198, 0.32);
+  border-radius: var(--radius-pill);
   font-size: 14px;
   color: #ffffff;
   outline: none;
@@ -47,42 +47,43 @@
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 .form-control::placeholder {
-  color: rgba(203, 213, 225, 0.45);
+  color: rgba(169, 183, 198, 0.55);
 }
 .form-control:focus {
-  background: rgba(20, 15, 62, 0.98);
-  border-color: rgba(129, 140, 248, 0.85);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 0 3.5px rgba(99, 102, 241, 0.35), 0 0 24px rgba(99, 102, 241, 0.25);
+  background: rgba(35, 48, 60, 0.98);
+  border-color: var(--misty-sky);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 0 3.5px rgba(169, 183, 198, 0.3), 0 0 20px rgba(169, 183, 198, 0.25);
 }
 .form-control.is-invalid {
-  border-color: rgba(239, 68, 68, 0.8);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+  border-color: var(--rosewood);
+  box-shadow: 0 0 0 3px rgba(180, 106, 114, 0.3);
 }
 .form-control.is-valid {
-  border-color: rgba(16, 185, 129, 0.7);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  border-color: var(--sage-leaf);
+  box-shadow: 0 0 0 3px rgba(168, 181, 138, 0.3);
 }
 .form-control[readonly] {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(169, 183, 198, 0.08);
   color: var(--text-muted);
   cursor: default;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(169, 183, 198, 0.15);
 }
 select.form-control {
   cursor: pointer;
 }
 select.form-control option {
-  background: #140f3c;
+  background: #1e2832;
   color: #ffffff;
 }
 textarea.form-control {
   resize: vertical;
   min-height: 85px;
+  border-radius: var(--radius);
 }
 
 .field-err {
   font-size: 12px;
-  color: #f87171;
+  color: var(--rosewood);
   display: none;
   font-weight: 600;
 }
@@ -92,14 +93,14 @@ textarea.form-control {
 .input-pfx-wrap { position: relative; }
 .input-pfx {
   position: absolute;
-  left: 14px; top: 50%;
+  left: 18px; top: 50%;
   transform: translateY(-50%);
   font-weight: 800;
   color: var(--text-muted);
   pointer-events: none;
   font-size: 14px;
 }
-.input-pfx-wrap .form-control { padding-left: 32px; }
+.input-pfx-wrap .form-control { padding-left: 36px; }
 
 .form-actions {
   display: flex;
@@ -108,7 +109,7 @@ textarea.form-control {
   gap: 12px;
   padding: 18px 24px;
   border-top: 1px solid var(--border-light);
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(169,183,198,0.03) 0%, transparent 100%);
   flex-wrap: wrap;
 }
 
@@ -119,21 +120,21 @@ textarea.form-control {
   gap: 12px;
   font-size: 12px;
   font-weight: 800;
-  color: #c7d2fe;
+  color: var(--misty-sky);
   padding: 14px 22px;
-  background: linear-gradient(90deg, rgba(79, 70, 229, 0.22) 0%, rgba(139, 92, 246, 0.1) 100%);
-  border-bottom: 1px solid rgba(129, 140, 248, 0.3);
+  background: linear-gradient(90deg, rgba(45, 58, 71, 0.8) 0%, rgba(79, 102, 125, 0.4) 100%);
+  border-bottom: 1px solid rgba(169, 183, 198, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
 .sec-num {
   width: 26px; height: 26px;
-  background: linear-gradient(135deg, #4f46e5, #3730a3);
+  background: linear-gradient(135deg, #4f667d, #2f4153);
   color: #ffffff;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 800; flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(79, 70, 229, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  box-shadow: 0 0 12px rgba(79, 102, 125, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
 }
 .form-section { padding: 22px 24px; }
 
@@ -142,16 +143,16 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  background: linear-gradient(135deg, #4f667d 0%, #2f4153 100%);
   color: #ffffff;
-  padding: 7px 18px;
+  padding: 7px 20px;
   border-radius: var(--radius-pill);
   font-family: 'Courier New', Courier, monospace;
   font-size: 13.5px;
   font-weight: 800;
   letter-spacing: 1px;
-  box-shadow: 0 0 18px rgba(79, 70, 229, 0.55), inset 0 1px 1.5px rgba(255,255,255,0.45);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 18px rgba(79, 102, 125, 0.55), inset 0 1px 1.5px rgba(255,255,255,0.45);
+  border: 1px solid rgba(169, 183, 198, 0.35);
 }
 
 /* ── Receipt Card ────────────────────────────────────────── */
@@ -173,10 +174,10 @@ textarea.form-control {
 }
 
 .receipt-card {
-  background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%), rgba(12, 9, 36, 0.85);
+  background: linear-gradient(145deg, rgba(169,183,198,0.14) 0%, rgba(45,58,71,0.5) 60%, rgba(21,29,36,0.92) 100%);
   backdrop-filter: var(--blur-lg);
   -webkit-backdrop-filter: var(--blur-lg);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(169, 183, 198, 0.3);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg), var(--specular-top);
@@ -192,13 +193,13 @@ textarea.form-control {
 }
 
 .rcpt-header {
-  background: linear-gradient(135deg, rgba(20, 14, 60, 0.95), rgba(35, 22, 95, 0.92));
+  background: linear-gradient(135deg, rgba(32, 43, 54, 0.95), rgba(45, 58, 71, 0.92));
   color: white;
   padding: 24px 28px;
   text-align: center;
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid rgba(129, 140, 248, 0.35);
+  border-bottom: 1px solid rgba(169, 183, 198, 0.35);
 }
 .rcpt-society {
   font-size: 22px;
@@ -208,11 +209,11 @@ textarea.form-control {
 }
 .rcpt-sub {
   font-size: 12px;
-  color: rgba(203, 213, 225, 0.7);
+  color: var(--text-muted);
   margin-top: 4px;
 }
 .rcpt-title-bar {
-  background: linear-gradient(90deg, #f59e0b, #d97706);
+  background: linear-gradient(90deg, #e29578, #ca7758);
   color: #ffffff;
   text-align: center;
   padding: 8px;
@@ -220,15 +221,15 @@ textarea.form-control {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  box-shadow: 0 4px 14px rgba(226, 149, 120, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
 }
 .rcpt-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.16);
+  background: rgba(169, 183, 198, 0.04);
+  border-bottom: 1px dashed rgba(169, 183, 198, 0.2);
   flex-wrap: wrap;
   gap: 10px;
   position: relative;
@@ -248,7 +249,7 @@ textarea.form-control {
 }
 .rmeta-value {
   font-weight: 700;
-  color: #c7d2fe;
+  color: var(--misty-sky);
 }
 
 .rcpt-body {
@@ -261,7 +262,7 @@ textarea.form-control {
   grid-template-columns: 160px 1fr;
   gap: 6px 12px;
   padding: 9px 0;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+  border-bottom: 1px dotted rgba(169, 183, 198, 0.14);
   font-size: 14px;
 }
 .rcpt-row:last-child { border-bottom: none; }
@@ -275,7 +276,7 @@ textarea.form-control {
 }
 
 .rcpt-amount-box {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.45), rgba(139, 92, 246, 0.3));
+  background: linear-gradient(135deg, rgba(45, 58, 71, 0.9), rgba(79, 102, 125, 0.8));
   backdrop-filter: blur(10px);
   padding: 18px 28px;
   display: flex;
@@ -285,25 +286,25 @@ textarea.form-control {
   gap: 10px;
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(129, 140, 248, 0.4);
-  box-shadow: inset 0 0 35px rgba(79, 70, 229, 0.2);
+  border-top: 1px solid rgba(169, 183, 198, 0.4);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.2);
 }
 .amt-label {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #c7d2fe;
+  color: var(--misty-sky);
   font-weight: 800;
 }
 .amt-value {
   font-size: 30px;
   font-weight: 900;
-  color: #ffffff;
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  color: var(--sage-leaf);
+  text-shadow: 0 0 25px rgba(168, 181, 138, 0.4);
 }
 .amt-words {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   margin-top: 4px;
 }
 
@@ -312,14 +313,14 @@ textarea.form-control {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 14px;
   padding: 18px 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(169, 183, 198, 0.15);
   position: relative;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(169, 183, 198, 0.02);
 }
 .sig-box { text-align: center; }
 .sig-line {
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-top: 1.5px solid rgba(169, 183, 198, 0.4);
   margin-top: 30px;
   padding-top: 6px;
   font-size: 11px;
@@ -341,27 +342,27 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(16, 185, 129, 0.22);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.45);
-  padding: 4px 12px;
+  background: rgba(168, 181, 138, 0.25);
+  color: #c9dbab;
+  border: 1px solid rgba(168, 181, 138, 0.5);
+  padding: 4px 14px;
   border-radius: var(--radius-pill);
   font-size: 12px;
   font-weight: 800;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255,255,255,0.3);
+  box-shadow: 0 0 12px rgba(168, 181, 138, 0.25), inset 0 1px 1px rgba(255,255,255,0.3);
 }
 
 /* ── Tenant Section Container ────────────────────────────── */
 .tenant-section-header {
-  background: linear-gradient(90deg, rgba(245, 158, 11, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(226, 149, 120, 0.2), transparent);
   border-left: 3.5px solid var(--accent);
-  padding: 12px 16px;
+  padding: 12px 18px;
   margin: 18px 0 14px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.08);
+  box-shadow: inset 0 0 20px rgba(226, 149, 120, 0.08);
 }
 .tenant-section-header .ts-label {
   font-size: 13.5px;

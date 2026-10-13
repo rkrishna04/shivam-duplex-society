@@ -176,11 +176,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
     });
   }
 
-  // 6. Platform Detection
-  const isStandalone =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true ||
-    document.referrer.includes('android-app://');
+  // 6. Platform Detection (Accurate & Zero False Standalone)
+  function checkStandalone() {
+    return (
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true
+    );
+  }
+  const isStandalone = checkStandalone();
 
   const isIOS =
     (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
@@ -208,9 +211,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
             </div>
           </div>
 
-          <h3 class="shiva-install-title">📲 એપ સીધી ડાઉનલોડ કરો</h3>
+          <h3 class="shiva-install-title">📲 એપ ડાઉનલોડ & ઇન્સ્ટોલ</h3>
           <p class="shiva-install-desc" id="shiva-install-desc-text">
-            તમારા ફોન પર શિવમ સોસાયટી એપ ઇન્સ્ટોલ કરવા નીચે આપેલા બટન પર ક્લિક કરો.
+            તમારા ફોન પર શિવમ સોસાયટી એપ સરળતાથી ઇન્સ્ટોલ કરવા નીચે આપેલા સ્ટેપ્સ ફોલો કરો.
           </p>
 
           <div id="shiva-modal-action-box" style="margin-bottom:16px;">
@@ -234,24 +237,18 @@ window.addEventListener('beforeinstallprompt', (e) => {
     });
   }
 
-  // 8. Trigger Install — Direct & Guaranteed
+  // 8. Trigger Install — Direct & Guaranteed (Never Blocks Re-install)
   function triggerInstall() {
-    if (isStandalone) {
-      if (typeof showToast === 'function') {
-        showToast('🔱 SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!', 'info');
-      } else {
-        alert('SHIVAM App પહેલેથી જ ઇન્સ્ટોલ કરેલી છે!');
-      }
-      return;
-    }
-
-    // A. Native Android prompt ready? Trigger immediately!
+    // A. Native Android / Chrome prompt ready? Trigger immediately!
     if (window.__deferredPrompt) {
       window.__deferredPrompt.prompt();
       window.__deferredPrompt.userChoice.then((res) => {
         if (res.outcome === 'accepted') {
-          console.log('[PWA] User installed!');
+          console.log('[PWA] User accepted installation!');
           hideInstallBanner();
+          if (typeof showToast === 'function') {
+            showToast('✅ એપ ઇન્સ્ટોલ થઈ ગઈ છે!', 'success');
+          }
         }
         window.__deferredPrompt = null;
       });
@@ -264,28 +261,29 @@ window.addEventListener('beforeinstallprompt', (e) => {
       return;
     }
 
-    // C. Android without prompt yet: Show 1-Click Guided Sheet
+    // C. Android / Desktop without prompt yet (or after uninstall cooldown): Show 1-Click Guided Sheet
     const modal = document.getElementById('shiva-install-modal');
     const actionBox = document.getElementById('shiva-modal-action-box');
     if (modal && actionBox) {
       actionBox.innerHTML = `
-        <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:left;border:1px solid rgba(255,255,255,0.1);">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13.5px;color:#fde047;font-weight:700;">
-            <span style="font-size:18px;">💡</span>
-            <span>Android પર સીધી ઇન્સ્ટોલ કરવા:</span>
+        <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:left;border:1px solid rgba(255,255,255,0.12);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:14px;color:#fde047;font-weight:800;">
+            <span style="font-size:20px;">📲</span>
+            <span>Android પર ફરીથી ઇન્સ્ટોલ કરવા:</span>
           </div>
-          <div style="font-size:13px;line-height:1.7;color:#e2e8f0;">
-            1. Chrome માં ઉપર જમણી બાજુ <strong>3 ટપકાં (⋮)</strong> દબાવો.<br/>
-            2. <strong>"Install app"</strong> અથવા <strong>"Add to Home screen"</strong> (📲) પસંદ કરો.<br/>
-            3. <strong>"Install"</strong> દબાવો — એપ તમારા ફોનમાં આવી જશે!
+          <div style="font-size:13px;line-height:1.75;color:#e2e8f0;">
+            1. Chrome બ્રાઉઝરમાં ઉપર જમણી બાજુ <strong>3 ટપકાં (⋮)</strong> દબાવો.<br/>
+            2. <strong>"Install app"</strong> અથવા <strong>"Add to Home screen"</strong> પસંદ કરો.<br/>
+            3. <strong>"Install"</strong> પર ક્લિક કરો — એપ તમારા હોમ સ્ક્રીન પર આવી જશે!
           </div>
         </div>
-        <button type="button" class="btn btn-primary" id="btn-retry-pwa" style="width:100%;margin-top:14px;padding:12px;font-size:15px;justify-content:center;">
+        <button type="button" class="btn btn-primary" id="btn-retry-pwa" style="width:100%;margin-top:14px;padding:12px;font-size:14.5px;justify-content:center;font-weight:800;">
           ⚡ ફરીથી પ્રયાસ કરો (Try Again)
         </button>
       `;
 
       document.getElementById('btn-retry-pwa')?.addEventListener('click', () => {
+        sessionStorage.removeItem('pwa_dismissed');
         if (window.__deferredPrompt) {
           modal.classList.add('hidden');
           window.__deferredPrompt.prompt();

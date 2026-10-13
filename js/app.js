@@ -98,7 +98,14 @@ async function getNextExpenseNo() {
 
 // ─── Utils ────────────────────────────────────────────────
 function esc(s) {
-  return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  if (s === null || s === undefined) return "";
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+    .replace(/`/g, "&#96;");
 }
 function todayISO() { return new Date().toISOString().split("T")[0]; }
 function formatCurrency(v) {
