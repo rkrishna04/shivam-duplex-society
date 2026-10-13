@@ -16,18 +16,29 @@ const FIREBASE_CONFIG = {
 };
 
 const C = {
-  MEMBERS:      "sd_members",
-  MAINT_BILLS:  "sd_maintenance_bills",
-  PAYMENTS:     "sd_payments",
-  EXPENSES:     "sd_expenses",
-  EVENTS:       "sd_events",
-  FUNDS:        "sd_funds",
-  NOTICES:      "sd_notices",
-  META:         "sd_meta",
-  CONTRIBS:     "sd_contributions",
-  SCHEDULES:    "sd_schedules",
-  EVT_EXPENSES: "sd_event_expenses",
+  MEMBERS:         "sd_members",
+  MEMBER_REQUESTS: "sd_member_requests",
+  MAINT_BILLS:     "sd_maintenance_bills",
+  PAYMENTS:        "sd_payments",
+  EXPENSES:        "sd_expenses",
+  EVENTS:          "sd_events",
+  FUNDS:           "sd_funds",
+  NOTICES:         "sd_notices",
+  META:            "sd_meta",
+  CONTRIBS:        "sd_contributions",
+  SCHEDULES:       "sd_schedules",
+  EVT_EXPENSES:    "sd_event_expenses",
 };
+
+// Society line helper for 40 duplexes
+function getDuplexLine(flatNum) {
+  const num = parseInt(String(flatNum).replace(/\D/g, ""), 10) || 1;
+  if (num <= 8) return { id: "line-1", name: "લાઈન ૧ (ઉત્તર શેરી)", incharge: "શ્રી રાજેશભાઈ પટેલ", house: "૦૪", phone: "9825012341", role: "કારોબારી સભ્ય (લાઈન ૧ મેન્ટર)" };
+  if (num <= 16) return { id: "line-2", name: "લાઈન ૨ (પશ્ચિમ શેરી ૧)", incharge: "શ્રી વિનોદભાઈ શાહ", house: "૧૧", phone: "9825011002", role: "૧ ઉપ-પ્રમુખ (લાઈન ૨ ઇન્ચાર્જ)" };
+  if (num <= 24) return { id: "line-3", name: "લાઈન ૩ (પશ્ચિમ શેરી ૨)", incharge: "શ્રી અલ્પેશભાઈ દેસાઈ", house: "૨૧", phone: "9825011003", role: "૧ મંત્રી & શ્રી સુરેશભાઈ શાહ (D-24)" };
+  if (num <= 32) return { id: "line-4", name: "લાઈન ૪ (મધ્ય શેરી)", incharge: "શ્રી મુકેશભાઈ પંડ્યા", house: "૩૧", phone: "9825011004", role: "૧ ખજાનચી (લાઈન ૪ ઇન્ચાર્જ)" };
+  return { id: "line-5", name: "લાઈન ૫ (પાર્ક શેરી)", incharge: "શ્રી સંજયભાઈ બારોટ & શ્રી નરેન્દ્રભાઈ રાણા", house: "૩૪ & ૩૮", phone: "9825011010", role: "કારોબારી સભ્યો (પાર્કિંગ & બગીચો)" };
+}
 
 window.copyText = function(txt) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -281,8 +292,154 @@ async function initDashboardPage() {
         options:{responsive:true,cutout:"65%",plugins:{legend:{position:"bottom",labels:{color:"rgba(165,180,252,0.8)",padding:14,font:{size:11}}},
         tooltip:{backgroundColor:"rgba(15,10,50,0.9)",titleColor:"#a5b4fc",bodyColor:"white",borderColor:"rgba(79,70,229,0.4)",borderWidth:1}}}});
     }
+
+    // Load Pending KYC Requests
+    try {
+      await loadPendingKycRequests();
+    } catch(err) {
+      console.warn("KYC requests load error:", err);
+    }
   } catch(e){showToast("Dashboard load failed: "+e.message,"error");}
 }
+
+async function loadPendingKycRequests() {
+  const listEl = document.getElementById("pending-requests-list");
+  const badgeEl = document.getElementById("badge-pending-count");
+  if (!listEl) return;
+
+  try {
+    const reqs = await getAll(C.MEMBER_REQUESTS);
+    const pending = reqs.filter(r => r.status === "Pending" || !r.status);
+    if (badgeEl) badgeEl.textContent = pending.length;
+
+    if (!pending.length) {
+      listEl.innerHTML = `
+        <div style="text-align:center;padding:24px;color:var(--misty-sky);">
+          <div style="font-size:32px;margin-bottom:8px;">✅</div>
+          <div style="font-weight:700;color:#fff;font-size:15px;">કોઈ પેન્ડિંગ અરજી નથી (No Pending KYC Requests)</div>
+          <div style="font-size:12px;margin-top:4px;">નવા સભાસદો અથવા ભાડુઆત દ્વારા સબમિટ કરાયેલી અરજીઓ અહીં દેખાશે.</div>
+        </div>`;
+      return;
+    }
+
+    listEl.innerHTML = pending.map(r => {
+      const fam = Array.isArray(r.familyMembers) ? r.familyMembers : [];
+      const famSummary = fam.length ? fam.map(f => `${esc(f.name)} (${f.age} yr, ${esc(f.relation||"")})`).join(", ") : "નોંધેલ નથી";
+      const isTenant = r.hasTenant || !!r.tenantName;
+      return `
+        <div class="pending-request-card" id="req-card-${r.id}">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:17px;font-weight:900;color:#fff;">ડુપ્લેક્સ નં. ${esc(r.flatNumber)}</span>
+                <span class="badge badge-warning" style="font-size:11px;">PENDING APPROVAL</span>
+                ${isTenant ? '<span class="badge" style="background:rgba(226,149,120,0.3);color:var(--blush-petal);font-size:11px;">RENTED / TENANT KYC</span>' : '<span class="badge badge-owner" style="font-size:11px;">OWNER RESIDING</span>'}
+              </div>
+              <div style="font-size:14.5px;font-weight:800;color:#fff;margin-top:4px;">
+                👤 આધાર મુજબ નામ: <span style="color:#fde047;">${esc(r.ownerName)}</span>
+              </div>
+              <div style="font-size:12px;color:var(--misty-sky);">
+                📞 સંપર્ક: <strong>${esc(r.contactNumber)}</strong> · 💼 વ્યવસાય: <strong>${esc(r.profession||"—")}</strong> · 🏛 લાઇન: ${esc(r.lineName || "લાઈન")}
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button type="button" class="btn btn-sm" onclick="approveKycRequest('${r.id}')" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;font-weight:800;border-radius:6px;cursor:pointer;">
+                ✅ Approve &amp; Create Account
+              </button>
+              <button type="button" class="btn btn-sm" onclick="rejectKycRequest('${r.id}')" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.4);padding:8px 14px;border-radius:6px;cursor:pointer;">
+                ❌ Reject
+              </button>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;font-size:12.5px;background:rgba(21,29,36,0.6);padding:12px;border-radius:10px;border:1px solid rgba(169,183,198,0.2);">
+            <div><span style="color:var(--misty-sky);">🚗 કાર / ફોર-વ્હીલર: </span><strong style="color:var(--sage-leaf);">${esc(r.carNumber||"None")}</strong></div>
+            <div><span style="color:var(--misty-sky);">🛵 ટુ-વ્હીલર: </span><strong style="color:var(--misty-sky);">${esc(r.bikeNumber||"None")}</strong></div>
+            <div style="grid-column:1/-1;"><span style="color:var(--misty-sky);">👨‍👩‍👧‍👦 કુટુંબના સભ્યો (${fam.length}): </span><strong>${famSummary}</strong></div>
+            ${isTenant ? `
+              <div style="grid-column:1/-1;border-top:1px dashed rgba(226,149,120,0.3);padding-top:8px;margin-top:4px;">
+                <div style="font-weight:800;color:var(--blush-petal);margin-bottom:4px;">🔑 ભાડુઆત વિગતો (Tenant KYC):</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px;">
+                  <div>નામ: <strong>${esc(r.tenantName||"—")}</strong></div>
+                  <div>સંપર્ક: <strong>${esc(r.tenantContact||"—")}</strong></div>
+                  <div>આધાર: <strong>${esc(r.tenantAadhaar||"—")}</strong></div>
+                  <div>પાન: <strong>${esc(r.tenantPan||"—")}</strong></div>
+                  <div>વ્યવસાય: <strong>${esc(r.tenantProfession||"—")}</strong></div>
+                  <div>એગ્રીમેન્ટ: <strong>${esc(r.tenantStart||"—")} થી ${esc(r.tenantEnd||"—")}</strong></div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }).join("");
+  } catch(e) {
+    if (listEl) listEl.innerHTML = `<div style="color:var(--rosewood);padding:12px;">Error loading requests: ${esc(e.message)}</div>`;
+  }
+}
+
+window.approveKycRequest = async function(reqId) {
+  try {
+    showToast("Processing approval and creating account…", "info");
+    const reqDoc = await getDoc2(C.MEMBER_REQUESTS, reqId);
+    if (!reqDoc) { showToast("Request not found", "error"); return; }
+
+    const flat = reqDoc.flatNumber;
+    const allMembers = await getAll(C.MEMBERS);
+    const existing = allMembers.find(m => (m.flatNumber||"").toLowerCase().trim() === flat.toLowerCase().trim());
+
+    const num = parseInt(flat.replace(/\D/g, ""), 10) || 1;
+    const commAssigned = num <= 20 ? "Cluster 1 - Rajeshbhai Patel (1-20)" : "Cluster 2 - Sureshbhai Shah (21-40)";
+
+    const memberPayload = {
+      flatNumber: flat,
+      wing: reqDoc.wing || "Main",
+      ownerName: reqDoc.ownerName,
+      contactNumber: reqDoc.contactNumber,
+      profession: reqDoc.profession || "",
+      designation: existing?.designation || "ઘર માલિક (House Owner)",
+      memberType: "Owner",
+      status: "Active",
+      parkingSlot: `P-${flat}`,
+      carNumber: reqDoc.carNumber || "",
+      bikeNumber: reqDoc.bikeNumber || "",
+      familyMembers: reqDoc.familyMembers || [],
+      maintenanceAmount: 600,
+      assignedCommittee: commAssigned,
+      hasTenant: reqDoc.hasTenant || false,
+      tenantName: reqDoc.tenantName || "",
+      tenantContact: reqDoc.tenantContact || "",
+      tenantAadhaar: reqDoc.tenantAadhaar || "",
+      tenantPan: reqDoc.tenantPan || "",
+      tenantProfession: reqDoc.tenantProfession || "",
+      tenantRentStart: reqDoc.tenantStart || "",
+      tenantRentEnd: reqDoc.tenantEnd || ""
+    };
+
+    if (existing) {
+      await updateDoc2(C.MEMBERS, existing.id, memberPayload);
+    } else {
+      await addDoc2(C.MEMBERS, memberPayload);
+    }
+
+    await updateDoc2(C.MEMBER_REQUESTS, reqId, { status: "Approved", approvedAt: new Date().toISOString() });
+    showToast(`✅ Duplex ${flat} account approved & activated! Resident can now log in.`, "success");
+    await loadPendingKycRequests();
+  } catch(e) {
+    showToast("Approval error: " + e.message, "error");
+  }
+};
+
+window.rejectKycRequest = async function(reqId) {
+  if (!confirm("Are you sure you want to reject this request?")) return;
+  try {
+    await updateDoc2(C.MEMBER_REQUESTS, reqId, { status: "Rejected", rejectedAt: new Date().toISOString() });
+    showToast("Request marked as rejected.", "info");
+    await loadPendingKycRequests();
+  } catch(e) {
+    showToast("Error: " + e.message, "error");
+  }
+};
 
 // ═══════════════════════════════════════════════════════════
 //  PAGE: MEMBERS (with tenant management)
@@ -1527,6 +1684,46 @@ async function initHomePage() {
       if(duplexStat) duplexStat.textContent = members.length;
     }
   } catch(e) {}
+
+  // Wire up Image 2 Wireframe Line Selector
+  const lineSel = document.getElementById("home-line-select");
+  if(lineSel) {
+    lineSel.addEventListener("change", (e) => {
+      const val = e.target.value;
+      const linesData = {
+        "line-1": { role: "કારોબારી સભ્ય (લાઈન ૧ મેન્ટર)", name: "શ્રી રાજેશભાઈ પટેલ", meta: "મકાન નં. ૦૪ · કવર કરેલ મકાનો: ૦૧ થી ૦૮", phone: "9825012341" },
+        "line-2": { role: "૧ ઉપ-પ્રમુખ (લાઈન ૨ ઇન્ચાર્જ)", name: "શ્રી વિનોદભાઈ શાહ", meta: "મકાન નં. ૧૧ · કવર કરેલ મકાનો: ૦૯ થી ૧૬", phone: "9825011002" },
+        "line-3": { role: "૧ મંત્રી (લાઈન ૩ ઇન્ચાર્જ)", name: "શ્રી અલ્પેશભાઈ દેસાઈ", meta: "મકાન નં. ૨૧ · કવર કરેલ મકાનો: ૧૭ થી ૨૪ (સહાયક: સુરેશભાઈ શાહ D-24)", phone: "9825011003" },
+        "line-4": { role: "૧ ખજાનચી (લાઈન ૪ ઇન્ચાર્જ)", name: "શ્રી મુકેશભાઈ પંડ્યા", meta: "મકાન નં. ૩૧ · કવર કરેલ મકાનો: ૨૫ થી ૩૨", phone: "9825011004" },
+        "line-5": { role: "કારોબારી સભ્યો (પાર્કિંગ & બગીચો)", name: "શ્રી સંજયભાઈ બારોટ & શ્રી નરેન્દ્રભાઈ રાણા", meta: "મકાન નં. ૩૪ & ૩૮ · કવર કરેલ મકાનો: ૩૩ થી ૪૦", phone: "9825011010" }
+      };
+      const d = linesData[val];
+      if(d) {
+        const rEl = document.getElementById("hlic-role");
+        const nEl = document.getElementById("hlic-name");
+        const mEl = document.getElementById("hlic-meta");
+        const tEl = document.getElementById("hlic-tel");
+        const wEl = document.getElementById("hlic-wa");
+        if(rEl) rEl.textContent = d.role;
+        if(nEl) nEl.textContent = d.name;
+        if(mEl) mEl.textContent = d.meta;
+        if(tEl) tEl.href = "tel:" + d.phone;
+        if(wEl) wEl.href = "https://wa.me/91" + d.phone + "?text=" + encodeURIComponent("Namaste " + d.name + ", I am from Shivam Duplex " + val + " with a query: ");
+      }
+    });
+  }
+
+  // Initialize 3D Spatial Society Map
+  if(typeof window.initSocietyMap === "function") {
+    try {
+      window.initSocietyMap("society-map-container");
+    } catch(err) {
+      console.warn("Map init error:", err);
+    }
+  }
+
+  // Setup KYC Registration modal
+  setupKycModalHandlers();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1545,6 +1742,9 @@ async function initResidentPage() {
       btn.classList.add('active');
       const target = document.getElementById('tab-' + btn.dataset.tab);
       if(target) target.classList.add('active');
+      if(btn.dataset.tab === "map" && typeof window.initSocietyMap === "function") {
+        window.initSocietyMap("res-society-map-container");
+      }
     });
   });
 
@@ -1712,9 +1912,50 @@ async function initResidentPage() {
       const [members, bills, payments, notices] = await Promise.all([
         getAll(C.MEMBERS), getAll(C.MAINT_BILLS), getAll(C.PAYMENTS), getAll(C.NOTICES)
       ]);
-      const member = members.find(m => (m.flatNumber||"").toLowerCase().trim() === flatNumber.toLowerCase().trim());
+
+      // Flexible matching (handles 2, 02, Duplex 2, D-02)
+      let member = members.find(m => {
+        const f = (m.flatNumber||"").toLowerCase().trim();
+        const q = flatNumber.toLowerCase().trim();
+        const fNum = f.replace(/\D/g, "");
+        const qNum = q.replace(/\D/g, "");
+        return f === q || (qNum && fNum && parseInt(qNum, 10) === parseInt(fNum, 10));
+      });
+
+      // Auto-provision unseeded duplexes from 1 to 40
       if(!member) {
-        showToast("House/Flat not found. Please enter your valid duplex number (e.g. 12, 04).", "error");
+        const num = parseInt(flatNumber.replace(/\D/g, ""), 10);
+        if(!isNaN(num) && num >= 1 && num <= 40) {
+          const padded = num < 10 ? "0" + num : String(num);
+          const lineInfo = getDuplexLine(padded);
+          const commAssigned = num <= 20 ? "Cluster 1 - Rajeshbhai Patel (1-20)" : "Cluster 2 - Sureshbhai Shah (21-40)";
+          const newDoc = {
+            flatNumber: padded,
+            wing: "Main",
+            ownerName: `શ્રી સભાસદ (ડુપ્લેક્સ ${padded})`,
+            contactNumber: "98250" + String(10000 + num).padStart(5, '0'),
+            designation: "ઘર માલિક (House Owner)",
+            memberType: "Owner",
+            status: "Active",
+            parkingSlot: `P-${padded}`,
+            carNumber: "",
+            bikeNumber: "",
+            maintenanceAmount: 600,
+            assignedCommittee: commAssigned,
+            line: lineInfo.id
+          };
+          try {
+            const docRef = await addDoc2(C.MEMBERS, newDoc);
+            member = { ...newDoc, id: docRef.id };
+            showToast(`ડુપ્લેક્સ ${padded} ખાતું સફળતાપૂર્વક લોડ થયું!`, "success");
+          } catch(err) {
+            member = newDoc;
+          }
+        }
+      }
+
+      if(!member) {
+        showToast("House/Flat not found. Please enter a valid duplex number (e.g. 01 to 40).", "error");
         if(loader) loader.style.display = "none";
         return;
       }
@@ -1742,12 +1983,13 @@ async function initResidentPage() {
     document.getElementById("res-type").textContent = m.memberType || "Owner";
     document.getElementById("res-contact").textContent = m.contactNumber || "";
 
-    // 20-House Committee Allocation
+    // 20-House Committee Allocation & Line Guardian
     const num = parseInt((m.flatNumber||"").replace(/\D/g, "")) || 1;
     const isCluster1 = num <= 20;
-    const commName = isCluster1 ? "Rajeshbhai Patel" : "Sureshbhai Shah";
-    const commPhone = isCluster1 ? "9825012341" : "9825012342";
-    const commTitle = isCluster1 ? "Cluster 1 (Duplex 1 – 20)" : "Cluster 2 (Duplex 21 – 40)";
+    const lineInfo = getDuplexLine(m.flatNumber);
+    const commName = lineInfo ? lineInfo.incharge : (isCluster1 ? "Rajeshbhai Patel" : "Sureshbhai Shah");
+    const commPhone = lineInfo ? lineInfo.phone : (isCluster1 ? "9825012341" : "9825012342");
+    const commTitle = `${lineInfo ? lineInfo.name : ''} · ${isCluster1 ? "Cluster 1 (Duplex 1 – 20)" : "Cluster 2 (Duplex 21 – 40)"}`;
 
     const commNameEl = document.getElementById("res-comm-name");
     const commDescEl = document.getElementById("res-comm-desc");
@@ -1860,6 +2102,145 @@ async function initResidentPage() {
     if(!pending.length) { showToast("No pending bills to print", "info"); return; }
     if(window.openPrintModal) openPrintModal(pending);
   });
+
+  // Setup KYC Modal in resident portal
+  setupKycModalHandlers();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  KYC REGISTRATION MODAL HANDLERS (House Owner & Tenant)
+// ═══════════════════════════════════════════════════════════
+function setupKycModalHandlers() {
+  const modal = document.getElementById("modal-register-kyc");
+  if (!modal) return;
+
+  // Open triggers
+  document.querySelectorAll(".btn-open-kyc-modal").forEach(btn => {
+    btn.onclick = () => modal.classList.remove("hidden");
+  });
+
+  // Close triggers
+  modal.querySelectorAll(".btn-close-kyc-modal").forEach(btn => {
+    btn.onclick = () => modal.classList.add("hidden");
+  });
+  modal.onclick = (e) => {
+    if (e.target === modal) modal.classList.add("hidden");
+  };
+
+  // Flat selection -> Auto-detect Line
+  const flatSel = document.getElementById("kyc-flat");
+  const lineDisp = document.getElementById("kyc-line-display");
+  if (flatSel && lineDisp) {
+    flatSel.onchange = (e) => {
+      const val = e.target.value;
+      if (!val) {
+        lineDisp.value = "ઓટોમેટિક પસંદ થશે";
+        return;
+      }
+      const line = getDuplexLine(val);
+      lineDisp.value = `${line.name} (ઇન્ચાર્જ: ${line.incharge})`;
+    };
+  }
+
+  // Tenant toggle
+  const tenantCheck = document.getElementById("kyc-has-tenant");
+  const tenantBox = document.getElementById("kyc-tenant-box");
+  if (tenantCheck && tenantBox) {
+    tenantCheck.onchange = () => {
+      tenantBox.style.display = tenantCheck.checked ? "block" : "none";
+    };
+  }
+
+  // Add family row
+  const addFamBtn = document.getElementById("btn-add-family-row");
+  const famCont = document.getElementById("kyc-family-container");
+  if (addFamBtn && famCont) {
+    addFamBtn.onclick = () => {
+      const row = document.createElement("div");
+      row.className = "family-row";
+      row.style.cssText = "display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:center;";
+      row.innerHTML = `
+        <input type="text" class="fam-name" placeholder="સભ્યનું પૂરું નામ" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+        <input type="number" class="fam-age" placeholder="ઉંમર" min="1" max="110" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+        <input type="text" class="fam-rel" placeholder="સંબંધ" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+        <button type="button" class="btn-remove-fam" style="background:none;border:none;color:#ef4444;cursor:pointer;font-weight:700;">✕</button>
+      `;
+      famCont.appendChild(row);
+      row.querySelector(".btn-remove-fam").onclick = () => row.remove();
+    };
+
+    famCont.querySelectorAll(".btn-remove-fam").forEach(b => {
+      b.onclick = (e) => e.target.closest(".family-row")?.remove();
+    });
+  }
+
+  // Submit KYC Registration
+  const form = document.getElementById("form-register-kyc");
+  if (form) {
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      const flat = document.getElementById("kyc-flat").value;
+      const ownerName = document.getElementById("kyc-owner-name").value.trim();
+      const phone = document.getElementById("kyc-phone").value.trim();
+      const profession = document.getElementById("kyc-profession").value.trim();
+      const car = document.getElementById("kyc-car")?.value.trim() || "";
+      const bike = document.getElementById("kyc-bike")?.value.trim() || "";
+      const hasTenant = document.getElementById("kyc-has-tenant")?.checked || false;
+
+      if (!flat || !ownerName || !phone) {
+        showToast("કૃપા કરીને જરૂરી તમામ વિગતો ભરો", "warning");
+        return;
+      }
+
+      // Collect family members
+      const family = [];
+      document.querySelectorAll("#kyc-family-container .family-row").forEach(row => {
+        const n = row.querySelector(".fam-name")?.value.trim();
+        const a = parseInt(row.querySelector(".fam-age")?.value) || 0;
+        const r = row.querySelector(".fam-rel")?.value.trim() || "";
+        if (n) family.push({ name: n, age: a, relation: r });
+      });
+
+      const lineInfo = getDuplexLine(flat);
+
+      const reqPayload = {
+        flatNumber: flat,
+        wing: "Main",
+        ownerName: ownerName,
+        contactNumber: phone,
+        profession: profession,
+        lineId: lineInfo.id,
+        lineName: lineInfo.name,
+        carNumber: car,
+        bikeNumber: bike,
+        familyMembers: family,
+        hasTenant: hasTenant,
+        status: "Pending",
+        submittedAt: new Date().toISOString()
+      };
+
+      if (hasTenant) {
+        reqPayload.tenantName = document.getElementById("kyc-tenant-name")?.value.trim() || "";
+        reqPayload.tenantContact = document.getElementById("kyc-tenant-phone")?.value.trim() || "";
+        reqPayload.tenantAadhaar = document.getElementById("kyc-tenant-aadhaar")?.value.trim() || "";
+        reqPayload.tenantPan = document.getElementById("kyc-tenant-pan")?.value.trim() || "";
+        reqPayload.tenantProfession = document.getElementById("kyc-tenant-profession")?.value.trim() || "";
+        reqPayload.tenantFamily = document.getElementById("kyc-tenant-family")?.value.trim() || "";
+        reqPayload.tenantStart = document.getElementById("kyc-tenant-start")?.value || "";
+        reqPayload.tenantEnd = document.getElementById("kyc-tenant-end")?.value || "";
+      }
+
+      try {
+        showToast("અરજી મોકલાઈ રહી છે...", "info");
+        await addDoc2(C.MEMBER_REQUESTS, reqPayload);
+        showToast("✅ અરજી સફળતાપૂર્વક મોકલાઈ! સમિતિ દ્વારા મંજૂર થતાં જ ખાતું એક્ટિવ થશે.", "success");
+        form.reset();
+        modal.classList.add("hidden");
+      } catch (err) {
+        showToast("અરજી મોકલવામાં ભૂલ: " + err.message, "error");
+      }
+    };
+  }
 }
 
 // ═══════════════════════════════════════════════════════════

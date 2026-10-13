@@ -22,6 +22,7 @@
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="js/print.js"></script>
 <script src="js/pwa.js"></script>
+<script src="js/society-map.js"></script>
 <script src="js/app.js"></script>
 <style>
   .res-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
@@ -163,10 +164,22 @@
       <div class="res-search-card">
         <h1>Welcome, Resident! 👋</h1>
         <p>Enter your duplex house number to view your maintenance bills, manage tenant KYC, update vehicle registration, and pay dues.</p>
+
+        <div style="background:rgba(168,181,138,0.18);border:1px solid rgba(168,181,138,0.4);border-radius:var(--radius-md);padding:12px 16px;font-size:12.5px;color:#fff;margin-bottom:18px;text-align:left;line-height:1.5;">
+          <div style="font-weight:800;color:#fde047;margin-bottom:2px;">🔑 તમારું લૉગિન ID (House Owner Login):</div>
+          તમારો <strong>ડુપ્લેક્સ નંબર</strong> દાખલ કરો (દા.ત. <strong>01, 02, 03, 04, 11, 21, 31...</strong> અથવા <strong>01 થી 40</strong>). કોઈ પાસવર્ડની જરૂર નથી.
+        </div>
+
         <form id="res-search-form">
-          <input type="text" id="res-flat-input" class="res-flat-input" placeholder="e.g. 12, A-101, 04…" autocomplete="off" required/>
+          <input type="text" id="res-flat-input" class="res-flat-input" placeholder="e.g. 02, 03, 12, 21…" autocomplete="off" required/>
           <button type="submit" class="res-search-btn">🏠 View My House Account</button>
         </form>
+
+        <div style="margin-top:14px;">
+          <button type="button" class="btn btn-outline btn-sm btn-open-kyc-modal" style="width:100%;color:var(--blush-petal);border-color:rgba(226,149,120,0.45);padding:9px;font-size:12.5px;border-radius:var(--radius-pill);">
+            📝 નવા સભાસદ / ભાડુઆત? KYC નોંધણી અરજી કરો
+          </button>
+        </div>
 
         <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;">
           <a href="index.html" style="font-size:12.5px;color:var(--misty-sky);text-decoration:none;">← Society Homepage</a>
@@ -280,6 +293,7 @@
   <!-- Tabs Navigation -->
   <div class="res-tabs">
     <button class="res-tab-btn active" data-tab="bills">🧾 Maintenance Bills</button>
+    <button class="res-tab-btn" data-tab="map">🗺️ સોસાયટી 3D મેપ &amp; લાઈટો</button>
     <button class="res-tab-btn" data-tab="pay">💳 Scan Society QR &amp; Pay</button>
     <button class="res-tab-btn" data-tab="payments">📜 Payment History</button>
     <button class="res-tab-btn" data-tab="vehicle-search">🔍 Emergency Vehicle Search</button>
@@ -596,6 +610,13 @@
       </div>
     </div>
   </div>
+
+  <!-- Tab 8: 3D Society Map & Streetlights -->
+  <div class="res-tab-content" id="tab-map">
+    <div class="card" style="padding:16px;">
+      <div id="res-society-map-container"></div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal: Home Owner Tenant Management -->
@@ -690,6 +711,199 @@
       <button class="btn btn-ghost" onclick="closeVehicleModal()">Cancel</button>
       <button class="btn btn-accent" id="btn-save-vehicle">💾 Save Vehicles</button>
     </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HOUSE OWNER & TENANT KYC REGISTRATION MODAL (Image 1 Specs)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="admin-modal-overlay hidden" id="modal-register-kyc">
+  <div class="admin-modal-box" style="max-width:680px;width:95%;max-height:90vh;overflow-y:auto;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid rgba(169,183,198,0.25);padding-bottom:12px;">
+      <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;">
+        <span>📝</span> સભાસદ &amp; ભાડુઆત KYC નોંધણી અરજી
+      </div>
+      <button type="button" class="btn-close-kyc-modal" style="background:none;border:none;color:var(--misty-sky);font-size:22px;cursor:pointer;">✕</button>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--misty-sky);margin-bottom:18px;line-height:1.5;">
+      તમારા ડુપ્લેક્સની સાચી વિગતો ભરીને કારોબારી સમિતિને મોકલો. સમિતિ દ્વારા મંજૂર થયા બાદ તમારું ખાતું એક્ટિવ થશે અને તમે ડુપ્લેક્સ નંબરથી લૉગિન કરી શકશો.
+    </p>
+
+    <form id="form-register-kyc">
+      <!-- Section 1: House Owner Details -->
+      <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.25);border-radius:12px;padding:16px;margin-bottom:16px;">
+        <div style="font-size:12.5px;font-weight:800;color:#fde047;text-transform:uppercase;margin-bottom:12px;">
+          🏠 ૧. ઘર માલિક વિગતો (House Owner Details)
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ડુપ્લેક્સ નંબર (Duplex No) *</label>
+            <select id="kyc-flat" required style="width:100%;padding:10px 14px;background:rgba(30,41,54,0.9);border:1.5px solid rgba(169,183,198,0.35);border-radius:8px;color:#fff;outline:none;">
+              <option value="">પસંદ કરો (01 થી 40)</option>
+              <option value="01">ડુપ્લેક્સ ૦૧ (પ્રમુખ)</option>
+              <option value="02">ડુપ્લેક્સ ૦૨</option>
+              <option value="03">ડુપ્લેક્સ ૦૩</option>
+              <option value="04">ડુપ્લેક્સ ૦૪</option>
+              <option value="05">ડુપ્લેક્સ ૦૫</option>
+              <option value="06">ડુપ્લેક્સ ૦૬</option>
+              <option value="07">ડુપ્લેક્સ ૦૭</option>
+              <option value="08">ડુપ્લેક્સ ૦૮</option>
+              <option value="09">ડુપ્લેક્સ ૦૯</option>
+              <option value="10">ડુપ્લેક્સ ૧૦</option>
+              <option value="11">ડુપ્લેક્સ ૧૧ (ઉપ-પ્રમુખ)</option>
+              <option value="12">ડુપ્લેક્સ ૧૨</option>
+              <option value="13">ડુપ્લેક્સ ૧૩</option>
+              <option value="14">ડુપ્લેક્સ ૧૪</option>
+              <option value="15">ડુપ્લેક્સ ૧૫</option>
+              <option value="16">ડુપ્લેક્સ ૧૬</option>
+              <option value="17">ડુપ્લેક્સ ૧૭</option>
+              <option value="18">ડુપ્લેક્સ ૧૮</option>
+              <option value="19">ડુપ્લેક્સ ૧૯</option>
+              <option value="20">ડુપ્લેક્સ ૨૦</option>
+              <option value="21">ડુપ્લેક્સ ૨૧ (મંત્રી)</option>
+              <option value="22">ડુપ્લેક્સ ૨૨</option>
+              <option value="23">ડુપ્લેક્સ ૨૩</option>
+              <option value="24">ડુપ્લેક્સ ૨૪</option>
+              <option value="25">ડુપ્લેક્સ ૨૫</option>
+              <option value="26">ડુપ્લેક્સ ૨૬</option>
+              <option value="27">ડુપ્લેક્સ ૨૭</option>
+              <option value="28">ડુપ્લેક્સ ૨૮</option>
+              <option value="29">ડુપ્લેક્સ ૨૯</option>
+              <option value="30">ડુપ્લેક્સ ૩૦</option>
+              <option value="31">ડુપ્લેક્સ ૩૧ (ખજાનચી)</option>
+              <option value="32">ડુપ્લેક્સ ૩૨</option>
+              <option value="33">ડુપ્લેક્સ ૩૩</option>
+              <option value="34">ડુપ્લેક્સ ૩૪</option>
+              <option value="35">ડુપ્લેક્સ ૩૫</option>
+              <option value="36">ડુપ્લેક્સ ૩૬</option>
+              <option value="37">ડુપ્લેક્સ ૩૭</option>
+              <option value="38">ડુપ્લેક્સ ૩૮</option>
+              <option value="39">ડુપ્લેક્સ ૩૯</option>
+              <option value="40">ડુપ્લેક્સ ૪૦</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">સંપર્ક નંબર (Mobile) *</label>
+            <input type="tel" id="kyc-phone" placeholder="10-digit mobile" required style="width:100%;padding:10px 14px;background:rgba(30,41,54,0.9);border:1.5px solid rgba(169,183,198,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+          </div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">આધાર કાર્ડ મુજબ પૂરું નામ (Name as per Aadhaar) *</label>
+          <input type="text" id="kyc-owner-name" placeholder="દા.ત. શ્રી રમેશભાઈ ગોવિંદભાઈ પટેલ" required style="width:100%;padding:10px 14px;background:rgba(30,41,54,0.9);border:1.5px solid rgba(169,183,198,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">વ્યવસાય (Profession / Job / Business) *</label>
+            <input type="text" id="kyc-profession" placeholder="દા.ત. બિઝનેસ / પ્રાઇવેટ જોબ" required style="width:100%;padding:10px 14px;background:rgba(30,41,54,0.9);border:1.5px solid rgba(169,183,198,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">સોસાયટી લાઇન (Street Lane)</label>
+            <input type="text" id="kyc-line-display" readonly value="ઓટોમેટિક પસંદ થશે" style="width:100%;padding:10px 14px;background:rgba(18,25,32,0.8);border:1px solid rgba(169,183,198,0.2);border-radius:8px;color:var(--sage-leaf);outline:none;box-sizing:border-box;"/>
+          </div>
+        </div>
+
+        <!-- Dynamic Family Members List -->
+        <div style="margin-top:12px;border-top:1px dashed rgba(169,183,198,0.25);padding-top:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <label style="font-size:11.5px;font-weight:800;color:#fff;">કુટુંબના સભ્યો (Family Members: Name &amp; Age) *</label>
+            <button type="button" id="btn-add-family-row" class="btn btn-sm btn-outline" style="padding:3px 10px;font-size:11px;color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);">+ Add Member</button>
+          </div>
+          <div id="kyc-family-container" style="display:flex;flex-direction:column;gap:8px;">
+            <div class="family-row" style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:center;">
+              <input type="text" class="fam-name" placeholder="સભ્યનું પૂરું નામ" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+              <input type="number" class="fam-age" placeholder="ઉંમર (Age)" min="1" max="110" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+              <input type="text" class="fam-rel" placeholder="સંબંધ" style="padding:8px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+              <button type="button" class="btn-remove-fam" style="background:none;border:none;color:#ef4444;cursor:pointer;font-weight:700;">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle Details -->
+        <div style="margin-top:14px;border-top:1px dashed rgba(169,183,198,0.25);padding-top:12px;">
+          <div style="font-size:11.5px;font-weight:800;color:#fff;margin-bottom:8px;">વાહનની વિગતો (Vehicle Registration)</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <label style="display:block;font-size:11px;color:var(--misty-sky);margin-bottom:4px;">🚗 કાર મોડેલ &amp; નંબર (Four-Wheeler)</label>
+              <input type="text" id="kyc-car" placeholder="દા.ત. Creta - GJ06AB1001" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;box-sizing:border-box;"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;color:var(--misty-sky);margin-bottom:4px;">🛵 બાઇક/એક્ટિવા નંબર (Two-Wheeler)</label>
+              <input type="text" id="kyc-bike" placeholder="દા.ત. Activa - GJ06CD1001" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;box-sizing:border-box;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Tenant Toggle & Tenant Details -->
+      <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.25);border-radius:12px;padding:16px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:12.5px;font-weight:800;color:var(--blush-petal);text-transform:uppercase;">
+            🔑 ૨. ભાડુઆત વિગતો (Tenant KYC if Rented)
+          </div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#fff;cursor:pointer;">
+            <input type="checkbox" id="kyc-has-tenant" style="width:18px;height:18px;accent-color:var(--blush-petal);"/>
+            <span>આ ડુપ્લેક્સ ભાડે આપેલ છે? (House is Rented)</span>
+          </label>
+        </div>
+
+        <div id="kyc-tenant-box" style="display:none;margin-top:14px;border-top:1px dashed rgba(226,149,120,0.3);padding-top:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆતનું નામ (As per Aadhaar)</label>
+              <input type="text" id="kyc-tenant-name" placeholder="ભાડુઆતનું પૂરું નામ" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆત સંપર્ક નંબર</label>
+              <input type="tel" id="kyc-tenant-phone" placeholder="Tenant Mobile No" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">આધાર કાર્ડ નંબર (12-digit Aadhaar)</label>
+              <input type="text" id="kyc-tenant-aadhaar" placeholder="XXXX-XXXX-XXXX" maxlength="14" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">પાન કાર્ડ નંબર (10-digit PAN)</label>
+              <input type="text" id="kyc-tenant-pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase;width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆતનો વ્યવસાય (Occupation)</label>
+              <input type="text" id="kyc-tenant-profession" placeholder="દા.ત. સોફ્ટવેર એન્જિનિયર / જોબ" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆત કુટુંબના સભ્યો</label>
+              <input type="text" id="kyc-tenant-family" placeholder="દા.ત. ૩ સભ્યો (પતિ, પત્ની, ૧ બાળક)" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">એગ્રીમેન્ટ શરૂઆત તારીખ</label>
+              <input type="date" id="kyc-tenant-start" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">એગ્રીમેન્ટ સમાપ્તિ તારીખ</label>
+              <input type="date" id="kyc-tenant-end" style="width:100%;padding:9px 12px;background:rgba(30,41,54,0.9);border:1px solid rgba(169,183,198,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="hero-btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:15px;margin-top:10px;">
+        🚀 કારોબારી સમિતિને અરજી મોકલો (Submit KYC for Approval)
+      </button>
+      <div style="text-align:center;font-size:11.5px;color:var(--misty-sky);margin-top:10px;">
+        અરજી મોકલ્યા બાદ સમિતિ દ્વારા વેરિફિકેશન થશે અને મંજૂરી મળતાં ખાતું એક્ટિવ થશે.
+      </div>
+    </form>
   </div>
 </div>
 
