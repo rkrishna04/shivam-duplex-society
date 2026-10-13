@@ -1,7 +1,7 @@
 /* ============================================================
    css/shiva-theme.css — SHIVAM DUPLEX Society
-   NEW STYLE: 3D Celestial Holographic Shiva Portal Loader &
-   Lord Shiva Divine UI Animations (Fully Mobile-Optimized)
+   Liquid Glass & Celestial Holographic Lord Shiva Experience
+   3D Gyroscope Portal, Molten Gold Accents & Divine Caustics.
    ============================================================ */
 
 /* ── 1. Fullscreen Celestial Holographic Shiva Loader ────────── */
@@ -9,14 +9,14 @@
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: radial-gradient(ellipse 90% 80% at 50% 35%, #180f48 0%, #0c082b 50%, #050314 100%);
+  background: radial-gradient(ellipse 95% 85% at 50% 32%, #1a1050 0%, #0d0930 50%, #050314 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
   overflow: hidden;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -40,20 +40,36 @@
     radial-gradient(1.5px 1.5px at 350px 220px, #60a5fa, rgba(0,0,0,0));
   background-repeat: repeat;
   background-size: 380px 380px;
-  opacity: 0.55;
-  animation: cosmicStarDrift 60s linear infinite;
+  opacity: 0.65;
+  animation: cosmicStarDrift 55s linear infinite;
   pointer-events: none;
 }
 @keyframes cosmicStarDrift {
   from { transform: translateY(0); }
-  to { transform: translateY(-380px); }
+  to   { transform: translateY(-380px); }
+}
+
+/* Ambient Liquid Caustic Waves in Loader */
+.shiva-page-loader::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(245, 158, 11, 0.15) 50%, transparent 70%);
+  filter: blur(60px);
+  animation: loaderCausticPulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes loaderCausticPulse {
+  0%   { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+  100% { transform: scale(1.2) rotate(180deg); opacity: 0.85; }
 }
 
 /* ── 2. The 3D Gyroscopic Hologram Chamber ────────────────── */
 .shiva-hologram-chamber {
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 180px;
+  height: 180px;
   perspective: 900px;
   display: flex;
   align-items: center;
@@ -69,74 +85,80 @@
 }
 
 .shiva-gyro-1 {
-  width: 140px;
-  height: 140px;
-  border: 2px dashed rgba(251, 191, 36, 0.7);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5), inset 0 0 14px rgba(251, 191, 36, 0.3);
+  width: 148px;
+  height: 148px;
+  border: 2px dashed rgba(251, 191, 36, 0.75);
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.6), inset 0 0 16px rgba(251, 191, 36, 0.35);
   animation: gyroSpin1 6s linear infinite;
 }
 
 .shiva-gyro-2 {
-  width: 156px;
-  height: 156px;
-  border: 1.5px solid rgba(129, 140, 248, 0.65);
+  width: 164px;
+  height: 164px;
+  border: 1.5px solid rgba(129, 140, 248, 0.7);
   border-top-color: #fde047;
   border-bottom-color: #38bdf8;
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.55);
+  box-shadow: 0 0 28px rgba(99, 102, 241, 0.6);
   animation: gyroSpin2 8s linear infinite reverse;
 }
 
 .shiva-gyro-3 {
-  width: 172px;
-  height: 172px;
-  border: 1.5px dotted rgba(236, 72, 153, 0.55);
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
+  width: 180px;
+  height: 180px;
+  border: 1.5px dotted rgba(236, 72, 153, 0.6);
+  box-shadow: 0 0 24px rgba(236, 72, 153, 0.4);
   animation: gyroSpin3 10s linear infinite;
 }
 
 @keyframes gyroSpin1 {
-  0% { transform: rotateX(65deg) rotateY(20deg) rotateZ(0deg); }
+  0%   { transform: rotateX(65deg) rotateY(20deg) rotateZ(0deg); }
   100% { transform: rotateX(65deg) rotateY(20deg) rotateZ(360deg); }
 }
-
 @keyframes gyroSpin2 {
-  0% { transform: rotateX(25deg) rotateY(65deg) rotateZ(0deg); }
+  0%   { transform: rotateX(25deg) rotateY(65deg) rotateZ(0deg); }
   100% { transform: rotateX(25deg) rotateY(65deg) rotateZ(360deg); }
 }
-
 @keyframes gyroSpin3 {
-  0% { transform: rotateX(75deg) rotateY(-35deg) rotateZ(0deg); }
+  0%   { transform: rotateX(75deg) rotateY(-35deg) rotateZ(0deg); }
   100% { transform: rotateX(75deg) rotateY(-35deg) rotateZ(360deg); }
 }
 
 /* Pulsating Solar Energy Core */
 .shiva-energy-core {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.5) 0%, rgba(79, 70, 229, 0.3) 60%, transparent 100%);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.6) 0%, rgba(99, 102, 241, 0.35) 60%, transparent 100%);
   filter: blur(8px);
   animation: corePulse 2s ease-in-out infinite alternate;
 }
 @keyframes corePulse {
-  0% { transform: scale(0.85); opacity: 0.6; }
-  100% { transform: scale(1.35); opacity: 1; filter: blur(12px); }
+  0%   { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 1; filter: blur(14px); }
 }
 
 /* Golden Trishul SVG in Center */
 .shiva-trishul-svg {
-  width: 104px;
-  height: 114px;
+  width: 108px;
+  height: 118px;
   position: relative;
   z-index: 10;
-  filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 32px rgba(79, 70, 229, 0.75));
+  filter: drop-shadow(0 0 18px rgba(251, 191, 36, 1)) drop-shadow(0 0 35px rgba(99, 102, 241, 0.8));
   animation: trishulLevitate 3.4s ease-in-out infinite alternate;
 }
 @keyframes trishulLevitate {
-  0% { transform: translateY(0px) scale(1) rotate(0deg); filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 24px rgba(79, 70, 229, 0.65)); }
-  50% { transform: translateY(-8px) scale(1.04) rotate(1.5deg); }
-  100% { transform: translateY(-4px) scale(1.02) rotate(-1.5deg); filter: drop-shadow(0 0 24px rgba(251, 191, 36, 1)) drop-shadow(0 0 40px rgba(129, 140, 248, 0.9)); }
+  0% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 24px rgba(79, 70, 229, 0.65));
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(-4px) scale(1.02) rotate(-1.5deg);
+    filter: drop-shadow(0 0 26px rgba(251, 191, 36, 1)) drop-shadow(0 0 45px rgba(129, 140, 248, 0.95));
+  }
 }
 
 /* Damru Sound Waves */
@@ -146,8 +168,8 @@
 }
 @keyframes damruCosmicBeat {
   0%, 100% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(-6deg) scale(1.1); }
-  75% { transform: rotate(6deg) scale(1.1); }
+  25%      { transform: rotate(-6deg) scale(1.1); }
+  75%      { transform: rotate(6deg) scale(1.1); }
 }
 
 /* Glowing Third Eye (Trinetra) */
@@ -155,8 +177,8 @@
   animation: trinetraLaser 1.8s ease-in-out infinite alternate;
 }
 @keyframes trinetraLaser {
-  0% { fill: #ef4444; filter: drop-shadow(0 0 3px #ef4444); }
-  100% { fill: #fef08a; filter: drop-shadow(0 0 12px #f59e0b) drop-shadow(0 0 20px #ef4444); }
+  0%   { fill: #ef4444; filter: drop-shadow(0 0 4px #ef4444); }
+  100% { fill: #fef08a; filter: drop-shadow(0 0 14px #f59e0b) drop-shadow(0 0 22px #ef4444); }
 }
 
 /* Crescent Moon Glow */
@@ -164,60 +186,60 @@
   animation: chandraGlow 2.8s ease-in-out infinite alternate;
 }
 @keyframes chandraGlow {
-  0% { opacity: 0.85; filter: drop-shadow(0 0 4px #93c5fd); }
-  100% { opacity: 1; filter: drop-shadow(0 0 14px #ffffff) drop-shadow(0 0 22px #60a5fa); }
+  0%   { opacity: 0.85; filter: drop-shadow(0 0 4px #93c5fd); }
+  100% { opacity: 1; filter: drop-shadow(0 0 16px #ffffff) drop-shadow(0 0 24px #60a5fa); }
 }
 
 /* ── 3. Delightful Glowing Mantra Badge & Progress ────────── */
 .shiva-caption-wrap {
-  margin-top: 24px;
+  margin-top: 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   position: relative;
   z-index: 10;
 }
 
-/* Glass Sacred Mantra Pill */
+/* Liquid Glass Sacred Mantra Pill */
 .shiva-mantra-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 22px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(251, 191, 36, 0.5);
+  gap: 12px;
+  padding: 10px 26px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.04) 100%), rgba(20, 15, 55, 0.6);
+  border: 1.5px solid rgba(251, 191, 36, 0.6);
   border-radius: 999px;
-  box-shadow: 0 0 24px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.4), inset 0 1px 1.5px rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   animation: pillPulse 2.5s ease-in-out infinite alternate;
 }
 @keyframes pillPulse {
-  0% { transform: scale(1); box-shadow: 0 0 18px rgba(245, 158, 11, 0.3); }
-  100% { transform: scale(1.03); box-shadow: 0 0 32px rgba(251, 191, 36, 0.6), 0 0 16px rgba(79, 70, 229, 0.5); }
+  0%   { transform: scale(1); box-shadow: 0 0 20px rgba(245, 158, 11, 0.35); }
+  100% { transform: scale(1.04); box-shadow: 0 0 38px rgba(251, 191, 36, 0.7), 0 0 20px rgba(79, 70, 229, 0.55); }
 }
 
 .shiva-mantra-pill-text {
-  font-size: 16px;
+  font-size: 16.5px;
   font-weight: 800;
-  letter-spacing: 2.5px;
+  letter-spacing: 2.8px;
   background: linear-gradient(90deg, #fef08a 0%, #f59e0b 50%, #fef08a 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: mantraShimmer 2.2s linear infinite;
-  text-shadow: 0 0 18px rgba(245, 158, 11, 0.45);
+  text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
 }
 @keyframes mantraShimmer {
   to { background-position: 200% center; }
 }
 
-/* Progress Bar with Glowing Orb */
+/* Progress Bar with Glowing Fluid Orb */
 .shiva-prog-track {
-  width: 220px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 230px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -230,22 +252,22 @@
   background-size: 200% 100%;
   border-radius: 10px;
   animation: progSweep 1.6s ease-in-out infinite alternate;
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.8);
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.9);
 }
 @keyframes progSweep {
-  0% { transform: translateX(-60%); }
+  0%   { transform: translateX(-60%); }
   100% { transform: translateX(60%); }
 }
 
-/* Cheerful rotating Gujarati subtitle */
 .shiva-loading-label {
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #f1f5f9;
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 /* ── 4. In-App Browser Warning (WhatsApp / Instagram fix) ───── */
@@ -256,12 +278,12 @@
   z-index: 99999;
   background: linear-gradient(90deg, #065f46, #047857);
   color: white;
-  padding: 10px 14px;
+  padding: 11px 16px;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  font-size: 12.5px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  gap: 12px;
+  font-size: 13px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 .whatsapp-open-banner.show { display: flex; }
 .whatsapp-open-btn {
@@ -269,100 +291,123 @@
   color: #065f46;
   border: none;
   font-weight: 800;
-  font-size: 12px;
-  padding: 6px 14px;
-  border-radius: 6px;
+  font-size: 12.5px;
+  padding: 7px 16px;
+  border-radius: 8px;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* ── 5. Instant 1-Click Install Dialog (Spatial Shiva Theme) ─ */
+/* ── 5. Instant 1-Click Install Dialog (Liquid Glass Shiva) ── */
 .shiva-install-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: rgba(5, 3, 20, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(5, 3, 20, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
-  animation: modalIn .2s ease;
+  animation: modalIn .25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .shiva-install-modal-overlay.hidden { display: none !important; }
-@keyframes modalIn { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
 
 .shiva-install-card {
-  background: linear-gradient(160deg, #140d3d 0%, #0c0828 60%, #060418 100%);
-  border: 1.5px solid rgba(251, 191, 36, 0.4);
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(251, 191, 36, 0.25);
+  background: linear-gradient(155deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 60%, rgba(255,255,255,0.01) 100%), rgba(16, 11, 46, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(251, 191, 36, 0.5);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 35px rgba(251, 191, 36, 0.35), inset 0 1px 1.5px rgba(255, 255, 255, 0.45);
   width: 100%;
-  max-width: 440px;
+  max-width: 450px;
   overflow: hidden;
   position: relative;
 }
 
 .shiva-card-top-glow {
   height: 4px;
-  background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6, #3b82f6);
+  background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6, #38bdf8);
 }
 
 .shiva-card-body {
-  padding: 24px 20px;
+  padding: 26px 24px;
   text-align: center;
 }
 
 .shiva-app-badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  border-radius: 16px;
-  padding: 10px 16px;
-  margin-bottom: 16px;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 18px;
+  padding: 12px 18px;
+  margin-bottom: 18px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
 }
 .shiva-app-badge img {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  box-shadow: 0 0 14px rgba(251, 191, 36, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.6);
 }
 .shiva-app-badge-title { text-align: left; }
-.shiva-app-badge-title h4 { font-size: 15px; font-weight: 800; color: #ffffff; margin: 0; }
-.shiva-app-badge-title p { font-size: 11.5px; color: #a5b4fc; margin: 2px 0 0; }
+.shiva-app-badge-title h4 {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+.shiva-app-badge-title p {
+  font-size: 12px;
+  color: #c7d2fe;
+  margin: 2px 0 0;
+}
 
-.shiva-install-title { font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 6px; }
-.shiva-install-desc { font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-bottom: 18px; line-height: 1.55; }
+.shiva-install-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.shiva-install-desc {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
 
-/* ── 6. iOS Floating Arrow for Safari ────────────────────── */
+/* ── 6. iOS Floating Pointer for Safari ──────────────────── */
 .ios-floating-pointer {
   position: fixed;
-  bottom: 12px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 999999;
-  background: linear-gradient(135deg, #1e1b4b, #311042);
-  border: 1.5px solid rgba(251, 191, 36, 0.6);
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.98), rgba(49, 16, 66, 0.98));
+  border: 1.5px solid rgba(251, 191, 36, 0.7);
   color: white;
-  padding: 14px 20px;
-  border-radius: 18px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.7), 0 0 25px rgba(251, 191, 36, 0.4);
+  padding: 15px 22px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8), 0 0 30px rgba(251, 191, 36, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
   text-align: center;
-  max-width: 320px;
+  max-width: 330px;
   animation: bouncePointer 1.5s ease-in-out infinite;
 }
 .ios-floating-pointer.hidden { display: none !important; }
 @keyframes bouncePointer {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
+  50%      { transform: translateX(-50%) translateY(-10px); }
 }
 .ios-floating-pointer .pointer-arrow {
-  font-size: 26px;
+  font-size: 28px;
   display: block;
   margin-top: 4px;
+  filter: drop-shadow(0 0 8px #fbbf24);
 }
 
 /* ── 7. Mini Shiva Trishul loader for inline table loads ─── */
@@ -371,12 +416,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 24px;
+  gap: 12px;
+  padding: 26px;
 }
 .shiva-mini-trishul {
-  width: 52px;
-  height: 58px;
-  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.9)) drop-shadow(0 0 20px rgba(79, 70, 229, 0.7));
+  width: 54px;
+  height: 60px;
+  filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 24px rgba(79, 70, 229, 0.75));
   animation: trishulLevitate 2.6s ease-in-out infinite alternate;
 }
