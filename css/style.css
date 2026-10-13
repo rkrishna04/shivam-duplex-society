@@ -125,15 +125,21 @@ button { font-family: inherit; cursor: pointer; }
 }
 .brand-icon {
   width: 48px; height: 48px;
-  background: linear-gradient(135deg, var(--accent) 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.5);
   border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
+  font-size: 26px;
   flex-shrink: 0;
-  box-shadow: var(--shadow-accent), inset 0 1px 0 rgba(255,255,255,0.25);
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition: all .25s ease;
 }
-.brand-text h1 { font-size: 13.5px; font-weight: 800; line-height: 1.2; letter-spacing: 0.3px; }
-.brand-text p  { font-size: 10px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.5px; text-transform: uppercase; }
+.brand-icon:hover {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 0 28px rgba(251, 191, 36, 0.75);
+}
+.brand-text h1 { font-size: 14px; font-weight: 800; line-height: 1.2; letter-spacing: 0.5px; color: #ffffff; }
+.brand-text p  { font-size: 10px; color: #a5b4fc; margin-top: 3px; letter-spacing: 0.5px; text-transform: uppercase; }
 
 .nav-section-label {
   font-size: 9px; font-weight: 700; letter-spacing: 2px;
@@ -431,15 +437,28 @@ button { font-family: inherit; cursor: pointer; }
 .badge-muted   { background: rgba(255,255,255,0.08);color: var(--text-muted); border-color: var(--border); }
 
 /* ── SPINNER ─────────────────────────────────────────────── */
-.spinner-wrap { display: flex; justify-content: center; align-items: center; padding: 60px 20px; }
 .spinner {
-  width: 36px; height: 36px;
-  border: 3px solid rgba(255,255,255,0.1);
-  border-top-color: var(--primary-light);
+  width: 46px; height: 46px;
+  border: 3px solid rgba(251, 191, 36, 0.2);
+  border-top-color: #fbbf24;
+  border-right-color: #818cf8;
   border-radius: 50%;
+  box-shadow: 0 0 18px rgba(251, 191, 36, 0.45), inset 0 0 12px rgba(79, 70, 229, 0.3);
   animation: spin .75s linear infinite;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-@keyframes spin { to { transform: rotate(360deg) } }
+.spinner::after {
+  content: '🔱';
+  position: absolute;
+  font-size: 18px;
+  filter: drop-shadow(0 0 6px #fbbf24);
+  animation: shivaTrishulCounterSpin .75s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shivaTrishulCounterSpin { to { transform: rotate(-360deg); } }
 
 .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 .empty-state .empty-icon { font-size: 60px; margin-bottom: 14px; opacity: .4; }

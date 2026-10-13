@@ -13,61 +13,111 @@ foreach ($sz in $sizes) {
     $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
     $g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
 
-    # Background gradient
+    # Background gradient: Cosmic Deep Navy & Royal Indigo
     $rect = New-Object System.Drawing.Rectangle(0, 0, $sz, $sz)
-    $c1 = [System.Drawing.Color]::FromArgb(255, 10, 8, 32)
-    $c2 = [System.Drawing.Color]::FromArgb(255, 26, 16, 80)
+    $c1 = [System.Drawing.Color]::FromArgb(255, 8, 6, 28)
+    $c2 = [System.Drawing.Color]::FromArgb(255, 22, 14, 66)
     $brush = New-Object System.Drawing.Drawing2D.LinearGradientBrush($rect, $c1, $c2, 45.0)
     $g.FillRectangle($brush, $rect)
     $brush.Dispose()
 
-    # Inner Glow ellipse
-    $glowBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(70, 79, 70, 229))
-    $g.FillEllipse($glowBrush, [int]($sz * 0.15), [int]($sz * 0.1), [int]($sz * 0.7), [int]($sz * 0.7))
-    $glowBrush.Dispose()
+    # Divine Cosmic Aura (Pulsating outer glow)
+    $auraBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
+        $rect,
+        [System.Drawing.Color]::FromArgb(90, 79, 70, 229),
+        [System.Drawing.Color]::FromArgb(40, 245, 158, 11),
+        90.0
+    )
+    $g.FillEllipse($auraBrush, [int]($sz * 0.12), [int]($sz * 0.08), [int]($sz * 0.76), [int]($sz * 0.76))
+    $auraBrush.Dispose()
 
-    # Rounded border outline
-    $borderPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(60, 255, 255, 255), [float]([Math]::Max(1.0, $sz * 0.02)))
+    # Outer Rounded Border with Gold accent
+    $borderPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(120, 251, 191, 36), [float]([Math]::Max(1.5, $sz * 0.025)))
     $g.DrawRectangle($borderPen, [int]($sz * 0.04), [int]($sz * 0.04), [int]($sz * 0.92), [int]($sz * 0.92))
     $borderPen.Dispose()
 
-    # Roof (triangle)
-    $p1 = New-Object System.Drawing.Point([int]($sz * 0.50), [int]($sz * 0.18))
-    $p2 = New-Object System.Drawing.Point([int]($sz * 0.16), [int]($sz * 0.44))
-    $p3 = New-Object System.Drawing.Point([int]($sz * 0.84), [int]($sz * 0.44))
-    $roofBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
+    # --- LORD SHIVA TRISHUL (Divine Golden Trident) ---
+    $cx = [float]($sz * 0.50)
+    $goldBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
         $rect,
-        [System.Drawing.Color]::FromArgb(255, 249, 115, 22),
-        [System.Drawing.Color]::FromArgb(255, 236, 72, 153),
-        45.0
+        [System.Drawing.Color]::FromArgb(255, 254, 240, 138),
+        [System.Drawing.Color]::FromArgb(255, 245, 158, 11),
+        90.0
     )
-    $g.FillPolygon($roofBrush, @($p1, $p2, $p3))
-    $roofBrush.Dispose()
+    $goldPen = New-Object System.Drawing.Pen($goldBrush, [float]([Math]::Max(2.0, $sz * 0.045)))
+    $goldPen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+    $goldPen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
 
-    # House Body
-    $bodyBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(240, 79, 70, 229))
-    $bodyRect = New-Object System.Drawing.Rectangle([int]($sz * 0.22), [int]($sz * 0.44), [int]($sz * 0.56), [int]($sz * 0.36))
-    $g.FillRectangle($bodyBrush, $bodyRect)
-    $bodyBrush.Dispose()
+    # Center Shaft (stem) of Trishul
+    $g.DrawLine($goldPen, $cx, [float]($sz * 0.18), $cx, [float]($sz * 0.78))
 
-    # Door
-    $doorBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 10, 8, 32))
-    $doorRect = New-Object System.Drawing.Rectangle([int]($sz * 0.42), [int]($sz * 0.56), [int]($sz * 0.16), [int]($sz * 0.24))
-    $g.FillRectangle($doorBrush, $doorRect)
-    $doorBrush.Dispose()
+    # Center Blade Point (Top spearhead)
+    $pTop1 = New-Object System.Drawing.PointF($cx, [float]($sz * 0.12))
+    $pTop2 = New-Object System.Drawing.PointF([float]($cx - $sz * 0.05), [float]($sz * 0.22))
+    $pTop3 = New-Object System.Drawing.PointF([float]($cx + $sz * 0.05), [float]($sz * 0.22))
+    $g.FillPolygon($goldBrush, @($pTop1, $pTop2, $pTop3))
 
-    # Windows
-    $winBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(230, 165, 180, 252))
-    $win1 = New-Object System.Drawing.Rectangle([int]($sz * 0.27), [int]($sz * 0.49), [int]($sz * 0.11), [int]($sz * 0.11))
-    $win2 = New-Object System.Drawing.Rectangle([int]($sz * 0.62), [int]($sz * 0.49), [int]($sz * 0.11), [int]($sz * 0.11))
-    $g.FillRectangle($winBrush, $win1)
-    $g.FillRectangle($winBrush, $win2)
-    $winBrush.Dispose()
+    # Left Curved Trident Prong
+    $pL1 = New-Object System.Drawing.PointF([float]($cx - $sz * 0.02), [float]($sz * 0.38))
+    $pL2 = New-Object System.Drawing.PointF([float]($cx - $sz * 0.24), [float]($sz * 0.36))
+    $pL3 = New-Object System.Drawing.PointF([float]($cx - $sz * 0.22), [float]($sz * 0.20))
+    $g.DrawBezier($goldPen, $pL1, (New-Object System.Drawing.PointF([float]($cx - $sz * 0.16), [float]($sz * 0.44))), (New-Object System.Drawing.PointF([float]($cx - $sz * 0.26), [float]($sz * 0.30))), $pL3)
 
-    # Bottom Text "SHIVAM"
-    $fontSize = [float]([Math]::Max(6.0, $sz * 0.085))
+    # Left Spear tip
+    $g.FillPolygon($goldBrush, @(
+        $pL3,
+        (New-Object System.Drawing.PointF([float]($cx - $sz * 0.26), [float]($sz * 0.24))),
+        (New-Object System.Drawing.PointF([float]($cx - $sz * 0.18), [float]($sz * 0.24)))
+    ))
+
+    # Right Curved Trident Prong
+    $pR1 = New-Object System.Drawing.PointF([float]($cx + $sz * 0.02), [float]($sz * 0.38))
+    $pR2 = New-Object System.Drawing.PointF([float]($cx + $sz * 0.24), [float]($sz * 0.36))
+    $pR3 = New-Object System.Drawing.PointF([float]($cx + $sz * 0.22), [float]($sz * 0.20))
+    $g.DrawBezier($goldPen, $pR1, (New-Object System.Drawing.PointF([float]($cx + $sz * 0.16), [float]($sz * 0.44))), (New-Object System.Drawing.PointF([float]($cx + $sz * 0.26), [float]($sz * 0.30))), $pR3)
+
+    # Right Spear tip
+    $g.FillPolygon($goldBrush, @(
+        $pR3,
+        (New-Object System.Drawing.PointF([float]($cx + $sz * 0.18), [float]($sz * 0.24))),
+        (New-Object System.Drawing.PointF([float]($cx + $sz * 0.26), [float]($sz * 0.24)))
+    ))
+
+    # --- DAMRU (Sacred Drum in center of Trishul) ---
+    $dTop = [float]($sz * 0.46)
+    $dMid = [float]($sz * 0.52)
+    $dBot = [float]($sz * 0.58)
+    $dw = [float]($sz * 0.10)
+    $damruBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 239, 68, 68)) # Sacred Red
+    $g.FillPolygon($damruBrush, @(
+        (New-Object System.Drawing.PointF([float]($cx - $dw), $dTop)),
+        (New-Object System.Drawing.PointF([float]($cx + $dw), $dTop)),
+        (New-Object System.Drawing.PointF($cx, $dMid))
+    ))
+    $g.FillPolygon($damruBrush, @(
+        (New-Object System.Drawing.PointF($cx, $dMid)),
+        (New-Object System.Drawing.PointF([float]($cx + $dw), $dBot)),
+        (New-Object System.Drawing.PointF([float]($cx - $dw), $dBot))
+    ))
+    $damruBrush.Dispose()
+
+    # Center Bindu / Golden band around Damru
+    $bandPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(255, 253, 224, 71), [float]([Math]::Max(1.5, $sz * 0.02)))
+    $g.DrawLine($bandPen, [float]($cx - $dw * 0.4), $dMid, [float]($cx + $dw * 0.4), $dMid)
+    $bandPen.Dispose()
+
+    # --- CRESCENT MOON (Ardha Chandra) ---
+    $moonPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(240, 224, 231, 255), [float]([Math]::Max(1.5, $sz * 0.03)))
+    $g.DrawArc($moonPen, [float]($cx + $sz * 0.06), [float]($sz * 0.14), [float]($sz * 0.18), [float]($sz * 0.18), 120.0, 180.0)
+    $moonPen.Dispose()
+
+    $goldPen.Dispose()
+    $goldBrush.Dispose()
+
+    # --- Text: "SHIVAM" ---
+    $fontSize = [float]([Math]::Max(7.0, $sz * 0.09))
     $font = New-Object System.Drawing.Font("Arial", $fontSize, [System.Drawing.FontStyle]::Bold)
-    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 255, 255, 255))
+    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 254, 240, 138))
     $sf = New-Object System.Drawing.StringFormat
     $sf.Alignment = [System.Drawing.StringAlignment]::Center
     $sf.LineAlignment = [System.Drawing.StringAlignment]::Center
@@ -80,27 +130,7 @@ foreach ($sz in $sizes) {
     $filePath = Join-Path $outDir ("icon-" + $sz + ".png")
     $bmp.Save($filePath, [System.Drawing.Imaging.ImageFormat]::Png)
     $bmp.Dispose()
-    Write-Host "Created valid PNG: $filePath ($sz x $sz)"
+    Write-Host "Created Lord Shiva PWA Icon: $filePath ($sz x $sz)"
 }
 
-# Also create screenshot-mobile.png (390x844)
-$sw = 390
-$sh = 844
-$screenBmp = New-Object System.Drawing.Bitmap($sw, $sh)
-$sg = [System.Drawing.Graphics]::FromImage($screenBmp)
-$srect = New-Object System.Drawing.Rectangle(0, 0, $sw, $sh)
-$sbrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush($srect, [System.Drawing.Color]::FromArgb(255, 10, 8, 32), [System.Drawing.Color]::FromArgb(255, 15, 13, 46), 90.0)
-$sg.FillRectangle($sbrush, $srect)
-$sbrush.Dispose()
-$titleFont = New-Object System.Drawing.Font("Arial", 22.0, [System.Drawing.FontStyle]::Bold)
-$titleBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::White)
-$ssf = New-Object System.Drawing.StringFormat
-$ssf.Alignment = [System.Drawing.StringAlignment]::Center
-$sg.DrawString("SHIVAM DUPLEX", $titleFont, $titleBrush, (New-Object System.Drawing.RectangleF(0, 100, $sw, 50)), $ssf)
-$titleFont.Dispose()
-$titleBrush.Dispose()
-$sg.Dispose()
-$screenPath = Join-Path $outDir "screenshot-mobile.png"
-$screenBmp.Save($screenPath, [System.Drawing.Imaging.ImageFormat]::Png)
-$screenBmp.Dispose()
-Write-Host "Created screenshot: $screenPath"
+Write-Host "All Lord Shiva PWA icons successfully generated!"

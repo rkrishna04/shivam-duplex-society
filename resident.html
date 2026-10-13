@@ -15,6 +15,7 @@
 <title>Resident Portal — SHIVAM DUPLEX</title>
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/tables.css"/>
+<link rel="stylesheet" href="css/shiva-theme.css"/>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
@@ -134,9 +135,10 @@
           <a href="index.html" style="font-size:12px;color:#a5b4fc;text-decoration:none;">← Committee Login (Admin)</a>
         </div>
       </div>
-      <div class="res-loading" id="res-loading">
-        <div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:white;width:28px;height:28px;"></div>
-        <span style="color:white;">Loading your account…</span>
+      <div class="res-loading" id="res-loading" style="display:none;flex-direction:column;align-items:center;gap:10px;padding:20px;">
+        <div style="font-size:52px;filter:drop-shadow(0 0 16px rgba(251,191,36,0.95)) drop-shadow(0 0 28px rgba(79,70,229,0.7));animation:shivaFloat 2.5s ease-in-out infinite alternate;">🔱</div>
+        <div style="font-size:15px;font-weight:800;letter-spacing:2px;color:#fde047;text-shadow:0 0 10px rgba(245,158,11,0.5);">॥ ॐ नमः शिवाय ॥</div>
+        <span style="color:rgba(165,180,252,0.9);font-size:13px;font-weight:600;">ખાતું લોડ થઈ રહ્યું છે...</span>
       </div>
     </div>
   </div>
