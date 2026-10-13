@@ -285,6 +285,7 @@
     <button class="res-tab-btn" data-tab="vehicle-search">🔍 Emergency Vehicle Search</button>
     <button class="res-tab-btn" data-tab="festivals">🎉 Ganesh Utsav Ledger</button>
     <button class="res-tab-btn" data-tab="notices">📢 Society Notices</button>
+    <button class="res-tab-btn" data-tab="committee">🏛 કારોબારી સમિતિ (Hierarchy)</button>
   </div>
 
   <!-- Tab 1: Maintenance Bills -->
@@ -452,6 +453,147 @@
     <div class="card">
       <div class="card-header"><div class="card-title">📢 Society Notices &amp; Announcements</div></div>
       <div style="padding:20px;" id="res-notices-list"></div>
+    </div>
+  </div>
+
+  <!-- Tab 7: Executive Committee Hierarchy -->
+  <div class="res-tab-content" id="tab-committee">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🏛️ સોસાયટી કારોબારી સમિતિ માળખું (Executive Governance)</div>
+      </div>
+      <div style="padding:22px;">
+        <p style="font-size:13.5px;color:var(--misty-sky);margin-bottom:20px;line-height:1.6;">
+          શિવમ ડુપ્લેક્સ સોસાયટીના તમામ વહીવટી અને સેવાકીય હોદ્દેદારોની સંપર્ક યાદી. પાણી, સિક્યુરિટી, લાઈટો કે ફરિયાદ માટે સંબંધિત કારોબારી સભ્યનો સીધો સંપર્ક કરો:
+        </p>
+
+        <!-- Tier 1: ૧ પ્રમુખ (Chairman) -->
+        <div style="background:linear-gradient(145deg, rgba(234,179,8,0.15) 0%, rgba(45,58,71,0.7) 100%);border:2px solid rgba(234,179,8,0.5);border-radius:14px;padding:20px;margin-bottom:18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="font-size:32px;">👑</span>
+              <div>
+                <div style="font-size:18px;font-weight:900;color:#ffffff;">શ્રી રમેશભાઈ પટેલ <span class="badge badge-chairman">૧ પ્રમુખ (CHAIRMAN)</span></div>
+                <div style="font-size:12.5px;color:var(--sage-leaf);font-weight:700;">સોસાયટીના મુખ્ય વડા · ડુપ્લેક્સ નં. ૦૧</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <a href="tel:9825011001" class="quick-action-btn" style="padding:7px 16px;font-size:12px;background:rgba(234,179,8,0.25);border:1px solid rgba(234,179,8,0.5);color:#fde047;">📞 Call</a>
+              <a href="https://wa.me/919825011001" target="_blank" class="quick-action-btn green" style="padding:7px 16px;font-size:12px;">💬 WhatsApp</a>
+            </div>
+          </div>
+          <div style="font-size:12.5px;color:var(--misty-sky);line-height:1.5;">
+            <strong>જવાબદારી:</strong> સોસાયટીના મુખ્ય વડા, સર્વોચ્ચ નીતિગત નિર્ણયો, વાર્ષિક સાધારણ સભા (AGM) અધ્યક્ષતા, સરકારી અને બેંક પ્રતિનિધિત્વ.
+          </div>
+        </div>
+
+        <!-- Tier 2: ૩ મુખ્ય પદાધિકારીઓ -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:18px;">
+          <!-- ૧ ઉપ-પ્રમુખ -->
+          <div style="background:rgba(21,29,36,0.75);border:1.5px solid rgba(245,158,11,0.35);border-radius:12px;padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+              <div>
+                <span class="badge badge-vice" style="margin-bottom:6px;display:inline-block;">🤝 ૧ ઉપ-પ્રમુખ (વૈકલ્પિક)</span>
+                <div style="font-size:16px;font-weight:800;color:#fff;">શ્રી વિનોદભાઈ શાહ</div>
+                <div style="font-size:12px;color:var(--misty-sky);">ડુપ્લેક્સ નં. ૧૧ · +91 98250 11002</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <a href="tel:9825011002" class="quick-action-btn" style="padding:5px 12px;font-size:11px;">📞</a>
+                <a href="https://wa.me/919825011002" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11px;">💬</a>
+              </div>
+            </div>
+            <div style="font-size:12px;color:var(--misty-sky);">પ્રમુખની ગેરહાજરીમાં કામ સંભાળનાર અને કારોબારી સભ્યો સાથે દૈનિક સંકલન.</div>
+          </div>
+
+          <!-- ૧ મંત્રી -->
+          <div style="background:rgba(21,29,36,0.75);border:1.5px solid rgba(96,165,250,0.35);border-radius:12px;padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+              <div>
+                <span class="badge badge-secretary" style="margin-bottom:6px;display:inline-block;">📋 ૧ મંત્રી (SECRETARY)</span>
+                <div style="font-size:16px;font-weight:800;color:#fff;">શ્રી અલ્પેશભાઈ દેસાઈ</div>
+                <div style="font-size:12px;color:var(--misty-sky);">ડુપ્લેક્સ નં. ૨૧ · +91 98250 11003</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <a href="tel:9825011003" class="quick-action-btn" style="padding:5px 12px;font-size:11px;">📞</a>
+                <a href="https://wa.me/919825011003" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11px;">💬</a>
+              </div>
+            </div>
+            <div style="font-size:12px;color:var(--misty-sky);">રોજબરોજના વહીવટ, મિટિંગ્સ, ઠરાવો અને નોટિસનું કામ સંભાળનાર.</div>
+          </div>
+
+          <!-- ૧ ખજાનચી -->
+          <div style="background:rgba(21,29,36,0.75);border:1.5px solid rgba(168,181,138,0.4);border-radius:12px;padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+              <div>
+                <span class="badge badge-treasurer" style="margin-bottom:6px;display:inline-block;">🏦 ૧ ખજાનચી (TREASURER)</span>
+                <div style="font-size:16px;font-weight:800;color:#fff;">શ્રી મુકેશભાઈ પંડ્યા</div>
+                <div style="font-size:12px;color:var(--misty-sky);">ડુપ્લેક્સ નં. ૩૧ · +91 98250 11004</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <a href="tel:9825011004" class="quick-action-btn" style="padding:5px 12px;font-size:11px;">📞</a>
+                <a href="https://wa.me/919825011004" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11px;">💬</a>
+              </div>
+            </div>
+            <div style="font-size:12px;color:var(--misty-sky);">₹૬૦૦/માસિક મેઈન્ટેનન્સ અને સોસાયટી બેંક એકાઉન્ટના હિસાબો રાખનાર.</div>
+          </div>
+        </div>
+
+        <!-- Tier 3: ૮ કારોબારી સભ્યો -->
+        <div style="font-size:14px;font-weight:800;color:#ffffff;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+          <span>🏛️</span> ૭ થી ૮ કારોબારી સભ્યો (વિભાગીય કામગીરી ઇન્ચાર્જ)
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:20px;">
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">💧 પાણી પુરવઠો: શ્રી પ્રદીપ પટેલ</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૦૬ · મોટર, બોરવેલ, ટાંકી સફાઈ</div>
+            <a href="tel:9825011005" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11005</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">🛡️ સિક્યુરિટી &amp; ગેટ: શ્રી હરેશ જોશી</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૧૪ · ગાર્ડ, CCTV, વિઝિટર રજીસ્ટર</div>
+            <a href="tel:9825011006" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11006</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">🧹 સ્વચ્છતા &amp; સફાઈ: શ્રી દીપક પંચાલ</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૧૮ · રોડ સફાઈ, કચરા વાન, ગટર</div>
+            <a href="tel:9825011007" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11007</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">💡 લાઈટો &amp; પાવર: શ્રી ભાવિન શાહ</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૨૩ · સ્ટ્રીટ લાઈટ્સ, મીટર પેનલ</div>
+            <a href="tel:9825011008" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11008</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">🌺 તહેવાર ઉત્સવ: શ્રી જીતેન્દ્ર ત્રિવેદી</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૨૭ · ગણેશ ઉત્સવ, નવરાત્રી, કથા</div>
+            <a href="tel:9825011009" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11009</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">🚗 પાર્કિંગ શિસ્ત: શ્રી સંજય બારોટ</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૩૪ · વાહન પાર્કિંગ, સ્પીડ લિમિટ</div>
+            <a href="tel:9825011010" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11010</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">🌳 બગીચો: શ્રી નરેન્દ્ર રાણા</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૩૮ · સેન્ટ્રલ ગાર્ડન, વૃક્ષારોપણ</div>
+            <a href="tel:9825011011" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11011</a>
+          </div>
+          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.2);border-radius:10px;padding:12px;">
+            <div style="font-size:13px;font-weight:700;color:#fff;">⚖️ ૨૦-ઘર વિવાદ: રાજેશભાઈ &amp; સુરેશભાઈ</div>
+            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ક્લસ્ટર ૧ (૧-૨૦) &amp; ક્લસ્ટર ૨ (૨૧-૪૦)</div>
+            <a href="tel:9825012341" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 12341</a>
+          </div>
+        </div>
+
+        <!-- Tier 4: ઘર માલિકો -->
+        <div style="background:rgba(168,181,138,0.12);border:1px solid rgba(168,181,138,0.35);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-size:15px;font-weight:800;color:#ffffff;">🏡 ૪૦ ડુપ્લેક્સ ઘર માલિકો (General Body)</div>
+            <div style="font-size:12.5px;color:var(--misty-sky);">વાર્ષિક સાધારણ સભા (AGM) ના સત્તાવાર મતદાન હક્ક ધરાવતા સભ્યો.</div>
+          </div>
+          <a href="members.html" class="quick-action-btn" style="padding:7px 16px;font-size:12px;">👥 View Member Directory</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

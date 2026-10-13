@@ -292,9 +292,50 @@ async function initMembersPage() {
   let all=[],filtered=[],page=1,editId=null;
   const PS=10;
 
+  function getDesignationBadge(role) {
+    const r = role || "ઘર માલિક";
+    if (r.includes("પ્રમુખ") && !r.includes("ઉપ")) return `<span class="badge badge-chairman">👑 ૧ પ્રમુખ</span>`;
+    if (r.includes("ઉપ-પ્રમુખ")) return `<span class="badge badge-vice">🤝 ૧ ઉપ-પ્રમુખ</span>`;
+    if (r.includes("મંત્રી")) return `<span class="badge badge-secretary">📋 ૧ મંત્રી</span>`;
+    if (r.includes("ખજાનચી")) return `<span class="badge badge-treasurer">🏦 ૧ ખજાનચી</span>`;
+    if (r.includes("કારોબારી")) return `<span class="badge badge-committee">🏛 ${esc(r.replace("કારોબારી સભ્ય - ",""))}</span>`;
+    if (r.includes("ભાડુઆત")) return `<span class="badge badge-tenant">🔑 ભાડુઆત</span>`;
+    return `<span class="badge badge-owner">🏡 ઘર માલિક</span>`;
+  }
+
   async function load(){
     showLoader();
-    try{all=await getAll(C.MEMBERS);all.sort((a,b)=>(a.flatNumber||"").localeCompare(b.flatNumber||""));applyFilter();}
+    try{
+      all=await getAll(C.MEMBERS);
+      // Auto-seed Committee Hierarchy & Sample Duplexes if collection is empty
+      if(!all.length){
+        const seedMembers = [
+          { flatNumber: "01", wing: "Main", ownerName: "શ્રી રમેશભાઈ પટેલ", contactNumber: "9825011001", designation: "પ્રમુખ (Chairman)", memberType: "Owner", status: "Active", parkingSlot: "P-01", carNumber: "Creta - GJ06AB1001", bikeNumber: "Activa - GJ06CD1001", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "11", wing: "Main", ownerName: "શ્રી વિનોદભાઈ શાહ", contactNumber: "9825011002", designation: "ઉપ-પ્રમુખ (Vice-Chairman)", memberType: "Owner", status: "Active", parkingSlot: "P-11", carNumber: "Brezza - GJ06AB1011", bikeNumber: "Jupiter - GJ06CD1011", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "21", wing: "Main", ownerName: "શ્રી અલ્પેશભાઈ દેસાઈ", contactNumber: "9825011003", designation: "મંત્રી (Secretary)", memberType: "Owner", status: "Active", parkingSlot: "P-21", carNumber: "Baleno - GJ06AB1021", bikeNumber: "Access - GJ06CD1021", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          { flatNumber: "31", wing: "Main", ownerName: "શ્રી મુકેશભાઈ પંડ્યા", contactNumber: "9825011004", designation: "ખજાનચી (Treasurer)", memberType: "Owner", status: "Active", parkingSlot: "P-31", carNumber: "Honda City - GJ06AB1031", bikeNumber: "Splendor - GJ06CD1031", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          // 8 Executive Committee Members
+          { flatNumber: "06", wing: "Main", ownerName: "શ્રી પ્રદીપભાઈ પટેલ", contactNumber: "9825011005", designation: "કારોબારી સભ્ય - પાણી પુરવઠો", memberType: "Owner", status: "Active", parkingSlot: "P-06", carNumber: "Swift - GJ06AB1006", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "14", wing: "Main", ownerName: "શ્રી હરેશભાઈ જોશી", contactNumber: "9825011006", designation: "કારોબારી સભ્ય - સિક્યુરિટી & ગેટ", memberType: "Owner", status: "Active", parkingSlot: "P-14", carNumber: "WagonR - GJ06AB1014", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "18", wing: "Main", ownerName: "શ્રી દીપકભાઈ પંચાલ", contactNumber: "9825011007", designation: "કારોબારી સભ્ય - સ્વચ્છતા & સફાઈ", memberType: "Owner", status: "Active", parkingSlot: "P-18", carNumber: "Ertiga - GJ06AB1018", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "23", wing: "Main", ownerName: "શ્રી ભાવિનભાઈ શાહ", contactNumber: "9825011008", designation: "કારોબારી સભ્ય - લાઈટો & પાવર", memberType: "Owner", status: "Active", parkingSlot: "P-23", carNumber: "i20 - GJ06AB1023", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          { flatNumber: "27", wing: "Main", ownerName: "શ્રી જીતેન્દ્રભાઈ ત્રિવેદી", contactNumber: "9825011009", designation: "કારોબારી સભ્ય - તહેવાર ઉજવણી", memberType: "Owner", status: "Active", parkingSlot: "P-27", carNumber: "Nexon - GJ06AB1027", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          { flatNumber: "34", wing: "Main", ownerName: "શ્રી સંજયભાઈ બારોટ", contactNumber: "9825011010", designation: "કારોબારી સભ્ય - પાર્કિંગ શિસ્ત", memberType: "Owner", status: "Active", parkingSlot: "P-34", carNumber: "Dzire - GJ06AB1034", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          { flatNumber: "38", wing: "Main", ownerName: "શ્રી નરેન્દ્રભાઈ રાણા", contactNumber: "9825011011", designation: "કારોબારી સભ્ય - બગીચો & પર્યાવરણ", memberType: "Owner", status: "Active", parkingSlot: "P-38", carNumber: "Amaze - GJ06AB1038", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          { flatNumber: "04", wing: "Main", ownerName: "શ્રી રાજેશભાઈ પટેલ", contactNumber: "9825012341", designation: "કારોબારી સભ્ય - ૨૦-ઘર વિવાદ ક્લસ્ટર ૧", memberType: "Owner", status: "Active", parkingSlot: "P-04", carNumber: "Innova - GJ06AB1004", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "24", wing: "Main", ownerName: "શ્રી સુરેશભાઈ શાહ", contactNumber: "9825012342", designation: "કારોબારી સભ્ય - ૨૦-ઘર વિવાદ ક્લસ્ટર ૨", memberType: "Owner", status: "Active", parkingSlot: "P-24", carNumber: "Seltos - GJ06AB1024", maintenanceAmount: 600, assignedCommittee: "Cluster 2 - Sureshbhai Shah (21-40)" },
+          // Sample House Owners & Tenants
+          { flatNumber: "02", wing: "Main", ownerName: "શ્રી કલ્પેશ મહેતા", contactNumber: "9825011022", designation: "ઘર માલિક (House Owner)", memberType: "Owner", status: "Active", parkingSlot: "P-02", carNumber: "Venue - GJ06AB1002", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)" },
+          { flatNumber: "03", wing: "Main", ownerName: "શ્રી કૌશિક વ્યાસ", contactNumber: "9825011033", designation: "ઘર માલિક (House Owner)", memberType: "Owner", status: "Active", parkingSlot: "P-03", bikeNumber: "Activa - GJ06CD1003", maintenanceAmount: 600, assignedCommittee: "Cluster 1 - Rajeshbhai Patel (1-20)", hasTenant: true, tenantName: "રાહુલ વર્મા", tenantContact: "9825099003" }
+        ];
+        for(const sm of seedMembers){
+          await addDoc2(C.MEMBERS, sm);
+        }
+        all=await getAll(C.MEMBERS);
+      }
+      all.sort((a,b)=>(a.flatNumber||"").localeCompare(b.flatNumber||""));
+      applyFilter();
+    }
     catch(e){showToast("Load failed: "+e.message,"error");}
     finally{hideLoader();}
   }
@@ -302,9 +343,17 @@ async function initMembersPage() {
   function applyFilter(){
     const q=document.getElementById("search")?.value.toLowerCase()||"";
     const w=document.getElementById("filter-wing")?.value||"";
+    const des=document.getElementById("filter-designation")?.value||"";
     const st=document.getElementById("filter-status")?.value||"";
     const ty=document.getElementById("filter-type")?.value||"";
-    filtered=all.filter(m=>(!q||(m.flatNumber||"").toLowerCase().includes(q)||(m.ownerName||"").toLowerCase().includes(q)||(m.tenantName||"").toLowerCase().includes(q)||(m.contactNumber||"").includes(q)||(m.carNumber||"").toLowerCase().includes(q)||(m.bikeNumber||"").toLowerCase().includes(q))&&(!w||m.wing===w)&&(!st||m.status===st)&&(!ty||m.memberType===ty));
+    filtered=all.filter(m=>{
+      const matchesQ=(!q||(m.flatNumber||"").toLowerCase().includes(q)||(m.ownerName||"").toLowerCase().includes(q)||(m.tenantName||"").toLowerCase().includes(q)||(m.contactNumber||"").includes(q)||(m.carNumber||"").toLowerCase().includes(q)||(m.bikeNumber||"").toLowerCase().includes(q)||(m.designation||"").toLowerCase().includes(q));
+      const matchesW=(!w||m.wing===w);
+      const matchesDes=(!des||(m.designation||"").includes(des));
+      const matchesSt=(!st||m.status===st);
+      const matchesTy=(!ty||m.memberType===ty);
+      return matchesQ && matchesW && matchesDes && matchesSt && matchesTy;
+    });
     document.getElementById("member-count").textContent=filtered.length;
     page=1;render(1);
   }
@@ -315,6 +364,7 @@ async function initMembersPage() {
     tb.innerHTML=rows.map(m=>`<tr>
       <td class="td-mono">${esc(m.flatNumber)}</td>
       <td><span class="badge badge-info">${esc(m.wing)}</span></td>
+      <td>${getDesignationBadge(m.designation)}</td>
       <td class="col-dept"><strong>${esc(m.ownerName)}</strong>${m.tenantName?`<br><span style="font-size:11px;color:var(--text-muted);">🔑 Tenant: ${esc(m.tenantName)}</span>`:""}</td>
       <td>${esc(m.contactNumber)}</td>
       <td class="td-muted" style="font-size:11px;">${formatCurrency(m.maintenanceAmount||MONTHLY_FEE)}/mo</td>
@@ -336,7 +386,7 @@ async function initMembersPage() {
   window.membEdit=(id)=>{
     const m=all.find(x=>x.id===id);if(!m)return;
     editId=id;document.getElementById("modal-title").textContent="Edit Member";
-    const fields=["flatNumber","wing","ownerName","contactNumber","email","parkingSlot","carNumber","bikeNumber","assignedCommittee","moveInDate","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantEmail","tenantAadhar","tenantPan","tenantJob","tenantFamilyCount","tenantRentStart","tenantRentEnd","tenantPin"];
+    const fields=["flatNumber","wing","designation","ownerName","contactNumber","email","parkingSlot","carNumber","bikeNumber","assignedCommittee","moveInDate","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantEmail","tenantAadhar","tenantPan","tenantJob","tenantFamilyCount","tenantRentStart","tenantRentEnd","tenantPin"];
     fields.forEach(k=>{const el=document.getElementById(k);if(el)el.value=m[k]||"";});
     const tenantRentEl=document.getElementById("tenantRent");if(tenantRentEl)tenantRentEl.value=m.tenantRent||"";
     const hasTenantCb=document.getElementById("hasTenant");
@@ -356,7 +406,7 @@ async function initMembersPage() {
     if(tenantSec) tenantSec.style.display=(hasTenantCb?.checked)?"block":"none";
   }
 
-  ["search","filter-wing","filter-status","filter-type"].forEach(id=>
+  ["search","filter-wing","filter-designation","filter-status","filter-type"].forEach(id=>
     document.getElementById(id)?.addEventListener(id==="search"?"input":"change",debounce(applyFilter,250)));
 
   document.getElementById("memberType")?.addEventListener("change",toggleTenantSection);
@@ -366,6 +416,7 @@ async function initMembersPage() {
     editId=null;document.getElementById("member-form")?.reset();
     document.getElementById("modal-title").textContent="Add Member";
     document.getElementById("maintenanceAmount").value=MONTHLY_FEE;
+    if(document.getElementById("designation"))document.getElementById("designation").value="ઘર માલિક (House Owner)";
     if(document.getElementById("tenant-section"))document.getElementById("tenant-section").style.display="none";
     document.getElementById("modal").classList.remove("hidden");
   });
@@ -380,6 +431,7 @@ async function initMembersPage() {
     const data={
       flatNumber:document.getElementById("flatNumber").value.trim(),
       wing:document.getElementById("wing").value,
+      designation:document.getElementById("designation")?.value||"ઘર માલિક (House Owner)",
       ownerName:document.getElementById("ownerName").value.trim(),
       contactNumber:document.getElementById("contactNumber").value.trim(),
       email:document.getElementById("email")?.value.trim()||"",
@@ -415,9 +467,9 @@ async function initMembersPage() {
 
   document.getElementById("btn-export-members")?.addEventListener("click",()=>{
     exportExcel(all,"Member Directory",
-      ["Flat","Wing","Owner Name","Contact","Email","Parking","Type","Status","Maint/Month","Tenant Name","Tenant Contact","Rent Start","Rent End"],
-      ["flatNumber","wing","ownerName","contactNumber","email","parkingSlot","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantRentStart","tenantRentEnd"],
-      [10,8,22,14,26,10,10,10,14,22,14,13,13]);
+      ["Flat","Wing","Designation","Owner Name","Contact","Email","Parking","Type","Status","Maint/Month","Tenant Name","Tenant Contact","Rent Start","Rent End"],
+      ["flatNumber","wing","designation","ownerName","contactNumber","email","parkingSlot","memberType","status","maintenanceAmount","tenantName","tenantContact","tenantRentStart","tenantRentEnd"],
+      [10,8,22,22,14,26,10,10,10,14,22,14,13,13]);
     showToast("Exported!","success");
   });
 

@@ -71,14 +71,24 @@
       <div class="card-header"><div class="card-title">🏠 Member Directory <span class="record-count" id="member-count">0</span></div></div>
       <div class="toolbar">
         <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search flat, name, contact…"/></div>
-        <select id="filter-wing"   class="filter-select"><option value="">All Wings</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+        <select id="filter-wing"   class="filter-select"><option value="">All Wings</option><option>A</option><option>B</option><option>C</option><option>D</option><option>Main</option></select>
+        <select id="filter-designation" class="filter-select">
+          <option value="">All Designations (તમામ હોદ્દા)</option>
+          <option value="પ્રમુખ">👑 પ્રમુખ (Chairman)</option>
+          <option value="ઉપ-પ્રમુખ">🤝 ઉપ-પ્રમુખ (Vice-Chairman)</option>
+          <option value="મંત્રી">📋 મંત્રી (Secretary)</option>
+          <option value="ખજાનચી">🏦 ખજાનચી (Treasurer)</option>
+          <option value="કારોબારી">🏛 કારોબારી સભ્યો (Committee)</option>
+          <option value="ઘર માલિક">🏡 ઘર માલિક (House Owner)</option>
+          <option value="ભાડુઆત">🔑 ભાડુઆત (Tenant)</option>
+        </select>
         <select id="filter-status" class="filter-select"><option value="">All Status</option><option>Active</option><option>Inactive</option><option>Vacated</option></select>
         <select id="filter-type"   class="filter-select"><option value="">All Types</option><option>Owner</option><option>Tenant</option></select>
       </div>
       <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
       <div class="table-wrap">
         <table><thead><tr>
-          <th>Flat No</th><th>Wing</th><th class="col-dept">Owner / Resident</th>
+          <th>Flat No</th><th>Wing</th><th>હોદ્દો / Designation</th><th class="col-dept">Owner / Resident</th>
           <th>Contact</th><th>Maint/Mo</th><th class="col-slot">Parking</th><th>Status</th><th>Actions</th>
         </tr></thead>
         <tbody id="tbody"></tbody></table>
@@ -99,6 +109,26 @@
         <div class="form-grid">
           <div class="form-group"><label class="form-label">Flat / House Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. A-101 or 12"/></div>
           <div class="form-group"><label class="form-label">Wing / Block <span class="req">*</span></label><select id="wing" class="form-control"><option value="">Select</option><option>A</option><option>B</option><option>C</option><option>D</option><option>Main</option></select></div>
+          <div class="form-group">
+            <label class="form-label">સોસાયટી હોદ્દો / Designation <span class="req">*</span></label>
+            <select id="designation" class="form-control">
+              <option value="પ્રમુખ (Chairman)">👑 ૧ પ્રમુખ (Chairman / President) — મુખ્ય વડા</option>
+              <option value="ઉપ-પ્રમુખ (Vice-Chairman)">🤝 ૧ ઉપ-પ્રમુખ (Vice-Chairman) — વૈકલ્પિક</option>
+              <option value="મંત્રી (Secretary)">📋 ૧ મંત્રી (Secretary) — વહીવટ &amp; નોટિસ</option>
+              <option value="ખજાનચી (Treasurer)">🏦 ૧ ખજાનચી (Treasurer) — હિસાબ &amp; બેંક</option>
+              <option value="કારોબારી સભ્ય - પાણી પુરવઠો">💧 કારોબારી સભ્ય — પાણી પુરવઠો</option>
+              <option value="કારોબારી સભ્ય - સિક્યુરિટી &amp; ગેટ">🛡️ કારોબારી સભ્ય — સિક્યુરિટી &amp; ગેટ</option>
+              <option value="કારોબારી સભ્ય - સ્વચ્છતા &amp; સફાઈ">🧹 કારોબારી સભ્ય — સ્વચ્છતા &amp; સફાઈ</option>
+              <option value="કારોબારી સભ્ય - લાઈટો &amp; પાવર">💡 કારોબારી સભ્ય — લાઈટો &amp; પાવર</option>
+              <option value="કારોબારી સભ્ય - તહેવાર ઉજવણી">🌺 કારોબારી સભ્ય — તહેવાર ઉજવણી</option>
+              <option value="કારોબારી સભ્ય - પાર્કિંગ શિસ્ત">🚗 કારોબારી સભ્ય — પાર્કિંગ શિસ્ત</option>
+              <option value="કારોબારી સભ્ય - બગીચો &amp; પર્યાવરણ">🌳 કારોબારી સભ્ય — બગીચો &amp; પર્યાવરણ</option>
+              <option value="કારોબારી સભ્ય - ૨૦-ઘર વિવાદ ક્લસ્ટર ૧">⚖️ કારોબારી સભ્ય — ૨૦-ઘર વિવાદ (૧-૨૦)</option>
+              <option value="કારોબારી સભ્ય - ૨૦-ઘર વિવાદ ક્લસ્ટર ૨">⚖️ કારોબારી સભ્ય — ૨૦-ઘર વિવાદ (૨૧-૪૦)</option>
+              <option value="ઘર માલિક (House Owner)" selected>🏡 ઘર માલિક (House Owner)</option>
+              <option value="ભાડુઆત (Tenant)">🔑 ભાડુઆત (Tenant)</option>
+            </select>
+          </div>
           <div class="form-group"><label class="form-label">Owner Full Name <span class="req">*</span></label><input id="ownerName" class="form-control" placeholder="Full name"/></div>
           <div class="form-group"><label class="form-label">Contact Number <span class="req">*</span></label><input id="contactNumber" class="form-control" placeholder="10-digit mobile"/></div>
           <div class="form-group"><label class="form-label">Email</label><input id="email" class="form-control" type="email" placeholder="email@example.com"/></div>
