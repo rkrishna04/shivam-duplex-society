@@ -4,7 +4,7 @@
    Supports offline caching & seamless PWA installation
    ============================================================ */
 
-const CACHE_NAME = 'shivam-duplex-v6';
+const CACHE_NAME = 'shivam-duplex-v8';
 
 const STATIC_ASSETS = [
   'index.html',
@@ -24,6 +24,7 @@ const STATIC_ASSETS = [
   'css/forms.css',
   'css/shiva-theme.css',
   'js/app.js',
+  'js/society-map.js',
   'js/pwa.js',
   'js/print.js',
   'js/firebase-config.js',
@@ -37,10 +38,10 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW v4] Caching core assets');
+      console.log('[SW v8] Caching core assets');
       return Promise.allSettled(
         STATIC_ASSETS.map((url) =>
-          cache.add(url).catch((err) => console.warn('[SW v4] Pre-cache skip:', url, err))
+          cache.add(url).catch((err) => console.warn('[SW v8] Pre-cache skip:', url, err))
         )
       );
     })
@@ -55,7 +56,7 @@ self.addEventListener('activate', (event) => {
         cacheNames
           .filter((name) => name !== CACHE_NAME)
           .map((name) => {
-            console.log('[SW v4] Purging old cache:', name);
+            console.log('[SW v8] Purging old cache:', name);
             return caches.delete(name);
           })
       )
@@ -108,12 +109,27 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. Static Assets (CSS, JS, Images, Icons):
-  // Cache-First with Network Revalidation
+  // 2. CSS & JS Code Assets: Network-First with Cache Fallback
+  // Ensures UI styles, modal states, and script bugfixes apply instantly on next load
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
+    event.respondWith(
+      fetch(req)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // 3. Media & Static Assets (Images, Icons, Fonts): Cache-First
   event.respondWith(
     caches.match(req).then((cachedResponse) => {
       if (cachedResponse) {
-        // Revalidate in background
         fetch(req)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {

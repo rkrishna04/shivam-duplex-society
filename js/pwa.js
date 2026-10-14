@@ -427,7 +427,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
       navigator.serviceWorker
         .register('sw.js')
         .then((reg) => {
-          console.log('[PWA] SW registered v4:', reg.scope);
+          console.log('[PWA] SW registered v8:', reg.scope);
+          try { reg.update(); } catch(e) {}
         })
         .catch((err) => console.warn('[PWA] SW reg:', err));
     });
@@ -435,6 +436,12 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
   // 15. DOM Ready Bootstrap
   document.addEventListener('DOMContentLoaded', () => {
+    // Failsafe: Guarantee all modals without explicit .show class start strictly hidden
+    document.querySelectorAll('.map-modal-overlay:not(.show), .admin-modal-overlay:not(.show)').forEach((m) => {
+      m.classList.add('hidden');
+      m.style.setProperty('display', 'none', 'important');
+    });
+
     inject3DShivaLoader();
     checkInAppBrowser();
     upgradeBrandIcon();

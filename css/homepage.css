@@ -1243,23 +1243,27 @@ body.landing-body,
   color: rgba(169, 183, 198, 0.7);
 }
 
-/* ── Admin Login Modal ───────────────────────────────────── */
-.admin-modal-overlay {
+/* ── Admin Login & Map Inspector Modals ─────────────────── */
+.admin-modal-overlay,
+.map-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.78);
   backdrop-filter: var(--blur-sm);
   -webkit-backdrop-filter: var(--blur-sm);
   z-index: 10000;
-  display: none;
+  display: none !important;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
-.admin-modal-overlay.show {
-  display: flex;
+.admin-modal-overlay.show,
+.map-modal-overlay.show,
+.map-modal-overlay.active {
+  display: flex !important;
 }
-.admin-modal-overlay.hidden {
+.admin-modal-overlay.hidden,
+.map-modal-overlay.hidden {
   display: none !important;
 }
 .admin-modal-box {

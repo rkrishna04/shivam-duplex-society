@@ -174,6 +174,13 @@ window.initSocietyMap = function(containerId) {
 
   renderMapInterface(container);
   setupMapEventListeners();
+
+  const insModal = document.getElementById("map-inspector-modal");
+  if (insModal) {
+    insModal.classList.add("hidden");
+    insModal.classList.remove("show");
+    insModal.style.setProperty("display", "none", "important");
+  }
 };
 
 function renderMapInterface(container) {
@@ -305,7 +312,7 @@ function renderMapInterface(container) {
     </div>
 
     <!-- Inspector Modal / Drawer for House or Streetlight -->
-    <div id="map-inspector-modal" class="map-modal-overlay hidden">
+    <div id="map-inspector-modal" class="map-modal-overlay hidden" style="display: none !important;">
       <div class="map-modal-card">
         <div class="map-modal-header">
           <div id="inspector-title" style="font-size:18px;font-weight:900;color:#fff;">વિગતો</div>
@@ -469,6 +476,8 @@ window.openHouseInspector = async function(flat) {
   if (!modal || !body) return;
 
   modal.classList.remove("hidden");
+  modal.classList.add("show");
+  modal.style.setProperty("display", "flex", "important");
   title.innerHTML = `🏡 ડુપ્લેક્સ નં. ${flat} — વિગતો`;
   body.innerHTML = `<div style="text-align:center;padding:20px;color:var(--misty-sky);">વિગતો લોડ થઈ રહી છે...</div>`;
 
@@ -572,6 +581,8 @@ window.openStreetlightInspector = function(slId) {
 
   const lineObj = SOCIETY_LINES.find(l => l.id === sl.line);
   modal.classList.remove("hidden");
+  modal.classList.add("show");
+  modal.style.setProperty("display", "flex", "important");
   title.innerHTML = `💡 સ્ટ્રીટ લાઈટ: ${sl.id}`;
 
   body.innerHTML = `
@@ -612,6 +623,8 @@ window.openLandmarkModal = function(type) {
   if (!modal || !body) return;
 
   modal.classList.remove("hidden");
+  modal.classList.add("show");
+  modal.style.setProperty("display", "flex", "important");
 
   if (type === "park") {
     title.innerHTML = "🌳 શિવમ ડુપ્લેક્સ સેન્ટ્રલ પાર્ક";
@@ -658,6 +671,10 @@ window.openLandmarkModal = function(type) {
 
 window.closeMapInspector = function() {
   const modal = document.getElementById("map-inspector-modal");
-  if (modal) modal.classList.add("hidden");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.classList.add("hidden");
+    modal.style.setProperty("display", "none", "important");
+  }
   clearHighlights();
 };

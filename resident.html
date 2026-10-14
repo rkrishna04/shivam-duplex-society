@@ -25,6 +25,11 @@
 <script src="js/society-map.js"></script>
 <script src="js/app.js"></script>
 <style>
+  #map-inspector-modal,
+  .map-modal-overlay:not(.show),
+  .admin-modal-overlay:not(.show):not(.active) {
+    display: none !important;
+  }
   .res-hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
   .res-search-card {
     background: linear-gradient(145deg, rgba(169,183,198,0.16) 0%, rgba(45,58,71,0.65) 60%, rgba(21,29,36,0.92) 100%);

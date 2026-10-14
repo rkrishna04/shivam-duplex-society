@@ -1416,14 +1416,18 @@ button { font-family: inherit; cursor: pointer; }
 .map-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.78);
   backdrop-filter: var(--blur-sm);
   -webkit-backdrop-filter: var(--blur-sm);
   z-index: 10000;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 16px;
+}
+.map-modal-overlay.show,
+.map-modal-overlay.active {
+  display: flex !important;
 }
 .map-modal-overlay.hidden {
   display: none !important;
