@@ -50,9 +50,9 @@
   color: rgba(148, 163, 184, 0.5);
 }
 .form-control:focus {
-  background: rgba(16, 22, 30, 0.98);
-  border-color: rgba(56, 189, 248, 0.85);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(56, 189, 248, 0.18), 0 0 16px rgba(56, 189, 248, 0.12);
+  background: rgba(15, 23, 42, 0.98);
+  border-color: rgba(59, 130, 246, 0.85);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(37, 99, 235, 0.22), 0 0 16px rgba(59, 130, 246, 0.16);
 }
 .form-control.is-invalid {
   border-color: var(--danger, #f87171);
@@ -72,7 +72,7 @@ select.form-control {
   cursor: pointer;
 }
 select.form-control option {
-  background: #1e2832;
+  background: #0f172a;
   color: #ffffff;
 }
 textarea.form-control {
@@ -83,7 +83,7 @@ textarea.form-control {
 
 .field-err {
   font-size: 12px;
-  color: var(--rosewood);
+  color: var(--danger);
   display: none;
   font-weight: 600;
 }
@@ -109,7 +109,7 @@ textarea.form-control {
   gap: 12px;
   padding: 18px 24px;
   border-top: 1px solid var(--border-light);
-  background: linear-gradient(135deg, rgba(169,183,198,0.03) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, transparent 100%);
   flex-wrap: wrap;
 }
 
@@ -122,19 +122,19 @@ textarea.form-control {
   font-weight: 800;
   color: var(--misty-sky);
   padding: 14px 22px;
-  background: linear-gradient(90deg, rgba(45, 58, 71, 0.8) 0%, rgba(79, 102, 125, 0.4) 100%);
-  border-bottom: 1px solid rgba(169, 183, 198, 0.3);
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 138, 0.35) 100%);
+  border-bottom: 1px solid rgba(147, 197, 253, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
 .sec-num {
   width: 26px; height: 26px;
-  background: linear-gradient(135deg, #4f667d, #2f4153);
+  background: linear-gradient(180deg, #3B82F6, #1D4ED8);
   color: #ffffff;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 800; flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(79, 102, 125, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
 }
 .form-section { padding: 22px 24px; }
 
@@ -143,7 +143,7 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(135deg, #4f667d 0%, #2f4153 100%);
+  background: linear-gradient(180deg, #1E3A8A 0%, #0F172A 100%);
   color: #ffffff;
   padding: 7px 20px;
   border-radius: var(--radius-pill);
@@ -151,8 +151,8 @@ textarea.form-control {
   font-size: 13.5px;
   font-weight: 800;
   letter-spacing: 1px;
-  box-shadow: 0 0 18px rgba(79, 102, 125, 0.55), inset 0 1px 1.5px rgba(255,255,255,0.45);
-  border: 1px solid rgba(169, 183, 198, 0.35);
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.35), inset 0 1px 1.5px rgba(255,255,255,0.45);
+  border: 1px solid rgba(147, 197, 253, 0.35);
 }
 
 /* ── Receipt Card ────────────────────────────────────────── */
@@ -174,10 +174,10 @@ textarea.form-control {
 }
 
 .receipt-card {
-  background: linear-gradient(145deg, rgba(169,183,198,0.14) 0%, rgba(45,58,71,0.5) 60%, rgba(21,29,36,0.92) 100%);
+  background: linear-gradient(145deg, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(8, 12, 22, 0.98) 100%);
   backdrop-filter: var(--blur-lg);
   -webkit-backdrop-filter: var(--blur-lg);
-  border: 1px solid rgba(169, 183, 198, 0.3);
+  border: 1px solid rgba(147, 197, 253, 0.28);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg), var(--specular-top);
@@ -193,13 +193,13 @@ textarea.form-control {
 }
 
 .rcpt-header {
-  background: linear-gradient(135deg, rgba(32, 43, 54, 0.95), rgba(45, 58, 71, 0.92));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 58, 138, 0.9));
   color: white;
   padding: 24px 28px;
   text-align: center;
   position: relative;
   z-index: 1;
-  border-bottom: 1px solid rgba(169, 183, 198, 0.35);
+  border-bottom: 1px solid rgba(147, 197, 253, 0.25);
 }
 .rcpt-society {
   font-size: 22px;
@@ -213,7 +213,7 @@ textarea.form-control {
   margin-top: 4px;
 }
 .rcpt-title-bar {
-  background: linear-gradient(90deg, #e29578, #ca7758);
+  background: linear-gradient(90deg, #3B82F6, #1D4ED8);
   color: #ffffff;
   text-align: center;
   padding: 8px;
@@ -221,15 +221,15 @@ textarea.form-control {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
-  box-shadow: 0 4px 14px rgba(226, 149, 120, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.5), inset 0 1px 1px rgba(255,255,255,0.4);
 }
 .rcpt-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 28px;
-  background: rgba(169, 183, 198, 0.04);
-  border-bottom: 1px dashed rgba(169, 183, 198, 0.2);
+  background: rgba(147, 197, 253, 0.04);
+  border-bottom: 1px dashed rgba(147, 197, 253, 0.2);
   flex-wrap: wrap;
   gap: 10px;
   position: relative;
@@ -262,7 +262,7 @@ textarea.form-control {
   grid-template-columns: 160px 1fr;
   gap: 6px 12px;
   padding: 9px 0;
-  border-bottom: 1px dotted rgba(169, 183, 198, 0.14);
+  border-bottom: 1px dotted rgba(147, 197, 253, 0.15);
   font-size: 14px;
 }
 .rcpt-row:last-child { border-bottom: none; }
@@ -276,7 +276,7 @@ textarea.form-control {
 }
 
 .rcpt-amount-box {
-  background: linear-gradient(135deg, rgba(45, 58, 71, 0.9), rgba(79, 102, 125, 0.8));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.85));
   backdrop-filter: blur(10px);
   padding: 18px 28px;
   display: flex;
@@ -286,8 +286,8 @@ textarea.form-control {
   gap: 10px;
   position: relative;
   z-index: 1;
-  border-top: 1px solid rgba(169, 183, 198, 0.4);
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(147, 197, 253, 0.3);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.3);
 }
 .amt-label {
   font-size: 11px;
@@ -299,12 +299,12 @@ textarea.form-control {
 .amt-value {
   font-size: 30px;
   font-weight: 900;
-  color: var(--sage-leaf);
-  text-shadow: 0 0 25px rgba(168, 181, 138, 0.4);
+  color: var(--success);
+  text-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
 }
 .amt-words {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   margin-top: 4px;
 }
 
@@ -313,14 +313,14 @@ textarea.form-control {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 14px;
   padding: 18px 28px;
-  border-top: 1px solid rgba(169, 183, 198, 0.15);
+  border-top: 1px solid rgba(147, 197, 253, 0.15);
   position: relative;
   z-index: 1;
-  background: rgba(169, 183, 198, 0.02);
+  background: rgba(147, 197, 253, 0.02);
 }
 .sig-box { text-align: center; }
 .sig-line {
-  border-top: 1.5px solid rgba(169, 183, 198, 0.4);
+  border-top: 1.5px solid rgba(147, 197, 253, 0.3);
   margin-top: 30px;
   padding-top: 6px;
   font-size: 11px;
@@ -342,19 +342,19 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(168, 181, 138, 0.25);
-  color: #c9dbab;
-  border: 1px solid rgba(168, 181, 138, 0.5);
+  background: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.45);
   padding: 4px 14px;
   border-radius: var(--radius-pill);
   font-size: 12px;
   font-weight: 800;
-  box-shadow: 0 0 12px rgba(168, 181, 138, 0.25), inset 0 1px 1px rgba(255,255,255,0.3);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.25), inset 0 1px 1px rgba(255,255,255,0.3);
 }
 
 /* ── Tenant Section Container ────────────────────────────── */
 .tenant-section-header {
-  background: linear-gradient(90deg, rgba(226, 149, 120, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.22), transparent);
   border-left: 3.5px solid var(--accent);
   padding: 12px 18px;
   margin: 18px 0 14px;
@@ -362,12 +362,12 @@ textarea.form-control {
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: inset 0 0 20px rgba(226, 149, 120, 0.08);
+  box-shadow: inset 0 0 20px rgba(56, 189, 248, 0.08);
 }
 .tenant-section-header .ts-label {
   font-size: 13.5px;
   font-weight: 800;
-  color: #fde047;
+  color: #38bdf8;
   letter-spacing: 0.3px;
 }
 

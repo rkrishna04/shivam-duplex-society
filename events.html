@@ -26,14 +26,14 @@
   .evt-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; overflow-x: auto; }
   .evt-tab-btn {
     padding: 10px 20px; border-radius: var(--radius-pill);
-    background: rgba(169, 183, 198, 0.1); border: 1px solid rgba(169, 183, 198, 0.25);
-    color: var(--misty-sky); font-weight: 700; font-size: 13px; cursor: pointer;
+    background: rgba(147, 197, 253, 0.08); border: 1px solid rgba(147, 197, 253, 0.22);
+    color: var(--primary-light); font-weight: 700; font-size: 13px; cursor: pointer;
     transition: all 0.2s ease; white-space: nowrap;
   }
   .evt-tab-btn.active {
-    background: linear-gradient(135deg, rgba(226, 149, 120, 0.4) 0%, rgba(45, 58, 71, 0.8) 100%);
-    border-color: rgba(247, 200, 211, 0.5); color: #ffffff;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border-color: rgba(147, 197, 253, 0.45); color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
   }
   .evt-tab-panel { display: none; }
   .evt-tab-panel.active { display: block; }
@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);">📲 Install App</button>
+      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--success);border-color:rgba(16,185,129,0.4);">📲 Install App</button>
       <button class="btn btn-outline btn-sm" id="btn-export">📥 Export Excel</button>
       <button class="btn btn-accent" id="btn-add">➕ Add Event</button>
     </div>

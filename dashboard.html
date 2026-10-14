@@ -30,10 +30,10 @@
 <style>
   /* Admin Command Center Specific Styles */
   .hero-welcome {
-    background: linear-gradient(135deg, rgba(169,183,198,0.16) 0%, rgba(45,58,71,0.6) 55%, rgba(21,29,36,0.92) 100%);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.16) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(6, 9, 19, 0.95) 100%);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
-    border: 1px solid rgba(169, 183, 198, 0.32);
+    border: 1px solid rgba(147, 197, 253, 0.28);
     border-radius: var(--radius-xl);
     padding: 24px 30px;
     margin-bottom: 24px;
@@ -67,33 +67,33 @@
   .quick-action-btn {
     display: inline-flex; align-items: center; gap: 9px;
     padding: 11px 22px; border-radius: var(--radius-pill);
-    background: rgba(169, 183, 198, 0.12);
+    background: rgba(147, 197, 253, 0.08);
     backdrop-filter: var(--blur-sm);
     -webkit-backdrop-filter: var(--blur-sm);
-    border: 1px solid rgba(169, 183, 198, 0.28);
+    border: 1px solid rgba(147, 197, 253, 0.24);
     color: #ffffff; font-size: 13.5px; font-weight: 700;
     transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none; cursor: pointer;
     font-family: inherit;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.3);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.25);
     position: relative; overflow: hidden;
   }
   .quick-action-btn:hover {
-    background: linear-gradient(135deg, rgba(169, 183, 198, 0.32) 0%, rgba(45, 58, 71, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.35) 0%, rgba(30, 58, 138, 0.7) 100%);
     border-color: rgba(255, 255, 255, 0.5);
     color: #ffffff;
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35), inset 0 1px 1px rgba(255,255,255,0.4);
   }
   .quick-action-btn.orange:hover {
-    background: linear-gradient(135deg, rgba(226, 149, 120, 0.4) 0%, rgba(133, 68, 43, 0.6) 100%);
-    border-color: rgba(247, 200, 211, 0.6);
-    box-shadow: 0 10px 25px rgba(226, 149, 120, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(180, 83, 9, 0.6) 100%);
+    border-color: rgba(251, 191, 36, 0.6);
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35), inset 0 1px 1px rgba(255,255,255,0.4);
   }
   .quick-action-btn.green:hover {
-    background: linear-gradient(135deg, rgba(168, 181, 138, 0.4) 0%, rgba(76, 92, 53, 0.6) 100%);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 10px 25px rgba(168, 181, 138, 0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(4, 120, 87, 0.6) 100%);
+    border-color: rgba(52, 211, 153, 0.6);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35), inset 0 1px 1px rgba(255,255,255,0.4);
   }
 
   .section-title {
@@ -103,7 +103,7 @@
   }
   .section-title::after {
     content: ''; flex: 1; height: 1.5px;
-    background: linear-gradient(90deg, rgba(169,183,198,0.35), transparent);
+    background: linear-gradient(90deg, rgba(147,197,253,0.35), transparent);
   }
 
   /* Committee 20-House Assignment Banner */
@@ -130,8 +130,8 @@
   .comm-pill {
     padding: 4px 12px; border-radius: var(--radius-pill);
     font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
-    background: rgba(168, 181, 138, 0.2); color: var(--sage-leaf);
-    border: 1px solid rgba(168, 181, 138, 0.4);
+    background: rgba(16, 185, 129, 0.18); color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.4);
   }
 
   /* Mobile responsiveness */
@@ -148,13 +148,13 @@
       -webkit-backdrop-filter: none !important;
     }
     .hero-welcome {
-      background: linear-gradient(145deg, rgba(45, 58, 71, 0.98) 0%, rgba(21, 29, 36, 0.99) 100%) !important;
-      border: 1px solid rgba(169, 183, 198, 0.28) !important;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98) 0%, rgba(6, 9, 19, 0.99) 100%) !important;
+      border: 1px solid rgba(147, 197, 253, 0.25) !important;
       padding: 18px 20px !important;
     }
     .quick-action-btn {
-      background: rgba(169,183,198,0.14) !important;
-      border: 1px solid rgba(169,183,198,0.25) !important;
+      background: rgba(147, 197, 253, 0.1) !important;
+      border: 1px solid rgba(147, 197, 253, 0.22) !important;
     }
   }
 </style>
@@ -212,9 +212,9 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <a href="index.html" class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(169,183,198,0.4);"><span style="margin-right:4px;">🌐</span> Homepage</a>
-      <a href="resident.html" class="btn btn-outline btn-sm" style="color:var(--blush-petal);border-color:rgba(247,200,211,0.4);"><span style="margin-right:4px;">🏠</span> Resident View</a>
-      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(168,181,138,0.4);">📲 Install App</button>
+      <a href="index.html" class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(147,197,253,0.35);"><span style="margin-right:4px;">🌐</span> Homepage</a>
+      <a href="resident.html" class="btn btn-outline btn-sm" style="color:var(--primary-light);border-color:rgba(147,197,253,0.35);"><span style="margin-right:4px;">🏠</span> Resident View</a>
+      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--success);border-color:rgba(16,185,129,0.4);">📲 Install App</button>
     </div>
   </header>
 
@@ -257,7 +257,7 @@
     </div>
 
     <!-- Society Executive Committee Governance Command -->
-    <div class="card" style="margin-bottom:24px;border:1.5px solid rgba(169,183,198,0.25);">
+    <div class="card" style="margin-bottom:24px;border:1.5px solid rgba(147,197,253,0.22);">
       <div class="card-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
         <div class="card-title" style="display:flex;align-items:center;gap:8px;">
           <span>🏛️</span> કારોબારી સમિતિ વહીવટી માળખું (Executive Governance Hierarchy)
@@ -277,13 +277,13 @@
             <div style="font-size:15px;font-weight:800;color:#fff;margin:3px 0 1px;">શ્રી વિનોદભાઈ શાહ</div>
             <div style="font-size:11.5px;color:var(--misty-sky);">ડુપ્લેક્સ ૧૧ · 📞 98250 11002</div>
           </div>
-          <div style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.35);border-radius:10px;padding:12px;">
+          <div style="background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.35);border-radius:10px;padding:12px;">
             <div style="font-size:11px;font-weight:800;color:#93c5fd;text-transform:uppercase;">📋 ૧ મંત્રી (SECRETARY)</div>
             <div style="font-size:15px;font-weight:800;color:#fff;margin:3px 0 1px;">શ્રી અલ્પેશભાઈ દેસાઈ</div>
             <div style="font-size:11.5px;color:var(--misty-sky);">ડુપ્લેક્સ ૨૧ · 📞 98250 11003</div>
           </div>
-          <div style="background:rgba(168,181,138,0.14);border:1px solid rgba(168,181,138,0.4);border-radius:10px;padding:12px;">
-            <div style="font-size:11px;font-weight:800;color:#d9f99d;text-transform:uppercase;">🏦 ૧ ખજાનચી (TREASURER)</div>
+          <div style="background:rgba(16,185,129,0.14);border:1px solid rgba(16,185,129,0.4);border-radius:10px;padding:12px;">
+            <div style="font-size:11px;font-weight:800;color:#6ee7b7;text-transform:uppercase;">🏦 ૧ ખજાનચી (TREASURER)</div>
             <div style="font-size:15px;font-weight:800;color:#fff;margin:3px 0 1px;">શ્રી મુકેશભાઈ પંડ્યા</div>
             <div style="font-size:11.5px;color:var(--misty-sky);">ડુપ્લેક્સ ૩૧ · 📞 98250 11004</div>
           </div>
@@ -294,28 +294,28 @@
           🏛️ ૭ થી ૮ કારોબારી સભ્યો (વિભાગીય ઇન્ચાર્જ) &amp; ૨૦-ઘર ક્લસ્ટર
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;font-size:12px;">
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             💧 <strong>પાણી પુરવઠો:</strong> પ્રદીપ પટેલ (D-06)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             🛡️ <strong>સિક્યુરિટી:</strong> હરેશ જોશી (D-14)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             🧹 <strong>સફાઈ:</strong> દીપક પંચાલ (D-18)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             💡 <strong>લાઈટો:</strong> ભાવિન શાહ (D-23)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             🌺 <strong>તહેવારો:</strong> જીતેન્દ્ર ત્રિવેદી (D-27)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             🚗 <strong>પાર્કિંગ:</strong> સંજય બારોટ (D-34)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             🌳 <strong>બગીચો:</strong> નરેન્દ્ર રાણા (D-38)
           </div>
-          <div style="background:rgba(21,29,36,0.6);border:1px solid rgba(169,183,198,0.18);border-radius:8px;padding:8px 10px;">
+          <div style="background:rgba(15,23,42,0.6);border:1px solid rgba(147,197,253,0.16);border-radius:8px;padding:8px 10px;">
             ⚖️ <strong>૨૦-ઘર વિવાદ:</strong> રાજેશભાઈ &amp; સુરેશભાઈ
           </div>
         </div>
