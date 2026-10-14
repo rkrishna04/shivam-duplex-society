@@ -123,23 +123,23 @@ table {
 }
 
 thead {
-  background: linear-gradient(90deg, rgba(24, 33, 42, 0.96), rgba(35, 48, 60, 0.94));
-  backdrop-filter: blur(12px);
+  background: rgba(18, 24, 32, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 thead th {
-  padding: 14px 18px;
+  padding: 13px 18px;
   text-align: left;
   font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.05em;
   white-space: nowrap;
-  color: var(--misty-sky);
-  border-bottom: 1.5px solid rgba(169, 183, 198, 0.3);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  color: var(--text-muted, #94a3b8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 thead th.sortable {
   cursor: pointer;
@@ -147,7 +147,6 @@ thead th.sortable {
 }
 thead th.sortable:hover {
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(169, 183, 198, 0.8);
 }
 
 .col-check {
@@ -191,17 +190,17 @@ tbody .cb { border-color: rgba(169, 183, 198, 0.3); }
 
 /* Table Rows & Fluid Highlights */
 tbody tr {
-  transition: background .18s ease, transform .15s ease;
-  border-bottom: 1px solid rgba(169, 183, 198, 0.1);
+  transition: background .15s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 tbody tr:nth-child(even) {
-  background: rgba(169, 183, 198, 0.02);
+  background: rgba(255, 255, 255, 0.015);
 }
 tbody tr:hover {
-  background: linear-gradient(90deg, rgba(169, 183, 198, 0.14) 0%, rgba(45, 58, 71, 0.3) 50%, rgba(169, 183, 198, 0.14) 100%) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
 }
 tbody tr.row-selected {
-  background: linear-gradient(90deg, rgba(79, 102, 125, 0.35) 0%, rgba(45, 58, 71, 0.5) 100%) !important;
+  background: rgba(56, 189, 248, 0.12) !important;
 }
 
 tbody td {

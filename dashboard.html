@@ -160,6 +160,15 @@
 </style>
 </head>
 <body>
+
+<!-- Real-Time Optical Refraction Filter (Apple 2025-2026 Liquid Glass) -->
+<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+  <filter id="liquid-refraction" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="refracted" />
+    <feComposite in="refracted" in2="SourceGraphic" operator="in" />
+  </filter>
+</svg>
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-brand">
     <div class="brand-icon">🏘</div>

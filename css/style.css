@@ -7,63 +7,133 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 /* ── Eye-Friendly Liquid Glass Custom Properties ─────────── */
+/* ── Apple-Grade Liquid Glass Design System (2025–2026) ──── */
 :root {
-  /* Image 1: Nature-Inspired Eye-Friendly Palette */
-  --blush-petal:      #F7C8D3; /* RGB 247, 200, 211 - soft warm petal highlight */
-  --rosewood:         #B46A72; /* RGB 180, 106, 114 - elegant warm terracotta */
-  --sage-leaf:        #A8B58A; /* RGB 168, 181, 138 - soothing organic green */
-  --misty-sky:        #A9B7C6; /* RGB 169, 183, 198 - soothing slate periwinkle blue */
-  --midnight-lagoon:  #2D3A47; /* RGB 45, 58, 71 - deep eye-friendly foundation */
-  --midnight-deep:    #151d24; /* deep dark lagoon base */
-  --midnight-surface: #202b36; /* lagoon spatial card surface */
+  /* 1. Nocturne Neutral Canvas & Solid Substrates */
+  --lg-canvas-bg:        #0C1014;
+  --lg-surface-base:      #131920;
+  --lg-surface-card:      #151C24;
+  --lg-surface-elevated:  #1C2632;
 
-  /* Functional UI Mappings */
-  --primary:          #536b82;
-  --primary-dark:     #3a4d60;
-  --primary-light:    var(--misty-sky);
-  --accent:           #e29578;
-  --accent-light:     var(--blush-petal);
-  --success:          var(--sage-leaf);
-  --danger:           var(--rosewood);
-  --warning:          #eab308;
-  --info:             var(--misty-sky);
-  --sidebar-w:        276px;
+  /* 2. Restrained Monochromatic Luminance Scale (WCAG AAA) */
+  --text-primary:         #F8FAFC;
+  --text-secondary:       #E2E8F0;
+  --text-muted:           #94A3B8;
+  --text-tertiary:        #64748B;
+  --border:               rgba(255, 255, 255, 0.12);
+  --border-light:         rgba(255, 255, 255, 0.06);
 
-  /* Text & Typography */
-  --text-primary:     #f8fafc;
-  --text-secondary:   #e2e8f0;
-  --text-muted:       rgba(169, 183, 198, 0.85);
-  --border:           rgba(169, 183, 198, 0.24);
-  --border-light:     rgba(169, 183, 198, 0.14);
+  /* 3. Singular Monolithic Accent (Glacial Nordic Cyan) */
+  --lg-accent-rgb:        56, 189, 248;
+  --lg-accent:            rgba(var(--lg-accent-rgb), 1);
+  --lg-accent-glow:       rgba(var(--lg-accent-rgb), 0.18);
+  --lg-accent-subtle:     rgba(var(--lg-accent-rgb), 0.08);
 
-  /* Image 2: Liquid Glass Tokens */
-  --liquid-glass-bg:        rgba(169, 183, 198, 0.08);
-  --liquid-glass-card:      linear-gradient(135deg, rgba(169, 183, 198, 0.14) 0%, rgba(45, 58, 71, 0.45) 60%, rgba(21, 29, 36, 0.85) 100%);
-  --liquid-glass-hover:     linear-gradient(135deg, rgba(169, 183, 198, 0.22) 0%, rgba(45, 58, 71, 0.65) 100%);
-  --liquid-glass-modal:     linear-gradient(145deg, rgba(169, 183, 198, 0.16) 0%, rgba(32, 43, 54, 0.95) 100%);
-  --liquid-glass-topbar:    linear-gradient(180deg, rgba(45, 58, 71, 0.85) 0%, rgba(21, 29, 36, 0.92) 100%);
-  --liquid-glass-sidebar:   linear-gradient(180deg, rgba(32, 43, 54, 0.92) 0%, rgba(18, 25, 32, 0.96) 100%);
+  /* Nature-Inspired Complementary Accents */
+  --blush-petal:          #F7C8D3;
+  --rosewood:             #B46A72;
+  --sage-leaf:            #A8B58A;
+  --misty-sky:            #A9B7C6;
+  --midnight-lagoon:      #2D3A47;
+  --midnight-deep:        #0C1014;
+  --midnight-surface:     #151C24;
+
+  /* Semantic UI Mappings */
+  --primary:              #38BDF8;
+  --primary-dark:         #0284C7;
+  --primary-light:        #E0F2FE;
+  --accent:               #e29578;
+  --accent-light:         var(--blush-petal);
+  --success:              #34D399;
+  --danger:               #F87171;
+  --warning:              #FBBF24;
+  --info:                 #38BDF8;
+  --sidebar-w:            276px;
+
+  /* 4. Optical Glass Profiles */
+  /* Profile A: Ultra-Thin Floating Chrome (Navbar, Action Pills) */
+  --lg-glass-nav-bg:      rgba(19, 25, 32, 0.72);
+  --lg-glass-nav-blur:    24px;
+  --lg-glass-nav-saturate: 180%;
+  --lg-glass-nav-border:  rgba(255, 255, 255, 0.12);
+  --lg-glass-nav-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+  --lg-glass-nav-shadow:  0 12px 32px -4px rgba(0, 0, 0, 0.55);
+
+  /* Profile B: Structural Sidebar Panel */
+  --liquid-glass-sidebar: linear-gradient(180deg, rgba(19, 25, 32, 0.88) 0%, rgba(12, 16, 20, 0.96) 100%);
+  --liquid-glass-topbar:  linear-gradient(180deg, rgba(19, 25, 32, 0.82) 0%, rgba(12, 16, 20, 0.90) 100%);
+
+  /* Profile C: Floating Elevated Modal (Double-Refracted) */
+  --liquid-glass-modal:   linear-gradient(150deg, rgba(28, 38, 48, 0.92) 0%, rgba(14, 19, 25, 0.96) 100%);
+  --lg-glass-modal-blur:  36px;
+  --lg-glass-modal-border: 1px solid rgba(255, 255, 255, 0.16);
+
+  /* Profile D: Solid Substrate Content Card (Never Bleeds) */
+  --liquid-glass-card:    linear-gradient(165deg, rgba(24, 32, 41, 0.98) 0%, rgba(17, 23, 29, 0.99) 100%);
+  --liquid-glass-hover:   linear-gradient(165deg, rgba(30, 40, 52, 0.98) 0%, rgba(20, 28, 36, 0.99) 100%);
+  --liquid-glass-bg:      rgba(255, 255, 255, 0.04);
 
   /* Refractive Blurs */
-  --blur:             blur(22px) saturate(180%);
-  --blur-sm:          blur(12px) saturate(160%);
-  --blur-lg:          blur(32px) saturate(200%);
+  --blur:                 blur(24px) saturate(180%);
+  --blur-sm:              blur(14px) saturate(160%);
+  --blur-lg:              blur(36px) saturate(200%);
 
   /* Liquid Specular Lighting & Caustics */
-  --specular-top:     inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.4);
-  --specular-dual:    inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.35);
-  --liquid-inner:     inset 0 0 24px 0 rgba(169, 183, 198, 0.06);
-  --shadow-sm:        0 4px 16px rgba(0, 0, 0, 0.3), var(--specular-top);
-  --shadow-md:        0 12px 36px -4px rgba(0, 0, 0, 0.45), 0 0 24px rgba(169, 183, 198, 0.12), var(--specular-top);
-  --shadow-lg:        0 24px 60px -8px rgba(0, 0, 0, 0.6), 0 0 40px rgba(169, 183, 198, 0.18), var(--specular-top);
-  --shadow-glow:      0 0 28px rgba(169, 183, 198, 0.35);
+  --specular-top:         inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  --specular-dual:        inset 0 1px 0 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+  --liquid-inner:         inset 0 0 20px 0 rgba(56, 189, 248, 0.02);
+  --shadow-sm:            0 4px 16px rgba(0, 0, 0, 0.35), var(--specular-top);
+  --shadow-md:            0 12px 36px -4px rgba(0, 0, 0, 0.55), var(--specular-top);
+  --shadow-lg:            0 24px 64px -8px rgba(0, 0, 0, 0.75), var(--specular-top);
+  --shadow-glow:          0 0 28px rgba(56, 189, 248, 0.22);
 
-  /* Organic Curvatures */
-  --radius-sm:        10px;
-  --radius:           16px;
-  --radius-lg:        22px;
-  --radius-xl:        28px;
-  --radius-pill:      9999px;
+  /* Continuous Curvatures (Apple Squircles) */
+  --radius-xs:            8px;
+  --radius-sm:            12px;
+  --radius:               16px;
+  --radius-lg:            22px;
+  --radius-xl:            28px;
+  --radius-pill:          9999px;
+
+  /* Precision Spring Kinematics */
+  --ease-spring:          cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic:         cubic-bezier(0.175, 0.885, 0.32, 1.12);
+}
+
+/* ── Light Mode Support (Crystal Glass Profile) ──────────── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --lg-canvas-bg:        #F8FAFC;
+    --lg-surface-base:      #FFFFFF;
+    --lg-surface-card:      #FFFFFF;
+    --lg-surface-elevated:  #F1F5F9;
+
+    --text-primary:         #0F172A;
+    --text-secondary:       #334155;
+    --text-muted:           #64748B;
+    --text-tertiary:        #94A3B8;
+    --border:               rgba(15, 23, 42, 0.10);
+    --border-light:         rgba(15, 23, 42, 0.06);
+
+    --primary:              #0284C7;
+    --primary-dark:         #0369A1;
+
+    --lg-glass-nav-bg:      rgba(255, 255, 255, 0.78);
+    --lg-glass-nav-border:  rgba(15, 23, 42, 0.08);
+    --lg-glass-nav-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    --lg-glass-nav-shadow:  0 10px 30px -4px rgba(15, 23, 42, 0.08);
+
+    --liquid-glass-sidebar: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.96) 100%);
+    --liquid-glass-topbar:  linear-gradient(180deg, rgba(255, 255, 255, 0.90) 0%, rgba(248, 250, 252, 0.94) 100%);
+    --liquid-glass-modal:   linear-gradient(150deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 245, 249, 0.98) 100%);
+    --liquid-glass-card:    #FFFFFF;
+    --liquid-glass-hover:   #F8FAFC;
+
+    --specular-top:         inset 0 1px 0 0 rgba(255, 255, 255, 1);
+    --shadow-sm:            0 4px 16px rgba(15, 23, 42, 0.04), var(--specular-top);
+    --shadow-md:            0 10px 30px -4px rgba(15, 23, 42, 0.07), var(--specular-top);
+    --shadow-lg:            0 20px 50px -8px rgba(15, 23, 42, 0.12), var(--specular-top);
+  }
 }
 
 /* ── Reset ──────────────────────────────────────────────── */
@@ -1494,5 +1564,50 @@ button { font-family: inherit; cursor: pointer; }
   padding: 18px 20px;
   margin-bottom: 14px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Accessibility & Graceful Degradation Fallbacks ───────── */
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .sidebar,
+  .topbar,
+  .modal,
+  .map-modal-card,
+  .admin-modal-box,
+  .landing-nav {
+    background: #131920 !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+  }
+}
+
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  .sidebar,
+  .topbar,
+  .modal,
+  .map-modal-card,
+  .admin-modal-box,
+  .landing-nav,
+  .mobile-bottom-nav {
+    background: #0C1014 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1.5px solid #64748B !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+  }
+  .card, .stat-card {
+    background: #131920 !important;
+    border-color: #64748B !important;
+  }
+  .text-secondary, .stat-label, .form-label {
+    color: #CBD5E1 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 

@@ -156,6 +156,15 @@
 </head>
 <body style="background:radial-gradient(ellipse 90% 70% at 15% 5%, rgba(169,183,198,0.16) 0%, transparent 55%), radial-gradient(ellipse 85% 65% at 85% 20%, rgba(168,181,138,0.15) 0%, transparent 60%), linear-gradient(168deg, #151d24 0%, #1e2933 35%, #24323e 70%, #141c23 100%);background-attachment:fixed;min-height:100vh;">
 
+<!-- Real-Time Optical Refraction Filter (Apple 2025-2026 Liquid Glass) -->
+<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+  <filter id="liquid-refraction" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="refracted" />
+    <feComposite in="refracted" in2="SourceGraphic" operator="in" />
+  </filter>
+</svg>
+
 <!-- Search Section (Step 1: Resident Identifies House) -->
 <div id="resident-search">
   <div class="res-hero">
