@@ -72,8 +72,8 @@
       <div class="card-header"><div class="card-title">📒 Fund Ledger <span class="record-count" id="fund-count">0</span></div></div>
       <div class="toolbar">
         <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search description, fund type…"/></div>
-        <select id="filter-fund" class="filter-select"><option value="">All Funds</option><option>Maintenance Fund</option><option>Sinking Fund</option><option>Event Fund</option><option>Emergency Fund</option><option>Admin Fund</option></select>
-        <select id="filter-type" class="filter-select"><option value="">All</option><option>Credit</option><option>Debit</option></select>
+        <select id="filter-fund" class="filter-select"><option value="">All Funds (તમામ ફંડ)</option><option>Maintenance Fund</option><option>Sinking Fund (ઘસારા ફંડ)</option><option>Reserve Fund (અનામત ફંડ)</option><option>Event Fund (ઉત્સવ ફંડ)</option><option>Emergency Fund (આકસ્મિક ફંડ)</option></select>
+        <select id="filter-type" class="filter-select"><option value="">All (બધા)</option><option>Credit</option><option>Debit</option></select>
         <input type="month" id="filter-month" class="filter-select"/>
       </div>
       <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
@@ -96,7 +96,7 @@
       <div class="form-grid">
         <div class="form-group"><label class="form-label">Date <span class="req">*</span></label><input type="date" id="date" class="form-control"/></div>
         <div class="form-group"><label class="form-label">Fund Type <span class="req">*</span></label>
-          <select id="fundType" class="form-control"><option value="">Select fund</option><option>Maintenance Fund</option><option>Sinking Fund</option><option>Event Fund</option><option>Emergency Fund</option><option>Admin Fund</option></select></div>
+          <select id="fundType" class="form-control"><option value="">Select fund</option><option>Maintenance Fund</option><option>Sinking Fund (ઘસારા ફંડ)</option><option>Reserve Fund (અનામત ફંડ)</option><option>Event Fund (ઉત્સવ ફંડ)</option><option>Emergency Fund (આકસ્મિક ફંડ)</option></select></div>
         <div class="form-group"><label class="form-label">Transaction Type <span class="req">*</span></label>
           <select id="transactionType" class="form-control"><option value="">Select</option><option>Credit</option><option>Debit</option></select></div>
         <div class="form-group"><label class="form-label">Amount (₹) <span class="req">*</span></label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="amount" class="form-control" min="1" placeholder="0"/></div></div>

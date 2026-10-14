@@ -880,7 +880,15 @@ button { font-family: inherit; cursor: pointer; }
   -webkit-backdrop-filter: blur(16px);
   animation: overlayIn .25s ease;
 }
-.modal-overlay.hidden { display: none; }
+/* ── Global Utility for Hiding Elements ─────────────────── */
+.hidden {
+  display: none !important;
+}
+.modal-overlay.hidden,
+.map-modal-overlay.hidden,
+.admin-modal-overlay.hidden {
+  display: none !important;
+}
 @keyframes overlayIn { from{opacity:0} to{opacity:1} }
 
 .modal {
@@ -1410,11 +1418,47 @@ button { font-family: inherit; cursor: pointer; }
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
   z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+}
+.map-modal-overlay.hidden {
+  display: none !important;
+}
+
+/* Admin / KYC Registration Modal Overlay */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.admin-modal-overlay.hidden {
+  display: none !important;
+}
+.admin-modal-box {
+  background: linear-gradient(150deg, rgba(30, 41, 54, 0.98) 0%, rgba(18, 25, 32, 0.99) 100%);
+  border: 1.5px solid rgba(169, 183, 198, 0.35);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75), var(--specular-top);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.landing-section {
+  scroll-margin-top: 100px;
 }
 .map-modal-card {
   background: linear-gradient(150deg, rgba(30, 41, 54, 0.98) 0%, rgba(18, 25, 32, 0.99) 100%);

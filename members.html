@@ -71,7 +71,14 @@
       <div class="card-header"><div class="card-title">🏠 Member Directory <span class="record-count" id="member-count">0</span></div></div>
       <div class="toolbar">
         <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search flat, name, contact…"/></div>
-        <select id="filter-wing"   class="filter-select"><option value="">All Wings</option><option>A</option><option>B</option><option>C</option><option>D</option><option>Main</option></select>
+        <select id="filter-wing"   class="filter-select">
+          <option value="">All Lines (તમામ શેરીઓ)</option>
+          <option value="line-1">લાઈન ૧ (ઉત્તર શેરી / D 01-08)</option>
+          <option value="line-2">લાઈન ૨ (પશ્ચિમ શેરી ૧ / D 09-16)</option>
+          <option value="line-3">લાઈન ૩ (પશ્ચિમ શેરી ૨ / D 17-24)</option>
+          <option value="line-4">લાઈન ૪ (મધ્ય શેરી / D 25-32)</option>
+          <option value="line-5">લાઈન ૫ (પાર્ક શેરી / D 33-40)</option>
+        </select>
         <select id="filter-designation" class="filter-select">
           <option value="">All Designations (તમામ હોદ્દા)</option>
           <option value="પ્રમુખ">👑 પ્રમુખ (Chairman)</option>
@@ -107,8 +114,8 @@
         <!-- Owner Info -->
         <div style="font-size:12px;font-weight:700;color:#1a237e;letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase;">👤 Owner / Primary Resident</div>
         <div class="form-grid">
-          <div class="form-group"><label class="form-label">Flat / House Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. A-101 or 12"/></div>
-          <div class="form-group"><label class="form-label">Wing / Block <span class="req">*</span></label><select id="wing" class="form-control"><option value="">Select</option><option>A</option><option>B</option><option>C</option><option>D</option><option>Main</option></select></div>
+          <div class="form-group"><label class="form-label">Duplex House Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. 02, 14, 21, 35"/></div>
+          <div class="form-group"><label class="form-label">Society Line / શેરી <span class="req">*</span></label><select id="wing" class="form-control"><option value="">Select Line</option><option value="Line 1">લાઈન ૧ (Line 1 / D 01-08)</option><option value="Line 2">લાઈન ૨ (Line 2 / D 09-16)</option><option value="Line 3">લાઈન ૩ (Line 3 / D 17-24)</option><option value="Line 4">લાઈન ૪ (Line 4 / D 25-32)</option><option value="Line 5">લાઈન ૫ (Line 5 / D 33-40)</option><option value="Main">Main Society</option></select></div>
           <div class="form-group">
             <label class="form-label">સોસાયટી હોદ્દો / Designation <span class="req">*</span></label>
             <select id="designation" class="form-control">

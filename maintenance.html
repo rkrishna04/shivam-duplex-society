@@ -107,7 +107,15 @@
         <div class="search-wrap"><span class="search-icon">🔍</span><input type="search" id="search" class="search-input" placeholder="Search flat, member, bill no…"/></div>
         <select id="filter-period" class="filter-select"><option value="">All Periods</option></select>
         <select id="filter-status" class="filter-select"><option value="">All Status</option><option>Pending</option><option>Paid</option><option>Overdue</option><option>Partial</option></select>
-        <select id="filter-wing"   class="filter-select"><option value="">All Wings</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+        <select id="filter-wing"   class="filter-select">
+          <option value="">All Lines (તમામ શેરીઓ)</option>
+          <option value="Line 1">લાઈન ૧ (Line 1 / D 01-08)</option>
+          <option value="Line 2">લાઈન ૨ (Line 2 / D 09-16)</option>
+          <option value="Line 3">લાઈન ૩ (Line 3 / D 17-24)</option>
+          <option value="Line 4">લાઈન ૪ (Line 4 / D 25-32)</option>
+          <option value="Line 5">લાઈન ૫ (Line 5 / D 33-40)</option>
+          <option value="Main">Main Society</option>
+        </select>
       </div>
       <div id="loader" class="spinner-wrap" style="display:none;"><div class="spinner"></div></div>
       <div class="table-wrap">
@@ -132,8 +140,8 @@
       <div class="form-grid">
         <div class="form-group"><label class="form-label">Bill Number</label><input id="billNumber" class="form-control" readonly/></div>
         <div class="form-group"><label class="form-label">Period <span class="req">*</span></label><input type="month" id="period" class="form-control"/></div>
-        <div class="form-group"><label class="form-label">Flat Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. A-101"/></div>
-        <div class="form-group"><label class="form-label">Wing</label><select id="wing" class="form-control"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+        <div class="form-group"><label class="form-label">Duplex House Number <span class="req">*</span></label><input id="flatNumber" class="form-control" placeholder="e.g. 02, 14, 21, 35"/></div>
+        <div class="form-group"><label class="form-label">Society Line</label><select id="wing" class="form-control"><option value="Main">Main Society</option><option value="Line 1">Line 1 (D 01-08)</option><option value="Line 2">Line 2 (D 09-16)</option><option value="Line 3">Line 3 (D 17-24)</option><option value="Line 4">Line 4 (D 25-32)</option><option value="Line 5">Line 5 (D 33-40)</option></select></div>
         <div class="form-group"><label class="form-label">Member Name <span class="req">*</span></label><input id="memberName" class="form-control" placeholder="Owner name"/></div>
         <div class="form-group"><label class="form-label">Contact</label><input id="contactNumber" class="form-control" placeholder="10-digit"/></div>
         <div class="form-group"><label class="form-label">Maintenance Amount <span class="req">*</span></label><div class="input-pfx-wrap"><span class="input-pfx">₹</span><input type="number" id="maintenanceAmount" class="form-control" min="0" value="600"/></div></div>

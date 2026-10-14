@@ -1259,6 +1259,9 @@ body.landing-body,
 .admin-modal-overlay.show {
   display: flex;
 }
+.admin-modal-overlay.hidden {
+  display: none !important;
+}
 .admin-modal-box {
   background: linear-gradient(145deg, rgba(32, 43, 54, 0.98) 0%, rgba(18, 25, 32, 0.99) 100%);
   border: 1.5px solid rgba(169, 183, 198, 0.35);

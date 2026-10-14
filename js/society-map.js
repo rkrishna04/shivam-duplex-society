@@ -395,6 +395,17 @@ function setupMapEventListeners() {
       });
     });
   }
+
+  // Backdrop click and Escape key to close inspector
+  const inspectorModal = document.getElementById("map-inspector-modal");
+  if (inspectorModal) {
+    inspectorModal.addEventListener("click", (e) => {
+      if (e.target === inspectorModal) closeMapInspector();
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMapInspector();
+  });
 }
 
 function filterByLine(lineId) {
