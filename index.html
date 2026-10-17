@@ -51,91 +51,213 @@
   </filter>
 </svg>
 
-<!-- Modern SaaS Glass Navbar -->
-<div class="landing-nav-wrap">
-  <nav class="landing-nav">
-    <a href="index.html" class="brand-link">
-      <div class="brand-badge">🔱</div>
-      <div class="brand-info">
-        <h2>SHIVAM DUPLEX</h2>
-        <p>Residents Association</p>
+<!-- Master Architectural Canvas Board (Mr L Production 1:1 Design Language) -->
+<div class="arch-board-frame">
+
+  <!-- Top Floating Capsule Navigation -->
+  <header class="arch-nav-pill">
+    <a href="index.html" class="arch-brand">
+      <div class="arch-brand-monogram">SD.</div>
+      <div class="arch-brand-titles">
+        <span class="arch-brand-name">SHIVAM DUPLEX</span>
+        <span class="arch-brand-sub">RESIDENTS ASSOCIATION</span>
       </div>
     </a>
 
-    <ul class="nav-links-desktop">
-      <li><a href="#society-map">3D સોસાયટી મેપ</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#vehicle-search">Vehicle Lookup</a></li>
-      <li><a href="#festivals">Ganesh Utsav</a></li>
-      <li><a href="#committee">કારોબારી સમિતિ</a></li>
-      <li><a href="#bank-qr">Pay Maintenance</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
+    <!-- Center Pill Nav Menu -->
+    <nav class="arch-nav-menu">
+      <a href="index.html" class="arch-nav-item active">Home</a>
+      <a href="#society-map" class="arch-nav-item">3D Map</a>
+      <a href="members.html" class="arch-nav-item">Directory</a>
+      <a href="#vehicle-search" class="arch-nav-item">Vehicle Lookup</a>
+      <a href="#festivals" class="arch-nav-item">Ganesh Utsav</a>
+      <a href="#committee" class="arch-nav-item">Committee</a>
+      <a href="#bank-qr" class="arch-nav-item">Bank UPI</a>
+      <a href="#faq" class="arch-nav-item">FAQ</a>
+    </nav>
 
-    <div class="nav-actions-desktop">
-      <a href="resident.html" class="nav-btn-resident">
-        <span>🏠</span> Resident Portal
+    <!-- Right Actions -->
+    <div class="arch-nav-actions">
+      <button type="button" class="arch-circle-btn arch-search-btn" onclick="document.getElementById('vehicle-search').scrollIntoView({behavior:'smooth'})" title="Search Vehicle / House">🔍</button>
+      <a href="resident.html" class="arch-pill-cta">
+        <span>Resident Portal</span>
+        <span class="arch-arrow-circle">→</span>
       </a>
-      <button type="button" class="nav-btn-admin" id="btn-open-admin-modal">
-        <span>🔐</span> Committee Login
+      <button type="button" class="arch-admin-pill" id="btn-open-admin-modal">
+        <span>🔐</span> Committee
       </button>
       <button type="button" class="haptic-sound-toggle" title="Toggle Haptic Acoustic Feedback">🔊 Haptics: ON</button>
-      <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--sage-leaf);border-color:rgba(16, 185, 129,0.4);border-radius:var(--radius-pill);padding:8px 14px;font-size:12px;">
-        📲 App
-      </button>
+      <button type="button" class="btn-install-app arch-circle-btn" title="Install Web App" style="border:none;">📲</button>
+    </div>
+  </header>
+
+  <!-- Left Floating Vertical Capsule Dock -->
+  <aside class="arch-dock-vertical" aria-label="Quick Access Dock">
+    <a href="index.html" class="arch-dock-item active" title="Home">
+      <span class="dock-circle-dark">🏠</span>
+    </a>
+    <a href="#society-map" class="arch-dock-item" title="3D Society Map & Lights">🗺️</a>
+    <a href="members.html" class="arch-dock-item" title="Members Directory">👥</a>
+    <a href="resident.html" class="arch-dock-item" title="My Duplex Bills">🧾</a>
+    <a href="#festivals" class="arch-dock-item" title="Ganesh Utsav Ledger">🎉</a>
+    <a href="#committee" class="arch-dock-item" title="Committee Incharges">🏛️</a>
+    
+    <div class="arch-dock-divider"></div>
+    
+    <div class="arch-dock-avatar" title="Rajeshbhai Patel (Chairman / Committee)">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Committee Avatar"/>
+    </div>
+    
+    <a href="#society-map" class="arch-dock-tour" title="Watch 3D Society Tour">
+      <span class="dock-tour-circle">▶</span>
+      <span class="dock-tour-text">3D Tour</span>
+    </a>
+  </aside>
+
+  <!-- Main Hero Stage (2-Column Architectural Layout) -->
+  <div class="arch-hero-stage">
+    
+    <!-- Left Column: Editorial Headline & Actions -->
+    <div class="arch-hero-text">
+      <div class="arch-hero-eyebrow">
+        <span>ARCHITECTURE</span>
+        <span class="eyebrow-sep">—</span>
+        <span>DUPLEX RESIDENCES</span>
+        <span class="eyebrow-sep">—</span>
+        <span>SMART GOVERNANCE</span>
+      </div>
+
+      <h1 class="arch-hero-title">
+        Residences<br/>
+        <em>That Inspire</em>
+      </h1>
+
+      <p class="arch-hero-desc">
+        We design transparent community living that blends modern duplex architecture, 100% LED illuminated streets, automated maintenance ledgers, and 20-house committee governance.
+      </p>
+
+      <div class="arch-hero-buttons">
+        <a href="resident.html" class="arch-btn-primary">
+          <span>Explore 40 Duplexes</span>
+          <span class="arch-arrow-circle">→</span>
+        </a>
+        <a href="#society-map" class="arch-btn-play">
+          <span class="arch-play-circle">▶</span>
+          <span>Watch 3D Society Map</span>
+        </a>
+      </div>
     </div>
 
-    <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
-  </nav>
+    <!-- Right Column: Luxury Architectural Duplex Villa Backdrop -->
+    <div class="arch-hero-visual">
+      <div class="arch-villa-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Shivam Duplex Modern Architecture" class="arch-villa-img"/>
+        <div class="arch-villa-pills">
+          <span>MODERN</span>
+          <span>SUSTAINABLE</span>
+          <span>FUNCTIONAL</span>
+          <span>TIMELESS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bento Shelf (3 Sculptural Bento Cards sitting in a row) -->
+  <div class="arch-bento-shelf">
+
+    <!-- Bento 1: Featured Residence Project Card -->
+    <div class="bento-featured-card">
+      <div class="bfc-top-row">
+        <span class="bfc-badge">FEATURED RESIDENCE</span>
+        <span class="bfc-counter">01 / 40</span>
+      </div>
+      <div class="bfc-preview">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Duplex No. 01" class="bfc-img"/>
+      </div>
+      <div class="bfc-details">
+        <h3 class="bfc-title">Duplex Villa No. 01</h3>
+        <p class="bfc-desc">Modern 4-BHK duplex blending sustainable architecture with private terrace garden & solar power grid.</p>
+        <a href="resident.html" class="bfc-link">View House Details →</a>
+      </div>
+      <div class="bfc-footer">
+        <div class="bfc-avatars">
+          <span class="bfc-avatar">👤</span>
+          <span class="bfc-avatar">👤</span>
+          <span class="bfc-avatar-plus">+40</span>
+        </div>
+        <div class="bfc-pagination">
+          <span class="bfc-dot active"></span>
+          <span class="bfc-dot"></span>
+          <span class="bfc-dot"></span>
+        </div>
+        <div class="bfc-nav-btns">
+          <button type="button" class="bfc-arrow-btn" aria-label="Previous">←</button>
+          <button type="button" class="bfc-arrow-btn" aria-label="Next">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bento 2: Architectural Metrics & Stats Card -->
+    <div class="bento-stats-card">
+      <div class="bsc-col">
+        <div class="bsc-icon">🏛️</div>
+        <div class="bsc-num">40+</div>
+        <div class="bsc-label">Duplex Residences</div>
+        <div class="bsc-sub">G+1 Luxury Layout</div>
+      </div>
+      <div class="bsc-divider"></div>
+      <div class="bsc-col">
+        <div class="bsc-icon">💡</div>
+        <div class="bsc-num">100%</div>
+        <div class="bsc-label">Solar &amp; LED Grid</div>
+        <div class="bsc-sub">Illuminated Streets</div>
+      </div>
+      <div class="bsc-divider"></div>
+      <div class="bsc-col">
+        <div class="bsc-icon">₹</div>
+        <div class="bsc-num">600</div>
+        <div class="bsc-label">Maintenance</div>
+        <div class="bsc-sub">100% Transparent</div>
+      </div>
+    </div>
+
+    <!-- Bento 3: Dark Monolith Action Bento -->
+    <a href="#bank-qr" class="bento-action-card">
+      <div class="bac-top">
+        <div class="bac-avatar">🔱</div>
+        <div class="bac-arrow">↗</div>
+      </div>
+      <div class="bac-bottom">
+        <h3 class="bac-title">Pay Maintenance Instantly</h3>
+        <p class="bac-sub">Instant Society UPI QR &amp; Bank receipts delivered directly to your phone.</p>
+      </div>
+    </a>
+
+  </div>
+
 </div>
 
 <!-- Mobile Navigation Drawer -->
 <div class="mobile-nav-drawer" id="mobile-drawer">
   <ul class="mobile-nav-links">
-    <li><a href="resident.html" style="color:var(--sage-leaf);font-size:18px;">🏠 Resident Portal</a></li>
+    <li><a href="resident.html" style="color:var(--text-primary);font-size:18px;">🏠 Resident Portal</a></li>
     <li><button type="button" class="haptic-sound-toggle" style="margin: 8px 0; width: 100%; justify-content: center;">🔊 Haptics: ON</button></li>
-    <li><a href="#society-map" class="m-link" style="color:#fde047;">🗺️ 3D સોસાયટી મેપ &amp; લાઈટો</a></li>
+    <li><a href="#society-map" class="m-link">🗺️ 3D Society Map &amp; Lights</a></li>
     <li><a href="#vehicle-search" class="m-link">🚗 Search Vehicle Plate</a></li>
     <li><a href="#features" class="m-link">✨ Society Features</a></li>
     <li><a href="#festivals" class="m-link">🎉 Ganesh Utsav Ledger</a></li>
     <li><a href="#committee" class="m-link">🏛 કારોબારી સમિતિ માળખું</a></li>
     <li><a href="#bank-qr" class="m-link">💳 Society UPI &amp; Bank</a></li>
-    <li><a href="dashboard.html" style="color:#ffffff;">📊 Committee Admin Deck</a></li>
-    <li><a href="#" class="btn-install-app" style="color:var(--blush-petal);">📲 Install Mobile App</a></li>
+    <li><a href="dashboard.html">📊 Committee Admin Deck</a></li>
+    <li><a href="#" class="btn-install-app">📲 Install Mobile App</a></li>
   </ul>
 </div>
 
 <main>
-  <!-- Hero Section -->
-  <section class="hero-section">
+
+  <section class="landing-section" style="padding-top:10px;">
     <div class="landing-container">
-      <div class="hero-pill-badge">
-        <span class="hero-pulse-dot"></span>
-        <span>40 Luxury Duplex Residences · Smart Society OS</span>
-      </div>
-
-      <h1 class="hero-main-title">
-        Elevating Community Living with <br/>
-        <span class="gradient-text">Transparent Society Governance</span>
-        <span class="shiva-trishul">🔱</span>
-      </h1>
-
-      <p class="hero-description">
-        The all-in-one digital platform for SHIVAM DUPLEX Residents Association. Automated maintenance tracking, multi-slip A4 bills, transparent Ganesh Utsav ledgers, instant vehicle owner lookup, and 20-house committee governance.
-      </p>
-
-      <div class="hero-cta-group">
-        <a href="resident.html" class="hero-btn-primary">
-          <span>🏠</span> Open Resident Portal
-        </a>
-        <a href="dashboard.html" class="hero-btn-secondary">
-          <span>📊</span> Committee Admin Deck
-        </a>
-        <button type="button" class="hero-btn-secondary btn-install-app">
-          <span>📲</span> Install App (Android &amp; iOS)
-        </button>
-      </div>
-
       <!-- Instant Vehicle Parking Emergency Search Bar -->
       <div class="vehicle-hero-card" id="vehicle-search">
         <div class="vhc-title-row">
