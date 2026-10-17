@@ -11,7 +11,8 @@ body.landing-body,
   width: 100% !important;
   margin: 0;
   padding: 0;
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-normal);
   color: var(--text-primary);
   background:
     radial-gradient(ellipse 95% 70% at 20% 0%,   rgba(37, 99, 235, 0.18) 0%, transparent 60%),
@@ -270,14 +271,15 @@ body.landing-body,
 }
 
 .hero-main-title {
-  font-size: clamp(32px, 5.5vw, 58px);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5.8vw, 62px);
   font-weight: 900;
-  line-height: 1.15;
-  letter-spacing: -1.2px;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tightest);
   color: #ffffff;
   margin: 0 auto 20px;
-  max-width: 960px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  max-width: 980px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 .hero-main-title .gradient-text {
   background: linear-gradient(135deg, #ffffff 15%, #93c5fd 60%, #38bdf8 100%);
@@ -287,7 +289,7 @@ body.landing-body,
 .hero-main-title .shiva-trishul {
   display: inline-block;
   color: #38bdf8;
-  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.6));
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.7));
 }
 
 .hero-description {
@@ -313,14 +315,16 @@ body.landing-body,
   background: linear-gradient(180deg, #3B82F6 0%, #1D4ED8 100%);
   border: 1.5px solid rgba(255, 255, 255, 0.45);
   color: #ffffff;
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 800;
+  letter-spacing: var(--tracking-normal);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6), 0 0 20px rgba(59, 130, 246, 0.35), var(--specular-top);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 .hero-btn-primary:hover {
@@ -330,6 +334,10 @@ body.landing-body,
   border-color: rgba(255, 255, 255, 0.8);
   color: #ffffff;
 }
+.hero-btn-primary:active {
+  transform: translateY(1px) scale(0.975);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.4);
+}
 
 .hero-btn-secondary {
   padding: 15px 28px;
@@ -337,8 +345,10 @@ body.landing-body,
   background: rgba(37, 99, 235, 0.12);
   border: 1px solid rgba(147, 197, 253, 0.3);
   color: #ffffff;
+  font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 700;
+  letter-spacing: var(--tracking-normal);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -352,6 +362,9 @@ body.landing-body,
   transform: translateY(-2px);
   color: #ffffff;
   border-color: rgba(147, 197, 253, 0.6);
+}
+.hero-btn-secondary:active {
+  transform: translateY(1px) scale(0.975);
 }
 
 /* ── Interactive Instant Vehicle Finder Card ─────────────── */
@@ -487,18 +500,20 @@ body.landing-body,
   margin-bottom: 10px;
 }
 .stat-box-num {
-  font-size: 32px;
+  font-family: var(--font-display);
+  font-size: 34px;
   font-weight: 900;
   color: #ffffff;
-  letter-spacing: -0.5px;
+  letter-spacing: var(--tracking-tight);
   margin-bottom: 4px;
+  font-feature-settings: "tnum" 1, "cv05" 1;
 }
 .stat-box-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--misty-sky);
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: var(--tracking-wide);
 }
 .stat-box-desc {
   font-size: 11.5px;
@@ -522,19 +537,21 @@ body.landing-body,
   background: rgba(37, 99, 235, 0.18);
   border: 1px solid rgba(147, 197, 253, 0.35);
   color: #38bdf8;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 800;
-  letter-spacing: 1.2px;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.2);
 }
 .section-title-large {
-  font-size: clamp(26px, 3.8vw, 38px);
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
   font-weight: 900;
   color: #ffffff;
-  letter-spacing: -0.8px;
+  letter-spacing: var(--tracking-tight);
   margin: 0 0 14px;
-  line-height: 1.25;
+  line-height: 1.18;
 }
 .section-subtitle {
   font-size: 15px;

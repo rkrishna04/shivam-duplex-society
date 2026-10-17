@@ -4,7 +4,7 @@
    Misty Sky, Midnight Lagoon + Liquid Glass UI Kit & Spatial Elements.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Noto+Sans+Gujarati:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap');
 
 /* ── Eye-Friendly Liquid Glass Custom Properties ─────────── */
 /* ── Apple-Grade Liquid Glass Design System (2025–2026) ──── */
@@ -98,6 +98,30 @@
   /* Precision Spring Kinematics */
   --ease-spring:          cubic-bezier(0.16, 1, 0.3, 1);
   --ease-elastic:         cubic-bezier(0.175, 0.885, 0.32, 1.12);
+
+  /* 5. Master Typographic Engine (Cosmic Obsidian & Electric Sapphire) */
+  --font-display:         'Outfit', 'Noto Sans Gujarati', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans:            'Plus Jakarta Sans', 'Noto Sans Gujarati', system-ui, -apple-system, sans-serif;
+  --font-gujarati:        'Noto Sans Gujarati', 'Shruti', sans-serif;
+  --font-mono:            'JetBrains Mono', 'Courier New', monospace;
+
+  /* Typographic Hierarchy Tokens */
+  --text-hero:            800 clamp(36px, 5.5vw, 56px)/1.08 var(--font-display);
+  --text-h1:              800 30px/1.15 var(--font-display);
+  --text-h2:              700 22px/1.22 var(--font-display);
+  --text-h3:              700 17px/1.28 var(--font-display);
+  --text-body:            400 14px/1.60 var(--font-sans);
+  --text-body-bold:       700 14px/1.50 var(--font-sans);
+  --text-caption:         600 12px/1.40 var(--font-sans);
+  --text-micro:           700 10.5px/1.35 var(--font-sans);
+  --text-num:             700 14px/1.20 var(--font-mono);
+
+  /* Precise Optical Tracking (Golden Ratio Kerning) */
+  --tracking-tightest:    -0.035em;
+  --tracking-tight:       -0.020em;
+  --tracking-normal:      -0.005em;
+  --tracking-wide:        0.05em;
+  --tracking-pill:        0.075em;
 }
 
 /* ── Light Mode Support (Crystal Glass Profile) ──────────── */
@@ -149,12 +173,13 @@ html {
 
 /* ── Electric Cobalt & Midnight Navy Ambient Background ──── */
 body {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 14px;
   color: var(--text-primary);
   min-height: 100vh;
   display: block;
-  line-height: 1.55;
+  line-height: 1.6;
+  letter-spacing: var(--tracking-normal);
   overflow-x: hidden;
   background:
     radial-gradient(ellipse 95% 70% at 20% 0%,   rgba(37, 99, 235, 0.18) 0%, transparent 60%),
@@ -167,43 +192,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Sidebar-based application views */
-body:has(.sidebar),
-body.has-sidebar {
-  display: flex;
+/* Master Typographic Heading Rules (Outfit & Noto Sans Gujarati) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-tight);
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1.22;
 }
 
-/* Ambient Fluid Plasma Blobs (Electric Cobalt Spectrum) */
-body::before, body::after {
-  content: '';
-  position: fixed;
-  border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%;
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.65;
+.gu-font {
+  font-family: var(--font-gujarati) !important;
+  line-height: 1.65;
 }
-body::before {
-  width: 650px; height: 650px;
-  top: -220px; left: -160px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, rgba(56, 189, 248, 0.18) 50%, transparent 70%);
-  animation: liquidDrift1 24s ease-in-out infinite alternate;
-}
-body::after {
-  width: 580px; height: 580px;
-  bottom: -180px; right: -120px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(30, 64, 175, 0.18) 55%, transparent 70%);
-  animation: liquidDrift2 28s ease-in-out infinite alternate;
-}
-@keyframes liquidDrift1 {
-  0%   { transform: translate(0, 0) rotate(0deg) scale(1); border-radius: 42% 58% 65% 35% / 45% 45% 55% 55%; }
-  50%  { transform: translate(90px, 80px) rotate(110deg) scale(1.15); border-radius: 60% 40% 45% 55% / 55% 65% 35% 45%; }
-  100% { transform: translate(-40px, 120px) rotate(220deg) scale(1.05); border-radius: 45% 55% 60% 40% / 40% 50% 50% 60%; }
-}
-@keyframes liquidDrift2 {
-  0%   { transform: translate(0, 0) rotate(0deg) scale(1); border-radius: 55% 45% 40% 60% / 50% 60% 40% 50%; }
-  50%  { transform: translate(-80px, -70px) rotate(-120deg) scale(1.12); border-radius: 40% 60% 55% 45% / 60% 45% 55% 40%; }
-  100% { transform: translate(50px, -110px) rotate(-240deg) scale(0.95); border-radius: 65% 35% 45% 55% / 45% 55% 45% 55%; }
+.mono-num {
+  font-family: var(--font-mono) !important;
+  font-feature-settings: "tnum" 1, "cv05" 1;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -274,10 +278,11 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: 0 0 35px rgba(251, 191, 36, 0.8), inset 0 1px 2px rgba(255,255,255,0.6);
 }
 .brand-text h1 {
-  font-size: 14.5px;
+  font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.6px;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-normal);
   color: #ffffff;
   text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
@@ -285,7 +290,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 10px;
   color: var(--misty-sky);
   margin-top: 3px;
-  letter-spacing: 0.8px;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -399,10 +404,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .topbar-left { display: flex; align-items: center; gap: 14px; }
 .topbar-title {
-  font-size: 19px;
+  font-family: var(--font-display);
+  font-size: 20px;
   font-weight: 800;
   color: #ffffff;
-  letter-spacing: -0.2px;
+  letter-spacing: var(--tracking-tight);
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 .topbar-sub {
@@ -422,14 +428,16 @@ button { font-family: inherit; cursor: pointer; }
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 10px 22px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-sans);
   font-size: 13.5px;
   font-weight: 700;
-  letter-spacing: 0.2px;
-  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: var(--tracking-normal);
+  transition: all .24s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   white-space: nowrap;
   line-height: 1.35;
@@ -655,16 +663,18 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text-muted);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.9px;
+  letter-spacing: var(--tracking-wide);
 }
 .stat-value {
-  font-size: 24px;
+  font-family: var(--font-display);
+  font-size: 26px;
   font-weight: 800;
   color: #ffffff;
   margin-top: 4px;
   line-height: 1.1;
-  letter-spacing: -0.5px;
+  letter-spacing: var(--tracking-tight);
   text-shadow: 0 2px 14px rgba(255, 255, 255, 0.2);
+  font-feature-settings: "tnum" 1, "cv05" 1;
 }
 .stat-sub {
   font-size: 12px;
@@ -690,7 +700,7 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: var(--shadow-md), var(--liquid-inner);
   overflow: hidden;
   position: relative;
-  transition: border-color .3s ease;
+  transition: all .28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card::before {
   content: '';
@@ -699,6 +709,11 @@ button { font-family: inherit; cursor: pointer; }
   height: 1.5px;
   background: linear-gradient(90deg, transparent 4%, rgba(255,255,255,0.45) 50%, transparent 96%);
   pointer-events: none;
+}
+.card:hover {
+  border-color: rgba(147, 197, 253, 0.35);
+  box-shadow: var(--shadow-lg), 0 0 28px rgba(37, 99, 235, 0.16), var(--specular-top);
+  transform: translateY(-2px);
 }
 .card-header {
   padding: 18px 26px;
@@ -712,13 +727,14 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
 }
 .card-title {
-  font-size: 16px;
+  font-family: var(--font-display);
+  font-size: 16.5px;
   font-weight: 800;
   color: #ffffff;
   display: flex;
   align-items: center;
   gap: 10px;
-  letter-spacing: -0.2px;
+  letter-spacing: var(--tracking-tight);
 }
 
 /* Image 3: Futuristic Tab Pill & Arrow Action */

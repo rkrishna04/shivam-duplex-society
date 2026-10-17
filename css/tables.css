@@ -133,10 +133,11 @@ thead {
 thead th {
   padding: 13px 18px;
   text-align: left;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wide);
   white-space: nowrap;
   color: var(--text-muted, #94a3b8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -210,11 +211,12 @@ tbody td {
 }
 
 .td-mono {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
   font-size: 13.5px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary-light);
   letter-spacing: 0.5px;
+  font-feature-settings: "tnum" 1, "cv05" 1;
 }
 .td-name {
   font-weight: 700;
@@ -222,10 +224,12 @@ tbody td {
   letter-spacing: -0.1px;
 }
 .td-amount {
+  font-family: var(--font-mono);
   font-weight: 800;
   color: var(--success);
   white-space: nowrap;
   text-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+  font-feature-settings: "tnum" 1, "cv05" 1;
 }
 .td-muted {
   font-size: 12px;
