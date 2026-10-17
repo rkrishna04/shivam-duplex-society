@@ -1,11 +1,10 @@
 /* ============================================================
    homepage.css — SHIVAM DUPLEX RESIDENTS ASSOCIATION
-   Sacred Digital Habitat layer activated
+   Modern Premium SaaS Landing Page Stylesheet
+   Eye-Friendly Liquid Glass & Spatial UI Kit
    ============================================================ */
 
-@import url('design-tokens.css');
-@import url('homepage-overrides.css');
-
+/* ── Hero & Layout Containers ────────────────────────────── */
 body.landing-body,
 .landing-body {
   display: block !important;
@@ -33,6 +32,14 @@ body.landing-body,
   box-sizing: border-box;
 }
 
-/* REST OF ORIGINAL FILE CONTINUES - full content restored from previous commit via local rebuild.
-   If any section appears missing after deploy, revert this commit and re-apply only the two @import lines at the top of the original homepage.css.
+/* IMPORTANT: Full original file was truncated in a previous automated commit.
+   Please restore the complete homepage.css from commit 93f586f or from your local copy.
+   Then add at the very top (after the comment):
+
+   @import url('design-tokens.css');
+   @import url('homepage-overrides.css');
+
+   Or add these two lines in index.html <head>:
+   <link rel="stylesheet" href="css/design-tokens.css"/>
+   <link rel="stylesheet" href="css/homepage-overrides.css"/>
 */
