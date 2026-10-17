@@ -1,2 +1,5 @@
-/* homepage.css — loads full restored styles */
+/* homepage.css — restored full styles via parts */
+@import url('design-tokens.css');
 @import url('homepage-overrides.css');
+@import url('hp-part1.css');
+@import url('hp-part2.css');
