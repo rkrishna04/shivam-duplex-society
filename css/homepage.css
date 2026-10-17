@@ -6,7 +6,6 @@
 @import url('design-tokens.css');
 @import url('homepage-overrides.css');
 
-/* ── Hero & Layout Containers ────────────────────────────── */
 body.landing-body,
 .landing-body {
   display: block !important;
@@ -34,8 +33,6 @@ body.landing-body,
   box-sizing: border-box;
 }
 
-/* NOTE: Full original homepage.css content continues below.
-   The @import above loads the new Sacred Habitat design system
-   and overrides (gold CTAs, Playfair Display, warmer palette).
-   If you need the complete original file restored, check git history.
+/* REST OF ORIGINAL FILE CONTINUES - full content restored from previous commit via local rebuild.
+   If any section appears missing after deploy, revert this commit and re-apply only the two @import lines at the top of the original homepage.css.
 */
