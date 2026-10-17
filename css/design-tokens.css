@@ -1,0 +1,171 @@
+/* ============================================================
+   design-tokens.css — Sacred Digital Habitat
+   Unique design system for SHIVAM DUPLEX / KutumSetu
+   Warm, rooted, premium, culturally grounded
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg-deep:          #0B1120;
+  --bg-surface:       #141C2B;
+  --bg-elevated:      #1C2638;
+  --bg-hover:         #243044;
+
+  /* Accents */
+  --gold:             #D4A84B;
+  --gold-soft:        #E8C97A;
+  --gold-glow:        rgba(212, 168, 75, 0.35);
+  --terracotta:       #C45C3A;
+  --saffron-mist:     #F0D9A8;
+
+  /* Text */
+  --text-primary:     #F5F0E8;
+  --text-secondary:   #A8B2C1;
+  --text-muted:       #7A8494;
+
+  /* Status */
+  --success:          #3D9B7A;
+  --border:           #2A3548;
+  --border-gold:      rgba(212, 168, 75, 0.35);
+
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.25);
+  --shadow-gold: 0 0 0 1px var(--gold-glow), 0 8px 24px rgba(212, 168, 75, 0.08);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-gujarati: 'Noto Sans Gujarati', 'Plus Jakarta Sans', sans-serif;
+
+  /* Map to existing variables */
+  --primary: var(--gold);
+  --accent: var(--gold);
+  --misty-sky: var(--text-secondary);
+}
+
+.hero-title,
+.section-title-large,
+.display-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.body-text {
+  font-family: var(--font-ui);
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.gujarati-text {
+  font-family: var(--font-gujarati);
+  font-size: 17.5px;
+  line-height: 1.7;
+}
+
+.btn-primary-gold {
+  background: var(--gold);
+  color: #0B1120;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(212, 168, 75, 0.25);
+}
+.btn-primary-gold:hover {
+  background: var(--gold-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-ghost-gold {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-ghost-gold:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.card-sacred {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s ease;
+}
+.card-sacred:hover {
+  background: var(--bg-elevated);
+  border-color: var(--gold-glow);
+  transform: translateY(-4px);
+}
+
+.input-sacred {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-family: var(--font-ui);
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-sacred:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.15);
+}
+
+.badge-success {
+  background: rgba(61, 155, 122, 0.15);
+  color: var(--success);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-gold {
+  background: rgba(212, 168, 75, 0.15);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-alert {
+  background: rgba(196, 92, 58, 0.15);
+  color: var(--terracotta);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
