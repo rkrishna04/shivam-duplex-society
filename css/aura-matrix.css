@@ -1,0 +1,497 @@
+/* ============================================================
+   aura-matrix.css — SHIVAM DUPLEX RESIDENTS ASSOCIATION
+   Design Language: "AURA-MATRIX: CELESTIAL NEO-SOVEREIGN" (2027+)
+   Haute-Couture Typography: Syne, Cinzel, Outfit, Space Mono
+   Holographic Foil Iridescence · Solar Gold & Quantum Cyan Caustics
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Syne:wght@600;700;800;900&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Gujarati:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* ── 1. The Interstellar Abyss Canvas ─────────────────────── */
+  --aura-canvas:          #05070B; /* Deepest void obsidian */
+  --aura-monolith:        #0C1018; /* Structural basalt slab */
+  --aura-card:            #101622; /* Sculpted obsidian substrate */
+  --aura-elevated:        #182030; /* Elevated floating plinth */
+  --aura-border:          rgba(245, 186, 66, 0.22); /* Hairline gold catch */
+  --aura-border-cyan:     rgba(0, 242, 254, 0.22);
+
+  /* ── 2. The Dual-Energy Spectrum ─────────────────────────── */
+  /* Energy Band 1: Solar Gold & Saffron Flame (Sovereign Prestige) */
+  --solar-gold:           #F5BA42;
+  --solar-champagne:      #FFE29F;
+  --solar-gradient:       linear-gradient(135deg, #FFE29F 0%, #F5BA42 50%, #B8801A 100%);
+  --solar-glow:           rgba(245, 186, 66, 0.35);
+
+  /* Energy Band 2: Quantum Cyan & Azure Ion (Bioluminescent Pulse) */
+  --quantum-cyan:         #00F2FE;
+  --quantum-azure:        #4FACFE;
+  --quantum-gradient:     linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+  --quantum-glow:         rgba(0, 242, 254, 0.35);
+
+  /* Holographic Foil Prismatic Dispersion */
+  --holo-foil:            conic-gradient(from 180deg at 50% 50%, #00F2FE 0deg, #F5BA42 90deg, #FF5E62 180deg, #4FACFE 270deg, #00F2FE 360deg);
+  --holo-sweep:           linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.45) 45%, rgba(0,242,254,0.45) 50%, rgba(245,186,66,0.45) 55%, transparent 75%);
+
+  /* ── 3. Haute-Couture Typographic Engine ─────────────────── */
+  --font-sculptural:      'Syne', sans-serif;
+  --font-sacred:          'Cinzel', serif;
+  --font-display:         'Outfit', sans-serif;
+  --font-sans:            'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-gujarati:        'Noto Sans Gujarati', 'Shruti', sans-serif;
+  --font-telemetry:       'Space Mono', monospace;
+
+  /* Typography Scale */
+  --text-sculptural-hero: 900 clamp(36px, 6vw, 68px)/1.05 var(--font-sculptural);
+  --text-sacred-title:    800 24px/1.2 var(--font-sacred);
+  --text-h1:              800 32px/1.15 var(--font-sculptural);
+  --text-h2:              700 24px/1.22 var(--font-display);
+  --text-h3:              700 18px/1.28 var(--font-display);
+  --text-telemetry:       700 13.5px/1.2 var(--font-telemetry);
+
+  /* Overrides for style.css integration */
+  --lg-canvas-bg:         var(--aura-canvas);
+  --lg-surface-base:      var(--aura-monolith);
+  --lg-surface-card:      var(--aura-card);
+  --lg-surface-elevated:  var(--aura-elevated);
+  --primary:              #F5BA42;
+  --primary-dark:         #B8801A;
+  --primary-light:        #FFE29F;
+  --accent:               #00F2FE;
+  --accent-light:         #E0F7FA;
+  --success:              #10B981;
+  --warning:              #F5BA42;
+}
+
+/* ── 4. Celestial Void Ambient Canvas ─────────────────────── */
+body, body.landing-body {
+  background: 
+    radial-gradient(ellipse 90% 70% at 20% 0%,   rgba(245, 186, 66, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 10%,  rgba(0, 242, 254, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 80% at 50% 80%,  rgba(255, 94, 98, 0.08) 0%, transparent 65%),
+    linear-gradient(168deg, #05070B 0%, #090E17 40%, #0D1524 75%, #05070B 100%) !important;
+  background-attachment: fixed !important;
+  color: #F8FAFC !important;
+  font-family: var(--font-sans) !important;
+  letter-spacing: -0.01em;
+}
+
+/* ── 5. Sculptural Haute-Couture Headings ─────────────────── */
+h1, .hero-main-title, .brand-text h1 {
+  font-family: var(--font-sculptural) !important;
+  letter-spacing: -0.04em !important;
+  font-weight: 800 !important;
+}
+
+.brand-text h1, .brand-info h2 {
+  font-family: var(--font-sacred) !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase;
+}
+
+.section-title-large, .card-title, .topbar-title {
+  font-family: var(--font-sculptural) !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ── 6. Holographic Foil Border Mechanism ─────────────────── */
+.card, .feature-card-spatial, .stat-card, .vehicle-hero-card, .comm-split-box {
+  background: var(--aura-card) !important;
+  border: 1px solid rgba(245, 186, 66, 0.2) !important;
+  border-radius: 24px !important;
+  position: relative !important;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 24px rgba(245, 186, 66, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card:hover, .feature-card-spatial:hover, .stat-card:hover, .vehicle-hero-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(245, 186, 66, 0.5) !important;
+  box-shadow: 
+    0 24px 60px -10px rgba(0, 0, 0, 0.9), 
+    0 0 35px rgba(245, 186, 66, 0.22), 
+    0 0 20px rgba(0, 242, 254, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Top Holographic Specular Line */
+.card::before, .feature-card-spatial::before, .vehicle-hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, #00F2FE 30%, #F5BA42 50%, #FF5E62 70%, transparent 95%) !important;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ── 7. Sovereign Gold & Quantum Cyan Buttons ─────────────── */
+.btn-primary, .hero-btn-primary {
+  background: var(--solar-gradient) !important;
+  color: #05070B !important;
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 25px rgba(245, 186, 66, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  text-transform: uppercase;
+  font-size: 13.5px !important;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-primary:hover, .hero-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 14px 35px rgba(245, 186, 66, 0.65), 0 0 25px rgba(255, 226, 159, 0.5), inset 0 1px 1.5px #fff !important;
+  color: #000000 !important;
+}
+
+.btn-primary:active, .hero-btn-primary:active {
+  transform: translateY(1px) scale(0.975) !important;
+}
+
+.btn-accent {
+  background: var(--quantum-gradient) !important;
+  color: #05070B !important;
+  font-family: var(--font-display) !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+  text-transform: uppercase;
+}
+
+.btn-outline, .hero-btn-secondary {
+  background: rgba(245, 186, 66, 0.08) !important;
+  border: 1px solid rgba(245, 186, 66, 0.35) !important;
+  color: var(--solar-champagne) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(14px);
+}
+
+.btn-outline:hover, .hero-btn-secondary:hover {
+  background: rgba(245, 186, 66, 0.18) !important;
+  border-color: rgba(245, 186, 66, 0.7) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(245, 186, 66, 0.3) !important;
+}
+
+/* ── 8. Telemetry Monospace Numerals ──────────────────────── */
+.stat-value, .stat-box-num, .bill-no-pill, .td-mono, .td-amount, .vhc-input {
+  font-family: var(--font-telemetry) !important;
+  letter-spacing: -0.02em !important;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.stat-value {
+  color: #ffffff !important;
+  text-shadow: 0 0 18px rgba(245, 186, 66, 0.4) !important;
+  font-size: 28px !important;
+}
+
+.td-amount {
+  color: var(--solar-gold) !important;
+  text-shadow: 0 0 12px rgba(245, 186, 66, 0.45) !important;
+}
+
+/* ── 9. Sovereign Guilloche Security Receipt Card ─────────── */
+.receipt-card {
+  background: linear-gradient(145deg, #090E17 0%, #101826 60%, #070B12 100%) !important;
+  border: 2px solid rgba(245, 186, 66, 0.4) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 40px rgba(245, 186, 66, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  position: relative;
+}
+
+.rcpt-header {
+  background: linear-gradient(135deg, rgba(20, 28, 42, 0.98), rgba(12, 17, 26, 0.98)) !important;
+  border-bottom: 2px solid rgba(245, 186, 66, 0.35) !important;
+}
+
+.rcpt-society {
+  font-family: var(--font-sacred) !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 20px rgba(245, 186, 66, 0.5) !important;
+}
+
+.rcpt-title-bar {
+  background: var(--solar-gradient) !important;
+  color: #05070B !important;
+  font-family: var(--font-sculptural) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.rcpt-amount-box {
+  background: linear-gradient(135deg, rgba(16, 22, 34, 0.98), rgba(28, 38, 56, 0.95)) !important;
+  border-top: 1px solid rgba(245, 186, 66, 0.4) !important;
+}
+
+.amt-value {
+  color: var(--solar-gold) !important;
+  text-shadow: 0 0 25px rgba(245, 186, 66, 0.6) !important;
+  font-family: var(--font-telemetry) !important;
+}
+
+/* ── 10. Floating Island Dock (Navbar 3.0) ─────────────────── */
+.landing-nav {
+  background: rgba(12, 16, 24, 0.82) !important;
+  border: 1px solid rgba(245, 186, 66, 0.3) !important;
+  box-shadow: 
+    0 16px 40px -4px rgba(0, 0, 0, 0.8), 
+    0 0 25px rgba(245, 186, 66, 0.15), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.3) 0%, rgba(12, 16, 24, 0.95) 100%) !important;
+  border: 1px solid rgba(245, 186, 66, 0.5) !important;
+  box-shadow: 0 0 16px rgba(245, 186, 66, 0.35) !important;
+}
+
+.hero-pill-badge {
+  background: rgba(245, 186, 66, 0.12) !important;
+  border: 1px solid rgba(245, 186, 66, 0.4) !important;
+  color: var(--solar-champagne) !important;
+  font-family: var(--font-display) !important;
+}
+
+.hero-pulse-dot {
+  background: var(--quantum-cyan) !important;
+  box-shadow: 0 0 12px var(--quantum-cyan) !important;
+}
+
+.hero-main-title .gradient-text {
+  background: linear-gradient(135deg, #ffffff 20%, #FFE29F 50%, #F5BA42 80%, #00F2FE 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.hero-main-title .shiva-trishul {
+  color: var(--solar-gold) !important;
+  filter: drop-shadow(0 0 18px rgba(245, 186, 66, 0.75)) !important;
+}
+
+/* ── 11. Haptic Sound Indicator Pill in Topbar/Nav ────────── */
+.haptic-sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(245, 186, 66, 0.1);
+  border: 1px solid rgba(245, 186, 66, 0.3);
+  color: var(--solar-champagne);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.haptic-sound-toggle:hover {
+  background: rgba(245, 186, 66, 0.2);
+  border-color: rgba(245, 186, 66, 0.6);
+  color: #ffffff;
+}
+
+/* ── 12. Monolithic Obsidian Sidebar ───────────────────────── */
+.sidebar {
+  background: #080C14 !important;
+  border-right: 1px solid rgba(245, 186, 66, 0.2) !important;
+  box-shadow: 4px 0 35px rgba(0, 0, 0, 0.7) !important;
+}
+
+.sidebar-brand {
+  border-bottom: 1px solid rgba(245, 186, 66, 0.18) !important;
+  background: linear-gradient(180deg, rgba(245, 186, 66, 0.08) 0%, transparent 100%) !important;
+}
+
+.sidebar-brand .brand-icon {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.25) 0%, rgba(8, 12, 20, 0.95) 100%) !important;
+  border: 1px solid rgba(245, 186, 66, 0.45) !important;
+  box-shadow: 0 0 16px rgba(245, 186, 66, 0.3) !important;
+}
+
+.sidebar-brand .brand-text h1 {
+  font-family: var(--font-sacred) !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 15px rgba(245, 186, 66, 0.4) !important;
+}
+
+.nav-section-label {
+  color: var(--solar-gold) !important;
+  font-family: var(--font-sculptural) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.nav-link {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  color: #94A3B8 !important;
+  border-radius: 12px !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(245, 186, 66, 0.1) !important;
+  border-color: rgba(245, 186, 66, 0.3) !important;
+  transform: translateX(4px) !important;
+}
+
+.nav-link.active {
+  background: linear-gradient(90deg, rgba(245, 186, 66, 0.22) 0%, rgba(0, 242, 254, 0.1) 100%) !important;
+  color: #FFE29F !important;
+  border-left: 3.5px solid var(--solar-gold) !important;
+  box-shadow: inset 0 0 18px rgba(245, 186, 66, 0.15), 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+  font-weight: 700 !important;
+}
+
+/* ── 13. Atmospheric Topbar & Navigation Deck ───────────────── */
+.topbar {
+  background: rgba(8, 12, 20, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(245, 186, 66, 0.2) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+.topbar-title {
+  font-family: var(--font-sculptural) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.02em !important;
+}
+
+.topbar-sub {
+  font-family: var(--font-telemetry) !important;
+  font-size: 12px !important;
+  color: var(--quantum-cyan) !important;
+}
+
+/* ── 14. Celestial Data Tables & Grids ──────────────────────── */
+.table-wrap, .table-container {
+  background: var(--aura-card) !important;
+  border: 1px solid rgba(245, 186, 66, 0.2) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.toolbar {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.08) 0%, transparent 100%) !important;
+  border-bottom: 1px solid rgba(245, 186, 66, 0.18) !important;
+}
+
+thead {
+  background: #090E18 !important;
+}
+
+thead th {
+  color: var(--solar-champagne) !important;
+  font-family: var(--font-display) !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-bottom: 2px solid rgba(245, 186, 66, 0.3) !important;
+  padding: 14px 18px !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+tbody tr:hover {
+  background: linear-gradient(90deg, rgba(245, 186, 66, 0.09) 0%, rgba(0, 242, 254, 0.06) 100%) !important;
+  box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.06) !important;
+}
+
+/* ── 15. Form Inputs & Capsule Search Controls ──────────────── */
+.search-input, .filter-select, .form-control {
+  background: #090E18 !important;
+  border: 1px solid rgba(245, 186, 66, 0.25) !important;
+  color: #FFFFFF !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.search-input:focus, .filter-select:focus, .form-control:focus {
+  border-color: var(--quantum-cyan) !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(0, 242, 254, 0.25), 0 0 20px rgba(245, 186, 66, 0.2) !important;
+  background: #0D1524 !important;
+}
+
+/* ── 16. Neo-Sovereign Modals & Overlays ────────────────────── */
+.modal, .admin-modal-box, .map-modal-card {
+  background: linear-gradient(155deg, #0C121E 0%, #060910 100%) !important;
+  border: 1.5px solid rgba(245, 186, 66, 0.4) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(245, 186, 66, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  position: relative !important;
+}
+
+.modal::before, .admin-modal-box::before, .map-modal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, #00F2FE 30%, #F5BA42 50%, #FF5E62 70%, transparent 95%) !important;
+  pointer-events: none;
+}
+
+.modal-header, .map-modal-header {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.12) 0%, transparent 100%) !important;
+  border-bottom: 1px solid rgba(245, 186, 66, 0.25) !important;
+}
+
+.modal-title {
+  font-family: var(--font-sculptural) !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+}
+
+.modal-close {
+  background: rgba(245, 186, 66, 0.12) !important;
+  border: 1px solid rgba(245, 186, 66, 0.35) !important;
+  color: var(--solar-gold) !important;
+}
+
+.modal-close:hover {
+  background: rgba(245, 186, 66, 0.3) !important;
+  color: #FFFFFF !important;
+  transform: scale(1.1) !important;
+}
+
+/* ── 17. Status Badges & Energetic Indicators ───────────────── */
+.badge-paid, .status-paid, .status-paid-badge {
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25) !important;
+  font-weight: 800 !important;
+  font-family: var(--font-display) !important;
+}
+
+.badge-unpaid, .status-pending {
+  background: rgba(245, 186, 66, 0.16) !important;
+  color: #F5BA42 !important;
+  border: 1px solid rgba(245, 186, 66, 0.45) !important;
+  box-shadow: 0 0 12px rgba(245, 186, 66, 0.25) !important;
+  font-weight: 800 !important;
+  font-family: var(--font-display) !important;
+}
+
+/* ── 18. Liquid Tabs & Interactive Switching ────────────────── */
+.res-tab-btn.active, .tab-btn.active, .futuristic-tab.active {
+  background: linear-gradient(135deg, rgba(245, 186, 66, 0.22) 0%, rgba(0, 242, 254, 0.12) 100%) !important;
+  color: #FFFFFF !important;
+  border-bottom: 3px solid var(--solar-gold) !important;
+  box-shadow: 0 4px 18px rgba(245, 186, 66, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  font-family: var(--font-display) !important;
+}
+

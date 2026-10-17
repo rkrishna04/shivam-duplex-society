@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -20,11 +20,13 @@
 <link rel="stylesheet" href="css/tables.css"/>
 <link rel="stylesheet" href="css/forms.css"/>
 <link rel="stylesheet" href="css/shiva-theme.css"/>
+<link rel="stylesheet" href="css/aura-matrix.css"/>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="js/pwa.js"></script>
 <script src="js/app.js"></script>
+<script src="js/aura-haptics.js"></script>
 <style>
   .evt-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; overflow-x: auto; }
   .evt-tab-btn {
@@ -81,6 +83,7 @@
       </div>
     </div>
     <div class="topbar-actions">
+      <button type="button" class="haptic-sound-toggle" title="Toggle Haptic Acoustic Feedback">🔊 Haptics: ON</button>
       <button type="button" class="btn btn-outline btn-sm btn-install-app" style="color:var(--success);border-color:rgba(16,185,129,0.4);">📲 Install App</button>
       <button class="btn btn-outline btn-sm" id="btn-export">📥 Export Excel</button>
       <button class="btn btn-accent" id="btn-add">➕ Add Event</button>

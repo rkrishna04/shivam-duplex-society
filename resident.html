@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="css/tables.css"/>
 <link rel="stylesheet" href="css/forms.css"/>
 <link rel="stylesheet" href="css/shiva-theme.css"/>
+<link rel="stylesheet" href="css/aura-matrix.css"/>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
@@ -27,6 +28,7 @@
 <script src="js/pwa.js"></script>
 <script src="js/society-map.js"></script>
 <script src="js/app.js"></script>
+<script src="js/aura-haptics.js"></script>
 <style>
   #map-inspector-modal,
   .map-modal-overlay:not(.show),
@@ -233,6 +235,7 @@
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button type="button" class="haptic-sound-toggle" title="Toggle Haptic Acoustic Feedback">🔊 Haptics: ON</button>
       <button id="btn-res-print-all" class="btn btn-sm" style="background:rgba(147, 197, 253,0.18);color:white;border:1px solid rgba(147, 197, 253,0.35);">🖨 Print Bills (A4 Split)</button>
       <button id="btn-open-vehicle-modal" class="btn btn-sm" style="background:rgba(16, 185, 129,0.25);color:var(--sage-leaf);border:1px solid rgba(16, 185, 129,0.4);">🚗 My Vehicles</button>
       <button id="btn-open-tenant-modal" class="btn btn-sm" style="background:rgba(226,149,120,0.25);color:var(--blush-petal);border:1px solid rgba(226,149,120,0.4);">🔑 Manage Tenant KYC</button>
