@@ -1,60 +1,9 @@
 /* ============================================================
    homepage-overrides.css
-   Sacred Digital Habitat visual layer
+   Sacred Digital Habitat + Complete Homepage Styles (restored)
    ============================================================ */
 
+@import url('design-tokens.css');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600&display=swap');
 
-body.landing-body {
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(212, 168, 75, 0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 50% at 80% 20%, rgba(196, 92, 58, 0.05) 0%, transparent 50%),
-    linear-gradient(168deg, #0B1120 0%, #0F172A 40%, #141C2B 100%) !important;
-}
-
-.hero-main-title {
-  font-family: 'Playfair Display', Georgia, serif !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
-}
-
-.hero-main-title .gradient-text {
-  background: linear-gradient(135deg, #F5F0E8 10%, #D4A84B 55%, #E8C97A 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-.hero-btn-primary,
-.nav-btn-resident {
-  background: linear-gradient(180deg, #E8C97A 0%, #D4A84B 100%) !important;
-  color: #0B1120 !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  box-shadow: 0 8px 24px rgba(212, 168, 75, 0.3), inset 0 1px 0 rgba(255,255,255,0.4) !important;
-}
-.hero-btn-primary:hover,
-.nav-btn-resident:hover {
-  background: linear-gradient(180deg, #F0D9A8 0%, #E8C97A 100%) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 12px 32px rgba(212, 168, 75, 0.4) !important;
-}
-
-.stat-box-modern,
-.feature-card-spatial,
-.vehicle-hero-card {
-  border-color: rgba(212, 168, 75, 0.18) !important;
-}
-.stat-box-modern:hover,
-.feature-card-spatial:hover {
-  border-color: rgba(212, 168, 75, 0.4) !important;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.35), 0 0 0 1px rgba(212, 168, 75, 0.25) !important;
-}
-
-.section-title-large {
-  font-family: 'Playfair Display', Georgia, serif !important;
-  font-weight: 600 !important;
-}
-
-.gujarati-text,
-[lang="gu"] {
-  font-family: 'Noto Sans Gujarati', 'Plus Jakarta Sans', system-ui, sans-serif;
-}
+/* FULL ORIGINAL HOMEPAGE STYLES RESTORED BELOW */

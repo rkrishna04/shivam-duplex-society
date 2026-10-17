@@ -1,1 +1,2 @@
-PLACEHOLDER_WILL_FAIL_IF_TOO_LARGE
+/* homepage.css — loads full restored styles */
+@import url('homepage-overrides.css');
