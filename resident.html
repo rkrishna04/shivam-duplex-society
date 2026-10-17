@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<meta name="theme-color" content="#060913"/>
+<meta name="theme-color" content="#F3EFEA"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -159,7 +159,7 @@
   }
 </style>
 </head>
-<body style="background:radial-gradient(ellipse 90% 70% at 15% 5%, rgba(147, 197, 253,0.16) 0%, transparent 55%), radial-gradient(ellipse 85% 65% at 85% 20%, rgba(16, 185, 129,0.15) 0%, transparent 60%), linear-gradient(168deg, #151d24 0%, #1e2933 35%, #24323e 70%, #141c23 100%);background-attachment:fixed;min-height:100vh;">
+<body class="landing-body">
 
 <!-- Real-Time Optical Refraction Filter (Apple 2025-2026 Liquid Glass) -->
 <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
@@ -174,18 +174,18 @@
 <div id="resident-search">
   <div class="res-hero">
     <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;">
-      <div style="color:white;text-align:center;margin-bottom:8px;">
+      <div style="text-align:center;margin-bottom:8px;">
         <div style="font-size:42px;margin-bottom:8px;">🔱</div>
-        <div style="font-size:26px;font-weight:900;letter-spacing:1px;">SHIVAM DUPLEX</div>
-        <div style="color:var(--misty-sky);font-size:14px;font-weight:600;">Resident &amp; Home Owner Portal</div>
+        <div style="font-size:26px;font-weight:900;letter-spacing:1px;font-family:var(--font-serif-display);color:var(--text-primary);">SHIVAM DUPLEX</div>
+        <div style="color:var(--text-secondary);font-size:14px;font-weight:600;">Resident &amp; Home Owner Portal</div>
       </div>
 
       <div class="res-search-card">
         <h1>Welcome, Resident! 👋</h1>
         <p>Enter your duplex house number to view your maintenance bills, manage tenant KYC, update vehicle registration, and pay dues.</p>
 
-        <div style="background:rgba(16, 185, 129,0.18);border:1px solid rgba(16, 185, 129,0.4);border-radius:var(--radius-md);padding:12px 16px;font-size:12.5px;color:#fff;margin-bottom:18px;text-align:left;line-height:1.5;">
-          <div style="font-weight:800;color:#fde047;margin-bottom:2px;">🔑 તમારું લૉગિન ID (House Owner Login):</div>
+        <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:18px;padding:14px 18px;font-size:13px;color:var(--text-secondary);margin-bottom:20px;text-align:left;line-height:1.5;">
+          <div style="font-weight:800;color:var(--arch-accent-gold);margin-bottom:2px;">🔑 તમારું લૉગિન ID (House Owner Login):</div>
           તમારો <strong>ડુપ્લેક્સ નંબર</strong> દાખલ કરો (દા.ત. <strong>01, 02, 03, 04, 11, 21, 31...</strong> અથવા <strong>01 થી 40</strong>). કોઈ પાસવર્ડની જરૂર નથી.
         </div>
 
@@ -195,17 +195,15 @@
         </form>
 
         <div style="margin-top:14px;">
-          <button type="button" class="btn btn-outline btn-sm btn-open-kyc-modal" style="width:100%;color:var(--blush-petal);border-color:rgba(226,149,120,0.45);padding:9px;font-size:12.5px;border-radius:var(--radius-pill);">
+          <button type="button" class="arch-pill-action btn-open-kyc-modal" style="width:100%;justify-content:center;padding:10px;font-size:12.5px;cursor:pointer;">
             📝 નવા સભાસદ / ભાડુઆત? KYC નોંધણી અરજી કરો
           </button>
         </div>
 
-        <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;">
-          <a href="index.html" style="font-size:12.5px;color:var(--misty-sky);text-decoration:none;">← Society Homepage</a>
-          <span style="color:rgba(147, 197, 253,0.4);">|</span>
-          <button type="button" class="btn-install-app" style="background:none;border:none;font-size:12.5px;color:var(--sage-leaf);cursor:pointer;font-weight:700;">📲 Install App</button>
-          <span style="color:rgba(147, 197, 253,0.4);">|</span>
-          <a href="dashboard.html" style="font-size:12.5px;color:var(--blush-petal);text-decoration:none;">Admin Login →</a>
+        <div style="margin-top:16px;display:flex;gap:12px;justify-content:center;align-items:center;">
+          <a href="index.html" class="arch-pill-action" style="font-size:12px;">← Society Homepage</a>
+          <button type="button" class="btn-install-app arch-pill-action" style="font-size:12px;cursor:pointer;">📲 Install App</button>
+          <a href="dashboard.html" class="arch-pill-action" style="font-size:12px;">Admin Login →</a>
         </div>
       </div>
 
@@ -360,35 +358,35 @@
         </div>
 
         <div>
-          <h3 style="font-size:20px;font-weight:900;color:#fff;margin:0 0 10px;">Official Society Bank Account</h3>
-          <p style="font-size:13px;color:var(--misty-sky);margin-bottom:18px;">
+          <h3 style="font-size:20px;font-weight:700;color:var(--text-primary);margin:0 0 10px;font-family:var(--font-serif-display);">Official Society Bank Account</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:18px;">
             Scan QR code or make an IMPS/NEFT/UPI transfer, then submit your transaction reference below:
           </p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px;font-size:13px;">
-            <div style="background:rgba(147, 197, 253,0.1);padding:10px 14px;border-radius:8px;">
-              <div style="font-size:11px;color:var(--misty-sky);text-transform:uppercase;">Bank Name</div>
-              <strong>State Bank of India (Gotri)</strong>
+            <div style="background:var(--arch-surface-bone);padding:12px 16px;border-radius:14px;border:1px solid rgba(35,30,25,0.08);">
+              <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;font-weight:800;letter-spacing:0.08em;">Bank Name</div>
+              <strong style="color:var(--text-primary);">State Bank of India (Gotri)</strong>
             </div>
-            <div style="background:rgba(147, 197, 253,0.1);padding:10px 14px;border-radius:8px;">
-              <div style="font-size:11px;color:var(--misty-sky);text-transform:uppercase;">Account Number</div>
-              <strong>38492019485</strong>
+            <div style="background:var(--arch-surface-bone);padding:12px 16px;border-radius:14px;border:1px solid rgba(35,30,25,0.08);">
+              <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;font-weight:800;letter-spacing:0.08em;">Account Number</div>
+              <strong style="color:var(--text-primary);">38492019485</strong>
             </div>
-            <div style="background:rgba(147, 197, 253,0.1);padding:10px 14px;border-radius:8px;">
-              <div style="font-size:11px;color:var(--misty-sky);text-transform:uppercase;">IFSC Code</div>
-              <strong>SBIN0010948</strong>
+            <div style="background:var(--arch-surface-bone);padding:12px 16px;border-radius:14px;border:1px solid rgba(35,30,25,0.08);">
+              <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;font-weight:800;letter-spacing:0.08em;">IFSC Code</div>
+              <strong style="color:var(--text-primary);">SBIN0010948</strong>
             </div>
-            <div style="background:rgba(147, 197, 253,0.1);padding:10px 14px;border-radius:8px;">
-              <div style="font-size:11px;color:var(--misty-sky);text-transform:uppercase;">UPI ID</div>
-              <strong>shivamduplex@sbi</strong>
+            <div style="background:var(--arch-surface-bone);padding:12px 16px;border-radius:14px;border:1px solid rgba(35,30,25,0.08);">
+              <div style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;font-weight:800;letter-spacing:0.08em;">UPI ID</div>
+              <strong style="color:var(--text-primary);">shivamduplex@sbi</strong>
             </div>
           </div>
 
           <!-- Self-Reporting Form -->
-          <form id="res-payment-report-form" style="background:rgba(15, 23, 42,0.8);border:1px solid rgba(147, 197, 253,0.25);border-radius:var(--radius-lg);padding:20px;">
-            <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;">📝 Report Maintenance Payment</div>
+          <form id="res-payment-report-form" style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:24px;padding:24px;">
+            <div style="font-size:15px;font-weight:800;color:var(--text-primary);margin-bottom:14px;font-family:var(--font-serif-display);">📝 Report Maintenance Payment</div>
             <div class="form-grid">
               <div class="form-group">
-                <label class="form-label">Payment Amount (₹)</label>
+                <label class="form-label" style="color:var(--text-secondary);font-size:12px;font-weight:700;">Payment Amount (₹)</label>
                 <select id="res-pay-amount" class="form-control">
                   <option value="600">₹600 (1 Month)</option>
                   <option value="3600">₹3,600 (6 Months Advance)</option>
@@ -396,11 +394,11 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">Payment Date</label>
+                <label class="form-label" style="color:var(--text-secondary);font-size:12px;font-weight:700;">Payment Date</label>
                 <input type="date" id="res-pay-date" class="form-control" required/>
               </div>
               <div class="form-group">
-                <label class="form-label">Mode</label>
+                <label class="form-label" style="color:var(--text-secondary);font-size:12px;font-weight:700;">Mode</label>
                 <select id="res-pay-mode" class="form-control">
                   <option>UPI / GPay / PhonePe</option>
                   <option>Bank IMPS / NEFT</option>
@@ -408,11 +406,11 @@
                 </select>
               </div>
               <div class="form-group">
-                <label class="form-label">UTR / Transaction Ref No.</label>
+                <label class="form-label" style="color:var(--text-secondary);font-size:12px;font-weight:700;">UTR / Transaction Ref No.</label>
                 <input type="text" id="res-pay-ref" class="form-control" placeholder="12-digit UTR number" required/>
               </div>
             </div>
-            <button type="submit" class="hero-btn-primary" style="margin-top:14px;padding:11px 24px;font-size:13.5px;">
+            <button type="submit" class="arch-btn-primary" style="margin-top:16px;padding:12px 28px;font-size:13.5px;border:none;cursor:pointer;">
               ✓ Record My Payment
             </button>
           </form>
@@ -572,57 +570,58 @@
           </div>
         </div>
 
-        <!-- Tier 3: ૮ કારોબારી સભ્યો -->
-        <div style="font-size:14px;font-weight:800;color:#ffffff;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+        <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:var(--font-serif-display);">
           <span>🏛️</span> ૭ થી ૮ કારોબારી સભ્યો (વિભાગીય કામગીરી ઇન્ચાર્જ)
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:20px;">
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">💧 પાણી પુરવઠો: શ્રી પ્રદીપ પટેલ</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૦૬ · મોટર, બોરવેલ, ટાંકી સફાઈ</div>
-            <a href="tel:9825011005" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11005</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">💧 પાણી પુરવઠો: શ્રી પ્રદીપ પટેલ</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૦૬ · મોટર, બોરવેલ, ટાંકી સફાઈ</div>
+            <a href="tel:9825011005" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11005</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">🛡️ સિક્યુરિટી &amp; ગેટ: શ્રી હરેશ જોશી</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૧૪ · ગાર્ડ, CCTV, વિઝિટર રજીસ્ટર</div>
-            <a href="tel:9825011006" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11006</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">🛡️ સિક્યુરિટી &amp; ગેટ: શ્રી હરેશ જોશી</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૧૪ · ગાર્ડ, CCTV, વિઝિટર રજીસ્ટર</div>
+            <a href="tel:9825011006" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11006</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">🧹 સ્વચ્છતા &amp; સફાઈ: શ્રી દીપક પંચાલ</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૧૮ · રોડ સફાઈ, કચરા વાન, ગટર</div>
-            <a href="tel:9825011007" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11007</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">🧹 સ્વચ્છતા &amp; સફાઈ: શ્રી દીપક પંચાલ</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૧૮ · રોડ સફાઈ, કચરા વાન, ગટર</div>
+            <a href="tel:9825011007" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11007</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">💡 લાઈટો &amp; પાવર: શ્રી ભાવિન શાહ</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૨૩ · સ્ટ્રીટ લાઈટ્સ, મીટર પેનલ</div>
-            <a href="tel:9825011008" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11008</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">💡 લાઈટો &amp; પાવર: શ્રી ભાવિન શાહ</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૨૩ · સ્ટ્રીટ લાઈટ્સ, મીટર પેનલ</div>
+            <a href="tel:9825011008" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11008</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">🌺 તહેવાર ઉત્સવ: શ્રી જીતેન્દ્ર ત્રિવેદી</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૨૭ · ગણેશ ઉત્સવ, નવરાત્રી, કથા</div>
-            <a href="tel:9825011009" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11009</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">🌺 તહેવાર ઉત્સવ: શ્રી જીતેન્દ્ર ત્રિવેદી</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૨૭ · ગણેશ ઉત્સવ, નવરાત્રી, કથા</div>
+            <a href="tel:9825011009" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11009</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">🚗 પાર્કિંગ શિસ્ત: શ્રી સંજય બારોટ</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૩૪ · વાહન પાર્કિંગ, સ્પીડ લિમિટ</div>
-            <a href="tel:9825011010" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11010</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">🚗 પાર્કિંગ શિસ્ત: શ્રી સંજય બારોટ</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૩૪ · વાહન પાર્કિંગ, સ્પીડ લિમિટ</div>
+            <a href="tel:9825011010" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11010</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">🌳 બગીચો: શ્રી નરેન્દ્ર રાણા</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ડુપ્લેક્સ ૩૮ · સેન્ટ્રલ ગાર્ડન, વૃક્ષારોપણ</div>
-            <a href="tel:9825011011" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 11011</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">🌳 બગીચો: શ્રી નરેન્દ્ર રાણા</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ડુપ્લેક્સ ૩૮ · સેન્ટ્રલ ગાર્ડન, વૃક્ષારોપણ</div>
+            <a href="tel:9825011011" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 11011</a>
           </div>
-          <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.2);border-radius:10px;padding:12px;">
-            <div style="font-size:13px;font-weight:700;color:#fff;">⚖️ ૨૦-ઘર વિવાદ: રાજેશભાઈ &amp; સુરેશભાઈ</div>
-            <div style="font-size:11.5px;color:var(--misty-sky);margin:2px 0 6px;">ક્લસ્ટર ૧ (૧-૨૦) &amp; ક્લસ્ટર ૨ (૨૧-૪૦)</div>
-            <a href="tel:9825012341" style="font-size:11px;color:var(--sage-leaf);text-decoration:none;font-weight:700;">📞 98250 12341</a>
+          <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:16px;padding:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text-primary);">⚖️ ૨૦-ઘર વિવાદ: રાજેશભાઈ &amp; સુરેશભાઈ</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin:2px 0 8px;">ક્લસ્ટર ૧ (૧-૨૦) &amp; ક્લસ્ટર ૨ (૨૧-૪૦)</div>
+            <a href="tel:9825012341" class="arch-pill-action" style="font-size:11px;padding:4px 12px;">📞 98250 12341</a>
           </div>
         </div>
 
         <!-- Tier 4: ઘર માલિકો -->
-        <div style="background:rgba(16, 185, 129,0.12);border:1px solid rgba(16, 185, 129,0.35);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:20px;padding:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
           <div>
-            <div style="font-size:15px;font-weight:800;color:#ffffff;">🏡 ૪૦ ડુપ્લેક્સ ઘર માલિકો (General Body)</div>
+            <div style="font-size:15px;font-weight:800;color:var(--text-primary);font-family:var(--font-serif-display);">🏡 ૪૦ ડુપ્લેક્સ ઘર માલિકો (General Body)</div>
+            <div style="font-size:12.5px;color:var(--text-secondary);">વાર્ષિક સાધારણ સભા (AGM) ના સત્તાવાર મતદાન હક્ક ધરાવતા સભ્યો.</div>
+          </div>
             <div style="font-size:12.5px;color:var(--misty-sky);">વાર્ષિક સાધારણ સભા (AGM) ના સત્તાવાર મતદાન હક્ક ધરાવતા સભ્યો.</div>
           </div>
           <a href="members.html" class="quick-action-btn" style="padding:7px 16px;font-size:12px;">👥 View Member Directory</a>
@@ -739,28 +738,28 @@
      ═══════════════════════════════════════════════════════════ -->
 <div class="admin-modal-overlay hidden" id="modal-register-kyc">
   <div class="admin-modal-box" style="max-width:680px;width:95%;max-height:90vh;overflow-y:auto;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid rgba(147, 197, 253,0.25);padding-bottom:12px;">
-      <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid rgba(35,30,25,0.08);padding-bottom:12px;">
+      <div style="font-size:18px;font-weight:900;color:var(--text-primary);display:flex;align-items:center;gap:8px;font-family:var(--font-serif-display);">
         <span>📝</span> સભાસદ &amp; ભાડુઆત KYC નોંધણી અરજી
       </div>
-      <button type="button" class="btn-close-kyc-modal" style="background:none;border:none;color:var(--misty-sky);font-size:22px;cursor:pointer;">✕</button>
+      <button type="button" class="btn-close-kyc-modal" style="background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer;">✕</button>
     </div>
 
-    <p style="font-size:12.5px;color:var(--misty-sky);margin-bottom:18px;line-height:1.5;">
+    <p style="font-size:12.5px;color:var(--text-secondary);margin-bottom:18px;line-height:1.5;">
       તમારા ડુપ્લેક્સની સાચી વિગતો ભરીને કારોબારી સમિતિને મોકલો. સમિતિ દ્વારા મંજૂર થયા બાદ તમારું ખાતું એક્ટિવ થશે અને તમે ડુપ્લેક્સ નંબરથી લૉગિન કરી શકશો.
     </p>
 
     <form id="form-register-kyc">
       <!-- Section 1: House Owner Details -->
-      <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.25);border-radius:12px;padding:16px;margin-bottom:16px;">
-        <div style="font-size:12.5px;font-weight:800;color:#fde047;text-transform:uppercase;margin-bottom:12px;">
+      <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:20px;padding:18px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:800;color:var(--arch-accent-gold);text-transform:uppercase;margin-bottom:12px;letter-spacing:0.1em;">
           🏠 ૧. ઘર માલિક વિગતો (House Owner Details)
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
           <div>
-            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ડુપ્લેક્સ નંબર (Duplex No) *</label>
-            <select id="kyc-flat" required style="width:100%;padding:10px 14px;background:rgba(11, 18, 32,0.9);border:1.5px solid rgba(147, 197, 253,0.35);border-radius:8px;color:#fff;outline:none;">
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">ડુપ્લેક્સ નંબર (Duplex No) *</label>
+            <select id="kyc-flat" required style="width:100%;padding:10px 14px;background:#fff;border:1.5px solid rgba(35,30,25,0.12);border-radius:10px;color:var(--text-primary);outline:none;">
               <option value="">પસંદ કરો (01 થી 40)</option>
               <option value="01">ડુપ્લેક્સ ૦૧ (પ્રમુખ)</option>
               <option value="02">ડુપ્લેક્સ ૦૨</option>
@@ -805,122 +804,127 @@
             </select>
           </div>
           <div>
-            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">સંપર્ક નંબર (Mobile) *</label>
-            <input type="tel" id="kyc-phone" placeholder="10-digit mobile" required style="width:100%;padding:10px 14px;background:rgba(11, 18, 32,0.9);border:1.5px solid rgba(147, 197, 253,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">સંપર્ક નંબર (Mobile) *</label>
+            <input type="tel" id="kyc-phone" placeholder="10-digit mobile" required style="width:100%;padding:10px 14px;background:#fff;border:1.5px solid rgba(35,30,25,0.12);border-radius:10px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
           </div>
         </div>
 
         <div style="margin-bottom:12px;">
-          <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">આધાર કાર્ડ મુજબ પૂરું નામ (Name as per Aadhaar) *</label>
-          <input type="text" id="kyc-owner-name" placeholder="દા.ત. શ્રી રમેશભાઈ ગોવિંદભાઈ પટેલ" required style="width:100%;padding:10px 14px;background:rgba(11, 18, 32,0.9);border:1.5px solid rgba(147, 197, 253,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+          <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">આધાર કાર્ડ મુજબ પૂરું નામ (Name as per Aadhaar) *</label>
+          <input type="text" id="kyc-owner-name" placeholder="દા.ત. શ્રી રમેશભાઈ ગોવિંદભાઈ પટેલ" required style="width:100%;padding:10px 14px;background:#fff;border:1.5px solid rgba(35,30,25,0.12);border-radius:10px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
           <div>
-            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">વ્યવસાય (Profession / Job / Business) *</label>
-            <input type="text" id="kyc-profession" placeholder="દા.ત. બિઝનેસ / પ્રાઇવેટ જોબ" required style="width:100%;padding:10px 14px;background:rgba(11, 18, 32,0.9);border:1.5px solid rgba(147, 197, 253,0.35);border-radius:8px;color:#fff;outline:none;box-sizing:border-box;"/>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">વ્યવસાય (Profession / Job / Business) *</label>
+            <input type="text" id="kyc-profession" placeholder="દા.ત. બિઝનેસ / પ્રાઇવેટ જોબ" required style="width:100%;padding:10px 14px;background:#fff;border:1.5px solid rgba(35,30,25,0.12);border-radius:10px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
           </div>
           <div>
-            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">સોસાયટી લાઇન (Street Lane)</label>
-            <input type="text" id="kyc-line-display" readonly value="ઓટોમેટિક પસંદ થશે" style="width:100%;padding:10px 14px;background:rgba(18,25,32,0.8);border:1px solid rgba(147, 197, 253,0.2);border-radius:8px;color:var(--sage-leaf);outline:none;box-sizing:border-box;"/>
+            <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">સોસાયટી લાઇન (Street Lane)</label>
+            <input type="text" id="kyc-line-display" readonly value="ઓટોમેટિક પસંદ થશે" style="width:100%;padding:10px 14px;background:rgba(35,30,25,0.04);border:1px solid rgba(35,30,25,0.08);border-radius:10px;color:var(--text-primary);outline:none;box-sizing:border-box;font-weight:700;"/>
           </div>
         </div>
 
         <!-- Dynamic Family Members List -->
-        <div style="margin-top:12px;border-top:1px dashed rgba(147, 197, 253,0.25);padding-top:12px;">
+        <div style="margin-top:12px;border-top:1px dashed rgba(35,30,25,0.12);padding-top:12px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-            <label style="font-size:11.5px;font-weight:800;color:#fff;">કુટુંબના સભ્યો (Family Members: Name &amp; Age) *</label>
-            <button type="button" id="btn-add-family-row" class="btn btn-sm btn-outline" style="padding:3px 10px;font-size:11px;color:var(--sage-leaf);border-color:rgba(16, 185, 129,0.4);">+ Add Member</button>
+            <label style="font-size:11.5px;font-weight:800;color:var(--text-primary);">કુટુંબના સભ્યો (Family Members: Name &amp; Age) *</label>
+            <button type="button" id="btn-add-family-row" class="arch-pill-action" style="padding:4px 12px;font-size:11px;">+ Add Member</button>
           </div>
           <div id="kyc-family-container" style="display:flex;flex-direction:column;gap:8px;">
             <div class="family-row" style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px;align-items:center;">
-              <input type="text" class="fam-name" placeholder="સભ્યનું પૂરું નામ" style="padding:8px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
-              <input type="number" class="fam-age" placeholder="ઉંમર (Age)" min="1" max="110" style="padding:8px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
-              <input type="text" class="fam-rel" placeholder="સંબંધ" style="padding:8px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;"/>
+              <input type="text" class="fam-name" placeholder="સભ્યનું પૂરું નામ" style="padding:8px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;"/>
+              <input type="number" class="fam-age" placeholder="ઉંમર (Age)" min="1" max="110" style="padding:8px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;"/>
+              <input type="text" class="fam-rel" placeholder="સંબંધ" style="padding:8px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;"/>
               <button type="button" class="btn-remove-fam" style="background:none;border:none;color:#ef4444;cursor:pointer;font-weight:700;">✕</button>
             </div>
           </div>
         </div>
 
         <!-- Vehicle Details -->
-        <div style="margin-top:14px;border-top:1px dashed rgba(147, 197, 253,0.25);padding-top:12px;">
-          <div style="font-size:11.5px;font-weight:800;color:#fff;margin-bottom:8px;">વાહનની વિગતો (Vehicle Registration)</div>
+        <div style="margin-top:14px;border-top:1px dashed rgba(35,30,25,0.12);padding-top:12px;">
+          <div style="font-size:11.5px;font-weight:800;color:var(--text-primary);margin-bottom:8px;">વાહનની વિગતો (Vehicle Registration)</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
-              <label style="display:block;font-size:11px;color:var(--misty-sky);margin-bottom:4px;">🚗 કાર મોડેલ &amp; નંબર (Four-Wheeler)</label>
-              <input type="text" id="kyc-car" placeholder="દા.ત. Creta - GJ06AB1001" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11px;color:var(--text-secondary);margin-bottom:4px;">🚗 કાર મોડેલ &amp; નંબર (Four-Wheeler)</label>
+              <input type="text" id="kyc-car" placeholder="દા.ત. Creta - GJ06AB1001" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;box-sizing:border-box;"/>
             </div>
             <div>
-              <label style="display:block;font-size:11px;color:var(--misty-sky);margin-bottom:4px;">🛵 બાઇક/એક્ટિવા નંબર (Two-Wheeler)</label>
-              <input type="text" id="kyc-bike" placeholder="દા.ત. Activa - GJ06CD1001" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;font-size:13px;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11px;color:var(--text-secondary);margin-bottom:4px;">🛵 બાઇક/એક્ટિવા નંબર (Two-Wheeler)</label>
+              <input type="text" id="kyc-bike" placeholder="દા.ત. Activa - GJ06CD1001" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;box-sizing:border-box;"/>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Section 2: Tenant Toggle & Tenant Details -->
-      <div style="background:rgba(15, 23, 42,0.6);border:1px solid rgba(147, 197, 253,0.25);border-radius:12px;padding:16px;margin-bottom:16px;">
+      <div style="background:var(--arch-surface-bone);border:1px solid rgba(35,30,25,0.08);border-radius:20px;padding:18px;margin-bottom:16px;">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-          <div style="font-size:12.5px;font-weight:800;color:var(--blush-petal);text-transform:uppercase;">
+          <div style="font-size:12px;font-weight:800;color:var(--arch-accent-terracotta);text-transform:uppercase;letter-spacing:0.1em;">
             🔑 ૨. ભાડુઆત વિગતો (Tenant KYC if Rented)
           </div>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#fff;cursor:pointer;">
-            <input type="checkbox" id="kyc-has-tenant" style="width:18px;height:18px;accent-color:var(--blush-petal);"/>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-primary);cursor:pointer;">
+            <input type="checkbox" id="kyc-has-tenant" style="width:18px;height:18px;accent-color:var(--arch-surface-dark);"/>
             <span>આ ડુપ્લેક્સ ભાડે આપેલ છે? (House is Rented)</span>
           </label>
         </div>
 
-        <div id="kyc-tenant-box" style="display:none;margin-top:14px;border-top:1px dashed rgba(226,149,120,0.3);padding-top:14px;">
+        <div id="kyc-tenant-box" style="display:none;margin-top:14px;border-top:1px dashed rgba(35,30,25,0.12);padding-top:14px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆતનું નામ (As per Aadhaar)</label>
-              <input type="text" id="kyc-tenant-name" placeholder="ભાડુઆતનું પૂરું નામ" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">ભાડુઆતનું નામ (As per Aadhaar)</label>
+              <input type="text" id="kyc-tenant-name" placeholder="ભાડુઆતનું પૂરું નામ" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆત સંપર્ક નંબર</label>
-              <input type="tel" id="kyc-tenant-phone" placeholder="Tenant Mobile No" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">ભાડુઆત સંપર્ક નંબર</label>
+              <input type="tel" id="kyc-tenant-phone" placeholder="Tenant Mobile No" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">આધાર કાર્ડ નંબર (12-digit Aadhaar)</label>
-              <input type="text" id="kyc-tenant-aadhaar" placeholder="XXXX-XXXX-XXXX" maxlength="14" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">આધાર કાર્ડ નંબર (12-digit Aadhaar)</label>
+              <input type="text" id="kyc-tenant-aadhaar" placeholder="XXXX-XXXX-XXXX" maxlength="14" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">પાન કાર્ડ નંબર (10-digit PAN)</label>
-              <input type="text" id="kyc-tenant-pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase;width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">પાન કાર્ડ નંબર (10-digit PAN)</label>
+              <input type="text" id="kyc-tenant-pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform:uppercase;width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆતનો વ્યવસાય (Occupation)</label>
-              <input type="text" id="kyc-tenant-profession" placeholder="દા.ત. સોફ્ટવેર એન્જિનિયર / જોબ" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">ભાડુઆતનો વ્યવસાય (Occupation)</label>
+              <input type="text" id="kyc-tenant-profession" placeholder="દા.ત. સોફ્ટવેર એન્જિનિયર / જોબ" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">ભાડુઆત કુટુંબના સભ્યો</label>
-              <input type="text" id="kyc-tenant-family" placeholder="દા.ત. ૩ સભ્યો (પતિ, પત્ની, ૧ બાળક)" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">ભાડુઆત કુટુંબના સભ્યો</label>
+              <input type="text" id="kyc-tenant-family" placeholder="દા.ત. ૩ સભ્યો (પતિ, પત્ની, ૧ બાળક)" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">એગ્રીમેન્ટ શરૂઆત તારીખ</label>
-              <input type="date" id="kyc-tenant-start" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">એગ્રીમેન્ટ શરૂઆત તારીખ</label>
+              <input type="date" id="kyc-tenant-start" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
             <div>
-              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--misty-sky);margin-bottom:5px;">એગ્રીમેન્ટ સમાપ્તિ તારીખ</label>
-              <input type="date" id="kyc-tenant-end" style="width:100%;padding:9px 12px;background:rgba(11, 18, 32,0.9);border:1px solid rgba(147, 197, 253,0.3);border-radius:6px;color:#fff;outline:none;box-sizing:border-box;"/>
+              <label style="display:block;font-size:11.5px;font-weight:700;color:var(--text-secondary);margin-bottom:5px;">એગ્રીમેન્ટ સમાપ્તિ તારીખ</label>
+              <input type="date" id="kyc-tenant-end" style="width:100%;padding:9px 12px;background:#fff;border:1px solid rgba(35,30,25,0.12);border-radius:8px;color:var(--text-primary);outline:none;box-sizing:border-box;"/>
             </div>
           </div>
         </div>
       </div>
 
-      <button type="submit" class="hero-btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:15px;margin-top:10px;">
+      <button type="submit" class="arch-btn-primary" style="width:100%;justify-content:center;padding:15px;font-size:15px;margin-top:10px;border:none;cursor:pointer;">
         🚀 કારોબારી સમિતિને અરજી મોકલો (Submit KYC for Approval)
       </button>
-      <div style="text-align:center;font-size:11.5px;color:var(--misty-sky);margin-top:10px;">
+      <div style="text-align:center;font-size:11.5px;color:var(--text-muted);margin-top:10px;">
+        અરજી મોકલ્યા બાદ સમિતિ દ્વારા વેરિફિકેશન થશે અને મંજૂરી મળતાં ખાતું એક્ટિવ થશે.
+      </div>
+    </form>
+  </div>
+</div>
         અરજી મોકલ્યા બાદ સમિતિ દ્વારા વેરિફિકેશન થશે અને મંજૂરી મળતાં ખાતું એક્ટિવ થશે.
       </div>
     </form>
