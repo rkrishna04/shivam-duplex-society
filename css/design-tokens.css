@@ -5,30 +5,30 @@
    ============================================================ */
 
 :root {
-  /* ── Backgrounds ───────────────────────────────────────── */
+  /* Backgrounds */
   --bg-deep:          #0B1120;
   --bg-surface:       #141C2B;
   --bg-elevated:      #1C2638;
   --bg-hover:         #243044;
 
-  /* ── Accents ───────────────────────────────────────────── */
+  /* Accents */
   --gold:             #D4A84B;
   --gold-soft:        #E8C97A;
   --gold-glow:        rgba(212, 168, 75, 0.35);
   --terracotta:       #C45C3A;
   --saffron-mist:     #F0D9A8;
 
-  /* ── Text ─────────────────────────────────────────────── */
+  /* Text */
   --text-primary:     #F5F0E8;
   --text-secondary:   #A8B2C1;
   --text-muted:       #7A8494;
 
-  /* ── Status ────────────────────────────────────────────── */
+  /* Status */
   --success:          #3D9B7A;
   --border:           #2A3548;
   --border-gold:      rgba(212, 168, 75, 0.35);
 
-  /* ── Spacing (8px system) ──────────────────────────────── */
+  /* Spacing */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -37,28 +37,27 @@
   --space-6: 64px;
   --space-7: 96px;
 
-  /* ── Radius ────────────────────────────────────────────── */
+  /* Radius */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* ── Shadows ───────────────────────────────────────────── */
+  /* Shadows */
   --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.25);
   --shadow-gold: 0 0 0 1px var(--gold-glow), 0 8px 24px rgba(212, 168, 75, 0.08);
 
-  /* ── Typography ────────────────────────────────────────── */
+  /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
   --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-gujarati: 'Noto Sans Gujarati', 'Plus Jakarta Sans', sans-serif;
 
-  /* Map to existing variables for gradual adoption */
+  /* Map to existing variables */
   --primary: var(--gold);
   --accent: var(--gold);
   --misty-sky: var(--text-secondary);
 }
 
-/* ── Typography Utilities ────────────────────────────────── */
 .hero-title,
 .section-title-large,
 .display-title {
@@ -81,7 +80,6 @@
   line-height: 1.7;
 }
 
-/* ── Core Components ─────────────────────────────────────── */
 .btn-primary-gold {
   background: var(--gold);
   color: #0B1120;

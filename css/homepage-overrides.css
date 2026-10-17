@@ -1,12 +1,10 @@
 /* ============================================================
    homepage-overrides.css
-   Sacred Digital Habitat visual layer on top of existing styles
-   Soft gold primary, refined typography, calmer interactions
+   Sacred Digital Habitat visual layer
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600&display=swap');
 
-/* Override key colors toward Sacred Habitat */
 body.landing-body {
   background:
     radial-gradient(ellipse 90% 60% at 50% 0%, rgba(212, 168, 75, 0.07) 0%, transparent 55%),
@@ -26,7 +24,6 @@ body.landing-body {
   -webkit-text-fill-color: transparent !important;
 }
 
-/* Primary CTAs → Gold */
 .hero-btn-primary,
 .nav-btn-resident {
   background: linear-gradient(180deg, #E8C97A 0%, #D4A84B 100%) !important;
@@ -41,7 +38,6 @@ body.landing-body {
   box-shadow: 0 12px 32px rgba(212, 168, 75, 0.4) !important;
 }
 
-/* Soften cards */
 .stat-box-modern,
 .feature-card-spatial,
 .vehicle-hero-card {
@@ -53,16 +49,12 @@ body.landing-body {
   box-shadow: 0 12px 36px rgba(0,0,0,0.35), 0 0 0 1px rgba(212, 168, 75, 0.25) !important;
 }
 
-/* Gujarati text comfort */
-.gujarati-text,
-[lang="gu"],
-.landing-nav a,
-.section-title-large {
-  font-family: 'Noto Sans Gujarati', 'Plus Jakarta Sans', system-ui, sans-serif;
-}
-
-/* Section titles more refined */
 .section-title-large {
   font-family: 'Playfair Display', Georgia, serif !important;
   font-weight: 600 !important;
+}
+
+.gujarati-text,
+[lang="gu"] {
+  font-family: 'Noto Sans Gujarati', 'Plus Jakarta Sans', system-ui, sans-serif;
 }
