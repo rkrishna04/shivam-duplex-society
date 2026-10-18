@@ -60,13 +60,6 @@
 </head>
 <body class="landing-body">
 
-<!-- Ambient Volumetric Drifting Light Orbs (Spatial Obsidian Canvas) -->
-<div class="ambient-orbs-stage" style="position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
-  <div class="light-field-orb" style="position:absolute;width:520px;height:520px;top:-100px;left:-100px;background:radial-gradient(circle, rgba(99,102,241,0.22) 0%, rgba(99,102,241,0) 70%);border-radius:50%;filter:blur(80px);animation:floatLightField 18s ease-in-out infinite alternate;"></div>
-  <div class="light-field-orb" style="position:absolute;width:560px;height:560px;top:40%;right:-120px;background:radial-gradient(circle, rgba(168,85,247,0.18) 0%, rgba(168,85,247,0) 70%);border-radius:50%;filter:blur(90px);animation:floatLightField 22s ease-in-out infinite alternate -5s;"></div>
-  <div class="light-field-orb" style="position:absolute;width:480px;height:480px;bottom:-100px;left:30%;background:radial-gradient(circle, rgba(6,182,212,0.18) 0%, rgba(6,182,212,0) 70%);border-radius:50%;filter:blur(85px);animation:floatLightField 20s ease-in-out infinite alternate -10s;"></div>
-</div>
-
 <!-- Real-Time Optical Refraction Filter (Apple 2025-2026 Liquid Glass) -->
 <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
   <filter id="liquid-refraction" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
@@ -85,12 +78,6 @@
       <span class="arch-brand-sub">RESIDENTS ASSOCIATION · 203 HOMES</span>
     </div>
   </a>
-
-  <!-- Dynamic Island Status Indicator (Spatial / Next-Gen) -->
-  <div class="dynamic-island-pill" title="Live Society Status">
-    <span class="status-dot"></span>
-    <span class="status-text">203 Homes · Active Governance</span>
-  </div>
 
   <!-- Center Nav Menu -->
   <nav class="arch-nav-menu">
@@ -153,96 +140,6 @@
       શિવમ ડુપ્લેક્સ સોસાયટીનું વહીવટી માળખું ૪ સ્તરીય બંધારણ પર કાર્ય કરે છે — ૧ પ્રમુખ, ૧ ઉપ-પ્રમુખ, ૧ મંત્રી, ૧ ખજાનચી, ૭ થી ૮ કારોબારી સભ્યો (પાણી, સિક્યુરિટી, સફાઈ, સ્ટ્રીટ લાઈટ્સ, તહેવારો, પાર્કિંગ, બગીચો અને ૨૦-ઘર ક્લસ્ટર વિવાદ નિવારણ) અને ૨૦૩ ડુપ્લેક્સ ઘર માલિકો (AGM મતદાન સભાસદો).
     </p>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         3D SPECULAR INTERACTIVE GOVERNANCE & TREASURY CARD
-         (Matches glassmorphism-mobile-ui & nextgen-2026 specs)
-         ═══════════════════════════════════════════════════════════ -->
-    <div class="luxury-card-container" style="margin: 24px auto 16px; max-width: 680px; width: 100%;">
-      <div id="luxuryCard" 
-           onmousemove="handleCardTilt(event)" 
-           onmouseleave="resetCardTilt()"
-           class="luxury-card-inner"
-           style="border-radius: 26px; padding: 24px 26px; position: relative; user-select: none; cursor: pointer; transition: transform 0.15s ease-out;">
-        
-        <!-- Specular Light Sheen Overlay -->
-        <div class="card-specular-light" id="cardSheen"></div>
-
-        <!-- Card Header: Brand & Chip -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; position: relative; z-index: 10;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 18px; color: #D4AF37;">❖</span>
-            <span style="font-size: 11px; font-weight: 900; letter-spacing: 0.22em; color: #D4AF37; text-transform: uppercase;">SHIVAM DUPLEX TREASURY &amp; GOVERNANCE</span>
-          </div>
-          <!-- Contactless Wave Icon -->
-          <svg style="width: 20px; height: 20px; color: rgba(255,255,255,0.6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M8.5 16.5a5 5 0 0 1 0-9"/>
-            <path d="M12 19a8.5 8.5 0 0 0 0-14"/>
-            <path d="M15.5 21.5a12 12 0 0 0 0-19"/>
-          </svg>
-        </div>
-
-        <!-- Metallic EMV Chip -->
-        <div style="width: 44px; height: 32px; border-radius: 8px; background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%); border: 1px solid rgba(255,255,255,0.4); box-shadow: inset 0 1px 2px rgba(255,255,255,0.6); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10;">
-          <div style="width: 28px; height: 20px; border: 1px solid rgba(146,64,14,0.4); border-radius: 4px; display: flex; align-items: center;">
-            <div style="width: 100%; height: 1px; background: rgba(146,64,14,0.4);"></div>
-          </div>
-        </div>
-
-        <!-- Society Register & Constitution Term -->
-        <div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 10; margin-bottom: 16px;">
-          <span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.2em; color: rgba(255,255,255,0.9); text-shadow: 0 2px 4px rgba(0,0,0,0.5);">•••• 2026-GUJ-VAD</span>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #94A3B8;">TERM: 2026–2027 AGM</span>
-        </div>
-
-        <!-- Monthly Treasury & Balance Mask Toggle -->
-        <div style="position: relative; z-index: 10; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-          <div>
-            <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 600; margin: 0 0 4px 0;">Total Society Monthly Maintenance Fund (૨૦૩ ડુપ્લેક્સ)</p>
-            <div style="display: flex; align-items: baseline; gap: 10px;">
-              <span style="font-size: 26px; font-weight: 900; letter-spacing: -0.02em; color: #FFFFFF;" id="balanceAmount">₹60,900.00</span>
-              <button type="button" onclick="toggleBalanceMask()" style="background: none; border: none; color: #94A3B8; cursor: pointer; font-size: 14px; transition: color 0.2s;" title="Toggle Balance Mask">
-                <span id="maskIcon">👁️</span>
-              </button>
-            </div>
-          </div>
-          <span style="font-size: 12px; font-weight: 800; color: #34D399; background: rgba(16, 185, 129, 0.12); padding: 4px 10px; border-radius: 9999px; border: 1px solid rgba(16, 185, 129, 0.25);">
-            100% Active Collection ▲
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- QUICK GLASS ACTION PILLS (48x48pt Touch Standards) -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 auto 26px; max-width: 680px; width: 100%;">
-      <a href="resident.html" class="glass-btn" style="flex-direction: column; gap: 6px; padding: 12px 6px; text-decoration: none; border-radius: 18px; text-align: center;" aria-label="Pay Bill">
-        <div class="glass-gold-pill" style="width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 15px;">
-          🏠
-        </div>
-        <span style="font-size: 11px; font-weight: 700; color: #E2E8F0;">બિલ / રસીદ</span>
-      </a>
-
-      <a href="#bank-qr" class="glass-btn" style="flex-direction: column; gap: 6px; padding: 12px 6px; text-decoration: none; border-radius: 18px; text-align: center;" aria-label="Bank UPI">
-        <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 15px;">
-          💳
-        </div>
-        <span style="font-size: 11px; font-weight: 700; color: #E2E8F0;">બેંક UPI QR</span>
-      </a>
-
-      <a href="#vehicle-search" class="glass-btn" style="flex-direction: column; gap: 6px; padding: 12px 6px; text-decoration: none; border-radius: 18px; text-align: center;" aria-label="Vehicle Search">
-        <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 15px;">
-          🚗
-        </div>
-        <span style="font-size: 11px; font-weight: 700; color: #E2E8F0;">વાહન શોધ</span>
-      </a>
-
-      <button type="button" onclick="document.getElementById('btn-open-admin-modal').click()" class="glass-btn" style="flex-direction: column; gap: 6px; padding: 12px 6px; border-radius: 18px; cursor: pointer; text-align: center;" aria-label="Admin Desk">
-        <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 15px;">
-          🔐
-        </div>
-        <span style="font-size: 11px; font-weight: 700; color: #E2E8F0;">કમિટી ડેસ્ક</span>
-      </button>
-    </div>
-
     <!-- 4 Constitutional Pillars Telemetry Strip -->
     <div class="gov-telemetry-strip">
       <div class="gov-tele-card">
@@ -293,47 +190,39 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         PENTAGON NEXT-GEN 2026 DESIGN PARADIGMS SHOWCASE BAR
-         1. 🌌 Spatial Obsidian Glass & Holographic Sheen (Benchmark)
-         2. 🎛️ Monolithic Neumorphism (Hardware Depth & Dual Shadows)
-         3. 🌸 Soft 3D Pastel Joy (Squishy Clay & 3D Extruded Buttons)
-         4. 📐 Kinetic Bento Grid (High-Density Telemetry & Micro-Glow)
-         5. ✨ Aurora Fluid Light Field (Volumetric Spectral Gradients)
+         QUAD-CORE NEXT-GEN UI/UX DESIGN SYSTEMS SHOWCASE BAR
+         1. 💎 Luxury Glassmorphism Mobile UI (Apple 2026 Liquid Glass)
+         2. ☁️ Soft 3D & Neumorphism (Tactile Claymorphic UI)
+         3. 🌌 NEXUS '26 Curated Next-Gen Command Board
+         4. 🌿 Emotional SaaS & Human-Centric Interface
          ═══════════════════════════════════════════════════════════ -->
-    <div class="aesthetic-showcase-bar" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));">
-      <!-- 1. Spatial Obsidian Glass -->
-      <div class="aesthetic-card-preview acp-glass" onclick="setDesignMode('spatial')" title="Click to activate Spatial Obsidian Glass">
-        <span class="acp-badge" style="background:rgba(212,175,55,0.18);color:#F5BA42;border:1px solid rgba(212,175,55,0.4);">🌌 Spatial Glass</span>
-        <div class="acp-title">Spatial Obsidian</div>
-        <div class="acp-desc">Deep #07090E canvas, specular light sheen, gold accents, floating ambient orbs.</div>
+    <div class="aesthetic-showcase-bar">
+      <!-- 1. Luxury Glassmorphism -->
+      <div class="aesthetic-card-preview acp-glass" onclick="setDesignMode('luxury-glass')" title="Click to activate Apple 2026 Liquid Glass">
+        <span class="acp-badge" style="background:#E0F2FE;color:#0369A1;">💎 Apple 2026 Liquid Glass</span>
+        <div class="acp-title">Luxury Glassmorphism UI</div>
+        <div class="acp-desc">Translucent specular glass layers, blur(28px), 135° edge highlight, floating capsule navigation.</div>
       </div>
 
-      <!-- 2. Monolithic Neumorphism -->
-      <div class="aesthetic-card-preview acp-clay" onclick="setDesignMode('neu')" title="Click to activate Monolithic Hardware Neumorphism">
-        <span class="acp-badge" style="background:#1E222B;color:#38BDF8;border:1px solid rgba(56,189,248,0.3);">🎛️ Neumorphism</span>
-        <div class="acp-title">Tactile Hardware</div>
-        <div class="acp-desc">Convex extruded dual shadows, debossed wells, tactile pressed physics.</div>
+      <!-- 2. Soft 3D & Neumorphism -->
+      <div class="aesthetic-card-preview acp-clay" onclick="setDesignMode('soft-3d')" title="Click to activate Tactile Claymorphism">
+        <span class="acp-badge" style="background:#E2E8F0;color:#334155;">☁️ Tactile Neumorphism</span>
+        <div class="acp-title">The Soft 3D Claymorphic UI</div>
+        <div class="acp-desc">Pillowy extruded dual shadows, debossed search wells, tactile squircle buttons you can touch.</div>
       </div>
 
-      <!-- 3. Soft 3D Pastel Joy -->
-      <div class="aesthetic-card-preview acp-clay" onclick="setDesignMode('soft3d')" title="Click to activate Soft 3D Pastel Joy" style="background:#FFF5F7;border:1px solid rgba(244,143,177,0.35);">
-        <span class="acp-badge" style="background:#FFE4E8;color:#7A253A;">🌸 Soft 3D Joy</span>
-        <div class="acp-title" style="color:#4A1525;">Pastel Claymorphic</div>
-        <div class="acp-desc" style="color:#7A4B5A;">Squishy clay depth, 3D extruded drop buttons, emotional serenity.</div>
+      <!-- 3. NEXUS '26 -->
+      <div class="aesthetic-card-preview acp-nexus" onclick="setDesignMode('nexus-26')" title="Click to activate NEXUS '26 Cyber Command">
+        <span class="acp-badge" style="background:rgba(0,242,254,0.15);color:#00F2FE;border:1px solid rgba(0,242,254,0.3);">🌌 NEXUS '26 Command</span>
+        <div class="acp-title">Curated Next-Gen Board</div>
+        <div class="acp-desc">Deep interstellar cyber-obsidian, holographic foil boundaries, telemetry coordinates, HUD nodes.</div>
       </div>
 
-      <!-- 4. Kinetic Bento Grid -->
-      <div class="aesthetic-card-preview acp-nexus" onclick="setDesignMode('bento')" title="Click to activate Kinetic Bento Grid">
-        <span class="acp-badge" style="background:rgba(56,189,248,0.15);color:#38BDF8;border:1px solid rgba(56,189,248,0.3);">📐 Bento Grid</span>
-        <div class="acp-title">Kinetic Bento</div>
-        <div class="acp-desc">24px telemetry grid lines, micro-borders with cyan hover glow.</div>
-      </div>
-
-      <!-- 5. Aurora Fluid Light Field -->
-      <div class="aesthetic-card-preview acp-nexus" onclick="setDesignMode('aurora')" title="Click to activate Aurora Fluid Light Field" style="background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(236,72,153,0.15),rgba(6,182,212,0.2));">
-        <span class="acp-badge" style="background:rgba(236,72,153,0.2);color:#F472B6;border:1px solid rgba(236,72,153,0.4);">✨ Aurora Field</span>
-        <div class="acp-title">Fluid Aurora</div>
-        <div class="acp-desc">Volumetric chromatic mesh gradients, 24px blur, spectral depth.</div>
+      <!-- 4. Emotional SaaS -->
+      <div class="aesthetic-card-preview acp-saas" onclick="setDesignMode('emotional-saas')" title="Click to activate Emotional SaaS Alabaster">
+        <span class="acp-badge" style="background:#FEF3C7;color:#92400E;">🌿 Human-Centric Interface</span>
+        <div class="acp-title">Emotional SaaS Interface</div>
+        <div class="acp-desc">Warm alabaster serene space, human empathy typography, harmonious terracotta &amp; botanical sage.</div>
       </div>
     </div>
   </section>
@@ -1120,114 +1009,39 @@ function filterGovCategory(category, btn) {
   });
 }
 
-function handleCardTilt(e) {
-  const card = document.getElementById('luxuryCard');
-  const sheen = document.getElementById('cardSheen');
-  if (!card) return;
-  const rect = card.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-  const rotateX = ((y - centerY) / centerY) * -12;
-  const rotateY = ((x - centerX) / centerX) * 12;
-  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-  if (sheen) {
-    sheen.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-    sheen.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-  }
-}
-
-function resetCardTilt() {
-  const card = document.getElementById('luxuryCard');
-  if (card) {
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-  }
-}
-
-let isBalanceMasked = false;
-function toggleBalanceMask() {
-  const balEl = document.getElementById('balanceAmount');
-  const iconEl = document.getElementById('maskIcon');
-  if (!balEl) return;
-  isBalanceMasked = !isBalanceMasked;
-  if (isBalanceMasked) {
-    balEl.textContent = '••••••••';
-    if (iconEl) iconEl.textContent = '🙈';
-  } else {
-    balEl.textContent = '₹60,900.00';
-    if (iconEl) iconEl.textContent = '👁️';
-  }
-  triggerHapticTone(640, 0.04);
-}
-
-function triggerHapticTone(freq = 480, duration = 0.04) {
-  try {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + duration);
-  } catch(e){}
-}
-
 function setDesignMode(mode) {
-  // Normalize alias modes to benchmark paradigms
-  const aliasMap = {
-    'luxury-glass': 'spatial',
-    'soft-3d': 'neu',
-    'nexus-26': 'bento',
-    'emotional-saas': 'soft3d'
-  };
-  const activeMode = aliasMap[mode] || mode;
-
-  document.body.setAttribute('data-design-mode', activeMode);
-  try { localStorage.setItem('kutumsetu_design_mode', activeMode); } catch(e){}
-  
+  document.body.setAttribute('data-design-mode', mode);
+  try { localStorage.setItem('kutumsetu_design_mode', mode); } catch(e){}
   document.querySelectorAll('.design-theme-btn').forEach(btn => btn.classList.remove('active'));
   const btnMap = {
-    'spatial': 'btn-theme-spatial',
-    'neu': 'btn-theme-neu',
-    'soft3d': 'btn-theme-soft3d',
-    'bento': 'btn-theme-bento',
-    'aurora': 'btn-theme-aurora'
+    'luxury-glass': 'btn-theme-glass',
+    'soft-3d': 'btn-theme-soft3d',
+    'nexus-26': 'btn-theme-nexus',
+    'emotional-saas': 'btn-theme-saas'
   };
-  const activeBtn = document.getElementById(btnMap[activeMode]);
+  const activeBtn = document.getElementById(btnMap[mode]);
   if (activeBtn) activeBtn.classList.add('active');
-  
-  triggerHapticTone(520, 0.035);
   if (window.playHapticClick) playHapticClick();
 }
 
-// Auto-initialize theme on DOM ready — defaults to Spatial Obsidian Glass
+// Auto-initialize theme on DOM ready
 (function() {
-  let saved = 'spatial';
-  try { 
-    saved = localStorage.getItem('kutumsetu_design_mode') || 'spatial'; 
-  } catch(e){}
+  let saved = 'soft-3d';
+  try { saved = localStorage.getItem('kutumsetu_design_mode') || 'soft-3d'; } catch(e){}
   setDesignMode(saved);
 })();
 </script>
 
-<!-- Floating Pentagon Aesthetic Engine Switcher Capsule -->
+<!-- Floating Quad-Core Aesthetic Engine Switcher Capsule -->
 <nav class="design-engine-switcher" aria-label="Aesthetic Engine Switcher">
   <div class="design-engine-label">
     <span>🎨</span>
     <span>Aesthetic:</span>
   </div>
-  <button type="button" class="design-theme-btn active" id="btn-theme-spatial" onclick="setDesignMode('spatial')" title="Spatial Obsidian Glass & Holographic Sheen">🌌 Spatial</button>
-  <button type="button" class="design-theme-btn" id="btn-theme-neu" onclick="setDesignMode('neu')" title="Monolithic Hardware Neumorphism">🎛️ Neu</button>
-  <button type="button" class="design-theme-btn" id="btn-theme-soft3d" onclick="setDesignMode('soft3d')" title="Soft 3D Pastel Joy">🌸 Soft 3D</button>
-  <button type="button" class="design-theme-btn" id="btn-theme-bento" onclick="setDesignMode('bento')" title="Kinetic Bento Grid">📐 Bento</button>
-  <button type="button" class="design-theme-btn" id="btn-theme-aurora" onclick="setDesignMode('aurora')" title="Aurora Fluid Light Field">✨ Aurora</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-glass" onclick="setDesignMode('luxury-glass')" title="Apple 2026 Liquid Glass">💎 Glass</button>
+  <button type="button" class="design-theme-btn active" id="btn-theme-soft3d" onclick="setDesignMode('soft-3d')" title="Tactile Claymorphic Neumorphism">☁️ Soft 3D</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-nexus" onclick="setDesignMode('nexus-26')" title="NEXUS '26 Cyber Command Board">🌌 NEXUS '26</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-saas" onclick="setDesignMode('emotional-saas')" title="Human-Centric Warm Alabaster">🌿 SaaS</button>
 </nav>
 
 <!-- Modern SaaS Footer -->

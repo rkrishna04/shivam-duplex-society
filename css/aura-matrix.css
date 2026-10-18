@@ -65,85 +65,15 @@
   --radius-pill:          9999px;
 }
 
-/* ── 5. Master Canvas Grounding (NEXUS '26 & AUREUS Cinematic Void) ── */
+/* ── 5. Master Canvas Grounding ────────────────────────────── */
 body, body.landing-body {
-  background-color: #07090E !important;
-  color: #F8FAFC !important;
+  background: 
+    radial-gradient(ellipse 90% 70% at 50% -10%, #FAF8F5 0%, #F3EFEA 65%, #ECE7DF 100%) !important;
+  background-attachment: fixed !important;
+  color: var(--text-primary) !important;
   font-family: var(--font-sans) !important;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Ambient Floating Light Orbs (from nextgen-2026 & glassmorphism-mobile-ui) */
-.light-field-orb, .ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
-  opacity: 0.55;
-  animation: floatLightField 16s ease-in-out infinite alternate;
-}
-
-@keyframes floatLightField {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 60px) scale(1.18); }
-  100% { transform: translate(-30px, -40px) scale(0.92); }
-}
-
-/* 3D Specular Interactive Glass Card (AUREUS / NEXUS) */
-.luxury-card-container {
-  perspective: 1000px;
-  width: 100%;
-}
-
-.luxury-card-inner {
-  transform-style: preserve-3d;
-  transition: transform 0.15s ease-out;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(212, 175, 55, 0.08) 100%);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  border-radius: 28px;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-specular-light {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 65%);
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  border-radius: inherit;
-}
-
-.glass-gold-pill {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.04) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  border-top: 1px solid rgba(255, 235, 160, 0.6);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.dynamic-island-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: #38BDF8;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 /* ── 6. Editorial Architectural Headings ───────────────────── */
@@ -2785,88 +2715,40 @@ p, .lead, .landing-body p {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   THEME 1: 🌌 SPATIAL OBSIDIAN GLASS (2026 LUXURY BENCHMARK)
-   Matches glassmorphism-mobile-ui & nextgen-2026:spatial
+   THEME 1: 💎 LUXURY GLASSMORPHISM (APPLE 2026 LIQUID GLASS)
    ══════════════════════════════════════════════════════════════ */
-body[data-design-mode="spatial"],
 body[data-design-mode="luxury-glass"] {
-  background: #07090E !important;
+  background: radial-gradient(circle at 10% 20%, #E8F0FE 0%, #FAF8F5 45%, #F0EEFF 100%) !important;
   background-attachment: fixed !important;
-  color: #F1F5F9 !important;
 }
 
-body[data-design-mode="spatial"] .arch-nav-pill,
 body[data-design-mode="luxury-glass"] .arch-nav-pill,
-body[data-design-mode="spatial"] .gov-hero-stage,
 body[data-design-mode="luxury-glass"] .gov-hero-stage,
-body[data-design-mode="spatial"] .gov-chief-card,
 body[data-design-mode="luxury-glass"] .gov-chief-card,
-body[data-design-mode="spatial"] .gov-member-card,
 body[data-design-mode="luxury-glass"] .gov-member-card,
-body[data-design-mode="spatial"] .gov-owners-deck,
 body[data-design-mode="luxury-glass"] .gov-owners-deck,
-body[data-design-mode="spatial"] .bank-qr-card,
 body[data-design-mode="luxury-glass"] .bank-qr-card,
-body[data-design-mode="spatial"] .vehicle-hero-card,
 body[data-design-mode="luxury-glass"] .vehicle-hero-card {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(24px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.35) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 16px 45px rgba(35, 30, 25, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
-body[data-design-mode="spatial"] .gov-hero-title,
-body[data-design-mode="luxury-glass"] .gov-hero-title,
-body[data-design-mode="spatial"] .gov-chief-name,
-body[data-design-mode="luxury-glass"] .gov-chief-name,
-body[data-design-mode="spatial"] .gov-member-name,
-body[data-design-mode="luxury-glass"] .gov-member-name,
-body[data-design-mode="spatial"] .gov-owners-title,
-body[data-design-mode="luxury-glass"] .gov-owners-title {
-  color: #FFFFFF !important;
-}
-
-body[data-design-mode="spatial"] .gov-hero-sub,
-body[data-design-mode="luxury-glass"] .gov-hero-sub,
-body[data-design-mode="spatial"] .gov-tele-label,
-body[data-design-mode="luxury-glass"] .gov-tele-label {
-  color: #94A3B8 !important;
-}
-
-body[data-design-mode="spatial"] .gov-tele-card,
 body[data-design-mode="luxury-glass"] .gov-tele-card,
-body[data-design-mode="spatial"] .gov-mandate-box,
 body[data-design-mode="luxury-glass"] .gov-mandate-box,
-body[data-design-mode="spatial"] .gov-portfolio-box,
 body[data-design-mode="luxury-glass"] .gov-portfolio-box {
-  background: rgba(255, 255, 255, 0.04) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #E2E8F0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
 }
 
-body[data-design-mode="spatial"] .gov-btn-call,
 body[data-design-mode="luxury-glass"] .gov-btn-call,
-body[data-design-mode="spatial"] .gov-line-chip,
 body[data-design-mode="luxury-glass"] .gov-line-chip {
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
   backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #FFFFFF !important;
-}
-
-body[data-design-mode="spatial"] .gov-search-wrap,
-body[data-design-mode="luxury-glass"] .gov-search-wrap {
-  background: rgba(14, 19, 31, 0.8) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-}
-
-body[data-design-mode="spatial"] .gov-search-input,
-body[data-design-mode="luxury-glass"] .gov-search-input {
-  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3155,166 +3037,6 @@ body[data-design-mode="emotional-saas"] .gov-hero-eyebrow {
 body[data-design-mode="emotional-saas"] .gov-tele-card {
   background: #F9FAFB !important;
   border: 1px solid #E5E7EB !important;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   THEME 5: 🎛️ MONOLITHIC NEUMORPHISM (TACTILE HARDWARE)
-   Matches neumorphism-studio & nextgen-2026:neu-extrude
-   ══════════════════════════════════════════════════════════════ */
-body[data-design-mode="neu"] {
-  background: #181B22 !important;
-  color: #E2E8F0 !important;
-}
-
-body[data-design-mode="neu"] .arch-nav-pill,
-body[data-design-mode="neu"] .gov-hero-stage,
-body[data-design-mode="neu"] .gov-chief-card,
-body[data-design-mode="neu"] .gov-member-card,
-body[data-design-mode="neu"] .gov-owners-deck,
-body[data-design-mode="neu"] .bank-qr-card,
-body[data-design-mode="neu"] .vehicle-hero-card {
-  background: #181B22 !important;
-  border: 1px solid rgba(255, 255, 255, 0.04) !important;
-  box-shadow: 9px 9px 22px #0F1116, -9px -9px 22px #21252E !important;
-  border-radius: 26px !important;
-}
-
-body[data-design-mode="neu"] .gov-hero-stage::before {
-  display: none !important;
-}
-
-body[data-design-mode="neu"] .gov-search-wrap,
-body[data-design-mode="neu"] .gov-mandate-box,
-body[data-design-mode="neu"] .gov-portfolio-box {
-  background: #181B22 !important;
-  box-shadow: inset 5px 5px 12px #0F1116, inset -5px -5px 12px #21252E !important;
-  border: none !important;
-  color: #E2E8F0 !important;
-}
-
-body[data-design-mode="neu"] .gov-tele-card,
-body[data-design-mode="neu"] .gov-line-chip,
-body[data-design-mode="neu"] .gov-btn-call {
-  background: #181B22 !important;
-  box-shadow: 6px 6px 14px #0F1116, -6px -6px 14px #21252E !important;
-  border: none !important;
-  color: #E2E8F0 !important;
-}
-
-body[data-design-mode="neu"] .gov-btn-call:hover,
-body[data-design-mode="neu"] .gov-btn-call:active,
-body[data-design-mode="neu"] .gov-line-chip:hover {
-  box-shadow: inset 4px 4px 8px #0F1116, inset -4px -4px 8px #21252E !important;
-  color: #38BDF8 !important;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   THEME 6: 🌸 SOFT 3D PASTEL JOY (EMOTIONAL CLAYMORPHIC UI)
-   Matches nextgen-2026:soft3d
-   ══════════════════════════════════════════════════════════════ */
-body[data-design-mode="soft3d"] {
-  background: #FFF5F7 !important;
-  color: #382435 !important;
-}
-
-body[data-design-mode="soft3d"] .arch-nav-pill,
-body[data-design-mode="soft3d"] .gov-hero-stage,
-body[data-design-mode="soft3d"] .gov-chief-card,
-body[data-design-mode="soft3d"] .gov-member-card,
-body[data-design-mode="soft3d"] .gov-owners-deck,
-body[data-design-mode="soft3d"] .bank-qr-card,
-body[data-design-mode="soft3d"] .vehicle-hero-card {
-  background: linear-gradient(145deg, #FFFFFF 0%, #FFF5F7 100%) !important;
-  border: 1px solid rgba(244, 143, 177, 0.35) !important;
-  box-shadow: 0 16px 36px rgba(244, 143, 177, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.95) !important;
-  border-radius: 28px !important;
-}
-
-body[data-design-mode="soft3d"] .gov-hero-title,
-body[data-design-mode="soft3d"] .gov-chief-name,
-body[data-design-mode="soft3d"] .gov-member-name {
-  color: #4A1525 !important;
-}
-
-body[data-design-mode="soft3d"] .gov-hero-sub,
-body[data-design-mode="soft3d"] .gov-tele-label {
-  color: #7A4B5A !important;
-}
-
-body[data-design-mode="soft3d"] .gov-btn-call,
-body[data-design-mode="soft3d"] .arch-pill-cta {
-  background: linear-gradient(180deg, #FFE4E8 0%, #FFCCD5 100%) !important;
-  color: #7A253A !important;
-  box-shadow: 0 6px 0 0 #E89AA8, 0 10px 18px rgba(232, 154, 168, 0.35), inset 0 2px 3px #FFFFFF !important;
-  font-weight: 800 !important;
-  border: 1px solid rgba(255, 255, 255, 0.8) !important;
-}
-
-body[data-design-mode="soft3d"] .gov-btn-call:hover {
-  transform: translateY(-2px);
-}
-
-body[data-design-mode="soft3d"] .gov-btn-call:active {
-  transform: translateY(4px) scale(0.98);
-  box-shadow: 0 1px 0 0 #E89AA8, 0 3px 6px rgba(232, 154, 168, 0.25) !important;
-}
-
-/* ══════════════════════════════════════════════════════════════
-   THEME 7: 📐 KINETIC BENTO GRID (TECH TAXONOMY)
-   Matches nextgen-2026:bento
-   ══════════════════════════════════════════════════════════════ */
-body[data-design-mode="bento"] {
-  background: #07090E !important;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px) !important;
-  background-size: 24px 24px !important;
-  color: #F1F5F9 !important;
-}
-
-body[data-design-mode="bento"] .arch-nav-pill,
-body[data-design-mode="bento"] .gov-hero-stage,
-body[data-design-mode="bento"] .gov-chief-card,
-body[data-design-mode="bento"] .gov-member-card,
-body[data-design-mode="bento"] .gov-owners-deck,
-body[data-design-mode="bento"] .bank-qr-card,
-body[data-design-mode="bento"] .vehicle-hero-card {
-  background: #0E1118 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 20px !important;
-  transition: all 0.25s ease !important;
-}
-
-body[data-design-mode="bento"] .gov-chief-card:hover,
-body[data-design-mode="bento"] .gov-member-card:hover {
-  border-color: rgba(56, 189, 248, 0.45) !important;
-  box-shadow: 0 0 24px -4px rgba(56, 189, 248, 0.2) !important;
-  transform: translateY(-2px);
-}
-
-/* ══════════════════════════════════════════════════════════════
-   THEME 8: ✨ AURORA FLUID LIGHT FIELD
-   Matches nextgen-2026:aurora
-   ══════════════════════════════════════════════════════════════ */
-body[data-design-mode="aurora"] {
-  background: #07090E !important;
-  color: #F1F5F9 !important;
-}
-
-body[data-design-mode="aurora"] .arch-nav-pill,
-body[data-design-mode="aurora"] .gov-hero-stage,
-body[data-design-mode="aurora"] .gov-chief-card,
-body[data-design-mode="aurora"] .gov-member-card,
-body[data-design-mode="aurora"] .gov-owners-deck,
-body[data-design-mode="aurora"] .bank-qr-card,
-body[data-design-mode="aurora"] .vehicle-hero-card {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14) 0%, rgba(236, 72, 153, 0.09) 50%, rgba(6, 182, 212, 0.14) 100%) !important;
-  backdrop-filter: blur(24px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-  border-radius: 28px !important;
 }
 
 /* ── Interactive Aesthetic Showcase Banner Strip ── */
