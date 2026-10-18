@@ -2715,9 +2715,22 @@ p, .lead, .landing-body p {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   THEME 1: 💎 LUXURY GLASSMORPHISM (APPLE 2026 CRYSTAL LIQUID GLASS)
-   Real iPhone / visionOS wallpaper depth with optic refraction
+   THEME 1: 💎 DEEP SPACE COSMOS & CRYSTAL CLEAR LIQUID GLASS
+   Infinite Space Starfield, Drifting Stars, Meteors & Pure Crystal Glass
    ══════════════════════════════════════════════════════════════ */
+.space-starfield-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  display: none;
+}
+body[data-design-mode="luxury-glass"] .space-starfield-canvas {
+  display: block;
+}
+
 .iphone-glass-backdrop {
   position: fixed;
   inset: 0;
@@ -2730,6 +2743,10 @@ body[data-design-mode="luxury-glass"] .iphone-glass-backdrop,
 body[data-design-mode="aurora-fluid"] .iphone-glass-backdrop {
   display: block;
 }
+body[data-design-mode="luxury-glass"] .iphone-glass-backdrop {
+  opacity: 0.32; /* Subtle cosmic nebulae softly blending with moving stars */
+}
+
 .glass-orb {
   position: absolute;
   border-radius: 50%;
@@ -2779,12 +2796,13 @@ body[data-design-mode="aurora-fluid"] .iphone-glass-backdrop {
 }
 
 body[data-design-mode="luxury-glass"] {
-  background: #090B14 !important;
-  background-image: radial-gradient(circle at 50% 10%, #171836 0%, #0B0E1B 60%, #05060A 100%) !important;
+  background: #020308 !important;
+  background-image: radial-gradient(circle at 50% 12%, #0B0E24 0%, #03040C 60%, #010206 100%) !important;
   background-attachment: fixed !important;
   color: #FFFFFF !important;
 }
 
+/* Crystal Clear Liquid Glass Cards - High Optical Transparency to see moving stars */
 body[data-design-mode="luxury-glass"] .arch-nav-pill,
 body[data-design-mode="luxury-glass"] .gov-hero-stage,
 body[data-design-mode="luxury-glass"] .gov-chief-card,
@@ -2792,14 +2810,24 @@ body[data-design-mode="luxury-glass"] .gov-member-card,
 body[data-design-mode="luxury-glass"] .gov-owners-deck,
 body[data-design-mode="luxury-glass"] .bank-qr-card,
 body[data-design-mode="luxury-glass"] .vehicle-hero-card {
-  background: rgba(255, 255, 255, 0.09) !important;
-  backdrop-filter: blur(34px) saturate(220%) contrast(108%) !important;
-  -webkit-backdrop-filter: blur(34px) saturate(220%) contrast(108%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), inset 0 1.5px 2px rgba(255, 255, 255, 0.7), inset 0 -1px 2px rgba(0, 0, 0, 0.2) !important;
+  background: rgba(255, 255, 255, 0.045) !important;
+  backdrop-filter: blur(16px) saturate(200%) brightness(108%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+  border-left: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1.5px 2px rgba(255, 255, 255, 0.6), inset 0 -1px 2px rgba(0, 0, 0, 0.3) !important;
   color: #FFFFFF !important;
   position: relative;
   overflow: hidden;
+}
+
+body[data-design-mode="luxury-glass"] .gov-chief-card:hover,
+body[data-design-mode="luxury-glass"] .gov-member-card:hover {
+  background: rgba(255, 255, 255, 0.075) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  border-top-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.12), inset 0 1.5px 2px rgba(255, 255, 255, 0.8) !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-chief-card::after,
@@ -2810,7 +2838,7 @@ body[data-design-mode="luxury-glass"] .gov-hero-stage::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.16) 0%, transparent 60%);
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.18) 0%, transparent 60%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -2830,51 +2858,58 @@ body[data-design-mode="luxury-glass"] .gov-chief-name,
 body[data-design-mode="luxury-glass"] .gov-member-name,
 body[data-design-mode="luxury-glass"] .gov-owners-title {
   color: #FFFFFF !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 body[data-design-mode="luxury-glass"] .gov-hero-title em {
   color: #FBBF24 !important;
-  text-shadow: 0 0 25px rgba(251, 191, 36, 0.4);
+  text-shadow: 0 0 25px rgba(251, 191, 36, 0.5), 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 body[data-design-mode="luxury-glass"] .gov-hero-sub,
 body[data-design-mode="luxury-glass"] .gov-tele-label,
 body[data-design-mode="luxury-glass"] .gov-mandate-desc,
 body[data-design-mode="luxury-glass"] .gov-portfolio-text {
-  color: rgba(241, 245, 249, 0.9) !important;
+  color: #E2E8F0 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 body[data-design-mode="luxury-glass"] .gov-tele-card,
 body[data-design-mode="luxury-glass"] .gov-mandate-box,
 body[data-design-mode="luxury-glass"] .gov-portfolio-box {
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.25) !important;
   color: #FFFFFF !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-tele-num {
   color: #FFFFFF !important;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 body[data-design-mode="luxury-glass"] .gov-tele-icon {
-  background: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   border-color: rgba(255, 255, 255, 0.35) !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-hero-eyebrow {
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   color: #FDE047 !important;
+  text-shadow: 0 0 12px rgba(253, 224, 71, 0.4);
 }
 
 body[data-design-mode="luxury-glass"] .gov-search-wrap {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(24px) !important;
-  -webkit-backdrop-filter: blur(24px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-search-input {
@@ -2882,53 +2917,66 @@ body[data-design-mode="luxury-glass"] .gov-search-input {
 }
 
 body[data-design-mode="luxury-glass"] .gov-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-filter-tab {
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.45) !important;
   color: #FFFFFF !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-filter-tab.active {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0B0E1D !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
 }
 
 body[data-design-mode="luxury-glass"] .gov-btn-call,
 body[data-design-mode="luxury-glass"] .gov-line-chip {
-  background: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(14px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6) !important;
   color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35) !important;
+}
+
+body[data-design-mode="luxury-glass"] .gov-btn-call:hover,
+body[data-design-mode="luxury-glass"] .gov-line-chip:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
 }
 
 body[data-design-mode="luxury-glass"] .arch-brand-monogram {
   background: #FFFFFF !important;
-  color: #0F172A !important;
+  color: #0B0E1D !important;
 }
 
 body[data-design-mode="luxury-glass"] .arch-pill-cta {
   background: #FFFFFF !important;
-  color: #0F172A !important;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3) !important;
+  color: #0B0E1D !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.35) !important;
 }
 
 body[data-design-mode="luxury-glass"] .arch-admin-pill {
-  background: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   color: #FFFFFF !important;
 }
 
 body[data-design-mode="luxury-glass"] .arch-nav-item {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 body[data-design-mode="luxury-glass"] .arch-nav-item.active {
-  background: #FFFFFF !important;
-  color: #0F172A !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0B0E1D !important;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -3243,13 +3291,14 @@ body[data-design-mode="emotional-saas"] .gov-tele-card {
   transform: translateY(-4px);
 }
 
-/* 1. 💎 Apple 2026 Crystal Liquid Glass (Specular Beam) */
+/* 1. 💎 Deep Space Crystal Liquid Glass (Specular Beam) */
 .acp-glass {
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(28px) saturate(220%) contrast(108%);
-  -webkit-backdrop-filter: blur(28px) saturate(220%) contrast(108%);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(16px) saturate(200%) brightness(108%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%) brightness(108%);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.75);
   color: #FFFFFF;
 }
 
@@ -3258,7 +3307,7 @@ body[data-design-mode="emotional-saas"] .gov-tele-card {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.45) 0%, transparent 60%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.35) 0%, transparent 60%);
   pointer-events: none;
   opacity: 0.85;
 }
