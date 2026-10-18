@@ -2645,5 +2645,470 @@ p, .lead, .landing-body p {
   }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   SECTION 27: QUAD-CORE VISIONARY DESIGN SYSTEM ENGINE
+   Themes:
+   1. 💎 Luxury Glassmorphism Mobile UI (Apple 2026 Liquid Glass)
+   2. ☁️ Soft 3D & Neumorphism (Tactile Claymorphic UI)
+   3. 🌌 NEXUS '26 Curated Next-Gen Command Board
+   4. 🌿 Emotional SaaS & Human-Centric Interface
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Floating Aesthetic Engine Switcher Capsule ── */
+.design-engine-switcher {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 29, 27, 0.88);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-pill);
+  padding: 6px 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), 0 0 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.design-engine-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #FAF8F5;
+  padding: 0 10px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.design-theme-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.design-theme-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.design-theme-btn.active {
+  background: #FFFFFF;
+  color: #1E1D1B;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THEME 1: 💎 LUXURY GLASSMORPHISM (APPLE 2026 LIQUID GLASS)
+   ══════════════════════════════════════════════════════════════ */
+body[data-design-mode="luxury-glass"] {
+  background: radial-gradient(circle at 10% 20%, #E8F0FE 0%, #FAF8F5 45%, #F0EEFF 100%) !important;
+  background-attachment: fixed !important;
+}
+
+body[data-design-mode="luxury-glass"] .arch-nav-pill,
+body[data-design-mode="luxury-glass"] .gov-hero-stage,
+body[data-design-mode="luxury-glass"] .gov-chief-card,
+body[data-design-mode="luxury-glass"] .gov-member-card,
+body[data-design-mode="luxury-glass"] .gov-owners-deck,
+body[data-design-mode="luxury-glass"] .bank-qr-card,
+body[data-design-mode="luxury-glass"] .vehicle-hero-card {
+  background: rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 16px 45px rgba(35, 30, 25, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+body[data-design-mode="luxury-glass"] .gov-tele-card,
+body[data-design-mode="luxury-glass"] .gov-mandate-box,
+body[data-design-mode="luxury-glass"] .gov-portfolio-box {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+body[data-design-mode="luxury-glass"] .gov-btn-call,
+body[data-design-mode="luxury-glass"] .gov-line-chip {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THEME 2: ☁️ SOFT 3D & NEUMORPHISM (TACTILE CLAYMORPHIC UI)
+   Inspired by Reference Images: media_1792254529514 & 1792251773094
+   ══════════════════════════════════════════════════════════════ */
+body[data-design-mode="soft-3d"] {
+  background: #EBF0F7 !important;
+  background-attachment: fixed !important;
+  color: #2D3748 !important;
+}
+
+body[data-design-mode="soft-3d"] .arch-nav-pill {
+  background: #EBF0F7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 10px 10px 22px #c7cbd4, -10px -10px 22px #ffffff !important;
+  backdrop-filter: none !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-hero-stage {
+  background: #EBF0F7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 40px !important;
+  box-shadow: 16px 16px 36px #c5cad5, -16px -16px 36px #ffffff, inset 1px 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-hero-stage::before {
+  display: none !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-search-wrap {
+  background: #EBF0F7 !important;
+  box-shadow: inset 5px 5px 12px #c2c7d2, inset -5px -5px 12px #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-tele-card,
+body[data-design-mode="soft-3d"] .gov-line-chip {
+  background: #EBF0F7 !important;
+  box-shadow: 8px 8px 18px #c5cad5, -8px -8px 18px #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 24px !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-tele-card:hover,
+body[data-design-mode="soft-3d"] .gov-line-chip:hover {
+  box-shadow: inset 3px 3px 6px #c5cad5, inset -3px -3px 6px #ffffff !important;
+  transform: none !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-chief-card,
+body[data-design-mode="soft-3d"] .gov-member-card,
+body[data-design-mode="soft-3d"] .gov-owners-deck,
+body[data-design-mode="soft-3d"] .bank-qr-card,
+body[data-design-mode="soft-3d"] .vehicle-hero-card {
+  background: #EBF0F7 !important;
+  border-radius: 36px !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 14px 14px 28px #c2c7d2, -14px -14px 28px #ffffff, inset 1px 1px 2px rgba(255, 255, 255, 0.9) !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-avatar-box,
+body[data-design-mode="soft-3d"] .gov-member-avatar {
+  border-radius: 28px !important;
+  box-shadow: 6px 6px 14px #c2c7d2, -6px -6px 14px #ffffff !important;
+  border: 3px solid #EBF0F7 !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-avatar-img {
+  border-radius: 24px !important;
+  border: none !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-mandate-box,
+body[data-design-mode="soft-3d"] .gov-portfolio-box {
+  background: #EBF0F7 !important;
+  box-shadow: inset 4px 4px 10px #c2c7d2, inset -4px -4px 10px #ffffff !important;
+  border: none !important;
+  border-radius: 22px !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-btn-call {
+  background: #EBF0F7 !important;
+  box-shadow: 5px 5px 12px #c2c7d2, -5px -5px 12px #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-btn-call:active,
+body[data-design-mode="soft-3d"] .gov-btn-call:hover {
+  box-shadow: inset 3px 3px 6px #c2c7d2, inset -3px -3px 6px #ffffff !important;
+  background: #EBF0F7 !important;
+  color: var(--text-primary) !important;
+}
+
+body[data-design-mode="soft-3d"] .gov-btn-whatsapp {
+  background: #E8F5E9 !important;
+  box-shadow: 5px 5px 12px #c2c7d2, -5px -5px 12px #ffffff !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   THEME 3: 🌌 NEXUS '26 (NEXT-GEN CYBER COMMAND BOARD)
+   Haute-Couture Monolithic Void & Holographic Edge Telemetry
+   ══════════════════════════════════════════════════════════════ */
+body[data-design-mode="nexus-26"] {
+  background: #06080E !important;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.12) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 32px 32px, 32px 32px !important;
+  background-attachment: fixed !important;
+  color: #F1F5F9 !important;
+}
+
+body[data-design-mode="nexus-26"] .arch-nav-pill {
+  background: rgba(14, 19, 31, 0.85) !important;
+  border: 1px solid rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 242, 254, 0.1) !important;
+}
+
+body[data-design-mode="nexus-26"] .arch-brand-name {
+  color: #FFFFFF !important;
+  letter-spacing: 0.04em !important;
+}
+
+body[data-design-mode="nexus-26"] .arch-brand-sub {
+  color: #00F2FE !important;
+}
+
+body[data-design-mode="nexus-26"] .arch-nav-item {
+  color: #94A3B8 !important;
+}
+
+body[data-design-mode="nexus-26"] .arch-nav-item.active,
+body[data-design-mode="nexus-26"] .arch-nav-item:hover {
+  color: #00F2FE !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-stage {
+  background: #0B0F19 !important;
+  border: 1px solid rgba(0, 242, 254, 0.2) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.06) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-stage::before {
+  background: linear-gradient(90deg, #00F2FE 0%, #3B82F6 50%, #F5BA42 100%) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-eyebrow {
+  background: rgba(0, 242, 254, 0.1) !important;
+  color: #00F2FE !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-title {
+  color: #FFFFFF !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-title em {
+  color: #00F2FE !important;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+body[data-design-mode="nexus-26"] .gov-hero-sub {
+  color: #94A3B8 !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-tele-card {
+  background: #111726 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-tele-num {
+  color: #FFFFFF !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-tele-label {
+  color: #94A3B8 !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-search-wrap {
+  background: #111726 !important;
+  border: 1px solid rgba(0, 242, 254, 0.2) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-search-input {
+  color: #FFFFFF !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-filter-tab {
+  background: #161F33 !important;
+  color: #94A3B8 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-filter-tab.active {
+  background: #00F2FE !important;
+  color: #06080E !important;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.4) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-chief-card,
+body[data-design-mode="nexus-26"] .gov-member-card,
+body[data-design-mode="nexus-26"] .gov-owners-deck {
+  background: #0E1321 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-chief-card:hover,
+body[data-design-mode="nexus-26"] .gov-member-card:hover {
+  border-color: #00F2FE !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 242, 254, 0.2) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-chief-name,
+body[data-design-mode="nexus-26"] .gov-member-name,
+body[data-design-mode="nexus-26"] .gov-owners-title {
+  color: #FFFFFF !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-mandate-box,
+body[data-design-mode="nexus-26"] .gov-portfolio-box {
+  background: #141B2D !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-mandate-desc,
+body[data-design-mode="nexus-26"] .gov-portfolio-text {
+  color: #E2E8F0 !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-btn-call {
+  background: #161F33 !important;
+  color: #E2E8F0 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-btn-call:hover {
+  background: #00F2FE !important;
+  color: #06080E !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-line-chip {
+  background: #111726 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+body[data-design-mode="nexus-26"] .gov-line-chip:hover {
+  border-color: #00F2FE !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THEME 4: 🌿 EMOTIONAL SAAS (HUMAN-CENTRIC WARM ALABASTER)
+   Gentle Community Empathy, High Legibility & Serene Whitespace
+   ═══════════════════════════════════════════════════════════ */
+body[data-design-mode="emotional-saas"] {
+  background: #FAF8F5 !important;
+  background-attachment: fixed !important;
+  color: #1F2937 !important;
+}
+
+body[data-design-mode="emotional-saas"] .gov-hero-stage,
+body[data-design-mode="emotional-saas"] .gov-chief-card,
+body[data-design-mode="emotional-saas"] .gov-member-card,
+body[data-design-mode="emotional-saas"] .gov-owners-deck {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(229, 231, 235, 0.9) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+  border-radius: 28px !important;
+}
+
+body[data-design-mode="emotional-saas"] .gov-hero-title {
+  font-family: var(--font-editorial) !important;
+  font-weight: 600 !important;
+}
+
+body[data-design-mode="emotional-saas"] .gov-hero-eyebrow {
+  background: #FEF3C7 !important;
+  color: #92400E !important;
+  border-color: #FDE68A !important;
+}
+
+body[data-design-mode="emotional-saas"] .gov-tele-card {
+  background: #F9FAFB !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+/* ── Interactive Aesthetic Showcase Banner Strip ── */
+.aesthetic-showcase-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.aesthetic-card-preview {
+  padding: 20px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.aesthetic-card-preview:hover {
+  transform: translateY(-4px);
+}
+
+.acp-glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.acp-clay {
+  background: #EBF0F7;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 10px 10px 20px #c5cad7, -10px -10px 20px #ffffff;
+}
+
+.acp-nexus {
+  background: #0E1321;
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 242, 254, 0.15);
+  color: #FFFFFF;
+}
+
+.acp-saas {
+  background: #FFFFFF;
+  border: 1px solid rgba(35, 30, 25, 0.1);
+  box-shadow: 0 10px 28px rgba(35, 30, 25, 0.05);
+}
+
+.acp-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.acp-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.acp-desc {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+
 
 

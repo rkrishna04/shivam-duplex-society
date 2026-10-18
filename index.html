@@ -170,6 +170,43 @@
         <button type="button" class="gov-filter-tab" onclick="filterGovCategory('owner', this)">૩. ૨૦૩ ઘર માલિકો (Owners)</button>
       </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         QUAD-CORE NEXT-GEN UI/UX DESIGN SYSTEMS SHOWCASE BAR
+         1. 💎 Luxury Glassmorphism Mobile UI (Apple 2026 Liquid Glass)
+         2. ☁️ Soft 3D & Neumorphism (Tactile Claymorphic UI)
+         3. 🌌 NEXUS '26 Curated Next-Gen Command Board
+         4. 🌿 Emotional SaaS & Human-Centric Interface
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="aesthetic-showcase-bar">
+      <!-- 1. Luxury Glassmorphism -->
+      <div class="aesthetic-card-preview acp-glass" onclick="setDesignMode('luxury-glass')" title="Click to activate Apple 2026 Liquid Glass">
+        <span class="acp-badge" style="background:#E0F2FE;color:#0369A1;">💎 Apple 2026 Liquid Glass</span>
+        <div class="acp-title">Luxury Glassmorphism UI</div>
+        <div class="acp-desc">Translucent specular glass layers, blur(28px), 135° edge highlight, floating capsule navigation.</div>
+      </div>
+
+      <!-- 2. Soft 3D & Neumorphism -->
+      <div class="aesthetic-card-preview acp-clay" onclick="setDesignMode('soft-3d')" title="Click to activate Tactile Claymorphism">
+        <span class="acp-badge" style="background:#E2E8F0;color:#334155;">☁️ Tactile Neumorphism</span>
+        <div class="acp-title">The Soft 3D Claymorphic UI</div>
+        <div class="acp-desc">Pillowy extruded dual shadows, debossed search wells, tactile squircle buttons you can touch.</div>
+      </div>
+
+      <!-- 3. NEXUS '26 -->
+      <div class="aesthetic-card-preview acp-nexus" onclick="setDesignMode('nexus-26')" title="Click to activate NEXUS '26 Cyber Command">
+        <span class="acp-badge" style="background:rgba(0,242,254,0.15);color:#00F2FE;border:1px solid rgba(0,242,254,0.3);">🌌 NEXUS '26 Command</span>
+        <div class="acp-title">Curated Next-Gen Board</div>
+        <div class="acp-desc">Deep interstellar cyber-obsidian, holographic foil boundaries, telemetry coordinates, HUD nodes.</div>
+      </div>
+
+      <!-- 4. Emotional SaaS -->
+      <div class="aesthetic-card-preview acp-saas" onclick="setDesignMode('emotional-saas')" title="Click to activate Emotional SaaS Alabaster">
+        <span class="acp-badge" style="background:#FEF3C7;color:#92400E;">🌿 Human-Centric Interface</span>
+        <div class="acp-title">Emotional SaaS Interface</div>
+        <div class="acp-desc">Warm alabaster serene space, human empathy typography, harmonious terracotta &amp; botanical sage.</div>
+      </div>
+    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -925,7 +962,7 @@
 
 </main>
 
-<!-- Client-side Interactive Filter Script -->
+<!-- Client-side Interactive Filter & Design Mode Script -->
 <script>
 function filterGovMembers(query) {
   const q = (query || "").toLowerCase().trim();
@@ -953,7 +990,41 @@ function filterGovCategory(category, btn) {
     }
   });
 }
+
+function setDesignMode(mode) {
+  document.body.setAttribute('data-design-mode', mode);
+  try { localStorage.setItem('kutumsetu_design_mode', mode); } catch(e){}
+  document.querySelectorAll('.design-theme-btn').forEach(btn => btn.classList.remove('active'));
+  const btnMap = {
+    'luxury-glass': 'btn-theme-glass',
+    'soft-3d': 'btn-theme-soft3d',
+    'nexus-26': 'btn-theme-nexus',
+    'emotional-saas': 'btn-theme-saas'
+  };
+  const activeBtn = document.getElementById(btnMap[mode]);
+  if (activeBtn) activeBtn.classList.add('active');
+  if (window.playHapticClick) playHapticClick();
+}
+
+// Auto-initialize theme on DOM ready
+(function() {
+  let saved = 'soft-3d';
+  try { saved = localStorage.getItem('kutumsetu_design_mode') || 'soft-3d'; } catch(e){}
+  setDesignMode(saved);
+})();
 </script>
+
+<!-- Floating Quad-Core Aesthetic Engine Switcher Capsule -->
+<nav class="design-engine-switcher" aria-label="Aesthetic Engine Switcher">
+  <div class="design-engine-label">
+    <span>🎨</span>
+    <span>Aesthetic:</span>
+  </div>
+  <button type="button" class="design-theme-btn" id="btn-theme-glass" onclick="setDesignMode('luxury-glass')" title="Apple 2026 Liquid Glass">💎 Glass</button>
+  <button type="button" class="design-theme-btn active" id="btn-theme-soft3d" onclick="setDesignMode('soft-3d')" title="Tactile Claymorphic Neumorphism">☁️ Soft 3D</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-nexus" onclick="setDesignMode('nexus-26')" title="NEXUS '26 Cyber Command Board">🌌 NEXUS '26</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-saas" onclick="setDesignMode('emotional-saas')" title="Human-Centric Warm Alabaster">🌿 SaaS</button>
+</nav>
 
 <!-- Modern SaaS Footer -->
 <footer class="landing-footer">
