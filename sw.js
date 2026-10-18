@@ -4,7 +4,7 @@
    Supports offline caching & seamless PWA installation
    ============================================================ */
 
-const CACHE_NAME = 'shivam-duplex-v8';
+const CACHE_NAME = 'shivam-duplex-v9';
 
 const STATIC_ASSETS = [
   'index.html',
@@ -23,10 +23,12 @@ const STATIC_ASSETS = [
   'css/tables.css',
   'css/forms.css',
   'css/shiva-theme.css',
+  'css/aura-matrix.css',
   'js/app.js',
   'js/society-map.js',
   'js/pwa.js',
   'js/print.js',
+  'js/aura-haptics.js',
   'js/firebase-config.js',
   'manifest.json',
   'icons/icon-192.png',

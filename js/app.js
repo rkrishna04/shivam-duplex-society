@@ -1673,14 +1673,26 @@ async function initHomePage() {
   const adminForm = document.getElementById("admin-login-form");
 
   if(openAdminBtn && adminModal) {
-    openAdminBtn.addEventListener("click", () => adminModal.classList.add("show"));
+    openAdminBtn.addEventListener("click", () => {
+      adminModal.classList.remove("hidden");
+      adminModal.classList.add("show");
+      adminModal.style.setProperty("display", "flex", "important");
+    });
   }
   if(closeAdminBtn && adminModal) {
-    closeAdminBtn.addEventListener("click", () => adminModal.classList.remove("show"));
+    closeAdminBtn.addEventListener("click", () => {
+      adminModal.classList.remove("show");
+      adminModal.classList.add("hidden");
+      adminModal.style.setProperty("display", "none", "important");
+    });
   }
   if(adminModal) {
     adminModal.addEventListener("click", (e) => {
-      if(e.target === adminModal) adminModal.classList.remove("show");
+      if(e.target === adminModal) {
+        adminModal.classList.remove("show");
+        adminModal.classList.add("hidden");
+        adminModal.style.setProperty("display", "none", "important");
+      }
     });
   }
   if(adminForm) {

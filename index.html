@@ -33,10 +33,28 @@
 <script src="js/app.js"></script>
 <script src="js/aura-haptics.js"></script>
 <style>
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
   #map-inspector-modal,
   .map-modal-overlay:not(.show),
-  .admin-modal-overlay:not(.show):not(.active) {
+  .map-modal-overlay.hidden,
+  .admin-modal-overlay:not(.show):not(.active),
+  .admin-modal-overlay.hidden,
+  .modal-overlay:not(.show):not(.active),
+  .modal-overlay.hidden,
+  .mobile-nav-drawer:not(.open),
+  #mobile-drawer:not(.open),
+  vercel-live-feedback,
+  #vercel-toolbar,
+  [data-vercel-toolbar],
+  iframe[src*="vercel.live"],
+  iframe[id*="vercel"] {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 </style>
 </head>
@@ -85,7 +103,7 @@
 </header>
 
 <!-- Mobile Navigation Drawer -->
-<div class="mobile-nav-drawer" id="mobile-drawer">
+<div class="mobile-nav-drawer" id="mobile-drawer" style="display: none !important;">
   <ul class="mobile-nav-links">
     <li><a href="resident.html" style="color:var(--text-primary);font-size:17px;font-weight:800;">🏠 Resident Portal (બિલ &amp; રસીદ)</a></li>
     <li><a href="#governance" class="m-link">🏛️ સોસાયટી વહીવટી માળખું</a></li>
@@ -1082,15 +1100,15 @@ function setDesignMode(mode) {
 </footer>
 
 <!-- Committee Admin Login Modal -->
-<div class="admin-modal-overlay" id="admin-login-modal">
+<div class="admin-modal-overlay hidden" id="admin-login-modal" style="display: none !important;">
   <div class="admin-modal-box">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
-      <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px;">
+      <div style="font-size:18px;font-weight:900;color:var(--text-primary);display:flex;align-items:center;gap:8px;font-family:var(--font-serif-display);">
         <span>🔐</span> Committee Admin Login
       </div>
-      <button type="button" id="btn-close-admin-modal" style="background:none;border:none;color:var(--misty-sky);font-size:20px;cursor:pointer;">✕</button>
+      <button type="button" id="btn-close-admin-modal" class="modal-close" style="cursor:pointer;border:none;">✕</button>
     </div>
-    <p style="font-size:13px;color:var(--misty-sky);margin-bottom:20px;">
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">
       Access the committee command deck for bill generation, accounting, and member management.
     </p>
     <form id="admin-login-form">
@@ -1111,7 +1129,7 @@ function setDesignMode(mode) {
 <!-- ═══════════════════════════════════════════════════════════
      HOUSE OWNER & TENANT KYC REGISTRATION MODAL (Image 1 Specs)
      ═══════════════════════════════════════════════════════════ -->
-<div class="admin-modal-overlay hidden" id="modal-register-kyc">
+<div class="admin-modal-overlay hidden" id="modal-register-kyc" style="display: none !important;">
   <div class="admin-modal-box" style="max-width:680px;width:95%;max-height:90vh;overflow-y:auto;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;border-bottom:1px solid rgba(35,30,25,0.08);padding-bottom:12px;">
       <div style="font-size:18px;font-weight:900;color:var(--text-primary);display:flex;align-items:center;gap:8px;font-family:var(--font-serif-display);">
