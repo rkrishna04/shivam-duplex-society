@@ -51,1233 +51,909 @@
   </filter>
 </svg>
 
-<!-- Master Architectural Canvas Board (Mr L Production 1:1 Design Language) -->
-<div class="arch-board-frame">
+<!-- Master Top Floating Capsule Navigation -->
+<header class="arch-nav-pill" style="max-width:1340px;margin:18px auto;position:sticky;top:14px;z-index:900;">
+  <a href="index.html" class="arch-brand">
+    <div class="arch-brand-monogram">SD.</div>
+    <div class="arch-brand-titles">
+      <span class="arch-brand-name">SHIVAM DUPLEX</span>
+      <span class="arch-brand-sub">RESIDENTS ASSOCIATION · 203 HOMES</span>
+    </div>
+  </a>
 
-  <!-- Top Floating Capsule Navigation -->
-  <header class="arch-nav-pill">
-    <a href="index.html" class="arch-brand">
-      <div class="arch-brand-monogram">SD.</div>
-      <div class="arch-brand-titles">
-        <span class="arch-brand-name">SHIVAM DUPLEX</span>
-        <span class="arch-brand-sub">RESIDENTS ASSOCIATION</span>
-      </div>
+  <!-- Center Nav Menu -->
+  <nav class="arch-nav-menu">
+    <a href="#governance" class="arch-nav-item active">🏛️ વહીવટી માળખું</a>
+    <a href="#chiefs" class="arch-nav-item">👑 પદાધિકારીઓ</a>
+    <a href="#members" class="arch-nav-item">🛠️ કારોબારી સભ્યો</a>
+    <a href="#owners" class="arch-nav-item">🏡 ૨૦૩ ડુપ્લેક્સ</a>
+    <a href="#bank-qr" class="arch-nav-item">💳 બેંક &amp; UPI</a>
+    <a href="#vehicle-search" class="arch-nav-item">🚗 વાહન શોધ</a>
+  </nav>
+
+  <!-- Right Actions -->
+  <div class="arch-nav-actions">
+    <a href="resident.html" class="arch-pill-cta" title="Open Resident Billing & Slip Portal">
+      <span>🏠 Resident Portal</span>
+      <span class="arch-arrow-circle">→</span>
     </a>
-
-    <!-- Center Pill Nav Menu -->
-    <nav class="arch-nav-menu">
-      <a href="index.html" class="arch-nav-item active">Home</a>
-      <a href="#society-map" class="arch-nav-item">3D Map</a>
-      <a href="members.html" class="arch-nav-item">Directory</a>
-      <a href="#vehicle-search" class="arch-nav-item">Vehicle Lookup</a>
-      <a href="#festivals" class="arch-nav-item">Ganesh Utsav</a>
-      <a href="#committee" class="arch-nav-item">Committee</a>
-      <a href="#bank-qr" class="arch-nav-item">Bank UPI</a>
-      <a href="#faq" class="arch-nav-item">FAQ</a>
-    </nav>
-
-    <!-- Right Actions -->
-    <div class="arch-nav-actions">
-      <button type="button" class="arch-circle-btn arch-search-btn" onclick="document.getElementById('vehicle-search').scrollIntoView({behavior:'smooth'})" title="Search Vehicle / House">🔍</button>
-      <a href="resident.html" class="arch-pill-cta">
-        <span>Resident Portal</span>
-        <span class="arch-arrow-circle">→</span>
-      </a>
-      <button type="button" class="arch-admin-pill" id="btn-open-admin-modal">
-        <span>🔐</span> Committee
-      </button>
-      <button type="button" class="haptic-sound-toggle" title="Toggle Haptic Acoustic Feedback">🔊 Haptics: ON</button>
-      <button type="button" class="btn-install-app arch-circle-btn" title="Install Web App" style="border:none;">📲</button>
-    </div>
-  </header>
-
-  <!-- Left Floating Vertical Capsule Dock -->
-  <aside class="arch-dock-vertical" aria-label="Quick Access Dock">
-    <a href="index.html" class="arch-dock-item active" title="Home">
-      <span class="dock-circle-dark">🏠</span>
-    </a>
-    <a href="#society-map" class="arch-dock-item" title="3D Society Map & Lights">🗺️</a>
-    <a href="members.html" class="arch-dock-item" title="Members Directory">👥</a>
-    <a href="resident.html" class="arch-dock-item" title="My Duplex Bills">🧾</a>
-    <a href="#festivals" class="arch-dock-item" title="Ganesh Utsav Ledger">🎉</a>
-    <a href="#committee" class="arch-dock-item" title="Committee Incharges">🏛️</a>
-    
-    <div class="arch-dock-divider"></div>
-    
-    <div class="arch-dock-avatar" title="Rajeshbhai Patel (Chairman / Committee)">
-      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Committee Avatar"/>
-    </div>
-    
-    <a href="#society-map" class="arch-dock-tour" title="Watch 3D Society Tour">
-      <span class="dock-tour-circle">▶</span>
-      <span class="dock-tour-text">3D Tour</span>
-    </a>
-  </aside>
-
-  <!-- Main Hero Stage (2-Column Architectural Layout) -->
-  <div class="arch-hero-stage">
-    
-    <!-- Left Column: Editorial Headline & Actions -->
-    <div class="arch-hero-text">
-      <div class="arch-hero-eyebrow">
-        <span>ARCHITECTURE</span>
-        <span class="eyebrow-sep">—</span>
-        <span>DUPLEX RESIDENCES</span>
-        <span class="eyebrow-sep">—</span>
-        <span>SMART GOVERNANCE</span>
-      </div>
-
-      <h1 class="arch-hero-title">
-        Residences<br/>
-        <em>That Inspire</em>
-      </h1>
-
-      <p class="arch-hero-desc">
-        We design transparent community living that blends modern duplex architecture, 100% LED illuminated streets, automated maintenance ledgers, and 20-house committee governance.
-      </p>
-
-      <div class="arch-hero-buttons">
-        <a href="resident.html" class="arch-btn-primary">
-          <span>Explore 40 Duplexes</span>
-          <span class="arch-arrow-circle">→</span>
-        </a>
-        <a href="#society-map" class="arch-btn-play">
-          <span class="arch-play-circle">▶</span>
-          <span>Watch 3D Society Map</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Right Column: Luxury Architectural Duplex Villa Backdrop -->
-    <div class="arch-hero-visual">
-      <div class="arch-villa-card">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" alt="Shivam Duplex Modern Architecture" class="arch-villa-img"/>
-        <div class="arch-villa-pills">
-          <span>MODERN</span>
-          <span>SUSTAINABLE</span>
-          <span>FUNCTIONAL</span>
-          <span>TIMELESS</span>
-        </div>
-      </div>
-    </div>
-
+    <button type="button" class="arch-admin-pill" id="btn-open-admin-modal" title="Committee Login">
+      <span>🔐</span> Committee
+    </button>
+    <button type="button" class="btn-install-app arch-circle-btn" title="Install App" style="border:none;">📲</button>
   </div>
-
-  <!-- Bottom Bento Shelf (3 Sculptural Bento Cards sitting in a row) -->
-  <div class="arch-bento-shelf">
-
-    <!-- Bento 1: Featured Residence Project Card -->
-    <div class="bento-featured-card">
-      <div class="bfc-top-row">
-        <span class="bfc-badge">FEATURED RESIDENCE</span>
-        <span class="bfc-counter">01 / 40</span>
-      </div>
-      <div class="bfc-preview">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Duplex No. 01" class="bfc-img"/>
-      </div>
-      <div class="bfc-details">
-        <h3 class="bfc-title">Duplex Villa No. 01</h3>
-        <p class="bfc-desc">Modern 4-BHK duplex blending sustainable architecture with private terrace garden & solar power grid.</p>
-        <a href="resident.html" class="bfc-link">View House Details →</a>
-      </div>
-      <div class="bfc-footer">
-        <div class="bfc-avatars">
-          <span class="bfc-avatar">👤</span>
-          <span class="bfc-avatar">👤</span>
-          <span class="bfc-avatar-plus">+40</span>
-        </div>
-        <div class="bfc-pagination">
-          <span class="bfc-dot active"></span>
-          <span class="bfc-dot"></span>
-          <span class="bfc-dot"></span>
-        </div>
-        <div class="bfc-nav-btns">
-          <button type="button" class="bfc-arrow-btn" aria-label="Previous">←</button>
-          <button type="button" class="bfc-arrow-btn" aria-label="Next">→</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bento 2: Architectural Metrics & Stats Card -->
-    <div class="bento-stats-card">
-      <div class="bsc-col">
-        <div class="bsc-icon">🏛️</div>
-        <div class="bsc-num">40+</div>
-        <div class="bsc-label">Duplex Residences</div>
-        <div class="bsc-sub">G+1 Luxury Layout</div>
-      </div>
-      <div class="bsc-divider"></div>
-      <div class="bsc-col">
-        <div class="bsc-icon">💡</div>
-        <div class="bsc-num">100%</div>
-        <div class="bsc-label">Solar &amp; LED Grid</div>
-        <div class="bsc-sub">Illuminated Streets</div>
-      </div>
-      <div class="bsc-divider"></div>
-      <div class="bsc-col">
-        <div class="bsc-icon">₹</div>
-        <div class="bsc-num">600</div>
-        <div class="bsc-label">Maintenance</div>
-        <div class="bsc-sub">100% Transparent</div>
-      </div>
-    </div>
-
-    <!-- Bento 3: Dark Monolith Action Bento -->
-    <a href="#bank-qr" class="bento-action-card">
-      <div class="bac-top">
-        <div class="bac-avatar">🔱</div>
-        <div class="bac-arrow">↗</div>
-      </div>
-      <div class="bac-bottom">
-        <h3 class="bac-title">Pay Maintenance Instantly</h3>
-        <p class="bac-sub">Instant Society UPI QR &amp; Bank receipts delivered directly to your phone.</p>
-      </div>
-    </a>
-
-  </div>
-
-</div>
+</header>
 
 <!-- Mobile Navigation Drawer -->
 <div class="mobile-nav-drawer" id="mobile-drawer">
   <ul class="mobile-nav-links">
-    <li><a href="resident.html" style="color:var(--text-primary);font-size:18px;">🏠 Resident Portal</a></li>
-    <li><button type="button" class="haptic-sound-toggle" style="margin: 8px 0; width: 100%; justify-content: center;">🔊 Haptics: ON</button></li>
-    <li><a href="#society-map" class="m-link">🗺️ 3D Society Map &amp; Lights</a></li>
-    <li><a href="#vehicle-search" class="m-link">🚗 Search Vehicle Plate</a></li>
-    <li><a href="#features" class="m-link">✨ Society Features</a></li>
-    <li><a href="#festivals" class="m-link">🎉 Ganesh Utsav Ledger</a></li>
-    <li><a href="#committee" class="m-link">🏛 કારોબારી સમિતિ માળખું</a></li>
-    <li><a href="#bank-qr" class="m-link">💳 Society UPI &amp; Bank</a></li>
-    <li><a href="dashboard.html">📊 Committee Admin Deck</a></li>
-    <li><a href="#" class="btn-install-app">📲 Install Mobile App</a></li>
+    <li><a href="resident.html" style="color:var(--text-primary);font-size:17px;font-weight:800;">🏠 Resident Portal (બિલ &amp; રસીદ)</a></li>
+    <li><a href="#governance" class="m-link">🏛️ સોસાયટી વહીવટી માળખું</a></li>
+    <li><a href="#chiefs" class="m-link">👑 ૪ મુખ્ય પદાધિકારીઓ</a></li>
+    <li><a href="#members" class="m-link">🛠️ ૮ કારોબારી સભ્યો (લાઈન ઇન્ચાર્જ)</a></li>
+    <li><a href="#owners" class="m-link">🏡 ૨૦૩ ડુપ્લેક્સ ઘર માલિકો</a></li>
+    <li><a href="#bank-qr" class="m-link">💳 બેંક ખાતું &amp; UPI QR Code</a></li>
+    <li><a href="#vehicle-search" class="m-link">🚗 વાહન નંબર &amp; પાર્કિંગ શોધ</a></li>
+    <li><a href="members.html" class="m-link">👥 ૨૦૩ સભાસદોની ડિરેક્ટરી</a></li>
+    <li><a href="dashboard.html" class="m-link">📊 કમિટી એડમિન ડેશબોર્ડ</a></li>
+    <li><button type="button" class="btn-install-app" style="background:none;border:none;color:var(--arch-accent-terracotta);font-size:15px;font-weight:700;padding:0;cursor:pointer;">📲 Install Mobile App</button></li>
   </ul>
 </div>
 
-<main>
+<!-- ═══════════════════════════════════════════════════════════
+     MASTER EXECUTIVE GOVERNANCE & COMMITTEE SHOWCASE STAGE
+     Tactile Claymorphism & Liquid Glass Aesthetic
+     ═══════════════════════════════════════════════════════════ -->
+<main class="gov-deck-container">
 
-  <section class="landing-section" style="padding-top:10px;">
-    <div class="landing-container">
-      <!-- Instant Vehicle Parking Emergency Search Bar -->
-      <div class="vehicle-hero-card" id="vehicle-search">
-        <div class="vhc-title-row">
-          <div class="vhc-title">
-            <span>🚗</span>
-            <span>Emergency Vehicle &amp; Parking Search</span>
-          </div>
-          <span style="font-size:11px;font-weight:700;color:var(--sage-leaf);background:rgba(16, 185, 129,0.2);padding:3px 10px;border-radius:var(--radius-pill);">LIVE DATABASE</span>
+  <!-- Stage Hero Header: Official Constitution & Telemetry -->
+  <section class="gov-hero-stage" id="governance">
+    <div class="gov-hero-eyebrow">
+      <span>🏛️</span>
+      <span>શિવમ ડુપ્લેક્સ રેસિડન્ટ્સ એસોસિએશન · વડોદરા (૪ સ્તરીય બંધારણ)</span>
+    </div>
+
+    <h1 class="gov-hero-title">
+      સોસાયટી વહીવટી માળખું &amp;<br/>
+      <em>કારોબારી સમિતિ સભ્યો અને લાઈન સોંપણી</em>
+    </h1>
+
+    <p class="gov-hero-sub">
+      શિવમ ડુપ્લેક્સ સોસાયટીનું વહીવટી માળખું ૪ સ્તરીય બંધારણ પર કાર્ય કરે છે — ૧ પ્રમુખ, ૧ ઉપ-પ્રમુખ, ૧ મંત્રી, ૧ ખજાનચી, ૭ થી ૮ કારોબારી સભ્યો (પાણી, સિક્યુરિટી, સફાઈ, સ્ટ્રીટ લાઈટ્સ, તહેવારો, પાર્કિંગ, બગીચો અને ૨૦-ઘર ક્લસ્ટર વિવાદ નિવારણ) અને ૨૦૩ ડુપ્લેક્સ ઘર માલિકો (AGM મતદાન સભાસદો).
+    </p>
+
+    <!-- 4 Constitutional Pillars Telemetry Strip -->
+    <div class="gov-telemetry-strip">
+      <div class="gov-tele-card">
+        <div class="gov-tele-icon">👑</div>
+        <div>
+          <div class="gov-tele-num">૧ પ્રમુખ + ૩</div>
+          <div class="gov-tele-label">મુખ્ય વહીવટી પદાધિકારીઓ</div>
         </div>
-        <div class="vhc-sub">
-          Someone blocked your duplex entrance or parked outside? Enter registration number or car/bike name to contact the owner instantly:
-        </div>
-        <form id="hero-vehicle-form">
-          <div class="vhc-search-bar">
-            <span style="font-size:18px;margin-right:10px;color:var(--misty-sky);">🔍</span>
-            <input type="text" id="hero-vehicle-input" class="vhc-input" placeholder="e.g. GJ06, 1234, Swift, Activa…" autocomplete="off" required/>
-            <button type="submit" class="vhc-search-btn">Search Owner</button>
-          </div>
-        </form>
-        <div class="vhc-result-box" id="hero-vehicle-result"></div>
       </div>
 
-      <!-- Live Society Statistics Strip -->
-      <div class="stats-strip">
-        <div class="stat-box-modern">
-          <div class="stat-box-icon">🏡</div>
-          <div class="stat-box-num" id="home-stat-duplexes">40</div>
-          <div class="stat-box-label">Duplex Homes</div>
-          <div class="stat-box-desc">Fully registered units</div>
+      <div class="gov-tele-card">
+        <div class="gov-tele-icon">🛠️</div>
+        <div>
+          <div class="gov-tele-num">૮ કારોબારી</div>
+          <div class="gov-tele-label">લાઈન &amp; સેવા સંચાલક સભ્યો</div>
         </div>
-        <div class="stat-box-modern">
-          <div class="stat-box-icon">💰</div>
-          <div class="stat-box-num">₹600</div>
-          <div class="stat-box-label">Monthly Maintenance</div>
-          <div class="stat-box-desc">₹3,600 (6-Mo) / ₹7,200 (Year)</div>
+      </div>
+
+      <div class="gov-tele-card">
+        <div class="gov-tele-icon">🏡</div>
+        <div>
+          <div class="gov-tele-num">૨૦૩ ઘરો</div>
+          <div class="gov-tele-label">AGM પાયાના સભાસદો</div>
         </div>
-        <div class="stat-box-modern">
-          <div class="stat-box-icon">🏛</div>
-          <div class="stat-box-num">20 : 1</div>
-          <div class="stat-box-label">Committee Ratio</div>
-          <div class="stat-box-desc">Dedicated member per 20 houses</div>
+      </div>
+
+      <div class="gov-tele-card">
+        <div class="gov-tele-icon">💰</div>
+        <div>
+          <div class="gov-tele-num">₹૩૦૦ / માસિક</div>
+          <div class="gov-tele-label">નિયમિત મેઈન્ટેનન્સ યોગદાન</div>
         </div>
-        <div class="stat-box-modern">
-          <div class="stat-box-icon">🧾</div>
-          <div class="stat-box-num">100%</div>
-          <div class="stat-box-label">Digital Transparency</div>
-          <div class="stat-box-desc">A4 Multi-Bill &amp; Festival Ledgers</div>
+      </div>
+    </div>
+
+    <!-- Live Interactive Search & Filter Bar -->
+    <div class="gov-search-wrap">
+      <div class="gov-search-input-box">
+        <span style="font-size:18px;">🔍</span>
+        <input type="text" id="gov-search-input" class="gov-search-input" placeholder="કમિટી સભ્ય, લાઈન નંબર (દા.ત. લાઈન ૧), હોદ્દો (પ્રમુખ, પાણી, લાઈટ) અથવા મકાન નંબર શોધો..." oninput="filterGovMembers(this.value)"/>
+      </div>
+      <div class="gov-filter-tabs">
+        <button type="button" class="gov-filter-tab active" onclick="filterGovCategory('all', this)">બધા સભ્યો</button>
+        <button type="button" class="gov-filter-tab" onclick="filterGovCategory('chief', this)">૧. પદાધિકારીઓ (Chiefs)</button>
+        <button type="button" class="gov-filter-tab" onclick="filterGovCategory('member', this)">૨. કારોબારી સભ્યો (Line Leads)</button>
+        <button type="button" class="gov-filter-tab" onclick="filterGovCategory('owner', this)">૩. ૨૦૩ ઘર માલિકો (Owners)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LEVEL 1: ૪ મુખ્ય વહીવટી પદાધિકારીઓ (CORE EXECUTIVE CHIEFS)
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="chiefs" class="gov-section-wrap">
+    <div class="gov-tier-heading">
+      <div class="gov-tier-badge gold">
+        <span>👑</span>
+        <span>સ્તર ૧ · મુખ્ય વહીવટી પદાધિકારીઓ (CORE EXECUTIVE OFFICERS)</span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);font-weight:600;">
+        સોસાયટીના સર્વોચ્ચ વડા અને વહીવટી સંચાલન મંડળ
+      </div>
+    </div>
+
+    <div class="gov-chiefs-grid">
+
+      <!-- Chief 1: પ્રમુખ (Chairman / President) -->
+      <article class="gov-chief-card gov-searchable-card" data-category="chief" data-search="પ્રમુખ chairman president રમેશભાઈ પટેલ rameshbhai patel ડુપ્લેક્સ ૦૧ duplex 01 મુખ્ય વડા agm">
+        <div>
+          <div class="gov-chief-top">
+            <div class="gov-avatar-box">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="શ્રી રમેશભાઈ પટેલ" class="gov-avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ramesh+Patel&background=F59E0B&color=ffffff&bold=true';"/>
+              <div class="gov-avatar-badge" title="સર્વોચ્ચ મુખ્ય વડા">👑</div>
+            </div>
+            <div class="gov-chief-meta">
+              <span class="gov-role-pill gold">૧ પ્રમુખ (CHAIRMAN / PRESIDENT)</span>
+              <h2 class="gov-chief-name">શ્રી રમેશભાઈ પટેલ</h2>
+              <div class="gov-chief-location">
+                <span>📍 ડુપ્લેક્સ નં. ૦૧</span>
+                <span>·</span>
+                <span>📞 98250 11001</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gov-mandate-box">
+            <div class="gov-mandate-title">
+              <span>🏛️</span>
+              <span>બંધારણીય હોદ્દો &amp; મુખ્ય જવાબદારી:</span>
+            </div>
+            <p class="gov-mandate-desc">
+              <strong>સોસાયટીના સર્વોચ્ચ મુખ્ય વડા, તમામ નિર્ણયો અને સાધારણ સભાઓના અધ્યક્ષ.</strong>
+            </p>
+            <div class="gov-line-assigned">
+              <span>📌 સોંપાયેલ કાર્યક્ષેત્ર:</span>
+              <span>સમગ્ર સોસાયટીનું સર્વોચ્ચ નીતિગત સંચાલન, વાર્ષિક સાધારણ સભા (AGM/EGM) ની અધ્યક્ષતા, સરકારી કચેરીઓ (VMC), બેંક અને રજીસ્ટ્રારમાં સત્તાવાર પ્રતિનિધિત્વ.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011001" class="gov-btn-call">📞 સીધો કૉલ</a>
+          <a href="https://wa.me/919825011001?text=Namaste%20Chairman%20Shri%20Rameshbhai,%20I%20am%20a%20resident%20of%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Chief 2: ઉપ-પ્રમુખ (Vice-Chairman) -->
+      <article class="gov-chief-card gov-searchable-card" data-category="chief" data-search="ઉપ-પ્રમુખ vice-chairman vice chairman વિનોદભાઈ શાહ vinodbhai shah ડુપ્લેક્સ ૧૧ duplex 11 લાઈન ૨ line 2 સહાયક">
+        <div>
+          <div class="gov-chief-top">
+            <div class="gov-avatar-box">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" alt="શ્રી વિનોદભાઈ શાહ" class="gov-avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Vinod+Shah&background=F59E0B&color=ffffff&bold=true';"/>
+              <div class="gov-avatar-badge" title="સહાયક વડા">🤝</div>
+            </div>
+            <div class="gov-chief-meta">
+              <span class="gov-role-pill amber">૧ ઉપ-પ્રમુખ (VICE-CHAIRMAN)</span>
+              <h2 class="gov-chief-name">શ્રી વિનોદભાઈ શાહ</h2>
+              <div class="gov-chief-location">
+                <span>📍 ડુપ્લેક્સ નં. ૧૧</span>
+                <span>·</span>
+                <span>📞 98250 11002</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gov-mandate-box">
+            <div class="gov-mandate-title">
+              <span>🤝</span>
+              <span>બંધારણીય હોદ્દો &amp; મુખ્ય જવાબદારી:</span>
+            </div>
+            <p class="gov-mandate-desc">
+              <strong>વૈકલ્પિક — પ્રમુખની ગેરહાજરીમાં કામ સંભાળવા અને સહાયક વડા.</strong>
+            </p>
+            <div class="gov-line-assigned">
+              <span>📌 સોંપાયેલ કાર્ય &amp; લાઈન:</span>
+              <span>પ્રમુખની ગેરહાજરીમાં સોસાયટીનું કાર્યભાર વહન, તમામ કારોબારી સભ્યો સાથે દૈનિક સંકલન અને <strong>લાઈન ૨ (ડુપ્લેક્સ ૦૯ થી ૧૬)</strong> ની સીધી દેખરેખ.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011002" class="gov-btn-call">📞 સીધો કૉલ</a>
+          <a href="https://wa.me/919825011002?text=Namaste%20Vinodbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Chief 3: મંત્રી (Secretary) -->
+      <article class="gov-chief-card gov-searchable-card" data-category="chief" data-search="મંત્રી secretary અલ્પેશભાઈ દેસાઈ alpeshbhai desai ડુપ્લેક્સ ૨૧ duplex 21 લાઈન ૩ line 3 વહીવટ નોટિસ">
+        <div>
+          <div class="gov-chief-top">
+            <div class="gov-avatar-box">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="શ્રી અલ્પેશભાઈ દેસાઈ" class="gov-avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Alpesh+Desai&background=2563EB&color=ffffff&bold=true';"/>
+              <div class="gov-avatar-badge" title="જનરલ સેક્રેટરી">📋</div>
+            </div>
+            <div class="gov-chief-meta">
+              <span class="gov-role-pill blue">૧ મંત્રી (GENERAL SECRETARY)</span>
+              <h2 class="gov-chief-name">શ્રી અલ્પેશભાઈ દેસાઈ</h2>
+              <div class="gov-chief-location">
+                <span>📍 ડુપ્લેક્સ નં. ૨૧</span>
+                <span>·</span>
+                <span>📞 98250 11003</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gov-mandate-box">
+            <div class="gov-mandate-title">
+              <span>📋</span>
+              <span>બંધારણીય હોદ્દો &amp; મુખ્ય જવાબદારી:</span>
+            </div>
+            <p class="gov-mandate-desc">
+              <strong>રોજબરોજના વહીવટ, મિટિંગ્સ, ઠરાવો અને નોટિસનું કામ સંભાળનાર.</strong>
+            </p>
+            <div class="gov-line-assigned">
+              <span>📌 સોંપાયેલ કાર્ય &amp; લાઈન:</span>
+              <span>દૈનિક વહીવટી પત્રવ્યવહાર, સત્તાવાર મિટિંગ્સ પ્રોસીડિંગ્સ, ઠરાવ બુક, ડિજિટલ સભાસદ રજીસ્ટર, નોટિસ બોર્ડ અને <strong>લાઈન ૩ (ડુપ્લેક્સ ૧૭ થી ૨૪)</strong> ની દેખરેખ.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011003" class="gov-btn-call">📞 સીધો કૉલ</a>
+          <a href="https://wa.me/919825011003?text=Namaste%20Alpeshbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Chief 4: ખજાનચી (Treasurer) -->
+      <article class="gov-chief-card gov-searchable-card" data-category="chief" data-search="ખજાનચી treasurer મુકેશભાઈ પંડ્યા mukeshbhai pandya ડુપ્લેક્સ ૩૧ duplex 31 લાઈન ૪ line 4 મેઈન્ટેનન્સ 300 બેંક હિસાબ">
+        <div>
+          <div class="gov-chief-top">
+            <div class="gov-avatar-box">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="શ્રી મુકેશભાઈ પંડ્યા" class="gov-avatar-img" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Mukesh+Pandya&background=059669&color=ffffff&bold=true';"/>
+              <div class="gov-avatar-badge" title="ફાઇનાન્સ હેડ">🏦</div>
+            </div>
+            <div class="gov-chief-meta">
+              <span class="gov-role-pill emerald">૧ ખજાનચી (TREASURER)</span>
+              <h2 class="gov-chief-name">શ્રી મુકેશભાઈ પંડ્યા</h2>
+              <div class="gov-chief-location">
+                <span>📍 ડુપ્લેક્સ નં. ૩૧</span>
+                <span>·</span>
+                <span>📞 98250 11004</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gov-mandate-box">
+            <div class="gov-mandate-title">
+              <span>🏦</span>
+              <span>બંધારણીય હોદ્દો &amp; મુખ્ય જવાબદારી:</span>
+            </div>
+            <p class="gov-mandate-desc">
+              <strong>₹300/માસિક મેઈન્ટેનન્સ અને બેંક એકાઉન્ટના હિસાબો રાખનાર.</strong>
+            </p>
+            <div class="gov-line-assigned">
+              <span>📌 સોંપાયેલ કાર્ય &amp; લાઈન:</span>
+              <span>માસિક ₹૩૦૦ ફી કલેક્શન, સોસાયટી બેંક એકાઉન્ટ (SBI) ઓપરેશન, UPI QR રસીદો, ખર્ચ વાઉચર્સ, વાર્ષિક ઓડિટ અને <strong>લાઈન ૪ (ડુપ્લેક્સ ૨૫ થી ૩૨)</strong> ની દેખરેખ.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011004" class="gov-btn-call">📞 સીધો કૉલ</a>
+          <a href="https://wa.me/919825011004?text=Namaste%20Mukeshbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LEVEL 2: ૭ થી ૮ કારોબારી સભ્યો (EXECUTIVE COMMITTEE PORTFOLIO HEADS)
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="members" class="gov-section-wrap">
+    <div class="gov-tier-heading">
+      <div class="gov-tier-badge emerald">
+        <span>🛠️</span>
+        <span>સ્તર ૨ · ૭ થી ૮ કારોબારી સભ્યો (PORTFOLIO HEADS &amp; LINE INCHARGES)</span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);font-weight:600;">
+        સોસાયટીના અલગ-અલગ કામો અને સમર્પિત લાઈન ઇન્ચાર્જ સભ્યો
+      </div>
+    </div>
+
+    <div class="gov-members-grid">
+
+      <!-- Member 1: પાણી પુરવઠો -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="પાણી પુરવઠો water supply પ્રદીપભાઈ પટેલ pradipbhai patel ડુપ્લેક્સ ૦૬ duplex 06 લાઈન ૧ લાઈન ૨ બોરવેલ પંપ ટાંકી">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="શ્રી પ્રદીપભાઈ પટેલ" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Pradip+Patel&background=0284C7&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#E0F2FE;color:#0369A1;border-color:#BAE6FD;">💧 ૧. પાણી પુરવઠો</span>
+              <h3 class="gov-member-name">શ્રી પ્રદીપભાઈ પટેલ</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૦૬ · 📞 98250 11005</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>💧</span>
+              <span>જવાબદારી: બોરવેલ &amp; સમ્પ જાળવણી</span>
+            </div>
+            <div class="gov-portfolio-text">
+              બોરવેલ સબમર્સિબલ પંપ, અંડરગ્રાઉન્ડ સંપ, ઓવરહેડ ટાંકી સફાઈ, દૈનિક પાણી પુરવઠો સમયપત્રક અને પ્લમ્બિંગ ફરિયાદ નિવારણ.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>લાઈન ૧ &amp; ૨ (ડુપ્લેક્સ ૦૧ થી ૧૬) + પંપ રૂમ</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011005" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011005?text=Namaste%20Pradipbhai,%20regarding%20water%20supply%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 2: ગેટ સિક્યુરિટી -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="ગેટ સિક્યુરિટી security હરેશભાઈ જોશી hareshbhai joshi ડુપ્લેક્સ ૧૪ duplex 14 મુખ્ય ગેટ cctv ગાર્ડ સુરક્ષા">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=200&q=80" alt="શ્રી હરેશભાઈ જોશી" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Haresh+Joshi&background=4338CA&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE;">🛡️ ૨. ગેટ &amp; સિક્યુરિટી</span>
+              <h3 class="gov-member-name">શ્રી હરેશભાઈ જોશી</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૧૪ · 📞 98250 11006</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>🛡️</span>
+              <span>જવાબદારી: ૨૪×૭ કેમ્પસ સુરક્ષા</span>
+            </div>
+            <div class="gov-portfolio-text">
+              મુખ્ય પ્રવેશદ્વાર સિક્યુરિટી ગાર્ડ નિરીક્ષણ, મુલાકાતી (વિઝિટર) એન્ટ્રી રજીસ્ટર, નાઇટ પેટ્રોલિંગ અને સીસીટીવી કેમેરા મોનિટરિંગ.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>મુખ્ય ગેટ, કંટ્રોલ રૂમ &amp; બાઉન્ડ્રી વોલ</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011006" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011006?text=Namaste%20Hareshbhai,%20regarding%20security%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 3: સફાઈ વ્યવસ્થા -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="સફાઈ વ્યવસ્થા sanitation દીપકભાઈ પંચાલ dipakbhai panchal ડુપ્લેક્સ ૧૮ duplex 18 લાઈન ૩ લાઈન ૪ કચરો ગટર રોડ">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="શ્રી દીપકભાઈ પંચાલ" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Dipak+Panchal&background=0D9488&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#F0FDFA;color:#0F766E;border-color:#99F6E4;">🧹 ૩. સ્વચ્છતા &amp; સફાઈ</span>
+              <h3 class="gov-member-name">શ્રી દીપકભાઈ પંચાલ</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૧૮ · 📞 98250 11007</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>🧹</span>
+              <span>જવાબદારી: રોડ સફાઈ &amp; કચરા નિકાલ</span>
+            </div>
+            <div class="gov-portfolio-text">
+              સોસાયટીના તમામ આંતરિક રોડની દૈનિક સફાઈ, ડોર-ટુ-ડોર કચરા કલેક્શન વાન સંકલન, ડ્રેનેજ ગટર ચેમ્બર દેખરેખ અને જંતુનાશક દવાનો છંટકાવ.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>લાઈન ૩ &amp; ૪ (ડુપ્લેક્સ ૧૭ થી ૩૨) + કોમન રોડ</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011007" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011007?text=Namaste%20Dipakbhai,%20regarding%20cleaning%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 4: સ્ટ્રીટ લાઈટ્સ & ઈલેક્ટ્રિકલ -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="સ્ટ્રીટ લાઈટ્સ street lights ભાવિનભાઈ શાહ bhavinbhai shah ડુપ્લેક્સ ૨૩ duplex 23 ઇલેક્ટ્રિકલ પોલ લાઈટ પાવર">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80" alt="શ્રી ભાવિનભાઈ શાહ" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Bhavin+Shah&background=D97706&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#FFFBEB;color:#B45309;border-color:#FDE68A;">💡 ૪. સ્ટ્રીટ લાઈટ્સ</span>
+              <h3 class="gov-member-name">શ્રી ભાવિનભાઈ શાહ</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૨૩ · 📞 98250 11008</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>💡</span>
+              <span>જવાબદારી: સોસાયટી લાઈટિંગ ગ્રીડ</span>
+            </div>
+            <div class="gov-portfolio-text">
+              સોસાયટીના તમામ એલઈડી પોલ લાઈટ્સ (૧૬+ પોલ), સેન્ટ્રલ મીટર પેનલ, અંડરગ્રાઉન્ડ કેબલિંગ જાળવણી અને સોલર લાઈટ વ્યવસ્થા.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>પોલ ૦૧ થી ૧૬ &amp; તમામ શેરી જંકશન્સ</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011008" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011008?text=Namaste%20Bhavinbhai,%20regarding%20streetlight%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 5: તહેવાર ઉજવણી -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="તહેવાર ઉજવણી festivals જીતેન્દ્રભાઈ ત્રિવેદી jitendrabhai trivedi ડુપ્લેક્સ ૨૭ duplex 27 ગણેશ ઉત્સવ નવરાત્રી કથા">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="શ્રી જીતેન્દ્રભાઈ ત્રિવેદી" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Jitendra+Trivedi&background=BE185D&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#FDF2F8;color:#BE185D;border-color:#FBCFE8;">🌺 ૫. તહેવાર &amp; ઉત્સવ</span>
+              <h3 class="gov-member-name">શ્રી જીતેન્દ્રભાઈ ત્રિવેદી</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૨૭ · 📞 98250 11009</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>🌺</span>
+              <span>જવાબદારી: સામાજિક &amp; સાંસ્કૃતિક આયોજન</span>
+            </div>
+            <div class="gov-portfolio-text">
+              ગણેશ મહોત્સવ, નવરાત્રી રાસ-ગરબા, દિવાળી રોશની, શ્રી સત્યનારાયણ કથા, મહાપ્રસાદ અને સ્નેહમિલન સમારોહનું વ્યવસ્થાપન.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>સેન્ટ્રલ પંડાલ, શિવ મંદિર &amp; હોલ</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011009" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011009?text=Namaste%20Jitendrabhai,%20regarding%20society%20events%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 6: પાર્કિંગ શિસ્ત -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="પાર્કિંગ શિસ્ત parking સંજયભાઈ બારોટ sanjaybhai barot ડુપ્લેક્સ ૩૪ duplex 34 લાઈન ૫ line 5 ગાડી વાહન ટ્રાફિક">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=200&q=80" alt="શ્રી સંજયભાઈ બારોટ" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sanjay+Barot&background=4F46E5&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#EEF2FF;color:#4F46E5;border-color:#C7D2FE;">🚗 ૬. પાર્કિંગ શિસ્ત</span>
+              <h3 class="gov-member-name">શ્રી સંજયભાઈ બારોટ</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૩૪ · 📞 98250 11010</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>🚗</span>
+              <span>જવાબદારી: વાહન પાર્કિંગ &amp; ટ્રાફિક વ્યવસ્થા</span>
+            </div>
+            <div class="gov-portfolio-text">
+              સોસાયટીના ૨૦૩ ડુપ્લેક્સના વાહનોનું શિસ્તબદ્ધ પાર્કિંગ, અડચણરૂપ વાહનોનું તાત્કાલિક નિરાકરણ અને આંતરિક રોડ સ્પીડ શિસ્ત નિયમન.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>લાઈન ૫ (ડુપ્લેક્સ ૩૩ થી ૪૦) &amp; પાર્કિંગ એરિયા</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011010" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011010?text=Namaste%20Sanjaybhai,%20regarding%20parking%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 7: બગીચો & પર્યાવરણ -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="બગીચો પર્યાવરણ garden નરેન્દ્રભાઈ રાણા narendrabhai rana ડુપ્લેક્સ ૩૮ duplex 38 પાર્ક વૃક્ષારોપણ હિંચકા લોન">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="શ્રી નરેન્દ્રભાઈ રાણા" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Narendra+Rana&background=15803D&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#F0FDF4;color:#15803D;border-color:#BBF7D0;">🌳 ૭. બગીચો &amp; પર્યાવરણ</span>
+              <h3 class="gov-member-name">શ્રી નરેન્દ્રભાઈ રાણા</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ નં. ૩૮ · 📞 98250 11011</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>🌳</span>
+              <span>જવાબદારી: ગાર્ડન &amp; બાળ રમતગમત મેદાન</span>
+            </div>
+            <div class="gov-portfolio-text">
+              સેન્ટ્રલ ગાર્ડન લોન મેન્ટેનન્સ, વૃક્ષારોપણ, ફૂલછોડ વાવણી, બાળકોના રમકડાં-હિંચકા રિપેરિંગ અને સોસાયટી ગ્રીન કવર સંવર્ધન.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>સેન્ટ્રલ ગાર્ડન &amp; ચિલ્ડ્રન પાર્ક પરિસર</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825011011" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825011011?text=Namaste%20Narendrabhai,%20regarding%20garden%20at%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+      <!-- Member 8: ૨૦-ઘર ક્લસ્ટર વિવાદ નિવારણ -->
+      <article class="gov-member-card gov-searchable-card" data-category="member" data-search="વિવાદ નિવારણ dispute resolution રાજેશભાઈ પટેલ સુરેશભાઈ શાહ ડુપ્લેક્સ ૦૪ ૨૪ ક્લસ્ટર ૧ ક્લસ્ટર ૨ 20-ઘર">
+        <div>
+          <div class="gov-member-top">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=200&q=80" alt="શ્રી રાજેશભાઈ પટેલ &amp; શ્રી સુરેશભાઈ શાહ" class="gov-member-avatar" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Rajesh+Suresh&background=7C3AED&color=ffffff&bold=true';"/>
+            <div>
+              <span class="gov-member-badge" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE;">⚖️ ૮. ક્લસ્ટર વિવાદ નિવારણ</span>
+              <h3 class="gov-member-name">શ્રી રાજેશ પટેલ &amp; સુરેશ શાહ</h3>
+              <div class="gov-member-house">📍 ડુપ્લેક્સ ૦૪ &amp; ૨૪ · 📞 98250 12341</div>
+            </div>
+          </div>
+
+          <div class="gov-portfolio-box">
+            <div class="gov-portfolio-title">
+              <span>⚖️</span>
+              <span>જવાબદારી: ૨૦-ઘર સુમેળ &amp; સમાધાન</span>
+            </div>
+            <div class="gov-portfolio-text">
+              પડોશી વિવાદોનું ત્વરિત સામાજિક નિવારણ, સ્થાનિક ફરિયાદો, ક્લસ્ટર મીટિંગ્સ અને સભાસદો વચ્ચે પરસ્પર ભાઈચારો જાળવવો.
+            </div>
+            <div class="gov-assigned-line-highlight">
+              <span>📌 સોંપાયેલ લાઈન:</span>
+              <strong>ક્લસ્ટર ૧ (૧-૨૦) &amp; ક્લસ્ટર ૨ (૨૧-૪૦/૨૦૩)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="gov-actions-row">
+          <a href="tel:9825012341" class="gov-btn-call">📞 Call</a>
+          <a href="https://wa.me/919825012341?text=Namaste%20Cluster%20Mentors,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="gov-btn-whatsapp">💬 WhatsApp</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LEVEL 3: ૨૦૩ ડુપ્લેક્સ ઘર માલિકો (203 DUPLEX HOUSE OWNERS & AGM MEMBERS)
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="owners" class="gov-owners-deck gov-searchable-card" data-category="owner" data-search="૨૦૩ ડુપ્લેક્સ ઘર માલિકો 203 duplex house owners agm મતદાન સભાસદો લાઈન શેરી">
+    <div class="gov-owners-hero">
+      <div>
+        <div class="gov-tier-badge slate" style="margin-bottom:10px;">
+          <span>🏡</span>
+          <span>સ્તર ૩ · ૨૦૩ ડુપ્લેક્સ ઘર માલિકો (203 DUPLEX HOUSE OWNERS)</span>
+        </div>
+        <h2 class="gov-owners-title">
+          ૨૦૩ ડુપ્લેક્સ ઘર માલિકો અને પાયાના સભાસદો
+        </h2>
+        <p style="font-size:14px;color:var(--text-secondary);max-width:760px;line-height:1.6;margin-top:6px;">
+          સોસાયટીના ગૌરવશાળી સભાસદો — વાર્ષિક સાધારણ સભા (AGM) ના મતદાન હક્ક ધરાવતા પાયાના સભાસદો. નિયમિત ₹૩૦૦/માસિક મેઈન્ટેનન્સ યોગદાન, ઉત્સવ સહયોગ અને પારદર્શક ડિજિટલ પોર્ટલ દ્વારા શિવમ ડુપ્લેક્સ સોસાયટીને એક આદર્શ અને શાંતિપૂર્ણ પરિવાર બનાવે છે.
+        </p>
+      </div>
+
+      <div class="gov-owners-stats">
+        <div class="gov-owner-stat-pill">
+          🏡 <strong>૨૦૩</strong> ડુપ્લેક્સ ઘરો
+        </div>
+        <div class="gov-owner-stat-pill">
+          🗳️ <strong>૧૦૦%</strong> AGM મતદાન હક્ક
+        </div>
+        <div class="gov-owner-stat-pill">
+          💰 <strong>₹૩૦૦</strong> માસિક મેઈન્ટેનન્સ
+        </div>
+      </div>
+    </div>
+
+    <!-- Society Lines & Street Clusters (10 Lanes covering 203 Duplexes) -->
+    <div style="font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;">
+      🗺️ સોસાયટીની શેરીઓ / લાઈન માળખું (Click to View Incharge &amp; Members):
+    </div>
+
+    <div class="gov-lines-grid">
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૧')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૧ (ડુપ્લેક્સ ૦૧ થી ૨૦)</div>
+        <div class="gov-line-chip-sub">ઉત્તર શેરી · ઇન્ચાર્જ: પ્રદીપભાઈ / રાજેશભાઈ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૨')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૨ (ડુપ્લેક્સ ૨૧ થી ૪૦)</div>
+        <div class="gov-line-chip-sub">પશ્ચિમ શેરી ૧ · ઇન્ચાર્જ: વિનોદભાઈ / સુરેશભાઈ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૩')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૩ (ડુપ્લેક્સ ૪૧ થી ૬૦)</div>
+        <div class="gov-line-chip-sub">પશ્ચિમ શેરી ૨ · ઇન્ચાર્જ: અલ્પેશભાઈ / દીપકભાઈ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૪')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૪ (ડુપ્લેક્સ ૬૧ થી ૮૦)</div>
+        <div class="gov-line-chip-sub">મધ્ય શેરી · ઇન્ચાર્જ: મુકેશભાઈ / ભાવિનભાઈ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૫')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૫ (ડુપ્લેક્સ ૮૧ થી ૧૦૦)</div>
+        <div class="gov-line-chip-sub">પાર્ક શેરી · ઇન્ચાર્જ: સંજયભાઈ / નરેન્દ્રભાઈ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૬')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૬ (ડુપ્લેક્સ ૧૦૧ થી ૧૨૦)</div>
+        <div class="gov-line-chip-sub">પૂર્વ શેરી ૧ · ક્લસ્ટર મોનિટરિંગ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૭')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૭ (ડુપ્લેક્સ ૧૨૧ થી ૧૪૦)</div>
+        <div class="gov-line-chip-sub">પૂર્વ શેરી ૨ · ક્લસ્ટર મોનિટરિંગ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૮')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૮ (ડુપ્લેક્સ ૧૪૧ થી ૧૬૦)</div>
+        <div class="gov-line-chip-sub">દક્ષિણ શેરી ૧ · ક્લસ્ટર મોનિટરિંગ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૯')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૯ (ડુપ્લેક્સ ૧૬૧ થી ૧૮૦)</div>
+        <div class="gov-line-chip-sub">દક્ષિણ શેરી ૨ · ક્લસ્ટર મોનિટરિંગ</div>
+      </div>
+
+      <div class="gov-line-chip" onclick="filterGovMembers('લાઈન ૧૦')">
+        <div class="gov-line-chip-title">🛣️ લાઈન ૧૦ (ડુપ્લેક્સ ૧૮૧ થી ૨૦૩)</div>
+        <div class="gov-line-chip-sub">શિવ મંદિર પરિસર · ક્લસ્ટર મોનિટરિંગ</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+      <a href="resident.html" class="arch-btn-primary" style="text-decoration:none;padding:12px 24px;font-size:13.5px;">
+        <span>🏠 રેસિડેન્ટ પોર્ટલમાં તમારું ખાતું અને રસીદ જુઓ</span>
+        <span class="arch-arrow-circle">→</span>
+      </a>
+      <a href="members.html" class="arch-btn-play" style="text-decoration:none;padding:12px 24px;font-size:13.5px;">
+        <span>👥 ૨૦૩ સભાસદોની ડિરેક્ટરી જુઓ</span>
+      </a>
+      <button type="button" class="btn-open-kyc-modal arch-btn-play" style="border:none;cursor:pointer;padding:12px 24px;font-size:13.5px;">
+        <span>📝 નવા સભાસદ / ભાડુઆત KYC નોંધણી અરજી</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       OFFICIAL BANK ACCOUNT & UPI QR SECTION (₹300/Mo Fee)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="landing-section" id="bank-qr" style="padding-top:20px;">
+    <div class="bank-qr-card">
+      <div class="bank-qr-code-box">
+        <!-- Live SVG QR Code -->
+        <svg class="bank-qr-img" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" fill="white"/>
+          <rect x="5" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
+          <rect x="9" y="9" width="18" height="18" fill="white" rx="1"/>
+          <rect x="13" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
+
+          <rect x="69" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
+          <rect x="73" y="9" width="18" height="18" fill="white" rx="1"/>
+          <rect x="77" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
+
+          <rect x="5" y="69" width="26" height="26" fill="#1a237e" rx="3"/>
+          <rect x="9" y="73" width="18" height="18" fill="white" rx="1"/>
+          <rect x="13" y="77" width="10" height="10" fill="#1a237e" rx="1"/>
+
+          <rect x="36" y="8" width="6" height="6" fill="#1a237e"/>
+          <rect x="46" y="14" width="6" height="6" fill="#1a237e"/>
+          <rect x="56" y="8" width="6" height="6" fill="#1a237e"/>
+          <rect x="38" y="24" width="8" height="6" fill="#1a237e"/>
+          <rect x="52" y="22" width="6" height="8" fill="#1a237e"/>
+
+          <rect x="8" y="38" width="6" height="6" fill="#1a237e"/>
+          <rect x="20" y="44" width="6" height="6" fill="#1a237e"/>
+          <rect x="10" y="54" width="8" height="6" fill="#1a237e"/>
+
+          <rect x="36" y="36" width="28" height="28" fill="#e8eaf6" rx="4"/>
+          <text x="50" y="54" font-size="14" font-weight="900" text-anchor="middle" fill="#1a237e">🔱</text>
+
+          <rect x="70" y="38" width="6" height="6" fill="#1a237e"/>
+          <rect x="82" y="44" width="6" height="6" fill="#1a237e"/>
+          <rect x="74" y="54" width="8" height="6" fill="#1a237e"/>
+
+          <rect x="38" y="70" width="6" height="8" fill="#1a237e"/>
+          <rect x="48" y="78" width="8" height="6" fill="#1a237e"/>
+          <rect x="62" y="72" width="6" height="6" fill="#1a237e"/>
+          <rect x="74" y="80" width="8" height="6" fill="#1a237e"/>
+          <rect x="86" y="72" width="6" height="8" fill="#1a237e"/>
+        </svg>
+        <div class="bank-qr-caption">SCAN TO PAY VIA GOOGLE PAY, PHONEPE, PAYTM</div>
+      </div>
+
+      <div>
+        <span class="section-tag" style="background:rgba(16, 185, 129,0.25);color:var(--sage-leaf);">OFFICIAL SOCIETY BANK ACCOUNT</span>
+        <h3 style="font-size:24px;font-weight:900;color:#ffffff;margin:10px 0 16px;">
+          બેંક એકાઉન્ટ &amp; UPI ટ્રાન્સફર વિગતો
+        </h3>
+
+        <div class="bank-details-grid">
+          <div>
+            <div class="bank-field-label">Account Name (ખાતાનું નામ)</div>
+            <div class="bank-field-val">
+              <span>SHIVAM DUPLEX RESIDENTS ASSOCIATION</span>
+            </div>
+          </div>
+          <div>
+            <div class="bank-field-label">Bank &amp; Branch (બેંક શાખા)</div>
+            <div class="bank-field-val">State Bank of India (Gotri Branch, Vadodara)</div>
+          </div>
+          <div>
+            <div class="bank-field-label">Account Number (ખાતા નંબર)</div>
+            <div class="bank-field-val">
+              <span id="bank-acc-num">38492019485</span>
+              <button type="button" class="copy-pill-btn" onclick="navigator.clipboard.writeText('38492019485'); alert('Account Number Copied!');">Copy</button>
+            </div>
+          </div>
+          <div>
+            <div class="bank-field-label">IFSC Code (આઈએફએસસી કોડ)</div>
+            <div class="bank-field-val">
+              <span id="bank-ifsc">SBIN0010948</span>
+              <button type="button" class="copy-pill-btn" onclick="navigator.clipboard.writeText('SBIN0010948'); alert('IFSC Code Copied!');">Copy</button>
+            </div>
+          </div>
+          <div>
+            <div class="bank-field-label">Society UPI ID / VPA</div>
+            <div class="bank-field-val">
+              <span id="bank-upi">shivamduplex@sbi</span>
+              <button type="button" class="copy-pill-btn" onclick="navigator.clipboard.writeText('shivamduplex@sbi'); alert('UPI ID Copied!');">Copy</button>
+            </div>
+          </div>
+          <div>
+            <div class="bank-field-label">નિયમિત મેઈન્ટેનન્સ દર</div>
+            <div class="bank-field-val">₹૩૦૦ / માસિક · ₹૧,૮૦૦ (૬-માસ) · ₹૩,૬૦૦ (વાર્ષિક)</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="resident.html" class="nav-btn-resident">
+            <span>💳</span> Pay &amp; Submit UTR in Resident Portal
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       IMAGE 2 WIREFRAME: COMMITTEE STRIP & LINE GUARDIAN & NEWS
+       INSTANT EMERGENCY VEHICLE SEARCH
        ═══════════════════════════════════════════════════════════ -->
-  <section class="landing-section" style="padding-top:20px;padding-bottom:20px;" id="committee-quick-deck">
-    <div class="landing-container">
-      <!-- Top Strip of Committee Members -->
-      <div class="arch-exec-strip">
-        <div class="arch-exec-header">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <span style="font-size:26px;">🏛️</span>
-            <div>
-              <div class="arch-exec-title">કારોબારી સમિતિ હોદ્દેદારો (Executive Committee Quick Strip)</div>
-              <div class="arch-exec-sub">સોસાયટીના મુખ્ય વડા અને સેવા સંચાલકોનો સંપર્ક કરો</div>
-            </div>
-          </div>
-          <a href="#committee" class="arch-pill-action" style="font-size:12px;padding:8px 18px;">વિગતવાર માળખું જુઓ ↓</a>
+  <section class="landing-section" id="vehicle-search" style="padding-top:20px;">
+    <div class="vehicle-hero-card">
+      <div class="vhc-title-row">
+        <div class="vhc-title">
+          <span>🚗</span>
+          <span>ઇમરજન્સી વાહન પાર્કિંગ સર્ચ (Live Vehicle Lookup)</span>
         </div>
-
-        <div class="arch-exec-grid">
-          <!-- Chairman -->
-          <div class="arch-exec-card">
-            <div>
-              <div class="arch-exec-role">👑 ૧ પ્રમુખ (CHAIRMAN)</div>
-              <div class="arch-exec-name">શ્રી રમેશભાઈ પટેલ</div>
-              <div class="arch-exec-meta">ડુપ્લેક્સ ૦૧ · 📞 98250 11001</div>
-            </div>
-            <div class="arch-exec-actions">
-              <a href="tel:9825011001" class="arch-pill-action">📞 Call</a>
-              <a href="https://wa.me/919825011001" target="_blank" class="arch-pill-action green">💬 WhatsApp</a>
-            </div>
-          </div>
-
-          <!-- Vice Chairman -->
-          <div class="arch-exec-card">
-            <div>
-              <div class="arch-exec-role">🤝 ૧ ઉપ-પ્રમુખ (VICE-CHAIR)</div>
-              <div class="arch-exec-name">શ્રી વિનોદભાઈ શાહ</div>
-              <div class="arch-exec-meta">ડુપ્લેક્સ ૧૧ · 📞 98250 11002</div>
-            </div>
-            <div class="arch-exec-actions">
-              <a href="tel:9825011002" class="arch-pill-action">📞 Call</a>
-              <a href="https://wa.me/919825011002" target="_blank" class="arch-pill-action green">💬 WhatsApp</a>
-            </div>
-          </div>
-
-          <!-- Secretary -->
-          <div class="arch-exec-card">
-            <div>
-              <div class="arch-exec-role">📋 ૧ મંત્રી (SECRETARY)</div>
-              <div class="arch-exec-name">શ્રી અલ્પેશભાઈ દેસાઈ</div>
-              <div class="arch-exec-meta">ડુપ્લેક્સ ૨૧ · 📞 98250 11003</div>
-            </div>
-            <div class="arch-exec-actions">
-              <a href="tel:9825011003" class="arch-pill-action">📞 Call</a>
-              <a href="https://wa.me/919825011003" target="_blank" class="arch-pill-action green">💬 WhatsApp</a>
-            </div>
-          </div>
-
-          <!-- Treasurer -->
-          <div class="arch-exec-card">
-            <div>
-              <div class="arch-exec-role">🏦 ૧ ખજાનચી (TREASURER)</div>
-              <div class="arch-exec-name">શ્રી મુકેશભાઈ પંડ્યા</div>
-              <div class="arch-exec-meta">ડુપ્લેક્સ ૩૧ · 📞 98250 11004</div>
-            </div>
-            <div class="arch-exec-actions">
-              <a href="tel:9825011004" class="arch-pill-action">📞 Call</a>
-              <a href="https://wa.me/919825011004" target="_blank" class="arch-pill-action green">💬 WhatsApp</a>
-            </div>
-          </div>
-        </div>
+        <span style="font-size:11px;font-weight:700;color:var(--sage-leaf);background:rgba(16, 185, 129,0.2);padding:3px 10px;border-radius:var(--radius-pill);">LIVE 203 HOMES</span>
       </div>
-
-      <!-- Two-Column Row: Line Guardian Card + Latest Society News -->
-      <div class="arch-grid-duo">
-        <!-- Line Committee Incharge Selector Card -->
-        <div class="arch-guardian-card">
-          <div>
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-              <span style="font-size:26px;">🏘️</span>
-              <div>
-                <div class="arch-card-heading">કયા કમિટી મેમ્બર તમારી લાઇનનું પ્રોબ્લેમ જોશે?</div>
-                <div class="arch-card-sub">તમારી શેરી/લાઇન પસંદ કરો અને તાત્કાલિક ઇન્ચાર્જ સાથે વાત કરો:</div>
-              </div>
-            </div>
-
-            <div style="margin-bottom:14px;">
-              <label style="display:block;font-size:11px;font-weight:800;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.1em;">તમારી લાઇન / શેરી પસંદ કરો:</label>
-              <select id="home-line-select" class="form-control" style="width:100%;">
-                <option value="line-1">લાઈન ૧ (ડુપ્લેક્સ ૦૧ થી ૦૮) — ઉત્તર શેરી</option>
-                <option value="line-2">લાઈન ૨ (ડુપ્લેક્સ ૦૯ થી ૧૬) — પશ્ચિમ શેરી ૧</option>
-                <option value="line-3">લાઈન ૩ (ડુપ્લેક્સ ૧૭ થી ૨૪) — પશ્ચિમ શેરી ૨</option>
-                <option value="line-4">લાઈન ૪ (ડુપ્લેક્સ ૨૫ થી ૩૨) — મધ્ય શેરી</option>
-                <option value="line-5">લાઈન ૫ (ડુપ્લેક્સ ૩૩ થી ૪૦) — પાર્ક શેરી</option>
-              </select>
-            </div>
-
-            <div id="home-line-incharge-card" class="arch-mentor-profile">
-              <div style="font-size:10.5px;font-weight:800;color:var(--arch-accent-gold);text-transform:uppercase;letter-spacing:0.12em;" id="hlic-role">કારોબારી સભ્ય (લાઈન ૧ મેન્ટર)</div>
-              <div class="arch-exec-name" style="font-size:18px;margin:4px 0 2px;" id="hlic-name">શ્રી રાજેશભાઈ પટેલ</div>
-              <div class="arch-exec-meta" style="margin-bottom:14px;" id="hlic-meta">મકાન નં. ૦૪ · કવર કરેલ મકાનો: ૦૧ થી ૦૮</div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                <a href="tel:9825012341" id="hlic-tel" class="arch-pill-action" style="padding:8px 18px;font-size:12.5px;">📞 સીધો કૉલ કરો</a>
-                <a href="https://wa.me/919825012341" id="hlic-wa" target="_blank" class="arch-pill-action green" style="padding:8px 18px;font-size:12.5px;">💬 WhatsApp ફરિયાદ</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Latest News & Announcements Card -->
-        <div class="arch-bulletin-card">
-          <div>
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <span style="font-size:26px;">📢</span>
-                <div>
-                  <div class="arch-card-heading">સોસાયટી લેટેસ્ટ ન્યૂઝ &amp; પરિપત્ર</div>
-                  <div class="arch-card-sub">Shivam Duplex Official Bulletins</div>
-                </div>
-              </div>
-              <span class="badge" style="background:var(--arch-surface-bone);color:var(--text-primary);border:1px solid rgba(35,30,25,0.1);font-size:11px;padding:4px 12px;border-radius:9999px;">NEW</span>
-            </div>
-
-            <div class="arch-bulletin-item">
-              <div class="arch-bulletin-badge">🗓️ માસિક મેઈન્ટેનન્સ નોટિસ</div>
-              <div class="arch-bulletin-headline">ચાલુ માસની નિયમિત મેઈન્ટેનન્સ ફી ₹૬૦૦ જમા કરાવો</div>
-              <div class="arch-bulletin-body">સુવિધા માટે વાર્ષિક ₹૭,૨૦૦ અથવા અર્ધવાર્ષિક ₹૩,૬૦૦ એડવાન્સ ભરીને ડિજિટલ રસીદ મેળવી શકો છો.</div>
-            </div>
-
-            <div class="arch-bulletin-item">
-              <div class="arch-bulletin-badge" style="color:var(--arch-accent-sage);">🌺 ગણેશ ઉત્સવ &amp; શિવ મંદિર આરતી</div>
-              <div class="arch-bulletin-headline">શિવ મંદિર રોજિંદી સંધ્યા આરતી સાંજે ૭:૩૦ કલાકે</div>
-              <div class="arch-bulletin-body">સોસાયટીના તમામ પરિવારોને ઉપસ્થિત રહેવા ભાવભર્યું આમંત્રણ છે.</div>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;">
-            <a href="resident.html" class="arch-pill-action" style="font-size:12px;">તમારું બિલ પોર્ટલમાં જુઓ →</a>
-            <button type="button" class="arch-pill-action btn-open-kyc-modal" style="font-size:12px;cursor:pointer;">📝 સભાસદ નોંધણી અરજી</button>
-          </div>
-        </div>
+      <div class="vhc-sub">
+        કોઈનું વાહન તમારા ડુપ્લેક્સ સામે અડચણરૂપ પાર્ક થયું છે? ગાડીનો નંબર અથવા મોડેલ લખી તાત્કાલિક માલિક સાથે સંપર્ક કરો:
       </div>
+      <form id="hero-vehicle-form">
+        <div class="vhc-search-bar">
+          <span style="font-size:18px;margin-right:10px;color:var(--misty-sky);">🔍</span>
+          <input type="text" id="hero-vehicle-input" class="vhc-input" placeholder="દા.ત. GJ06, 1001, Swift, Activa, Creta..." autocomplete="off" required/>
+          <button type="submit" class="vhc-search-btn">શોધો (Find Owner)</button>
+        </div>
+      </form>
+      <div class="vhc-result-box" id="hero-vehicle-result"></div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       3D SPATIAL INTERACTIVE MAP SECTION
+       FREQUENTLY ASKED QUESTIONS (FAQ)
        ═══════════════════════════════════════════════════════════ -->
-  <section class="landing-section" id="society-map" style="padding-top:20px;">
-    <div class="landing-container">
-      <div class="section-header-center" style="margin-bottom:24px;">
-        <span class="section-tag">REAL SATELLITE GEOMETRY &amp; STREETLIGHTS</span>
-        <h2 class="section-title-large">શિવમ ડુપ્લેક્સ 3D સોસાયટી મેપ &amp; સ્ટ્રીટ લાઈટ્સ 🗺️</h2>
-        <p class="section-subtitle">
-          દરેક લાઇન (શેરી), સોસાયટીની ૧૬ એલઈડી સ્ટ્રીટ લાઈટો (💡), કમિટી હોદ્દેદારોના મકાનો અને ૪૦ ડુપ્લેક્સની લાઈવ સ્થિતિ જુઓ.
-        </p>
-        <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-          <button type="button" class="hero-btn-primary btn-open-kyc-modal" style="padding:10px 22px;font-size:13.5px;">
-            📝 નવા સભાસદ / ભાડુઆત KYC નોંધણી અરજી કરો
-          </button>
-          <a href="resident.html" class="hero-btn-secondary" style="padding:10px 22px;font-size:13.5px;">
-            🏠 રહેવાસી પોર્ટલમાં ખોલો
-          </a>
-        </div>
-      </div>
-
-      <div id="society-map-container"></div>
+  <section class="landing-section" id="faq" style="padding-top:20px;">
+    <div class="section-header-center">
+      <span class="section-tag">HELP &amp; CONSTITUTION</span>
+      <h2 class="section-title-large">વારંવાર પૂછાતા પ્રશ્નો (FAQ)</h2>
+      <p class="section-subtitle">
+        શિવમ ડુપ્લેક્સ સોસાયટીના ૪ સ્તરીય બંધારણ, ₹૩૦૦ મેઈન્ટેનન્સ અને લાઈન ઇન્ચાર્જ સંબંધિત માહિતી.
+      </p>
     </div>
-  </section>
 
-  <!-- Features Grid -->
-  <section class="landing-section" id="features">
-    <div class="landing-container">
-      <div class="section-header-center">
-        <span class="section-tag">BUILT FOR SHIVAM DUPLEX</span>
-        <h2 class="section-title-large">Everything You Need for Effortless Community Governance</h2>
-        <p class="section-subtitle">
-          Designed specifically around the bylaws, fee structures, and festival customs of Shivam Duplex Society.
-        </p>
+    <div class="faq-grid">
+      <div class="faq-item active">
+        <div class="faq-question">
+          <span>સોસાયટી કારોબારી સમિતિનું વહીવટી માળખું કેવી રીતે કાર્ય કરે છે?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          શિવમ ડુપ્લેક્સ સોસાયટીનું વહીવટી માળખું ૪ સ્તરીય બંધારણ પર કાર્ય કરે છે:<br/>
+          • <strong>૧ પ્રમુખ (Chairman / President):</strong> સોસાયટીના સર્વોચ્ચ મુખ્ય વડા, તમામ નિર્ણયો અને સાધારણ સભાઓના અધ્યક્ષ.<br/>
+          • <strong>૧ ઉપ-પ્રમુખ (Vice-Chairman):</strong> વૈકલ્પિક — પ્રમુખની ગેરહાજરીમાં કામ સંભાળવા અને સહાયક વડા.<br/>
+          • <strong>૧ મંત્રી (Secretary):</strong> રોજબરોજના વહીવટ, મિટિંગ્સ, ઠરાવો અને નોટિસનું કામ સંભાળનાર.<br/>
+          • <strong>૧ ખજાનચી (Treasurer):</strong> ₹૩૦૦/માસિક મેઈન્ટેનન્સ અને બેંક એકાઉન્ટના હિસાબો રાખનાર.<br/>
+          • <strong>૭ થી ૮ કારોબારી સભ્યો (Committee Members):</strong> સોસાયટીના અલગ-અલગ કામો જેવા કે પાણી પુરવઠો, ગેટ સિક્યુરિટી, સફાઈ, સ્ટ્રીટ લાઈટ્સ, તહેવાર ઉજવણી, પાર્કિંગ શિસ્ત, બગીચો અને ૨૦-ઘર ક્લસ્ટર વિવાદ નિવારણ માટે મદદ કરનાર સભ્યો.<br/>
+          • <strong>૨૦૩ ડુપ્લેક્સ ઘર માલિકો (House Owners):</strong> વાર્ષિક સાધારણ સભા (AGM) ના મતદાન હક્ક ધરાવતા પાયાના સભાસદો.
+        </div>
       </div>
 
-      <div class="features-grid-modern">
-        <!-- Feature 1 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">🧾</div>
-            <h3 class="fcs-title">₹600/Mo Fee &amp; Advance Calculator</h3>
-            <p class="fcs-text">
-              Automated billing tailored for ₹600/month, ₹3,600 half-yearly, and ₹7,200 annual advance payments. Automatic credit rollover ensures advance-paying residents never face erroneous overdue notices.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">AUTOMATED LEDGER</span>
-            <a href="maintenance.html" class="fcs-link-pill" title="View Billing">→</a>
-          </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>માસિક મેઈન્ટેનન્સ ફી કેટલી છે અને ભરવાના વિકલ્પો કયા છે?</span>
+          <span class="faq-icon">▼</span>
         </div>
-
-        <!-- Feature 2 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">🖨</div>
-            <h3 class="fcs-title">Smart Multi-Bill A4 Printing</h3>
-            <p class="fcs-text">
-              Cut paper waste by up to 75%. Print 1, 2, 3, or 4 horizontal slips per single A4 sheet with professional dashed scissors cut marks, rupee amounts in words, and dual signature slots.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">1 / 2 / 3 / 4 PER SHEET</span>
-            <a href="maintenance.html" class="fcs-link-pill" title="View Print Engine">→</a>
-          </div>
+        <div class="faq-answer">
+          શિવમ ડુપ્લેક્સ સોસાયટીની નિયમિત મેઈન્ટેનન્સ ફી <strong>₹૩૦૦ પ્રતિ માસ</strong> છે. સભાસદો સુવિધા માટે <strong>₹૧,૮૦૦ (૬ માસ)</strong> અથવા <strong>₹૩,૬૦૦ (વાર્ષિક)</strong> એડવાન્સ જમા કરાવીને ડિજિટલ રસીદ મેળવી શકે છે.
         </div>
+      </div>
 
-        <!-- Feature 3 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">🎉</div>
-            <h3 class="fcs-title">Ganesh Utsav &amp; Festival Accounting</h3>
-            <p class="fcs-text">
-              Door-to-door contribution lists showing who gave how much, day-wise schedule designer (Katha, Aarti, Mahaprasad, Visarjan), and itemized expense ledger with real-time remaining balance.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">GHAR-GHAR LIST &amp; EXPENSES</span>
-            <a href="events.html" class="fcs-link-pill" title="View Events">→</a>
-          </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>કોઈ અડચણ કે પાણી/લાઈટની ફરિયાદ હોય તો કોનો સંપર્ક કરવો?</span>
+          <span class="faq-icon">▼</span>
         </div>
-
-        <!-- Feature 4 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">🏛</div>
-            <h3 class="fcs-title">20-House Committee Mentorship</h3>
-            <p class="fcs-text">
-              Each committee member is assigned exactly 20 houses. When a resident has a complaint, water issue, or maintenance request, it directly connects to their designated committee guardian.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">STRUCTURED GOVERNANCE</span>
-            <a href="#committee" class="fcs-link-pill" title="View Committee">→</a>
-          </div>
+        <div class="faq-answer">
+          પાણી માટે શ્રી પ્રદીપભાઈ પટેલ (ડુપ્લેક્સ ૦૬), સિક્યુરિટી માટે શ્રી હરેશભાઈ જોશી (ડુપ્લેક્સ ૧૪), સફાઈ માટે શ્રી દીપકભાઈ પંચાલ (ડુપ્લેક્સ ૧૮) અને સ્ટ્રીટ લાઈટો માટે શ્રી ભાવિનભાઈ શાહ (ડુપ્લેક્સ ૨૩) નો સીધો ફોન અથવા વ્હોટ્સએપ દ્વારા સંપર્ક કરી શકો છો.
         </div>
+      </div>
 
-        <!-- Feature 5 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">🔑</div>
-            <h3 class="fcs-title">Owner-Managed Tenant KYC</h3>
-            <p class="fcs-text">
-              Duplex owners register their tenants directly with Aadhaar, PAN card, occupation, family member counts, and lease dates. Generates a separate Tenant Login account without burdening the committee.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">RESIDENT SELF-SERVICE</span>
-            <a href="resident.html" class="fcs-link-pill" title="View Portal">→</a>
-          </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>ભાડુઆત રહેવા આવે ત્યારે KYC નોંધણી કોણ કરશે?</span>
+          <span class="faq-icon">▼</span>
         </div>
-
-        <!-- Feature 6 -->
-        <div class="feature-card-spatial">
-          <div>
-            <div class="fcs-top-icon">💳</div>
-            <h3 class="fcs-title">Society UPI QR Code &amp; Bank Hub</h3>
-            <p class="fcs-text">
-              Scan the official Shivam Duplex QR code or transfer to the society bank account. Residents submit UTR numbers for instant receipt generation and audited reconciliation.
-            </p>
-          </div>
-          <div class="fcs-footer">
-            <span class="fcs-badge">ZERO-COMMISSION PAYMENTS</span>
-            <a href="#bank-qr" class="fcs-link-pill" title="View Bank Details">→</a>
-          </div>
+        <div class="faq-answer">
+          ડુપ્લેક્સ ઘર માલિક પોતે પોતાના રેસિડેન્ટ પોર્ટલ પરથી અથવા હોમપેજ પર આપેલ "નવા સભાસદ / ભાડુઆત KYC નોંધણી અરજી" બટન દ્વારા ભાડુઆતનું આધારકાર્ડ, પાનકાર્ડ અને વ્યવસાયની વિગતો ઓનલાઈન ભરી શકે છે. સમિતિ દ્વારા વેરિફિકેશન બાદ ખાતું એક્ટિવ થશે.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Ganesh Utsav & Festival Spotlight -->
-  <section class="landing-section" id="festivals">
-    <div class="landing-container">
-      <div class="festival-spotlight-card">
-        <div class="fest-header-row">
-          <div class="fest-title">
-            <h3><span>🌺</span> Shri Ganesh Mahotsav &amp; Festival Hub</h3>
-            <p>Real-Time Door-to-Door Contribution Tracking, 10-Day Program Schedule &amp; Expense Ledger</p>
-          </div>
-          <a href="events.html" class="nav-btn-resident" style="background:rgba(56, 189, 248,0.25);border-color:rgba(56, 189, 248,0.5);color:#fff;">
-            <span>📋</span> Open Full Festival Ledger
-          </a>
-        </div>
-
-        <div class="fest-grid-layout">
-          <!-- Subbox 1: Schedule -->
-          <div class="fest-subbox">
-            <div class="fest-subbox-title">
-              <span>📅</span> Day-Wise Program Schedule
-            </div>
-            <div class="fest-schedule-item">
-              <span class="fest-day-badge">DAY 1</span>
-              <div>
-                <div class="fest-activity-text">Ganesh Sthapana &amp; Maha Aarti</div>
-                <div class="fest-activity-time">09:00 AM · Society Central Garden · Pandit Ji Dakshina</div>
-              </div>
-            </div>
-            <div class="fest-schedule-item">
-              <span class="fest-day-badge">DAY 2</span>
-              <div>
-                <div class="fest-activity-text">Shri Satyanarayan Bhagwan Katha</div>
-                <div class="fest-activity-time">06:30 PM · Society Clubhouse Hall · Prasad Vitran</div>
-              </div>
-            </div>
-            <div class="fest-schedule-item">
-              <span class="fest-day-badge">DAY 3 - 9</span>
-              <div>
-                <div class="fest-activity-text">Daily Evening Aarti &amp; Kids Cultural Night</div>
-                <div class="fest-activity-time">07:30 PM · Daily Evening Pooja by Assigned Duplexes</div>
-              </div>
-            </div>
-            <div class="fest-schedule-item">
-              <span class="fest-day-badge">DAY 10</span>
-              <div>
-                <div class="fest-activity-text">Mahaprasad &amp; Grand Visarjan Shobhayatra</div>
-                <div class="fest-activity-time">12:30 PM Mahaprasad · 04:30 PM Dhol Tasha Visarjan</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Subbox 2: Expense & Contribution Transparency -->
-          <div class="fest-subbox">
-            <div class="fest-subbox-title">
-              <span>⚖️</span> Financial Transparency Snapshot
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-              <div style="background:rgba(16, 185, 129,0.15);border-radius:10px;padding:12px;text-align:center;">
-                <div style="font-size:11px;color:var(--sage-leaf);font-weight:700;">TOTAL RECEIVED</div>
-                <div style="font-size:20px;font-weight:900;color:#ffffff;margin-top:2px;">₹48,500</div>
-                <div style="font-size:10.5px;color:var(--misty-sky);">Door-to-Door contributions</div>
-              </div>
-              <div style="background:rgba(226,149,120,0.15);border-radius:10px;padding:12px;text-align:center;">
-                <div style="font-size:11px;color:var(--blush-petal);font-weight:700;">TOTAL EXPENSES</div>
-                <div style="font-size:20px;font-weight:900;color:#ffffff;margin-top:2px;">₹36,200</div>
-                <div style="font-size:10.5px;color:var(--misty-sky);">Mandap, Katha, Prasad, Sound</div>
-              </div>
-            </div>
-            <div style="background:rgba(147, 197, 253,0.1);border-radius:10px;padding:14px;border:1px solid rgba(147, 197, 253,0.2);">
-              <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;">
-                <span style="color:var(--misty-sky);">Remaining Balance in Festival Fund:</span>
-                <span style="color:var(--sage-leaf);font-size:16px;font-weight:900;">₹12,300</span>
-              </div>
-              <div style="font-size:11px;color:rgba(147, 197, 253,0.7);margin-top:6px;">
-                Surplus funds safely reserved in Society Account for Diwali &amp; New Year lights.
-              </div>
-            </div>
-            <div style="margin-top:14px;text-align:right;">
-              <a href="events.html" style="font-size:12px;color:var(--blush-petal);text-decoration:none;font-weight:700;">View Itemized Expense Breakdown →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Multi-Bill A4 Printing Visual Showcase -->
-  <section class="landing-section">
-    <div class="landing-container">
-      <div class="print-showcase-box">
-        <div>
-          <span class="section-tag" style="background:rgba(147, 197, 253,0.18);color:#fff;border-color:rgba(147, 197, 253,0.4);">ZERO PAPER WASTE</span>
-          <h2 style="font-size:28px;font-weight:900;color:#fff;margin:12px 0 14px;">Smart Multi-Bill Printing Engine</h2>
-          <p style="font-size:14px;color:var(--misty-sky);line-height:1.65;margin-bottom:20px;">
-            Printing individual receipts on separate sheets wastes three-quarters of every A4 ream. Our custom print engine divides each A4 page into 1, 2, 3, or 4 horizontal slips with built-in cut marks. Perfect for printing monthly society batches in seconds.
-          </p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="maintenance.html" class="hero-btn-primary" style="padding:11px 22px;font-size:13.5px;">
-              <span>🖨</span> Open Print Preview in Maintenance
-            </a>
-          </div>
-        </div>
-
-        <div class="print-diagram-visual">
-          <div style="font-size:11px;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:1px;color:#1a237e;">
-            📄 A4 SHEET LAYOUT (4 BILLS PER PAGE)
-          </div>
-          <div class="print-slip-box">
-            <strong>BILL #1: DUPLEX 101</strong> — ₹600 · Rajesh Patel (Paid ✓)
-          </div>
-          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
-          <div class="print-slip-box">
-            <strong>BILL #2: DUPLEX 102</strong> — ₹600 · Suresh Shah (Paid ✓)
-          </div>
-          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
-          <div class="print-slip-box">
-            <strong>BILL #3: DUPLEX 103</strong> — ₹600 · Amit Desai (Paid ✓)
-          </div>
-          <div class="print-cut-indicator">✂ ---------------------------------------- ✂</div>
-          <div class="print-slip-box">
-            <strong>BILL #4: DUPLEX 104</strong> — ₹600 · Manoj Joshi (Paid ✓)
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Executive Committee Hierarchy (કારોબારી સમિતિ માળખું) -->
-  <section class="landing-section" id="committee">
-    <div class="landing-container">
-      <div class="section-header-center">
-        <span class="section-tag" style="background:rgba(234,179,8,0.18);color:#fde047;border-color:rgba(234,179,8,0.4);">GOVERNANCE &amp; HIERARCHY</span>
-        <h2 class="section-title-large">સોસાયટી કારોબારી સમિતિ માળખું</h2>
-        <p class="section-subtitle">
-          Executive Committee Hierarchy &amp; Resident Governance — શિવમ ડુપ્લેક્સનું પારદર્શક વહીવટી તંત્ર
-        </p>
-      </div>
-
-      <div class="hierarchy-tree-wrap">
-        <!-- ═══════════════════════════════════════════════════════════
-             TIER 1: ૧ પ્રમુખ (Chairman / President) - સોસાયટીના મુખ્ય વડા
-             ═══════════════════════════════════════════════════════════ -->
-        <div class="hierarchy-tier">
-          <div class="hierarchy-tier-badge tier-gold">
-            <span>👑</span>
-            <span>લેવલ ૧ · સોસાયટીના મુખ્ય વડા (CHAIRMAN / PRESIDENT)</span>
-          </div>
-
-          <div class="hierarchy-card-president">
-            <div class="hierarchy-card-top">
-              <div class="hierarchy-avatar">👑</div>
-              <div class="hierarchy-card-info">
-                <h3>
-                  <span>શ્રી રમેશભાઈ પટેલ</span>
-                  <span class="comm-role-pill pill-gold">૧ પ્રમુખ (CHAIRMAN)</span>
-                </h3>
-                <div class="comm-role-subtitle">
-                  સોસાયટીના મુખ્ય વડા · Chief Executive &amp; President
-                </div>
-                <div style="font-size:12px;color:var(--misty-sky);margin-top:3px;">
-                  📍 નિવાસ: <strong>ડુપ્લેક્સ નં. ૦૧</strong>, શિવમ ડુપ્લેક્સ · 📞 <strong>+91 98250 11001</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- Chairman Duties Grid -->
-            <div class="hierarchy-duties-grid">
-              <div>
-                <span style="color:#fde047;font-size:16px;">🏛</span>
-                <span><strong>મુખ્ય વડા:</strong> સોસાયટીના તમામ નીતિગત નિર્ણયો અને બંધારણીય વહીવટના સર્વોચ્ચ વડા.</span>
-              </div>
-              <div>
-                <span style="color:#fde047;font-size:16px;">👥</span>
-                <span><strong>સાધારણ સભા:</strong> વાર્ષિક સાધારણ સભા (AGM) અને વિશેષ સભાઓ (EGM) નું અધ્યક્ષસ્થાન સંભાળવું.</span>
-              </div>
-              <div>
-                <span style="color:#fde047;font-size:16px;">⚖️</span>
-                <span><strong>સત્તાવાર પ્રતિનિધિત્વ:</strong> સરકારી કચેરીઓ, પાલિકા (VMC), રજીસ્ટ્રાર અને બેંકમાં સોસાયટીનું પ્રતિનિધિત્વ.</span>
-              </div>
-              <div>
-                <span style="color:#fde047;font-size:16px;">🤝</span>
-                <span><strong>નેતૃત્વ &amp; માર્ગદર્શન:</strong> તમામ કારોબારી સભ્યો અને સેવા સમિતિઓનું સંકલન તથા માર્ગદર્શન.</span>
-              </div>
-            </div>
-
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-              <a href="tel:9825011001" class="quick-action-btn" style="padding:9px 20px;font-size:13px;background:rgba(234,179,8,0.2);border:1px solid rgba(234,179,8,0.5);color:#fde047;">
-                📞 Call Chairman
-              </a>
-              <a href="https://wa.me/919825011001?text=Namaste%20Chairman%20Shri%20Rameshbhai,%20I%20am%20from%20Shivam%20Duplex%20House%20" target="_blank" class="quick-action-btn green" style="padding:9px 20px;font-size:13px;">
-                💬 WhatsApp Direct
-              </a>
-            </div>
-          </div>
-
-          <div class="hierarchy-tier-connector"></div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════
-             TIER 2: મુખ્ય વહીવટી પદાધિકારીઓ (ઉપ-પ્રમુખ, મંત્રી, ખજાનચી)
-             ═══════════════════════════════════════════════════════════ -->
-        <div class="hierarchy-tier">
-          <div class="hierarchy-tier-badge tier-silver">
-            <span>⚖️</span>
-            <span>લેવલ ૨ · મુખ્ય વહીવટી પદાધિકારીઓ (CORE EXECUTIVE OFFICERS)</span>
-          </div>
-
-          <div class="hierarchy-grid-officers">
-            <!-- Officer 1: ઉપ-પ્રમુખ (Vice-Chairman) -->
-            <div class="hierarchy-card-officer">
-              <div>
-                <div class="hierarchy-card-top" style="margin-bottom:14px;">
-                  <div class="hierarchy-avatar avatar-officer">🤝</div>
-                  <div class="hierarchy-card-info">
-                    <h4>
-                      <span>શ્રી વિનોદભાઈ શાહ</span>
-                      <span class="comm-role-pill pill-amber">૧ ઉપ-પ્રમુખ (વૈકલ્પિક)</span>
-                    </h4>
-                    <div class="comm-role-subtitle">Vice-Chairman &amp; Executive Deputy</div>
-                    <div style="font-size:11.5px;color:var(--misty-sky);margin-top:2px;">
-                      📍 <strong>ડુપ્લેક્સ નં. ૧૧</strong> · 📞 <strong>+91 98250 11002</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hierarchy-responsibility-box">
-                  <div style="font-weight:700;color:var(--arch-accent-gold);margin-bottom:4px;">📌 મુખ્ય જવાબદારી:</div>
-                  • જો સોસાયટીના નિયમોમાં હોય, તો <strong>પ્રમુખની ગેરહાજરીમાં કામ સંભાળવા માટે</strong>.<br/>
-                  • કારોબારી સભ્યો સાથે દૈનિક સંકલન અને મદદ.<br/>
-                  • સભાસદોના પ્રશ્નોનું તાત્કાલિક નિરાકરણ.
-                </div>
-              </div>
-
-              <div style="display:flex;gap:8px;">
-                <a href="tel:9825011002" class="arch-pill-action" style="padding:7px 14px;font-size:12px;">📞 Call</a>
-                <a href="https://wa.me/919825011002?text=Namaste%20Vinodbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="arch-pill-action green" style="padding:7px 14px;font-size:12px;">💬 WhatsApp</a>
-              </div>
-            </div>
-
-            <!-- Officer 2: મંત્રી (Secretary) -->
-            <div class="hierarchy-card-officer">
-              <div>
-                <div class="hierarchy-card-top" style="margin-bottom:14px;">
-                  <div class="hierarchy-avatar avatar-officer">📋</div>
-                  <div class="hierarchy-card-info">
-                    <h4>
-                      <span>શ્રી અલ્પેશભાઈ દેસાઈ</span>
-                      <span class="comm-role-pill pill-blue">૧ મંત્રી (SECRETARY)</span>
-                    </h4>
-                    <div class="comm-role-subtitle">General Secretary &amp; Admin</div>
-                    <div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">
-                      📍 <strong>ડુપ્લેક્સ નં. ૨૧</strong> · 📞 <strong>+91 98250 11003</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hierarchy-responsibility-box">
-                  <div style="font-weight:700;color:var(--arch-accent-gold);margin-bottom:4px;">📌 મુખ્ય જવાબદારી:</div>
-                  • <strong>રોજબરોજના વહીવટ અને નોટિસનું કામ સંભાળનાર</strong>.<br/>
-                  • સત્તાવાર મિટિંગ્સ, પ્રોસીડિંગ્સ અને ઠરાવ બુક જાળવવી.<br/>
-                  • સભાસદ રજીસ્ટર, ડિજિટલ પોર્ટલ અને નોટિસ બોર્ડ સંચાલન.
-                </div>
-              </div>
-
-              <div style="display:flex;gap:8px;">
-                <a href="tel:9825011003" class="arch-pill-action" style="padding:7px 14px;font-size:12px;">📞 Call</a>
-                <a href="https://wa.me/919825011003?text=Namaste%20Alpeshbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="arch-pill-action green" style="padding:7px 14px;font-size:12px;">💬 WhatsApp</a>
-              </div>
-            </div>
-
-            <!-- Officer 3: ખજાનચી (Treasurer) -->
-            <div class="hierarchy-card-officer">
-              <div>
-                <div class="hierarchy-card-top" style="margin-bottom:14px;">
-                  <div class="hierarchy-avatar avatar-officer">🏦</div>
-                  <div class="hierarchy-card-info">
-                    <h4>
-                      <span>શ્રી મુકેશભાઈ પંડ્યા</span>
-                      <span class="comm-role-pill pill-green">૧ ખજાનચી (TREASURER)</span>
-                    </h4>
-                    <div class="comm-role-subtitle">Finance &amp; Accounts Head</div>
-                    <div style="font-size:11.5px;color:var(--text-muted);margin-top:2px;">
-                      📍 <strong>ડુપ્લેક્સ નં. ૩૧</strong> · 📞 <strong>+91 98250 11004</strong>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="hierarchy-responsibility-box">
-                  <div style="font-weight:700;color:var(--arch-accent-gold);margin-bottom:4px;">📌 મુખ્ય જવાબદારી:</div>
-                  • <strong>મેઈન્ટેનન્સ અને બેંક એકાઉન્ટના હિસાબો રાખનાર</strong>.<br/>
-                  • ₹૬૦૦/માસિક ફી કલેક્શન, UPI QR રસીદો અને ઓડિટ.<br/>
-                  • સોસાયટી બેંક એકાઉન્ટ ઓપરેશન અને ખર્ચના હિસાબ જાળવવા.
-                </div>
-              </div>
-
-              <div style="display:flex;gap:8px;">
-                <a href="tel:9825011004" class="arch-pill-action" style="padding:7px 14px;font-size:12px;">📞 Call</a>
-                <a href="https://wa.me/919825011004?text=Namaste%20Mukeshbhai,%20I%20am%20from%20Shivam%20Duplex%20" target="_blank" class="arch-pill-action green" style="padding:7px 14px;font-size:12px;">💬 WhatsApp</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="hierarchy-tier-connector"></div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════
-             TIER 3: ૭ થી ૮ કારોબારી સભ્યો (Executive Committee Members)
-             સોસાયટીના અલગ-અલગ કામો (સિક્યુરિટી, પાણી, સફાઈ, લાઈટો, તહેવારો...)
-             ═══════════════════════════════════════════════════════════ -->
-        <div class="hierarchy-tier">
-          <div class="hierarchy-tier-badge tier-bronze">
-            <span>🏛️</span>
-            <span>લેવલ ૩ · ૭ થી ૮ કારોબારી સભ્યો (EXECUTIVE COMMITTEE PORTFOLIO HEADS)</span>
-          </div>
-
-          <div class="hierarchy-grid-members">
-            <!-- 1. પાણી પુરવઠો -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>💧</span>
-                  <span>૧. પાણી પુરવઠો (Water Supply)</span>
-                </div>
-                <div class="member-person-name">શ્રી પ્રદીપભાઈ પટેલ</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૦૬ · 📞 +91 98250 11005</div>
-                <div class="member-duty-text">
-                  બોરવેલ મોટર, અંડરગ્રાઉન્ડ-ઓવરહેડ ટાંકી સફાઈ, પાણી સપ્લાય સમયપત્રક અને પ્લમ્બિંગ જાળવણી.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011005" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011005" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 2. સિક્યુરિટી & ગેટ -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>🛡️</span>
-                  <span>૨. સિક્યુરિટી &amp; ગેટ (Security)</span>
-                </div>
-                <div class="member-person-name">શ્રી હરેશભાઈ જોશી</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૧૪ · 📞 +91 98250 11006</div>
-                <div class="member-duty-text">
-                  ૨૪×૭ મેઈન ગેટ સિક્યુરિટી ગાર્ડ સુપરવિઝન, મુલાકાતી રજીસ્ટર, CCTV સર્વેલન્સ કેમેરા નિરીક્ષણ.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011006" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011006" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 3. સ્વચ્છતા & સફાઈ -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>🧹</span>
-                  <span>૩. સ્વચ્છતા &amp; સફાઈ (Sanitation)</span>
-                </div>
-                <div class="member-person-name">શ્રી દીપકભાઈ પંચાલ</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૧૮ · 📞 +91 98250 11007</div>
-                <div class="member-duty-text">
-                  સોસાયટીના આંતરિક રોડ રોજિંદી સફાઈ, ડોર-ટુ-ડોર કચરા કલેક્શન વાન અને ગટર લાઈન દેખરેખ.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011007" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011007" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 4. લાઈટો & ઈલેક્ટ્રિકલ -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>💡</span>
-                  <span>૪. લાઈટો &amp; પાવર (Streetlights)</span>
-                </div>
-                <div class="member-person-name">શ્રી ભાવિનભાઈ શાહ</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૨૩ · 📞 +91 98250 11008</div>
-                <div class="member-duty-text">
-                  સોસાયટી સ્ટ્રીટ લાઈટ્સ, સેન્ટ્રલ મીટર પેનલ, લાઈન વાયરિંગ જાળવણી અને તહેવાર સમયનું ડેકોરેશન.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011008" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011008" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 5. તહેવાર & ઉત્સવ ઉજવણી -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>🌺</span>
-                  <span>૫. તહેવાર ઉજવણી (Festivals)</span>
-                </div>
-                <div class="member-person-name">શ્રી જીતેન્દ્રભાઈ ત્રિવેદી</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૨૭ · 📞 +91 98250 11009</div>
-                <div class="member-duty-text">
-                  ગણેશ મહોત્સવ, નવરાત્રી, દિવાળી, સત્યનારાયણ કથા, મહાપ્રસાદ અને સાંસ્કૃતિક ઉત્સવ આયોજન.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011009" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011009" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 6. પાર્કિંગ & ટ્રાફિક વ્યવસ્થા -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>🚗</span>
-                  <span>૬. પાર્કિંગ શિસ્ત (Parking)</span>
-                </div>
-                <div class="member-person-name">શ્રી સંજયભાઈ બારોટ</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૩૪ · 📞 +91 98250 11010</div>
-                <div class="member-duty-text">
-                  ૪૦ ડુપ્લેક્સ વાહન પાર્કિંગ વ્યવસ્થા, અડચણરૂપ વાહનોનું નિરાકરણ અને આંતરિક રોડ સ્પીડ શિસ્ત.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011010" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011010" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 7. બગીચો & પર્યાવરણ -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>🌳</span>
-                  <span>૭. બગીચો &amp; પર્યાવરણ (Garden)</span>
-                </div>
-                <div class="member-person-name">શ્રી નરેન્દ્રભાઈ રાણા</div>
-                <div class="member-house-no">ડુપ્લેક્સ નં. ૩૮ · 📞 +91 98250 11011</div>
-                <div class="member-duty-text">
-                  સેન્ટ્રલ ગાર્ડન લોન, વૃક્ષારોપણ, ફૂલછોડ, બાળકોના રમકડાં-હિંચકા જાળવણી અને સોસાયટી હરિયાળી.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825011011" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825011011" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-
-            <!-- 8. ૨૦-ઘર વાઇઝ વિવાદ નિવારણ -->
-            <div class="hierarchy-card-member">
-              <div>
-                <div class="member-portfolio-title">
-                  <span>⚖️</span>
-                  <span>૮. ૨૦-ઘર વિવાદ નિવારણ (Mentors)</span>
-                </div>
-                <div class="member-person-name">શ્રી રાજેશ પટેલ &amp; સુરેશ શાહ</div>
-                <div class="member-house-no">ક્લસ્ટર ૧ (૧-૨૦) &amp; ક્લસ્ટર ૨ (૨૧-૪૦)</div>
-                <div class="member-duty-text">
-                  પડોશી વિવાદોનું ત્વરિત સામાજિક નિવારણ, સ્થાનિક ફરિયાદો અને ૨૦ ઘરોના સભાસદો સાથે સીધો સંપર્ક.
-                </div>
-              </div>
-              <div style="display:flex;gap:6px;">
-                <a href="tel:9825012341" class="quick-action-btn" style="padding:5px 12px;font-size:11.5px;">📞 Call</a>
-                <a href="https://wa.me/919825012341" target="_blank" class="quick-action-btn green" style="padding:5px 12px;font-size:11.5px;">💬 WA</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="hierarchy-tier-connector"></div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════════════
-             TIER 4: ઘર માલિકો અને રહીશો (House Owners & Residents)
-             ═══════════════════════════════════════════════════════════ -->
-        <div class="hierarchy-tier">
-          <div class="hierarchy-tier-badge">
-            <span>🏡</span>
-            <span>લેવલ ૪ · પાયાના સભાસદો (40 DUPLEX HOUSE OWNERS &amp; RESIDENTS)</span>
-          </div>
-
-          <div class="hierarchy-card-owners">
-            <div class="owners-info-block">
-              <h3>
-                <span>🏡</span>
-                <span>૪૦ ડુપ્લેક્સ ઘર માલિકો અને રહીશો (House Owners)</span>
-              </h3>
-              <p>
-                સોસાયટીના ગૌરવશાળી સભાસદો — વાર્ષિક સાધારણ સભા (AGM) ના મતદાન હક્ક ધરાવતા સભ્યો. નિયમિત ₹૬૦૦/માસિક મેઈન્ટેનન્સ યોગદાન, ઉત્સવ સહયોગ અને પારદર્શક ડિજિટલ પોર્ટલ દ્વારા શિવમ ડુપ્લેક્સ સોસાયટીને એક આદર્શ અને શાંતિપૂર્ણ પરિવાર બનાવે છે.
-              </p>
-            </div>
-
-            <div class="owners-stats-strip">
-              <div class="owner-stat-mini">
-                <div class="owner-stat-mini-num">૪૦</div>
-                <div class="owner-stat-mini-lbl">ડુપ્લેક્સ ઘરો</div>
-              </div>
-              <div class="owner-stat-mini">
-                <div class="owner-stat-mini-num">૧૦૦%</div>
-                <div class="owner-stat-mini-lbl">નોંધાયેલ એકમો</div>
-              </div>
-              <div class="owner-stat-mini">
-                <div class="owner-stat-mini-num">₹૬૦૦</div>
-                <div class="owner-stat-mini-lbl">માસિક મેઈન્ટેનન્સ</div>
-              </div>
-            </div>
-
-            <div style="display:flex;gap:12px;flex-wrap:wrap;width:100%;margin-top:8px;">
-              <a href="resident.html" class="hero-btn-primary" style="padding:10px 22px;font-size:13px;">
-                <span>🏠</span> રેસિડેન્ટ પોર્ટલ ઓપન કરો
-              </a>
-              <a href="members.html" class="hero-btn-secondary" style="padding:10px 22px;font-size:13px;">
-                <span>👥</span> ૪૦ ઘરની ડિરેક્ટરી જુઓ
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bank & UPI QR Code Section -->
-  <section class="landing-section" id="bank-qr">
-    <div class="landing-container">
-      <div class="bank-qr-card">
-        <div class="bank-qr-code-box">
-          <!-- Live SVG QR Code representation -->
-          <svg class="bank-qr-img" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100" height="100" fill="white"/>
-            <!-- Position markers -->
-            <rect x="5" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
-            <rect x="9" y="9" width="18" height="18" fill="white" rx="1"/>
-            <rect x="13" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
-
-            <rect x="69" y="5" width="26" height="26" fill="#1a237e" rx="3"/>
-            <rect x="73" y="9" width="18" height="18" fill="white" rx="1"/>
-            <rect x="77" y="13" width="10" height="10" fill="#1a237e" rx="1"/>
-
-            <rect x="5" y="69" width="26" height="26" fill="#1a237e" rx="3"/>
-            <rect x="9" y="73" width="18" height="18" fill="white" rx="1"/>
-            <rect x="13" y="77" width="10" height="10" fill="#1a237e" rx="1"/>
-
-            <!-- Pattern dots -->
-            <rect x="36" y="8" width="6" height="6" fill="#1a237e"/>
-            <rect x="46" y="14" width="6" height="6" fill="#1a237e"/>
-            <rect x="56" y="8" width="6" height="6" fill="#1a237e"/>
-            <rect x="38" y="24" width="8" height="6" fill="#1a237e"/>
-            <rect x="52" y="22" width="6" height="8" fill="#1a237e"/>
-
-            <rect x="8" y="38" width="6" height="6" fill="#1a237e"/>
-            <rect x="20" y="44" width="6" height="6" fill="#1a237e"/>
-            <rect x="10" y="54" width="8" height="6" fill="#1a237e"/>
-
-            <rect x="36" y="36" width="28" height="28" fill="#e8eaf6" rx="4"/>
-            <text x="50" y="54" font-size="14" font-weight="900" text-anchor="middle" fill="#1a237e">🔱</text>
-
-            <rect x="70" y="38" width="6" height="6" fill="#1a237e"/>
-            <rect x="82" y="44" width="6" height="6" fill="#1a237e"/>
-            <rect x="74" y="54" width="8" height="6" fill="#1a237e"/>
-
-            <rect x="38" y="70" width="6" height="8" fill="#1a237e"/>
-            <rect x="48" y="78" width="8" height="6" fill="#1a237e"/>
-            <rect x="62" y="72" width="6" height="6" fill="#1a237e"/>
-            <rect x="74" y="80" width="8" height="6" fill="#1a237e"/>
-            <rect x="86" y="72" width="6" height="8" fill="#1a237e"/>
-          </svg>
-          <div class="bank-qr-caption">SCAN TO PAY VIA ANY UPI APP</div>
-        </div>
-
-        <div>
-          <span class="section-tag" style="background:rgba(16, 185, 129,0.25);color:var(--sage-leaf);">OFFICIAL SOCIETY ACCOUNT</span>
-          <h3 style="font-size:24px;font-weight:900;color:#ffffff;margin:10px 0 18px;">
-            Bank Account &amp; UPI Transfer Details
-          </h3>
-
-          <div class="bank-details-grid">
-            <div>
-              <div class="bank-field-label">Account Name</div>
-              <div class="bank-field-val">
-                <span>SHIVAM DUPLEX RESIDENTS ASSOCIATION</span>
-              </div>
-            </div>
-            <div>
-              <div class="bank-field-label">Bank &amp; Branch</div>
-              <div class="bank-field-val">State Bank of India (Gotri Branch)</div>
-            </div>
-            <div>
-              <div class="bank-field-label">Account Number</div>
-              <div class="bank-field-val">
-                <span id="bank-acc-num">38492019485</span>
-                <button type="button" class="copy-pill-btn" onclick="copyText('38492019485')">Copy</button>
-              </div>
-            </div>
-            <div>
-              <div class="bank-field-label">IFSC Code</div>
-              <div class="bank-field-val">
-                <span id="bank-ifsc">SBIN0010948</span>
-                <button type="button" class="copy-pill-btn" onclick="copyText('SBIN0010948')">Copy</button>
-              </div>
-            </div>
-            <div>
-              <div class="bank-field-label">Society UPI ID / VPA</div>
-              <div class="bank-field-val">
-                <span id="bank-upi">shivamduplex@sbi</span>
-                <button type="button" class="copy-pill-btn" onclick="copyText('shivamduplex@sbi')">Copy</button>
-              </div>
-            </div>
-            <div>
-              <div class="bank-field-label">Standard Dues</div>
-              <div class="bank-field-val">₹600 / Mo · ₹3,600 (6 Mo) · ₹7,200 (1 Yr)</div>
-            </div>
-          </div>
-
-          <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="resident.html" class="nav-btn-resident">
-              <span>💳</span> Pay &amp; Submit UTR in Resident Portal
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Accordion -->
-  <section class="landing-section" id="faq">
-    <div class="landing-container">
-      <div class="section-header-center">
-        <span class="section-tag">HELP &amp; RULES</span>
-        <h2 class="section-title-large">Frequently Asked Questions</h2>
-        <p class="section-subtitle">
-          Common queries regarding maintenance, tenant records, parking, and festival collections.
-        </p>
-      </div>
-
-      <div class="faq-grid">
-        <div class="faq-item active">
-          <div class="faq-question">
-            <span>How much is the maintenance fee, and what are the payment options?</span>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            The standard maintenance fee is <strong>₹600 per month</strong> for every duplex residence. Residents can also pay <strong>₹3,600 for 6 months</strong> or <strong>₹7,200 for the full year in advance</strong>. When paying in advance, our automated billing engine registers advance credit so you never receive pending bill alerts.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Who registers the tenant details if a house is rented?</span>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            The <strong>Home Owner</strong> adds and updates their tenant's KYC directly from their Resident Portal. The owner enters the tenant's full name, mobile number, Aadhaar/PAN details, occupation, and family member count. A separate tenant account is generated so tenants can view society notices and emergency vehicle searches.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Someone parked in front of my duplex. How do I find the owner?</span>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            Use the <strong>Emergency Vehicle Search</strong> on this homepage or in the Resident Portal. Enter the last 4 digits of the license plate or the car/bike name (e.g. "GJ06", "1234", "Swift"). The system immediately provides the owner's duplex number, name, and phone number with 1-click calling.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>સોસાયટી કારોબારી સમિતિનું માળખું અને હોદ્દાઓ કઈ રીતે વહેંચાયેલા છે? (How is the Committee Structured?)</span>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            શિવમ ડુપ્લેક્સ સોસાયટીનું વહીવટી માળખું ૪ સ્તરીય બંધારણ પર કાર્ય કરે છે:<br/>
-            • <strong>૧ પ્રમુખ (Chairman / President):</strong> સોસાયટીના સર્વોચ્ચ મુખ્ય વડા, તમામ નિર્ણયો અને સાધારણ સભાઓના અધ્યક્ષ.<br/>
-            • <strong>૧ ઉપ-પ્રમુખ (Vice-Chairman):</strong> વૈકલ્પિક — પ્રમુખની ગેરહાજરીમાં કામ સંભાળવા અને સહાયક વડા.<br/>
-            • <strong>૧ મંત્રી (Secretary):</strong> રોજબરોજના વહીવટ, મિટિંગ્સ, ઠરાવો અને નોટિસનું કામ સંભાળનાર.<br/>
-            • <strong>૧ ખજાનચી (Treasurer):</strong> ₹૬૦૦/માસિક મેઈન્ટેનન્સ અને બેંક એકાઉન્ટના હિસાબો રાખનાર.<br/>
-            • <strong>૭ થી ૮ કારોબારી સભ્યો (Committee Members):</strong> સોસાયટીના અલગ-અલગ કામો જેવા કે પાણી પુરવઠો, ગેટ સિક્યુરિટી, સફાઈ, સ્ટ્રીટ લાઈટ્સ, તહેવાર ઉજવણી, પાર્કિંગ શિસ્ત, બગીચો અને ૨૦-ઘર ક્લસ્ટર વિવાદ નિવારણ માટે મદદ કરનાર સભ્યો.<br/>
-            • <strong>૪૦ ડુપ્લેક્સ ઘર માલિકો (House Owners):</strong> વાર્ષિક સાધારણ સભા (AGM) ના મતદાન હક્ક ધરાવતા પાયાના સભાસદો.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How does the Ganesh Utsav / Festival ledger work?</span>
-            <span class="faq-icon">▼</span>
-          </div>
-          <div class="faq-answer">
-            The festival ledger tracks door-to-door contributions across all 40 houses, maintains a day-wise program calendar (Sthapana, Satyanarayan Katha, Mahaprasad, Visarjan), and itemizes all festival expenses with 100% public transparency.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
+
+<!-- Client-side Interactive Filter Script -->
+<script>
+function filterGovMembers(query) {
+  const q = (query || "").toLowerCase().trim();
+  const cards = document.querySelectorAll(".gov-searchable-card");
+  cards.forEach(card => {
+    const text = (card.getAttribute("data-search") || card.innerText || "").toLowerCase();
+    if (!q || text.includes(q)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+function filterGovCategory(category, btn) {
+  document.querySelectorAll(".gov-filter-tab").forEach(t => t.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  const cards = document.querySelectorAll(".gov-searchable-card");
+  cards.forEach(card => {
+    const cat = card.getAttribute("data-category") || "";
+    if (category === "all" || cat === category) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
 
 <!-- Modern SaaS Footer -->
 <footer class="landing-footer">
@@ -1286,10 +962,10 @@
       <div class="footer-brand">
         <h3><span>🔱</span> SHIVAM DUPLEX</h3>
         <p>
-          A premier gated community of 40 luxury duplex residences dedicated to harmonious living, transparency, and cultural celebrations.
+          A premier gated community of 203 duplex residences dedicated to harmonious living, transparency, and cultural celebrations.
         </p>
         <div style="font-size:12px;color:var(--sage-leaf);margin-top:10px;font-weight:700;">
-          ॥ ॐ नमः शिवाय ॥
+          ॥ ॐ नमઃ शिवाय ॥
         </div>
       </div>
 
@@ -1317,7 +993,7 @@
         <h4>Emergency Contacts</h4>
         <div style="font-size:13px;color:var(--misty-sky);line-height:1.7;">
           <div>🏛 <strong>Cluster 1 (1–20):</strong> +91 98250 12341</div>
-          <div>🏛 <strong>Cluster 2 (21–40):</strong> +91 98250 12342</div>
+          <div>🏛 <strong>Cluster 2 (21–203):</strong> +91 98250 12342</div>
           <div style="margin-top:8px;">📍 <strong>Address:</strong> Shivam Duplex Society, Gotri, Vadodara, Gujarat 390021</div>
         </div>
       </div>

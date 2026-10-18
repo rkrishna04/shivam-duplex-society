@@ -49,9 +49,9 @@ window.copyText = function(txt) {
 };
 
 // Society fee constants
-const MONTHLY_FEE    = 600;   // ₹600/month
-const SIX_MONTH_FEE  = 3600;  // ₹3600 for 6 months
-const ANNUAL_FEE     = 7200;  // ₹7200/year
+const MONTHLY_FEE    = 300;   // ₹300/month
+const SIX_MONTH_FEE  = 1800;  // ₹1800 for 6 months
+const ANNUAL_FEE     = 3600;  // ₹3600/year
 
 let db;
 function initFirebase() {
