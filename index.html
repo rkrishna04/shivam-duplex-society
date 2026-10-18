@@ -60,6 +60,14 @@
 </head>
 <body class="landing-body">
 
+<!-- Ambient Multi-Chromatic iPhone Mesh Orbs (Active in Glass & Aurora Modes) -->
+<div class="iphone-glass-backdrop" aria-hidden="true">
+  <div class="glass-orb glass-orb-1"></div>
+  <div class="glass-orb glass-orb-2"></div>
+  <div class="glass-orb glass-orb-3"></div>
+  <div class="glass-orb glass-orb-4"></div>
+</div>
+
 <!-- Real-Time Optical Refraction Filter (Apple 2025-2026 Liquid Glass) -->
 <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
   <filter id="liquid-refraction" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
@@ -190,39 +198,50 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════
-         QUAD-CORE NEXT-GEN UI/UX DESIGN SYSTEMS SHOWCASE BAR
-         1. 💎 Luxury Glassmorphism Mobile UI (Apple 2026 Liquid Glass)
-         2. ☁️ Soft 3D & Neumorphism (Tactile Claymorphic UI)
-         3. 🌌 NEXUS '26 Curated Next-Gen Command Board
-         4. 🌿 Emotional SaaS & Human-Centric Interface
+         6 CURSOR-INTERACTIVE VISIONARY DESIGN SYSTEMS SHOWCASE
+         Real-time 3D tilt, specular glare, spotlight laser, and foil
          ═══════════════════════════════════════════════════════════ -->
     <div class="aesthetic-showcase-bar">
-      <!-- 1. Luxury Glassmorphism -->
-      <div class="aesthetic-card-preview acp-glass" onclick="setDesignMode('luxury-glass')" title="Click to activate Apple 2026 Liquid Glass">
+      <!-- 1. Apple 2026 Crystal Liquid Glass -->
+      <div class="aesthetic-card-preview acp-glass tilt-enabled" onclick="setDesignMode('luxury-glass')" title="Click to activate Apple 2026 Crystal Liquid Glass">
         <span class="acp-badge" style="background:#E0F2FE;color:#0369A1;">💎 Apple 2026 Liquid Glass</span>
-        <div class="acp-title">Luxury Glassmorphism UI</div>
-        <div class="acp-desc">Translucent specular glass layers, blur(28px), 135° edge highlight, floating capsule navigation.</div>
+        <div class="acp-title">Crystal Liquid Glass UI</div>
+        <div class="acp-desc">iPhone chromatic wallpaper depth, optical refraction, 3D cursor tilt with moving specular sheen.</div>
       </div>
 
-      <!-- 2. Soft 3D & Neumorphism -->
-      <div class="aesthetic-card-preview acp-clay" onclick="setDesignMode('soft-3d')" title="Click to activate Tactile Claymorphism">
+      <!-- 2. Tactile Soft 3D Claymorphism -->
+      <div class="aesthetic-card-preview acp-clay tilt-enabled" onclick="setDesignMode('soft-3d')" title="Click to activate Tactile Claymorphism">
         <span class="acp-badge" style="background:#E2E8F0;color:#334155;">☁️ Tactile Neumorphism</span>
-        <div class="acp-title">The Soft 3D Claymorphic UI</div>
-        <div class="acp-desc">Pillowy extruded dual shadows, debossed search wells, tactile squircle buttons you can touch.</div>
+        <div class="acp-title">Soft 3D Claymorphic UI</div>
+        <div class="acp-desc">Pillowy extruded dual shadows, debossed tactile wells, pneumatic squircle spring physics.</div>
       </div>
 
-      <!-- 3. NEXUS '26 -->
-      <div class="aesthetic-card-preview acp-nexus" onclick="setDesignMode('nexus-26')" title="Click to activate NEXUS '26 Cyber Command">
+      <!-- 3. Monolithic Hardware Neumorphism -->
+      <div class="aesthetic-card-preview acp-hardware tilt-enabled" onclick="setDesignMode('hardware-neu')" title="Click to activate Monolithic Hardware Neumorphism">
+        <span class="acp-badge" style="background:rgba(88,166,255,0.15);color:#58A6FF;border:1px solid rgba(88,166,255,0.3);">🎛️ Slate Hardware</span>
+        <div class="acp-title">Hardware Neumorphism</div>
+        <div class="acp-desc">Precision-machined industrial slate, recessed control dials, debossed telemetry readouts.</div>
+      </div>
+
+      <!-- 4. NEXUS '26 Cyber Holographic Command -->
+      <div class="aesthetic-card-preview acp-nexus tilt-enabled" onclick="setDesignMode('nexus-26')" title="Click to activate NEXUS '26 Cyber Holographic Command">
         <span class="acp-badge" style="background:rgba(0,242,254,0.15);color:#00F2FE;border:1px solid rgba(0,242,254,0.3);">🌌 NEXUS '26 Command</span>
-        <div class="acp-title">Curated Next-Gen Board</div>
-        <div class="acp-desc">Deep interstellar cyber-obsidian, holographic foil boundaries, telemetry coordinates, HUD nodes.</div>
+        <div class="acp-title">Holographic Cyber Board</div>
+        <div class="acp-desc">Interstellar obsidian, rainbow foil angle refraction, live HUD: <strong id="nexus-hud-telemetry" style="color:#00F2FE;">X: 0 · Y: 0</strong>.</div>
       </div>
 
-      <!-- 4. Emotional SaaS -->
-      <div class="aesthetic-card-preview acp-saas" onclick="setDesignMode('emotional-saas')" title="Click to activate Emotional SaaS Alabaster">
-        <span class="acp-badge" style="background:#FEF3C7;color:#92400E;">🌿 Human-Centric Interface</span>
-        <div class="acp-title">Emotional SaaS Interface</div>
-        <div class="acp-desc">Warm alabaster serene space, human empathy typography, harmonious terracotta &amp; botanical sage.</div>
+      <!-- 5. Kinetic Bento Grid with Spotlight Laser -->
+      <div class="aesthetic-card-preview acp-bento tilt-enabled" onclick="setDesignMode('kinetic-bento')" title="Click to activate Kinetic Bento Grid">
+        <span class="acp-badge" style="background:rgba(56,189,248,0.15);color:#38BDF8;border:1px solid rgba(56,189,248,0.3);">📐 Bento Grid</span>
+        <div class="acp-title">Kinetic Bento Spotlight</div>
+        <div class="acp-desc">24px telemetry grid, cursor-following laser border illumination with electric cyan spotlight.</div>
+      </div>
+
+      <!-- 6. Aurora Fluid Chromatic Light Field -->
+      <div class="aesthetic-card-preview acp-aurora tilt-enabled" onclick="setDesignMode('aurora-fluid')" title="Click to activate Aurora Fluid Light Field">
+        <span class="acp-badge" style="background:rgba(236,72,153,0.2);color:#F472B6;border:1px solid rgba(236,72,153,0.4);">✨ Aurora Field</span>
+        <div class="acp-title">Fluid Aurora Field</div>
+        <div class="acp-desc">Volumetric chromatic mesh waves, glass lens refraction, vibrant spectral glow under cursor.</div>
       </div>
     </div>
   </section>
@@ -1016,7 +1035,10 @@ function setDesignMode(mode) {
   const btnMap = {
     'luxury-glass': 'btn-theme-glass',
     'soft-3d': 'btn-theme-soft3d',
+    'hardware-neu': 'btn-theme-hardware',
     'nexus-26': 'btn-theme-nexus',
+    'kinetic-bento': 'btn-theme-bento',
+    'aurora-fluid': 'btn-theme-aurora',
     'emotional-saas': 'btn-theme-saas'
   };
   const activeBtn = document.getElementById(btnMap[mode]);
@@ -1024,24 +1046,84 @@ function setDesignMode(mode) {
   if (window.playHapticClick) playHapticClick();
 }
 
-// Auto-initialize theme on DOM ready
+// Auto-initialize theme on DOM ready (Default: Crystal Liquid Glass)
 (function() {
-  let saved = 'soft-3d';
-  try { saved = localStorage.getItem('kutumsetu_design_mode') || 'soft-3d'; } catch(e){}
+  let saved = 'luxury-glass';
+  try { saved = localStorage.getItem('kutumsetu_design_mode') || 'luxury-glass'; } catch(e){}
   setDesignMode(saved);
+})();
+
+// ═══════════════════════════════════════════════════════════
+// 6 CURSOR-INTERACTIVE PARADIGMS PHYSICS ENGINE
+// 1. 3D Perspective Tilt on Hover
+// 2. Specular Beam Glare Tracker (--mouse-x, --mouse-y)
+// 3. Spotlight Laser Border Illuminator (--spotlight-x, --spotlight-y)
+// 4. NEXUS '26 Real-Time Telemetry HUD Tracker
+// ═══════════════════════════════════════════════════════════
+(function initCursorInteractivity() {
+  const interactiveSelector = '.aesthetic-card-preview, .gov-chief-card, .gov-member-card, .gov-owners-deck, .bank-qr-card, .vehicle-hero-card';
+
+  document.addEventListener('mousemove', function(e) {
+    // 1. Update relative mouse positions on cards for glare and spotlight
+    const cards = document.querySelectorAll(interactiveSelector);
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Update coordinates if within proximity boundary
+      if (x >= -150 && x <= rect.width + 150 && y >= -150 && y <= rect.height + 150) {
+        card.style.setProperty('--mouse-x', `${((x / rect.width) * 100).toFixed(1)}%`);
+        card.style.setProperty('--mouse-y', `${((y / rect.height) * 100).toFixed(1)}%`);
+        card.style.setProperty('--spotlight-x', `${x.toFixed(1)}px`);
+        card.style.setProperty('--spotlight-y', `${y.toFixed(1)}px`);
+      }
+
+      // 3D Perspective tilt for cards with .tilt-enabled when hovered directly
+      if (card.classList.contains('tilt-enabled')) {
+        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+          const cx = rect.width / 2;
+          const cy = rect.height / 2;
+          const rx = (((y - cy) / cy) * -8).toFixed(2);
+          const ry = (((x - cx) / cx) * 8).toFixed(2);
+          card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.025, 1.025, 1.025)`;
+        } else if (card.dataset.tilted === "true") {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          card.dataset.tilted = "false";
+        }
+      }
+    });
+
+    // 2. NEXUS '26 HUD Telemetry Update
+    const hud = document.getElementById('nexus-hud-telemetry');
+    if (hud) {
+      hud.textContent = `X: ${Math.round(e.clientX)} · Y: ${Math.round(e.clientY)}`;
+    }
+  });
+
+  // Reset tilt on mouseleave from interactive cards
+  document.querySelectorAll('.tilt-enabled').forEach(card => {
+    card.addEventListener('mouseenter', () => { card.dataset.tilted = "true"; });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      card.dataset.tilted = "false";
+    });
+  });
 })();
 </script>
 
-<!-- Floating Quad-Core Aesthetic Engine Switcher Capsule -->
+<!-- Floating 6-Mode Visionary Aesthetic Engine Switcher Capsule -->
 <nav class="design-engine-switcher" aria-label="Aesthetic Engine Switcher">
   <div class="design-engine-label">
     <span>🎨</span>
     <span>Aesthetic:</span>
   </div>
-  <button type="button" class="design-theme-btn" id="btn-theme-glass" onclick="setDesignMode('luxury-glass')" title="Apple 2026 Liquid Glass">💎 Glass</button>
-  <button type="button" class="design-theme-btn active" id="btn-theme-soft3d" onclick="setDesignMode('soft-3d')" title="Tactile Claymorphic Neumorphism">☁️ Soft 3D</button>
+  <button type="button" class="design-theme-btn active" id="btn-theme-glass" onclick="setDesignMode('luxury-glass')" title="Apple 2026 Crystal Liquid Glass">💎 Glass</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-soft3d" onclick="setDesignMode('soft-3d')" title="Tactile Claymorphic Neumorphism">☁️ Soft 3D</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-hardware" onclick="setDesignMode('hardware-neu')" title="Monolithic Hardware Slate">🎛️ Hardware</button>
   <button type="button" class="design-theme-btn" id="btn-theme-nexus" onclick="setDesignMode('nexus-26')" title="NEXUS '26 Cyber Command Board">🌌 NEXUS '26</button>
-  <button type="button" class="design-theme-btn" id="btn-theme-saas" onclick="setDesignMode('emotional-saas')" title="Human-Centric Warm Alabaster">🌿 SaaS</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-bento" onclick="setDesignMode('kinetic-bento')" title="Kinetic Bento Spotlight Grid">📐 Bento</button>
+  <button type="button" class="design-theme-btn" id="btn-theme-aurora" onclick="setDesignMode('aurora-fluid')" title="Aurora Fluid Chromatic Light Field">✨ Aurora</button>
 </nav>
 
 <!-- Modern SaaS Footer -->
