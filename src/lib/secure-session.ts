@@ -2,7 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
-const COOKIE = "__Host-shivam_session";
+const COOKIE = process.env.NODE_ENV === "production" ? "__Host-shivam_session" : "shivam_session";
 const SESSION_HOURS = 12;
 const digest = (value: string) => createHash("sha256").update(value).digest("hex");
 
