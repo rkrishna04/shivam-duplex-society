@@ -14,10 +14,8 @@ export async function GET() {
           SELECT t.id, h.house_number AS "houseNumber", t.category_line AS category,
             t.description, t.status, t.created_at AS "createdAt", t.assigned_committee_term_id AS "assignedCommitteeTermId"
           FROM helpdesk_tickets t JOIN houses h ON h.id=t.house_id
-          WHERE t.society_id=${user.societyId}::uuid AND (
-            t.assigned_committee_term_id=${BigInt(user.committeeTermId)} OR
-            t.status IN ('OPEN','IN_PROGRESS')
-          ) ORDER BY t.created_at DESC LIMIT 100`
+          WHERE t.society_id=${user.societyId}::uuid AND t.assigned_committee_term_id=${BigInt(user.committeeTermId)}
+          ORDER BY t.created_at DESC LIMIT 100`
       : user.houseId
       ? await prisma.$queryRaw`
           SELECT t.id, h.house_number AS "houseNumber", t.category_line AS category,
