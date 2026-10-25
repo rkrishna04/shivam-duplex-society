@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
     const user = await getSessionUser();
     if (!user) return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
     if (!user.houseId || !user.societyId) return NextResponse.json({ error: "An active house membership is required" }, { status: 403 });
+    const houseId = BigInt(user.houseId);
     const body = await req.json();
     const category = typeof body.category === "string" ? body.category.trim() : "";
     const description = typeof body.description === "string" ? body.description.trim() : "";
@@ -54,11 +55,11 @@ export async function POST(req: NextRequest) {
             AND a.valid_from<=CURRENT_DATE AND (a.valid_until IS NULL OR a.valid_until>=CURRENT_DATE)
           ORDER BY a.valid_from DESC LIMIT 1
         ) AS "committeeTermId"
-        FROM houses h WHERE h.id=${BigInt(user.houseId)}`;
+        FROM houses h WHERE h.id=${houseId}`;
       if (!house.length || house[0].societyId !== user.societyId) throw new Error("HOUSE_SCOPE_INVALID");
       await tx.$executeRaw`
         INSERT INTO helpdesk_tickets (id, society_id, house_id, raised_by, assigned_committee_term_id, category_line, description, idempotency_key)
-        VALUES (${id}::uuid, ${user.societyId}::uuid, ${BigInt(user.houseId)}, ${user.id}::uuid, ${house[0].committeeTermId}, ${category}, ${description}, ${key})`;
+        VALUES (${id}::uuid, ${user.societyId}::uuid, ${houseId}, ${user.id}::uuid, ${house[0].committeeTermId}, ${category}, ${description}, ${key})`;
       await tx.$executeRaw`
         INSERT INTO helpdesk_ticket_events (ticket_id, actor_user_id, to_status, note, escalation_level)
         VALUES (${id}::uuid, ${user.id}::uuid, 'OPEN', 'Issue created', 1)`;
