@@ -32,6 +32,8 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    const origin = req.headers.get("origin");
+    if (!origin || new URL(origin).origin !== new URL(req.url).origin) return NextResponse.json({ error: "Invalid request origin" }, { status: 403 });
     const user = await getSessionUser();
     if (!user) return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
     if (!user.houseId || !user.societyId) return NextResponse.json({ error: "An active house membership is required" }, { status: 403 });
