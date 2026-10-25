@@ -57,3 +57,18 @@ Phone must be stored in the same normalized E.164 format. The endpoint uses `use
 ## Release gate
 
 Do not mark production ready until the role test plan is executed, critical/high findings are resolved, the database and backups are verified, and the actual deployed routes have been exercised end-to-end.
+
+
+## Administrator console
+
+The responsive administrator console is available at `/admin.html`. Its API is `/api/admin` and checks permissions on the server; the page's navigation is not an authorization control.
+
+Before opening it:
+1. Provision the society database using the approved deployment procedure and apply, in order, `database/migrations/20261025_secure_workflow.sql`, `database/migrations/20261026_house_area_assignments.sql`, and `database/migrations/20261027_society_notices.sql` after `database/schema.sql`.
+2. Add the admin's verified UUID to Vercel's `SOCIETY_ADMIN_USER_IDS` environment variable (comma-separated UUIDs if there is more than one approved administrator). Configure it separately for Preview and Production. Never add this allowlist to client-side code.
+3. The administrator account must already have a current society-linked membership or committee term so the session has a society scope. Verify the account's UUID from the trusted database before allowlisting it.
+4. Deploy, then test `/api/health` and `/api/admin` in Preview with test data before Production.
+
+Console capabilities currently include house creation, resident account provisioning with scrypt password hashes, resident deactivation (which revokes sessions), committee term creation, house-to-area assignment, notice publishing/drafts, and read-only ticket/invoice/expense summaries. Every supported mutation is written to `audit_events`. It deliberately does not process payments, approve expenses, or fabricate roster/area data.
+
+**Important:** The SQL files under `database/migrations/` are currently controlled SQL scripts, not Prisma migration directories. Apply them through the database provider's SQL console or a controlled `psql` release process; `prisma migrate deploy` alone will not apply these files. Record the migration run in your release log.
