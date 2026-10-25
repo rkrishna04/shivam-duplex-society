@@ -27,7 +27,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
            WHEN hm.role = 'OWNER' THEN 'HOUSE_OWNER'
            WHEN hm.role = 'TENANT' THEN 'TENANT'
            ELSE 'RESIDENT' END AS role,
-      h.society_id AS "societyId", h.id::text AS "houseId",
+      COALESCE(ct.society_id, h.society_id)::text AS "societyId", h.id::text AS "houseId",
       ct.id::text AS "committeeTermId", ct.assigned_line AS "assignedLine"
     FROM user_sessions s
     JOIN users u ON u.id = s.user_id AND u.is_active = true
