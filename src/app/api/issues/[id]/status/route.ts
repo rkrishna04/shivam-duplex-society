@@ -7,6 +7,8 @@ type Status = typeof statusValues[number];
 const leadership = new Set(["Pramukh", "Mantri", "Khanjanji", "Upmantri", "Area Committee Member"]);
 export async function PATCH(req: NextRequest, context: { params: Promise<{id:string}> }) {
   try {
+    const origin = req.headers.get("origin");
+    if (!origin || new URL(origin).origin !== new URL(req.url).origin) return NextResponse.json({ error: "Invalid request origin" }, { status: 403 });
     const user = await getSessionUser();
     if (!user) return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
     if (!user.committeeTermId || !leadership.has(user.role)) return NextResponse.json({ error: "Committee permission required" }, { status: 403 });
